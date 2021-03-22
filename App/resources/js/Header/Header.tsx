@@ -1,14 +1,13 @@
 import React from "react";
 
-const Home = () => {
-    let foo: string = "React";
-    const bar: string = "TypeScript";
+const Header = () => {
+    let name: string = "Piggys";
 
     return (
         <h1>
-            Hello {foo} + {bar}
+            { name }
         </h1>
     );
 };
 
-export default Home;
+export default Header;

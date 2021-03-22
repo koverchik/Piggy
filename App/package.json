@@ -20,6 +20,8 @@
     },
     "dependencies": {
         "@types/react": "^17.0.3",
+        "browser-sync": "^2.26.14",
+        "browser-sync-webpack-plugin": "^2.3.0",
         "react": "^17.0.1",
         "react-dom": "^17.0.1"
     }
