@@ -1862,10 +1862,47 @@ var Footer_1 = __importDefault(__webpack_require__(/*! ./Footer/Footer */ "./res
 var MainSection_1 = __importDefault(__webpack_require__(/*! ./MainSection/MainSection */ "./resources/js/MainSection/MainSection.tsx"));
 
 var App = function App() {
-  return react_1["default"].createElement("div", null, react_1["default"].createElement(Header_1["default"], null), react_1["default"].createElement(MainSection_1["default"], null), react_1["default"].createElement(Footer_1["default"], null));
+  return react_1["default"].createElement("div", {
+    className: "wrapper-all-app"
+  }, react_1["default"].createElement(Header_1["default"], null), react_1["default"].createElement(MainSection_1["default"], null), react_1["default"].createElement(Footer_1["default"], null));
 };
 
 exports.default = App;
+
+/***/ }),
+
+/***/ "./resources/js/ButtonCreate/ButtonCreate.tsx":
+/*!****************************************************!*\
+  !*** ./resources/js/ButtonCreate/ButtonCreate.tsx ***!
+  \****************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+__webpack_require__(/*! ./_ButtonCreate.scss */ "./resources/js/ButtonCreate/_ButtonCreate.scss");
+
+var ButtonCreate = function ButtonCreate() {
+  return react_1["default"].createElement("div", {
+    className: "button-main"
+  }, react_1["default"].createElement("a", {
+    href: "#"
+  }, "\u0421\u043E\u0437\u0434\u0430\u0442\u044C"));
+};
+
+exports.default = ButtonCreate;
 
 /***/ }),
 
@@ -1895,7 +1932,22 @@ __webpack_require__(/*! ./_Footer.scss */ "./resources/js/Footer/_Footer.scss");
 var Footer = function Footer() {
   return react_1["default"].createElement("div", {
     className: "wrapper-footer"
-  }, react_1["default"].createElement("p", null, "\u0412\u043E\u0439\u0442\u0438"));
+  }, react_1["default"].createElement("a", {
+    href: "#",
+    className: "enter-in-system"
+  }, react_1["default"].createElement("img", {
+    src: "../images/unknown-user.svg",
+    alt: "piggy",
+    className: "image-unknow-user"
+  }), react_1["default"].createElement("p", null, "\u0412\u043E\u0439\u0442\u0438")), react_1["default"].createElement("div", {
+    className: "links-info"
+  }, react_1["default"].createElement("a", {
+    href: "#"
+  }, "\u041F\u0440\u0430\u0432\u0438\u043B\u0430"), react_1["default"].createElement("a", {
+    href: "#"
+  }, "\u041E \u043F\u0440\u0430\u0432\u0430\u0445"), react_1["default"].createElement("a", {
+    href: "mailto:koverchik.o@gmail.com?subject=\u0412\u043E\u043F\u0440\u043E\u0441 \u043F\u043E Piggy"
+  }, "\u0421\u0432\u044F\u0437\u0430\u0442\u044C\u0441\u044F")));
 };
 
 exports.default = Footer;
@@ -1930,7 +1982,11 @@ var Header = function Header() {
     className: "wrapper-header"
   }, react_1["default"].createElement("h1", {
     className: "logo-header"
-  }, "Piggy"));
+  }, "Piggy"), react_1["default"].createElement("img", {
+    src: "../images/image-for-header.png",
+    alt: "piggy",
+    className: "image-header"
+  }));
 };
 
 exports.default = Header;
@@ -1960,10 +2016,24 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 
 __webpack_require__(/*! ./_MainSection.scss */ "./resources/js/MainSection/_MainSection.scss");
 
+var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../ButtonCreate/ButtonCreate */ "./resources/js/ButtonCreate/ButtonCreate.tsx"));
+
 var MainSection = function MainSection() {
   return react_1["default"].createElement("div", {
     className: "wrapper-main"
-  }, react_1["default"].createElement("p", null, "Main block"));
+  }, react_1["default"].createElement("div", {
+    className: "wapper-estimate"
+  }, react_1["default"].createElement("p", {
+    className: "header-blok-view"
+  }, "\u0421\u043C\u0435\u0442\u0430"), react_1["default"].createElement("p", null, "\u0421\u043F\u043B\u0430\u043D\u0438\u0440\u0443\u0439 \u0441\u0432\u043E\u0438 \u0440\u0430\u0441\u0445\u043E\u0434\u044B"), react_1["default"].createElement("img", {
+    src: "../images/estimate.svg"
+  }), react_1["default"].createElement(ButtonCreate_1["default"], null)), react_1["default"].createElement("div", {
+    className: "wapper-wallet"
+  }, react_1["default"].createElement("p", {
+    className: "header-blok-view"
+  }, "\u041A\u043E\u0448\u0435\u043B\u0435\u043A"), react_1["default"].createElement("p", null, "\u041F\u043E\u0441\u0447\u0438\u0442\u0430\u0439 \u0441\u0432\u043E\u0438 \u0442\u0440\u0430\u0442\u044B"), react_1["default"].createElement("img", {
+    src: "../images/wallet.svg"
+  }), react_1["default"].createElement(ButtonCreate_1["default"], null)));
 };
 
 exports.default = MainSection;
@@ -2001,6 +2071,30 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/ButtonCreate/_ButtonCreate.scss":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/ButtonCreate/_ButtonCreate.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".button-main {\n  display: flex;\n  justify-content: center;\n}\n.button-main a {\n  font-family: \"Podkova\", serif;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 24px;\n  width: 200px;\n  height: 46px;\n  background-color: #5354D2;\n  color: white;\n  border-radius: 10px;\n  cursor: pointer;\n  border: none;\n  text-decoration: none;\n}\n.button-main a:hover {\n  opacity: 0.8;\n  background-color: #FE7BA7;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/Footer/_Footer.scss":
 /*!********************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/Footer/_Footer.scss ***!
@@ -2018,7 +2112,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-footer {\n  color: #5354D2;\n  background-color: #F5F5F5;\n  min-height: 150px;\n  margin: 0;\n  padding: 0;\n}\n.wrapper-footer p {\n  padding: 0;\n  margin: 0;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-footer {\n  color: #5354D2;\n  background-color: #F5F5F5;\n  min-height: 120px;\n  margin: 0;\n  padding: 0;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.wrapper-footer .enter-in-system {\n  display: flex;\n  flex-direction: row;\n  align-items: flex-end;\n  text-decoration: none;\n  margin: 10px 10px;\n}\n.wrapper-footer .enter-in-system p {\n  padding: 0;\n  margin: 0 0 0 10px;\n}\n.wrapper-footer .enter-in-system p:hover {\n  color: #FE7BA7;\n}\n.wrapper-footer .links-info {\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-footer .links-info a {\n  text-decoration: none;\n  margin: 5px 10px;\n  color: #5354D2;\n}\n.wrapper-footer .links-info a:hover {\n  color: #FE7BA7;\n}\n.wrapper-footer .links-info:active {\n  color: white;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2042,7 +2136,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-header {\n  height: 200px;\n  background-color: #F5F5F5;\n}\n.wrapper-header .logo-header {\n  color: #FE7BA7;\n  font-size: 70px;\n  margin: 0;\n  padding: 0;\n  font-family: \"Podkova\", serif;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-header {\n  height: 150px;\n  background-color: #F5F5F5;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.wrapper-header .logo-header {\n  color: #FE7BA7;\n  font-size: 70px;\n  margin: 0;\n  padding: 0;\n  font-family: \"Podkova\", serif;\n  margin-left: 20px;\n}\n.wrapper-header .image-header {\n  height: 100%;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2066,7 +2160,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-main {\n  display: flex;\n  justify-content: space-around;\n}\n.wrapper-main .wapper-estimate, .wrapper-main .wapper-wallet {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding: 2rem;\n  margin: 1rem;\n  width: 30%;\n}\n.wrapper-main .wapper-estimate .header-blok-view, .wrapper-main .wapper-wallet .header-blok-view {\n  color: #5354D2;\n  font-size: 48px;\n  margin: 1rem;\n}\n.wrapper-main .wapper-estimate img, .wrapper-main .wapper-wallet img {\n  margin: 1rem;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2090,7 +2184,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 0;\n  padding: 0;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 0;\n  padding: 0;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n  height: 100%;\n}\n\n#root {\n  height: 100%;\n}\n\n.wrapper-all-app {\n  height: 100%;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -49594,6 +49688,36 @@ if (false) {} else {
   module.exports = __webpack_require__(/*! ./cjs/scheduler-tracing.development.js */ "./node_modules/scheduler/cjs/scheduler-tracing.development.js");
 }
 
+
+/***/ }),
+
+/***/ "./resources/js/ButtonCreate/_ButtonCreate.scss":
+/*!******************************************************!*\
+  !*** ./resources/js/ButtonCreate/_ButtonCreate.scss ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_ButtonCreate_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./_ButtonCreate.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/ButtonCreate/_ButtonCreate.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_ButtonCreate_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_ButtonCreate_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 

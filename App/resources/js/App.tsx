@@ -5,7 +5,7 @@ import MainSection from "./MainSection/MainSection";
 
 const App: React.FC = () => {
     return (
-    <div>
+    <div className="wrapper-all-app">
         <Header />
         <MainSection/>
         <Footer />
