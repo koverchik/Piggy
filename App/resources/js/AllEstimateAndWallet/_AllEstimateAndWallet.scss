@@ -1,4 +1,4 @@
-.wrapper-main{
+.wrapper-all-estimate-wallet{
     display: flex;
     justify-content: space-around;
     background-color: #C4C4C4;
@@ -16,9 +16,24 @@
             color: #5354D2;
             font-size: 48px;
             margin: 1rem;
+            user-select: none; 
         }
-        img{
-            margin: 1rem;
+        .list-estimate, .list-wallet{
+            margin: 0;
+            padding: 10px;
+           li{
+            list-style-type: none;
+            margin-bottom: 10px;
+            a{
+                text-decoration: none;
+                color: black;
+                font-size: 1.25rem;
+                &:hover{
+                    color: #5354D2;
+                }
+            }
+           
+           } 
         }
     }
 }
