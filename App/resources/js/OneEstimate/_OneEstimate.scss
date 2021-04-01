@@ -67,10 +67,10 @@
                        
                     }
                     &.name-one-item{
-                        width: 45%;
+                        width: 70%;
                     }
                     &.cost-one-item{
-                        width: 45%;
+                        width: 20%;
                     }
                 }
              }
@@ -100,6 +100,12 @@
                     &.namber-one-item{
                         width: 5%;
                         text-align: center;
+                    }
+                    &.new-one-item{
+                        width: 70%;
+                    }
+                    &.new-cost-one-item{
+                        width: 20%;
                     }
                     input{
                         width: 100%;
