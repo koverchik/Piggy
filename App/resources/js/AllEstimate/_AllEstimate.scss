@@ -53,12 +53,16 @@
                 width: 100%;
                 border: 1px solid #FDB547;
                 user-select: none; 
+                border-collapse: collapse;
                 
                 td{
                     padding: 0.5rem;
                  }
                 thead{
-                 border-right: 1px solid white;
+                 
+                 td{
+                    border-right: 1px solid white;
+                 }
                 
                 }
                 tbody{
@@ -70,14 +74,13 @@
                     }
                     .namber-one-item{
                        text-align: center;
-
                     }
                     .name-one-item{
                        
-                        display: flex;
-                        justify-content: space-between;
+                        
                         img{
                             margin-left: 1rem;
+                            float: right;
                             &:hover{
                                 cursor: pointer;
                                 opacity: 0.6;

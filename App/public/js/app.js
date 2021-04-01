@@ -1834,115 +1834,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./resources/js/AllEstimate/AllEstimate.tsx":
-/*!**************************************************!*\
-  !*** ./resources/js/AllEstimate/AllEstimate.tsx ***!
-  \**************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-__webpack_require__(/*! ./_AllEstimate.scss */ "./resources/js/AllEstimate/_AllEstimate.scss");
-
-var ButtonAdd_1 = __importDefault(__webpack_require__(/*! ../ButtonAdd/ButtonAdd */ "./resources/js/ButtonAdd/ButtonAdd.tsx"));
-
-var AllEstimate = function AllEstimate() {
-  return react_1["default"].createElement("div", {
-    className: "wrapper-list-estimate"
-  }, react_1["default"].createElement("div", {
-    className: "wrapper-page-list-estimate"
-  }, react_1["default"].createElement("h2", null, "\u041A\u043E\u0448\u0435\u043B\u044C\u043A\u0438"), react_1["default"].createElement("div", {
-    className: "wrappter-one-estimate"
-  }, react_1["default"].createElement("div", {
-    className: "wrapper-header-estimate"
-  }, react_1["default"].createElement("div", {
-    className: "name-estimate"
-  }, "\u0425\u043E\u0437 \u0440\u0430\u0441\u0445\u043E\u0434\u044B"), react_1["default"].createElement("div", {
-    className: "delete-one-estimate"
-  }, react_1["default"].createElement("img", {
-    src: "../images/delete-estimate.svg"
-  }))), react_1["default"].createElement("div", {
-    className: "wrapper-one-table"
-  }, react_1["default"].createElement("table", null, react_1["default"].createElement("thead", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", null, "  "), react_1["default"].createElement("td", null, "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0438"), react_1["default"].createElement("td", null, " \u041F\u0440\u0430\u0432\u0430 "))), react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
-    className: "namber-one-item"
-  }, " 1 "), react_1["default"].createElement("td", {
-    className: "name-one-item"
-  }, " \u041E\u043B\u0435\u0433 ", react_1["default"].createElement("img", {
-    src: "../images/delete-one-peope.svg"
-  })), react_1["default"].createElement("td", {
-    className: "premission-one-item"
-  }, " \u0412\u043B\u0430\u0434\u0435\u043B\u0435\u0446 ", react_1["default"].createElement("img", {
-    src: "../images/list-premision.svg"
-  }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
-    className: "namber-one-item"
-  }, " 2 "), react_1["default"].createElement("td", {
-    className: "name-one-item"
-  }, " \u041C\u0430\u0448\u0430 ", react_1["default"].createElement("img", {
-    src: "../images/delete-one-peope.svg"
-  })), react_1["default"].createElement("td", {
-    className: "premission-one-item"
-  }, " \u0420\u0435\u0434\u0430\u043A\u0442\u043E\u0440 ", react_1["default"].createElement("img", {
-    src: "../images/list-premision.svg"
-  }))))), react_1["default"].createElement(ButtonAdd_1["default"], null))), react_1["default"].createElement("div", {
-    className: "wrappter-one-estimate"
-  }, react_1["default"].createElement("div", {
-    className: "wrapper-header-estimate"
-  }, react_1["default"].createElement("div", {
-    className: "name-estimate"
-  }, "\u0425\u043E\u043B\u043E\u0434\u0438\u043B\u044C\u043D\u0438\u043A"), react_1["default"].createElement("div", {
-    className: "delete-one-estimate"
-  }, react_1["default"].createElement("img", {
-    src: "../images/delete-estimate.svg"
-  }))), react_1["default"].createElement("div", {
-    className: "wrapper-one-table"
-  }, react_1["default"].createElement("table", null, react_1["default"].createElement("thead", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", null, "  "), react_1["default"].createElement("td", null, "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0438"), react_1["default"].createElement("td", null, " \u041F\u0440\u0430\u0432\u0430 "))), react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
-    className: "namber-one-item"
-  }, " 1 "), react_1["default"].createElement("td", {
-    className: "name-one-item"
-  }, " \u041E\u043B\u0435\u0433 ", react_1["default"].createElement("img", {
-    src: "../images/delete-one-peope.svg"
-  })), react_1["default"].createElement("td", {
-    className: "premission-one-item"
-  }, " \u0412\u043B\u0430\u0434\u0435\u043B\u0435\u0446 ", react_1["default"].createElement("img", {
-    src: "../images/list-premision.svg"
-  }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
-    className: "namber-one-item"
-  }, " 2 "), react_1["default"].createElement("td", {
-    className: "name-one-item"
-  }, " \u0421\u0430\u0448\u0430 ", react_1["default"].createElement("img", {
-    src: "../images/delete-one-peope.svg"
-  })), react_1["default"].createElement("td", {
-    className: "premission-one-item"
-  }, " \u041F\u0440\u043E\u0441\u043C\u043E\u0442\u0440    ", react_1["default"].createElement("img", {
-    src: "../images/list-premision.svg"
-  }))))), react_1["default"].createElement(ButtonAdd_1["default"], null))), react_1["default"].createElement("div", {
-    className: "pagination-list-estimate"
-  }, react_1["default"].createElement("div", null, react_1["default"].createElement("img", {
-    src: "../images/pagination-left.svg",
-    alt: "pagination"
-  })), react_1["default"].createElement("div", null, "1"), react_1["default"].createElement("div", null, "2"), react_1["default"].createElement("div", null, "3"), react_1["default"].createElement("div", null, react_1["default"].createElement("img", {
-    src: "../images/pagination-right.svg",
-    alt: "pagination"
-  })))));
-};
-
-exports.default = AllEstimate;
-
-/***/ }),
-
 /***/ "./resources/js/App.tsx":
 /*!******************************!*\
   !*** ./resources/js/App.tsx ***!
@@ -1968,52 +1859,18 @@ var Header_1 = __importDefault(__webpack_require__(/*! ./Header/Header */ "./res
 
 var Footer_1 = __importDefault(__webpack_require__(/*! ./Footer/Footer */ "./resources/js/Footer/Footer.tsx")); // import MainSection from "./MainSection/MainSection";
 // import AllEstimateAndWallet from "./AllEstimateAndWallet/AllEstimateAndWallet";
+// import AllEstimate from "./AllEstimate/AllEstimate";
 
 
-var AllEstimate_1 = __importDefault(__webpack_require__(/*! ./AllEstimate/AllEstimate */ "./resources/js/AllEstimate/AllEstimate.tsx"));
+var OneEstimate_1 = __importDefault(__webpack_require__(/*! ./OneEstimate/OneEstimate */ "./resources/js/OneEstimate/OneEstimate.tsx"));
 
 var App = function App() {
   return react_1["default"].createElement("div", {
     className: "wrapper-all-app"
-  }, react_1["default"].createElement(Header_1["default"], null), react_1["default"].createElement(AllEstimate_1["default"], null), react_1["default"].createElement(Footer_1["default"], null));
+  }, react_1["default"].createElement(Header_1["default"], null), react_1["default"].createElement(OneEstimate_1["default"], null), react_1["default"].createElement(Footer_1["default"], null));
 };
 
 exports.default = App;
-
-/***/ }),
-
-/***/ "./resources/js/ButtonAdd/ButtonAdd.tsx":
-/*!**********************************************!*\
-  !*** ./resources/js/ButtonAdd/ButtonAdd.tsx ***!
-  \**********************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-__webpack_require__(/*! ./_ButtonAdd.scss */ "./resources/js/ButtonAdd/_ButtonAdd.scss");
-
-var ButtonAdd = function ButtonAdd() {
-  return react_1["default"].createElement("div", {
-    className: "button-main"
-  }, react_1["default"].createElement("a", {
-    href: "#"
-  }, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C"));
-};
-
-exports.default = ButtonAdd;
 
 /***/ }),
 
@@ -2104,6 +1961,87 @@ exports.default = Header;
 
 /***/ }),
 
+/***/ "./resources/js/OneEstimate/OneEstimate.tsx":
+/*!**************************************************!*\
+  !*** ./resources/js/OneEstimate/OneEstimate.tsx ***!
+  \**************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+__webpack_require__(/*! ./_OneEstimate.scss */ "./resources/js/OneEstimate/_OneEstimate.scss");
+
+var OneEstimate = function OneEstimate() {
+  return react_1["default"].createElement("div", {
+    className: "wrapper-one-estimate"
+  }, react_1["default"].createElement("div", {
+    className: "one-estimate"
+  }, react_1["default"].createElement("div", {
+    className: "wrapper-header-one-estimate"
+  }, react_1["default"].createElement("h2", {
+    className: "header-one-estimate"
+  }, "\u0414\u0435\u043D\u044C \u0440\u043E\u0436\u0434\u0435\u043D\u0438\u044F"), react_1["default"].createElement("div", {
+    className: "wrapper-button-edit-one-estimate"
+  }, react_1["default"].createElement("img", {
+    src: "../images/pensil.svg"
+  }))), react_1["default"].createElement("table", {
+    className: "table-list-value"
+  }, react_1["default"].createElement("thead", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
+    className: "empty-head-item"
+  }, "  "), react_1["default"].createElement("td", {
+    className: "name-head-one-item"
+  }, "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435"), react_1["default"].createElement("td", {
+    className: "cost-head-one-item"
+  }, " \u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C "))), react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
+    className: "namber-one-item"
+  }, " 1 "), react_1["default"].createElement("td", {
+    className: "name-one-item"
+  }, " \u0422\u043E\u0440\u0442 "), react_1["default"].createElement("td", {
+    className: "cost-one-item"
+  }, " 10 \u0440\u0443\u0431 ")), react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
+    className: "namber-one-item"
+  }, " 2 "), react_1["default"].createElement("td", {
+    className: "name-one-item"
+  }, " \u0421\u043E\u043A "), react_1["default"].createElement("td", {
+    className: "cost-one-item"
+  }, " 5 \u0440\u0443\u0431 "))), react_1["default"].createElement("tfoot", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
+    className: "empty-item"
+  }, "  "), react_1["default"].createElement("td", {
+    className: "title-cost-all-item"
+  }, " \u0418\u0442\u043E\u0433\u043E:  "), react_1["default"].createElement("td", {
+    className: "cost-all-item"
+  }, " 15 \u0440\u0443\u0431 ")))), react_1["default"].createElement("table", {
+    className: "table-add-new-value"
+  }, react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
+    className: "namber-one-item"
+  }, " 3 "), react_1["default"].createElement("td", {
+    className: "new-one-item"
+  }, " ", react_1["default"].createElement("input", null), " "), react_1["default"].createElement("td", {
+    className: "new-cost-one-item"
+  }, " ", react_1["default"].createElement("input", null), " ")))), react_1["default"].createElement("div", null, react_1["default"].createElement("div", {
+    className: "button-add-new-item"
+  }, react_1["default"].createElement("img", {
+    src: "../images/plus.svg"
+  })))));
+};
+
+exports.default = OneEstimate;
+
+/***/ }),
+
 /***/ "./resources/js/bootstrap.js":
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
@@ -2132,54 +2070,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/AllEstimate/_AllEstimate.scss":
-/*!******************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/AllEstimate/_AllEstimate.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-list-estimate {\n  background-color: #C4C4C4;\n  padding: 3vw;\n}\n.wrapper-list-estimate .pagination-list-estimate {\n  color: #5354D2;\n  display: flex;\n  justify-content: center;\n}\n.wrapper-list-estimate .pagination-list-estimate div {\n  font-size: 1.5rem;\n  margin: 1rem;\n  align-items: center;\n}\n.wrapper-list-estimate .pagination-list-estimate div img {\n  width: 2rem;\n}\n.wrapper-list-estimate .pagination-list-estimate div:hover {\n  opacity: 0.7;\n  cursor: pointer;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  padding: 3vw;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate h2 {\n  margin: 0;\n  padding-bottom: 1rem;\n  color: #5354D2;\n  font-size: 3rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate {\n  background-color: white;\n  border-radius: 10px;\n  padding: 2vw;\n  margin: 1rem;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate .delete-one-estimate {\n  background-color: #F5F5F5;\n  border: 1px solid #5354D2;\n  border-radius: 5px;\n  width: 2rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate .delete-one-estimate:hover {\n  cursor: pointer;\n  opacity: 0.6;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate table {\n  margin: 1rem 0;\n  width: 100%;\n  border: 1px solid #FDB547;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate table td {\n  padding: 0.5rem;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate table thead {\n  border-right: 1px solid white;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate table tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate table tbody .namber-one-item {\n  text-align: center;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate table tbody .name-one-item {\n  display: flex;\n  justify-content: space-between;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate table tbody .name-one-item img {\n  margin-left: 1rem;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate table tbody .name-one-item img:hover {\n  cursor: pointer;\n  opacity: 0.6;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate table tbody .premission-one-item {\n  text-align: center;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate table tbody .premission-one-item img {\n  margin-left: 1rem;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate table tbody .premission-one-item img:hover {\n  cursor: pointer;\n  opacity: 0.6;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate .wrapper-header-estimate {\n  display: flex;\n  justify-content: space-between;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  margin-bottom: 1rem;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate .wrapper-header-estimate .name-estimate {\n  font-size: 2rem;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate .wrapper-one-table thead {\n  background-color: #FDB547;\n}", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/ButtonAdd/_ButtonAdd.scss":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/ButtonAdd/_ButtonAdd.scss ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, ".button-main {\n  display: flex;\n  justify-content: flex-end;\n}\n.button-main a {\n  font-family: \"Podkova\", serif;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 24px;\n  width: 200px;\n  height: 46px;\n  background-color: #5354D2;\n  color: white;\n  border-radius: 10px;\n  cursor: pointer;\n  border: none;\n  text-decoration: none;\n}\n.button-main a:hover {\n  opacity: 0.8;\n  background-color: #FE7BA7;\n}", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
 
 /***/ }),
 
@@ -2225,6 +2115,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-header {\n  height: 150px;\n  background-color: #F5F5F5;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.wrapper-header .logo-header {\n  color: #FE7BA7;\n  font-size: 70px;\n  margin: 0;\n  padding: 0;\n  font-family: \"Podkova\", serif;\n  margin-left: 20px;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.wrapper-header .image-header {\n  height: 100%;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/OneEstimate/_OneEstimate.scss":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/OneEstimate/_OneEstimate.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-one-estimate {\n  background-color: #C4C4C4;\n  padding: 3vw;\n}\n.wrapper-one-estimate .one-estimate {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  padding: 3vw;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate {\n  display: flex;\n  justify-content: space-between;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate h2 {\n  margin: 0;\n  padding-bottom: 1rem;\n  color: #5354D2;\n  font-size: 3rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img {\n  background-color: #C4C4C4;\n  border: 1px solid #5354D2;\n  border-radius: 5px;\n  padding: 0.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img:hover {\n  cursor: pointer;\n  opacity: 0.6;\n}\n.wrapper-one-estimate .one-estimate .table-list-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-list-value td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.empty-head-item {\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.name-head-one-item {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.cost-head-one-item {\n  border-left: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.name-one-item {\n  width: 45%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.cost-one-item {\n  width: 45%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.title-cost-all-item {\n  float: right;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.cost-all-item {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  background-color: #F5F5F5;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:active {\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:focus {\n  outline: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item {\n  background-color: #5354D2;\n  border-radius: 10px;\n  display: inline;\n  width: 10%;\n  float: right;\n  padding: 1rem;\n  display: flex;\n  justify-content: center;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:hover {\n  background-color: #FE7BA7;\n  cursor: pointer;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -49755,66 +49669,6 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./resources/js/AllEstimate/_AllEstimate.scss":
-/*!****************************************************!*\
-  !*** ./resources/js/AllEstimate/_AllEstimate.scss ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AllEstimate_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./_AllEstimate.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/AllEstimate/_AllEstimate.scss");
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AllEstimate_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AllEstimate_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
-
-/***/ }),
-
-/***/ "./resources/js/ButtonAdd/_ButtonAdd.scss":
-/*!************************************************!*\
-  !*** ./resources/js/ButtonAdd/_ButtonAdd.scss ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_ButtonAdd_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./_ButtonAdd.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/ButtonAdd/_ButtonAdd.scss");
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_ButtonAdd_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_ButtonAdd_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
-
-/***/ }),
-
 /***/ "./resources/js/Footer/_Footer.scss":
 /*!******************************************!*\
   !*** ./resources/js/Footer/_Footer.scss ***!
@@ -49872,6 +49726,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_Header_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./resources/js/OneEstimate/_OneEstimate.scss":
+/*!****************************************************!*\
+  !*** ./resources/js/OneEstimate/_OneEstimate.scss ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_OneEstimate_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./_OneEstimate.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/OneEstimate/_OneEstimate.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_OneEstimate_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_OneEstimate_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 
