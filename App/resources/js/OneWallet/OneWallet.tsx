@@ -89,6 +89,30 @@ const OneWallet: React.FC = () => {
                         <img src="../images/add-user.svg"></img>
                         <p>Добавить</p>
                     </div>
+                    <table className="table-debit-credit">
+                        <thead>
+                            <tr>
+                                <td className="empty-name-user-head-debit-credit">  </td>
+                                <td className="column-head-debit"> Дебет </td>
+                                <td className="column-head-credit" > Кредит </td>
+                                <td className="second-side-user-head-debit-credit">  </td>
+                            </tr>
+                        </thead>
+                        <tbody> 
+                            <tr>
+                                <td className="name-user-debit-credit"> Оля </td>
+                                <td className="column-debit"> -10 руб </td>
+                                <td className="column-credit" > 10 руб </td>
+                                <td className="second-side-user-debit-credit" > Маша </td>
+                            </tr>
+                            <tr>
+                                <td className="name-user-debit-credit"> Маша </td>
+                                <td className="column-debit"> 10 руб </td>
+                                <td className="column-credit" > -10 руб </td>
+                                <td className="second-side-user-debit-credit" > Оля </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

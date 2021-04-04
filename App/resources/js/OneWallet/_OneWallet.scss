@@ -44,7 +44,7 @@
                 padding: 2rem;
                 width: 100%;
             }
-            .table-list-value, .table-user{
+            .table-list-value, .table-user, .table-debit-credit{
                
                 margin: 1rem 0;
                 width: 100%;
@@ -58,15 +58,15 @@
                     td{
                         border:1px solid #FDB547;
                         background-color: #FDB547;
-                        &.empty-head-item{
+                        &.empty-head-item, &.empty-name-user-head-debit-credit{
                             border-right:1px solid white;
                         }
-                        &.name-head-one-item{
+                        &.name-head-one-item, &.column-head-debit{
                             border-left:1px solid white;
                             border-right:1px solid white;
                             text-align: center;
                         }
-                        &.cost-head-one-item{
+                        &.cost-head-one-item, &.column-head-credit{
                             border-left:1px solid white;
                             border-right:1px solid white;   
                             text-align: center;
@@ -76,7 +76,7 @@
                             border-right:1px solid white;
                             text-align: center;
                         }
-                        &.empty-head-item-user{
+                        &.empty-head-item-user, &.second-side-user-head-debit-credit{
                             border-left:1px solid white;
                         }
                      }
@@ -101,8 +101,11 @@
                         }
                         &.user-write-item{
                             width: 5%;
+                            
                             img{
                                cursor: pointer;
+                               text-align: center;
+                               vertical-align: middle;
                             }
                         }
                     
@@ -219,6 +222,7 @@
                         font-size: 1.3rem;
                     }
                     img{
+                        
                         margin: 0 10px;
                     }
                  &:hover{
