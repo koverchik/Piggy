@@ -72,18 +72,15 @@ class DatabaseSeeder extends Seeder
                 'names_wallets_id' => $i ]);
     
           array_push($colectionObligationsWallets, [ 
-            'compensation' => 50, 
-            'model_wallets' => 0,
+            'compensation' => 150, 
+            'model_wallets' => 1,
             'user_id' => rand(1,10),
             'names_wallets_id' => rand(1,100) ]);
               };
           
           DB::table('obligations_wallets')->insert($colectionObligationsWallets);
 
-        // compensation     | double(8,2)     | NO   |     | NULL    |                |
-        // | model_wallets    | tinyint(1)      | NO   |     | 0       |                |
-        // | user_id          | bigint unsigned | NO   | MUL | NULL    |                |
-        // | names_wallets_id 
+       
         //Добавление видов доступа 
          $colectionScopeDiscriptionsEtimates = [
              [ "name" => "Создатель",
