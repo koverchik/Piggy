@@ -15,6 +15,10 @@ class CreateObligationsWalletsTable extends Migration
     {
         Schema::create('obligations_wallets', function (Blueprint $table) {
             $table->id();
+            $table->float('compensation', 8, 2);
+            $table->boolean('model_wallets')->default(0);
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('names_wallets_id')->constrained('names_wallets')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

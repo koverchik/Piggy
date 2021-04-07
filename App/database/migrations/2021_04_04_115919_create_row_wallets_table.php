@@ -18,6 +18,7 @@ class CreateRowWalletsTable extends Migration
             $table->string('name', 100);
             $table->float('amount', 8, 2);
             $table->dateTime('created_at_time', 0);
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade');
             $table->foreignId('names_wallets_id')->constrained('names_wallets')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
