@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Estimates\ListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('app');
 });
+
+// Route::resource('/estimate', [EstimatesController::class, 'index']) -> names('estimateTest');
+Route::get('/estimate{path?}', [ListController::class, 'show']);
+
+Route::get('/all-estimates{path?}', [ListController::class, 'store']);
+
+// Route::get('/estimate', function () {
+//     return view('app');
+// });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

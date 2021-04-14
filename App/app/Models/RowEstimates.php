@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class RowEstimates extends Model
 {
     use HasFactory;
+    
+    public function NamesEstimates()
+    {
+      return $this->belongsTo(NamesEstimates::class);
+    }
 }

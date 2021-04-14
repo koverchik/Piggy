@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ScopeEstimates extends Model
 {
     use HasFactory;
+    
+    public function NamesEstimates()
+    {
+      return $this->belongsTo(NamesEstimates::class);
+    }
 }
