@@ -45,8 +45,9 @@ class ListController extends BaseController
              $name->full_name = $name->NamesEstimates->name;
              $name->ouner_id = $name->NamesEstimates->user_id;
           }
-       
-        return $names->toJson();
+          
+         return $names;
+      
     }
 
     /**

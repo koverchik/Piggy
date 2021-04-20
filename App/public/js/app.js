@@ -2104,20 +2104,34 @@ var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../ButtonCreate/But
 
 __webpack_require__(/*! ./_AllEstimateAndWallet.scss */ "./resources/js/components/AllEstimateAndWallet/_AllEstimateAndWallet.scss");
 
-var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js")); // const testCook = document.querySelector('meta[name="csrf-token"]');
+// console.log(testCook);
+
 
 var AllEstimateAndWallet = function AllEstimateAndWallet() {
   var _a = react_1.useState([]),
-      markers = _a[0],
-      setMarkers = _a[1];
+      listEstimate = _a[0],
+      setlistEstimate = _a[1];
 
-  var id = 3;
   react_1.useEffect(function () {
-    console.log("Hello!");
-    axios_1["default"].post('http://localhost:8000/all-estimates', id).then(function (response) {
-      //do stuff with response if ok   
-      console.log(response);
-    }, function (response) {//do stuff about error
+    axios_1["default"].post('http://localhost:8000/all-estimates', {
+      id: 9
+    }).then(function (response) {
+      var list = response.data.map(function (item, i) {
+        console.log(item['full_name']);
+        return react_1["default"].createElement("li", {
+          key: "listEstimate" + i
+        }, react_1["default"].createElement("a", {
+          href: "#"
+        }, item['full_name']));
+      });
+      return setlistEstimate(list);
+    }, function (response) {
+      console.log("error request " + response);
+      var notiseError = react_1["default"].createElement("li", {
+        key: "listEstimateEmpty"
+      }, " \u0423\u043F\u0441, \u0447\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0430\u0440\u0430\u043D\u0438\u0446\u0443.");
+      return setlistEstimate(notiseError);
     });
   }, []);
   return react_1["default"].createElement("div", {
@@ -2128,15 +2142,7 @@ var AllEstimateAndWallet = function AllEstimateAndWallet() {
     className: "header-blok-view"
   }, "\u0421\u043C\u0435\u0442\u044B"), react_1["default"].createElement("ul", {
     className: "list-estimate"
-  }, react_1["default"].createElement("li", null, react_1["default"].createElement("a", {
-    href: "#"
-  }, "\u0414\u0435\u043D\u044C \u0440\u043E\u0436\u0434\u0435\u043D\u0438\u044F")), react_1["default"].createElement("li", null, react_1["default"].createElement("a", {
-    href: "#"
-  }, "\u041D\u043E\u0432\u044B\u0439 \u0433\u043E\u0434")), react_1["default"].createElement("li", null, react_1["default"].createElement("a", {
-    href: "#"
-  }, "8 \u043C\u0430\u0440\u0442\u0430")), react_1["default"].createElement("li", null, react_1["default"].createElement("a", {
-    href: "#"
-  }, "\u041C\u0430\u0439\u0441\u043A\u0438\u0435"))), react_1["default"].createElement(ButtonCreate_1["default"], null)), react_1["default"].createElement("div", {
+  }, listEstimate), react_1["default"].createElement(ButtonCreate_1["default"], null)), react_1["default"].createElement("div", {
     className: "wapper-wallet"
   }, react_1["default"].createElement("p", {
     className: "header-blok-view"
@@ -2311,7 +2317,7 @@ var Footer = function Footer() {
   return react_1["default"].createElement("div", {
     className: "wrapper-footer"
   }, react_1["default"].createElement("a", {
-    href: "#",
+    href: "/home",
     className: "enter-in-system"
   }, react_1["default"].createElement("img", {
     src: "../images/unknown-user.svg",
@@ -2647,6 +2653,7 @@ try {
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.withCredentials = true;
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

@@ -5,7 +5,7 @@ const Footer: React.FC = () => {
    
     return (  
         <div className="wrapper-footer">
-            <a href="#" className="enter-in-system">
+            <a href="/home" className="enter-in-system">
                 <img src="../images/unknown-user.svg" alt="piggy" className="image-unknow-user" />
                 <p>Войти</p>
             </a>

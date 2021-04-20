@@ -1,15 +1,23 @@
 import axios from 'axios';
 
-const id = 3;
 
 export default function requestEstimates () {
-    axios.post('http://localhost:8000/all-estimates', id).then(response => {
-        //do stuff with response if ok   
-        console.log(response);          
+    
+    axios.post('http://localhost:8000/all-estimates', {id: 9 } ).then(response => {
+ 
+        let list = response.data.map(( item: any, i: number ) =>{
+            console.log(item['full_name']);  
+            return <li  key={"listEstimate"+i}><a href="#">{item['full_name']}</a></li>
+        })
+         return list;
+      
         },
         response => {
-        //do stuff about error
-        })
-    
+            console.log("error request " + response);
+            let notiseError : any = <li  key={"listEstimateEmpty"}> Упс, что-то пошло не так попробуйте перезагрузить стараницу.</li>
+            return  notiseError;
+        }
+        )
+
 }
 

@@ -4,19 +4,28 @@ import './_AllEstimateAndWallet.scss';
 import dataEstimate from "../../actions/RequestAllEstimate";
 import axios from 'axios';
 
-const AllEstimateAndWallet: React.FC = () => {
-    const [markers, setMarkers] = useState([]);
-    const id = 3;
+// const testCook = document.querySelector('meta[name="csrf-token"]');
+// console.log(testCook);
 
+const AllEstimateAndWallet: React.FC = () => {
+    const [listEstimate, setlistEstimate] = useState([]);
+         
     useEffect(() => {
-        console.log("Hello!");
-        axios.post('http://localhost:8000/all-estimates', id).then(response => {
-            //do stuff with response if ok   
-            console.log(response);          
+        axios.post('http://localhost:8000/all-estimates', {id: 9 } ).then(response => {
+ 
+            let list = response.data.map(( item: any, i: number ) =>{
+                console.log(item['full_name']);  
+                return <li  key={"listEstimate"+i}><a href="#">{item['full_name']}</a></li>
+            })
+             return setlistEstimate(list);
+          
             },
             response => {
-            //do stuff about error
-            })
+                console.log("error request " + response);
+                let notiseError : any = <li  key={"listEstimateEmpty"}> Упс, что-то пошло не так попробуйте перезагрузить стараницу.</li>
+                return  setlistEstimate(notiseError);
+             }
+            )
     }, []);
 
     return (
@@ -24,10 +33,7 @@ const AllEstimateAndWallet: React.FC = () => {
          <div className="wapper-estimate">
                 <p className="header-blok-view">Сметы</p>
                 <ul className="list-estimate">
-                    <li><a href="#">День рождения</a></li>
-                    <li><a href="#">Новый год</a></li>
-                    <li><a href="#">8 марта</a></li>
-                    <li><a href="#">Майские</a></li>
+                    {listEstimate}
                 </ul>
                 <Button/>
             </div>
