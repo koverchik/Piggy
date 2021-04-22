@@ -6,26 +6,25 @@ import {
     Switch,
     Route
   } from "react-router-dom";
-// import MainSection from "./MainSection/MainSection";
+
 import AllEstimateAndWallet from "./AllEstimateAndWallet/AllEstimateAndWallet";
-import AllEstimate from "./AllEstimate/AllEstimate";
+
 import OneEstimate from "./OneEstimate/OneEstimate";
-import OneWallet from "./OneWallet/OneWallet";
+
 
 
 const App: React.FC = () => {
 
-;
+
     return (
     <div className="wrapper-all-app">
         <Header />
+        <OneEstimate/>
+        <div>Hello!</div>
           <Router>
             <Switch>
                 <Route exact path="/" component={AllEstimateAndWallet} />
-                <Route path="/estimate-:id" component={OneEstimate} />
-                <Route path="/one-estimate" component={AllEstimate} />
-                <Route path="/wallet" component={OneWallet} />
-            </Switch>
+         </Switch>
         </Router>
         <Footer />
     </div>

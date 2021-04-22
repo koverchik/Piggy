@@ -2104,9 +2104,9 @@ var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../ButtonCreate/But
 
 __webpack_require__(/*! ./_AllEstimateAndWallet.scss */ "./resources/js/components/AllEstimateAndWallet/_AllEstimateAndWallet.scss");
 
-var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js")); // const testCook = document.querySelector('meta[name="csrf-token"]');
-// console.log(testCook);
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 var AllEstimateAndWallet = function AllEstimateAndWallet() {
   var _a = react_1.useState([]),
@@ -2118,20 +2118,19 @@ var AllEstimateAndWallet = function AllEstimateAndWallet() {
       id: 9
     }).then(function (response) {
       var list = response.data.map(function (item, i) {
-        console.log(item['full_name']);
         return react_1["default"].createElement("li", {
           key: "listEstimate" + i
-        }, react_1["default"].createElement("a", {
-          href: "#"
+        }, react_1["default"].createElement(react_router_dom_1.Link, {
+          to: "/estimate-" + item['names_estimates_id']
         }, item['full_name']));
       });
-      return setlistEstimate(list);
+      setlistEstimate(list);
     }, function (response) {
       console.log("error request " + response);
       var notiseError = react_1["default"].createElement("li", {
         key: "listEstimateEmpty"
       }, " \u0423\u043F\u0441, \u0447\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0430\u0440\u0430\u043D\u0438\u0446\u0443.");
-      return setlistEstimate(notiseError);
+      setlistEstimate(notiseError);
     });
   }, []);
   return react_1["default"].createElement("div", {
@@ -2198,6 +2197,7 @@ var OneEstimate_1 = __importDefault(__webpack_require__(/*! ./OneEstimate/OneEst
 var OneWallet_1 = __importDefault(__webpack_require__(/*! ./OneWallet/OneWallet */ "./resources/js/components/OneWallet/OneWallet.tsx"));
 
 var App = function App() {
+  ;
   return react_1["default"].createElement("div", {
     className: "wrapper-all-app"
   }, react_1["default"].createElement(Header_1["default"], null), react_1["default"].createElement(react_router_dom_1.BrowserRouter, null, react_1["default"].createElement(react_router_dom_1.Switch, null, react_1["default"].createElement(react_router_dom_1.Route, {
@@ -2205,11 +2205,11 @@ var App = function App() {
     path: "/",
     component: AllEstimateAndWallet_1["default"]
   }), react_1["default"].createElement(react_router_dom_1.Route, {
-    path: "/estimate",
-    component: AllEstimate_1["default"]
+    path: "/estimate-:id",
+    component: OneEstimate_1["default"]
   }), react_1["default"].createElement(react_router_dom_1.Route, {
     path: "/one-estimate",
-    component: OneEstimate_1["default"]
+    component: AllEstimate_1["default"]
   }), react_1["default"].createElement(react_router_dom_1.Route, {
     path: "/wallet",
     component: OneWallet_1["default"]
@@ -2386,6 +2386,40 @@ exports.default = Header;
 "use strict";
 
 
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -2396,11 +2430,56 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 __webpack_require__(/*! ./_OneEstimate.scss */ "./resources/js/components/OneEstimate/_OneEstimate.scss");
 
-var OneEstimate = function OneEstimate() {
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+
+var OneEstimate = function OneEstimate(props) {
+  var _a = react_1.useState([props.match.params.id]),
+      idEstimate = _a[0],
+      setIdEstimate = _a[1];
+
+  var _b = react_1.useState(),
+      nameEstimate = _b[0],
+      setNameEstimate = _b[1];
+
+  var _c = react_1.useState(),
+      listRowsEstimate = _c[0],
+      setlistRowsEstimate = _c[1];
+
+  var _d = react_1.useState(0),
+      SummRowsEstimate = _d[0],
+      setSummRowsEstimate = _d[1];
+
+  react_1.useEffect(function () {
+    axios_1["default"].post('http://localhost:8000/one-estimates', {
+      id: idEstimate
+    }).then(function (response) {
+      setNameEstimate(response.data[0].name);
+      var sum = response.data.rows.reduce(function (sum, elem) {
+        return sum + elem.amount;
+      }, 0);
+      setSummRowsEstimate(sum);
+      var listRows = response.data.rows.map(function (item, i) {
+        return react_1["default"].createElement("tr", {
+          key: "RowEstimate" + i
+        }, react_1["default"].createElement("td", {
+          className: "namber-one-item"
+        }, " ", i + 1, " "), react_1["default"].createElement("td", {
+          className: "name-one-item"
+        }, " ", item.name, " "), react_1["default"].createElement("td", {
+          className: "cost-one-item"
+        }, " ", item.amount, " \u0440\u0443\u0431 "));
+      });
+      setlistRowsEstimate(listRows);
+    }, function (response) {
+      console.log("error request " + response);
+      var notiseError = react_1["default"].createElement("tr", null, react_1["default"].createElement("td", null, " \u0423\u043F\u0441, \u0447\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0430\u0440\u0430\u043D\u0438\u0446\u0443 "));
+      setlistRowsEstimate(notiseError);
+    });
+  }, []);
   return react_1["default"].createElement("div", {
     className: "wrapper-one-estimate"
   }, react_1["default"].createElement("div", {
@@ -2409,7 +2488,7 @@ var OneEstimate = function OneEstimate() {
     className: "wrapper-header-one-estimate"
   }, react_1["default"].createElement("h2", {
     className: "header-one-estimate"
-  }, "\u0414\u0435\u043D\u044C \u0440\u043E\u0436\u0434\u0435\u043D\u0438\u044F"), react_1["default"].createElement("div", {
+  }, nameEstimate), react_1["default"].createElement("div", {
     className: "wrapper-button-edit-one-estimate"
   }, react_1["default"].createElement("img", {
     src: "../images/pensil.svg"
@@ -2421,25 +2500,13 @@ var OneEstimate = function OneEstimate() {
     className: "name-head-one-item"
   }, "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435"), react_1["default"].createElement("td", {
     className: "cost-head-one-item"
-  }, " \u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C "))), react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
-    className: "namber-one-item"
-  }, " 1 "), react_1["default"].createElement("td", {
-    className: "name-one-item"
-  }, " \u0422\u043E\u0440\u0442 "), react_1["default"].createElement("td", {
-    className: "cost-one-item"
-  }, " 10 \u0440\u0443\u0431 ")), react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
-    className: "namber-one-item"
-  }, " 2 "), react_1["default"].createElement("td", {
-    className: "name-one-item"
-  }, " \u0421\u043E\u043A "), react_1["default"].createElement("td", {
-    className: "cost-one-item"
-  }, " 5 \u0440\u0443\u0431 "))), react_1["default"].createElement("tfoot", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
+  }, " \u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C "))), react_1["default"].createElement("tbody", null, listRowsEstimate), react_1["default"].createElement("tfoot", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: "empty-item"
   }, "  "), react_1["default"].createElement("td", {
     className: "title-cost-all-item"
   }, " \u0418\u0442\u043E\u0433\u043E:  "), react_1["default"].createElement("td", {
     className: "cost-all-item"
-  }, " 15 \u0440\u0443\u0431 ")))), react_1["default"].createElement("table", {
+  }, " ", SummRowsEstimate, " \u0440\u0443\u0431 ")))), react_1["default"].createElement("table", {
     className: "table-add-new-value"
   }, react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: "namber-one-item"
