@@ -8,12 +8,14 @@ const OneEstimate: React.FC = (props : any) => {
     const [nameEstimate, setNameEstimate] = useState();
     const [listRowsEstimate, setlistRowsEstimate] = useState();
     const [SummRowsEstimate, setSummRowsEstimate] = useState(0);
+    const [RowsLength, setRowsLength] = useState(0);
 
     useEffect(() => {
         
         axios.post('http://localhost:8000/one-estimates', {id: idEstimate } ).then(response => {
             setNameEstimate(response.data[0].name);
-
+            setRowsLength(response.data.rows.length+ 1);
+            
             const sum = response.data.rows.reduce(function(sum: number, elem: any) {
                 return sum + elem.amount;
             }, 0);
@@ -71,7 +73,7 @@ const OneEstimate: React.FC = (props : any) => {
             <table className="table-add-new-value">
                 <tbody> 
                     <tr>
-                        <td className="namber-one-item"> 3 </td>
+                        <td className="namber-one-item"> { RowsLength } </td>
                         <td className="new-one-item"> <input></input> </td>
                         <td className="new-cost-one-item" > <input></input> </td>
                     </tr>

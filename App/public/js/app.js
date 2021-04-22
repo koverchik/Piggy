@@ -2453,11 +2453,16 @@ var OneEstimate = function OneEstimate(props) {
       SummRowsEstimate = _d[0],
       setSummRowsEstimate = _d[1];
 
+  var _e = react_1.useState(0),
+      RowsLength = _e[0],
+      setRowsLength = _e[1];
+
   react_1.useEffect(function () {
     axios_1["default"].post('http://localhost:8000/one-estimates', {
       id: idEstimate
     }).then(function (response) {
       setNameEstimate(response.data[0].name);
+      setRowsLength(response.data.rows.length + 1);
       var sum = response.data.rows.reduce(function (sum, elem) {
         return sum + elem.amount;
       }, 0);
@@ -2510,7 +2515,7 @@ var OneEstimate = function OneEstimate(props) {
     className: "table-add-new-value"
   }, react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: "namber-one-item"
-  }, " 3 "), react_1["default"].createElement("td", {
+  }, " ", RowsLength, " "), react_1["default"].createElement("td", {
     className: "new-one-item"
   }, " ", react_1["default"].createElement("input", null), " "), react_1["default"].createElement("td", {
     className: "new-cost-one-item"
