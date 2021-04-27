@@ -1,54 +1,43 @@
 import React, { useEffect, useState } from "react";
 import './_OneEstimate.scss';
-import axios from 'axios';
+import AddRow from "./AddRowEstimate/AddRowEstimate";
+import { observer } from "mobx-react-lite";
+import store from "../../state/index";
 
-const OneEstimate: React.FC = (props : any) => {
-
-    const [idEstimate, setIdEstimate] = useState([props.match.params.id]);
-    const [nameEstimate, setNameEstimate] = useState();
-    const [listRowsEstimate, setlistRowsEstimate] = useState();
-    const [SummRowsEstimate, setSummRowsEstimate] = useState(0);
-    const [RowsLength, setRowsLength] = useState(0);
-
-    useEffect(() => {
-        
-        axios.post('http://localhost:8000/one-estimates', {id: idEstimate } ).then(response => {
-            setNameEstimate(response.data[0].name);
-            setRowsLength(response.data.rows.length+ 1);
-            
-            const sum = response.data.rows.reduce(function(sum: number, elem: any) {
-                return sum + elem.amount;
-            }, 0);
-
-            setSummRowsEstimate(sum);
+const OneEstimate: React.FC = observer((props : any) => {
    
-           let listRows = response.data.rows.map(( item: any, i: number ) =>{
-        
-            
-            return ( <tr key={"RowEstimate"+i}>
-                        <td className="namber-one-item"> {i + 1 } </td>
-                        <td className="name-one-item" > {item.name} </td>
-                        <td className="cost-one-item"> {item.amount} руб </td>
-                    </tr>)
-              })
-              setlistRowsEstimate(listRows);   
- 
-            },
-            response => {
-                console.log("error request " + response);
-                let notiseError : any = ( <tr>
-                                            <td> Упс, что-то пошло не так, попробуйте перезагрузить стараницу </td>
+    store.Estimate.idEstimate = props.match.params.id;
+    const result : any =  store.Estimate.requestOneEstimate();
+    const [listRowsEstimate, setlistRowsEstimate] = useState([]);
+   
+    useEffect(() => {
+        result.then((data: any) => {
+            console.log(data === "Error");
+             if(data === "Error"){
+                const list : any  =  ( <tr key={"RowEstimate"} className="error-table">
+                                           Упс... Что-то пошло не так, попробуйте перезагрузить страницу
                                         </tr>)
-                setlistRowsEstimate(notiseError);
-                })
-    }, []);
-    
+                  setlistRowsEstimate(list);
+             }else{
+                const list : any  = data.map((item: any, i: any ) => {
+                    return ( <tr key={"RowEstimate"+i}>
+                                  <td className="namber-one-item"> {i + 1 } </td>
+                                     <td className="name-one-item" > {item['name']} </td>
+                                   <td className="cost-one-item"> {item['amount']} руб </td>
+                               </tr>)
+               })  
+               setlistRowsEstimate(list);
+             }
+
+
+        } )
+     }, []);
 
     return (
     <div className="wrapper-one-estimate">
         <div className="one-estimate">
             <div className="wrapper-header-one-estimate">
-                <h2 className="header-one-estimate">{ nameEstimate }</h2>
+                <h2 className="header-one-estimate">{ store.Estimate.nameEstimate }</h2>
                 <div className="wrapper-button-edit-one-estimate"><img src="../images/pensil.svg"></img></div>
             </div>
             <table className="table-list-value">
@@ -66,27 +55,14 @@ const OneEstimate: React.FC = (props : any) => {
                 <tr>
                         <td className="empty-item">  </td>
                         <td className="title-cost-all-item"> Итого:  </td>
-                        <td className="cost-all-item"> { SummRowsEstimate } руб </td>
+                        <td className="cost-all-item"> { store.Estimate.sumRows } руб </td>
                     </tr>
                 </tfoot>
             </table>
-            <table className="table-add-new-value">
-                <tbody> 
-                    <tr>
-                        <td className="namber-one-item"> { RowsLength } </td>
-                        <td className="new-one-item"> <input></input> </td>
-                        <td className="new-cost-one-item" > <input></input> </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div>
-                <div className="button-add-new-item">
-                    <img src="../images/plus.svg"></img>
-                </div>
-            </div>
+            <AddRow />
         </div>
     </div>
        
     )
-};
+});
 export default OneEstimate;

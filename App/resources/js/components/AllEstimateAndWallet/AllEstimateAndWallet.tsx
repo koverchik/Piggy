@@ -3,13 +3,15 @@ import Button from "../ButtonCreate/ButtonCreate";
 import './_AllEstimateAndWallet.scss';
 import axios from 'axios';
 import {Route, Link} from "react-router-dom";
+import { observer } from "mobx-react-lite";
 
-const AllEstimateAndWallet: React.FC = () => {
+
+const AllEstimateAndWallet: React.FC = observer(() => {
   
     const [listEstimate, setlistEstimate] = useState([]);
+    
          
     useEffect(() => {
-        
         axios.post('http://localhost:8000/all-estimates', {id: 9 } ).then(response => {
  
             let list = response.data.map(( item: any, i: number ) =>{
@@ -50,5 +52,5 @@ const AllEstimateAndWallet: React.FC = () => {
     </div>
        
     )
-};
+});
 export default AllEstimateAndWallet;

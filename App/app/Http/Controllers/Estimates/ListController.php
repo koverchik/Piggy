@@ -83,7 +83,7 @@ class ListController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateOne(Request $request, $id)
     {
         //
     }
@@ -98,4 +98,5 @@ class ListController extends BaseController
     {
         //
     }
+
 }

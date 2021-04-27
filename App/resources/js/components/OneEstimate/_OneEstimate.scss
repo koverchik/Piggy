@@ -72,6 +72,12 @@
                     &.cost-one-item{
                         width: 20%;
                     }
+                 
+                }
+                tr{
+                    &.error-table{
+                        text-align: center;
+                    }
                 }
              }
              tfoot{
