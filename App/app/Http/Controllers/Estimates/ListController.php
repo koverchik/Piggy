@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\NamesEstimates;
+use App\Models\RowEstimates;
 use App\Models\ScopeEstimates;
+
+
 
 class ListController extends BaseController
 {
@@ -83,9 +86,15 @@ class ListController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateOne(Request $request, $id)
+    public function updateOne(Request $data)
     {
-        //
+
+        $RowEstimates = new RowEstimates;
+        $RowEstimates -> name = $data['name'];
+        $RowEstimates -> amount = $data['cost'];
+        $RowEstimates -> user_id = $data['id_user'];
+        $RowEstimates -> names_estimates_id = $data['id'];
+        $RowEstimates->save();
     }
 
     /**

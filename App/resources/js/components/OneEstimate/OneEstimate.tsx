@@ -11,9 +11,9 @@ const OneEstimate: React.FC = observer((props : any) => {
     const [listRowsEstimate, setlistRowsEstimate] = useState([]);
    
     useEffect(() => {
+
         result.then((data: any) => {
-            console.log(data === "Error");
-             if(data === "Error"){
+            if(data === "Error"){
                 const list : any  =  ( <tr key={"RowEstimate"} className="error-table">
                                            Упс... Что-то пошло не так, попробуйте перезагрузить страницу
                                         </tr>)
@@ -31,7 +31,7 @@ const OneEstimate: React.FC = observer((props : any) => {
 
 
         } )
-     }, []);
+     }, [store.Estimate.sumRows]);
 
     return (
     <div className="wrapper-one-estimate">
