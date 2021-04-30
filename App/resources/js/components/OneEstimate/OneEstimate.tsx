@@ -8,14 +8,12 @@ import store from "../../state/index";
 const OneEstimate: React.FC = observer((props : any) => {
    
     store.Estimate.idEstimate = props.match.params.id;
-    const result : any =  store.Estimate.requestOneEstimate();
     const [listRowsEstimate, setlistRowsEstimate] = useState([]);
     const [listPaginationEstimate, setlistPaginationEstimate] = useState([]);
-    
-   
+
     useEffect(() => {
 
-        result.then((data: any) => {
+        store.Estimate.requestOneEstimate().then((data: any) => {
 
             if(data === "Error"){
                 const list : any  =  ( <tr key={"RowEstimate"} className="error-table">

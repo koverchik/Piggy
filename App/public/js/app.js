@@ -2506,7 +2506,6 @@ var index_1 = __importDefault(__webpack_require__(/*! ../../state/index */ "./re
 
 var OneEstimate = mobx_react_lite_1.observer(function (props) {
   index_1["default"].Estimate.idEstimate = props.match.params.id;
-  var result = index_1["default"].Estimate.requestOneEstimate();
 
   var _a = react_1.useState([]),
       listRowsEstimate = _a[0],
@@ -2517,7 +2516,7 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
       setlistPaginationEstimate = _b[1];
 
   react_1.useEffect(function () {
-    result.then(function (data) {
+    index_1["default"].Estimate.requestOneEstimate().then(function (data) {
       if (data === "Error") {
         var list = react_1["default"].createElement("tr", {
           key: "RowEstimate",
