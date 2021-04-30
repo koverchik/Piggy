@@ -23,8 +23,7 @@ const AddRowEstimate: React.FC = observer((props : any) => {
                     <input className="button-add-new-item " type="submit" value="+" />          
                 </div>
            </form>
-           <div>{ store.Estimate.test}</div>
-        </div>
+         </div>
     )
 });
 export default AddRowEstimate;

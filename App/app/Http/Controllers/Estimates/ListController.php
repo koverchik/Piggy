@@ -95,6 +95,7 @@ class ListController extends BaseController
         $RowEstimates -> user_id = $data['id_user'];
         $RowEstimates -> names_estimates_id = $data['id'];
         $RowEstimates->save();
+
     }
 
     /**

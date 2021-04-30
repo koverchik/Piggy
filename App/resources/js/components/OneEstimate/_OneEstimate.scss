@@ -78,6 +78,9 @@
                     &.error-table{
                         text-align: center;
                     }
+                    &.display-none{
+                        display: none;
+                    }
                 }
              }
              tfoot{
@@ -146,6 +149,7 @@
             color: white;
             font-size: 1.8rem;
             outline: none;
+            font-weight: bold;
             &:hover{
                 background-color:  #FE7BA7;
                 cursor: pointer;
@@ -158,6 +162,35 @@
             &:focus{
                 background-color:  #FDB547;
             }
+        }
+    }
+}
+.wrapper-number-pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    .pagination-estimate{
+        color: #5354D2;
+        margin: 10px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        &:hover{
+            cursor: pointer;
+            color: #FE7BA7;
+           
+        }
+    }
+    .image-pagination{
+        width: 2rem;
+        &:hover{
+            cursor: pointer;
+            opacity: 0.5;
+        }
+    }
+    .active-number{
+        color: #FE7BA7;
+        &:hover{
+            cursor: default;
         }
     }
 }
