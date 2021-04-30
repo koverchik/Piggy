@@ -16,7 +16,7 @@ export default class Estimate {
   newRowCost = "";
   pagination = new Array();
   reactElemPagination = new Array();
-  activePagination = 0;
+  activePagination = 3;
   
   constructor() {
     makeObservable(this, {
@@ -34,7 +34,8 @@ export default class Estimate {
       requestOneEstimate: action,
       requestNewRow: action,
       changeActivePagination: action,
-      clickArrowPagination: action,
+      clickArrowPaginationLeft: action,
+      clickArrowPaginationRight:action,
       },
     );
   }
@@ -54,7 +55,8 @@ export default class Estimate {
         arrayPagination.push( index + 1 );
       }
       this.pagination = arrayPagination;
-      this.activePagination =  arrayPagination.length;
+      // this.activePagination =  arrayPagination.length;
+   
       const summAllRows : number = response.data.rows.reduce(function(sum: number, elem: any) {
           return sum + elem.amount;
       }, 0);
@@ -96,9 +98,13 @@ export default class Estimate {
       this.activePagination !== e.target.textContent? this.activePagination = e.target.textContent: "";
     }
 
-    clickArrowPagination(e: any){
-      e.target.getAttribute("arrow-data") === "left" ? this.activePagination = this.activePagination-1 : this.activePagination = this.activePagination+1;
+    clickArrowPaginationLeft(){
+      // this.activePagination = this.activePagination-1;
       console.log(this.activePagination);
       
+    }
+
+    clickArrowPaginationRight(){
+      this.activePagination = this.activePagination + 1
     }
 }

@@ -2526,30 +2526,39 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
         setlistRowsEstimate(list);
       } else {
         index_1["default"].Estimate.dataRows = data;
-        createList(data);
-        var lengthData_1 = index_1["default"].Estimate.pagination.length;
-        var resultPagination = index_1["default"].Estimate.pagination.map(function (item, i) {
-          return react_1["default"].createElement("div", {
-            key: "pagination" + item,
-            className: lengthData_1 == item ? "pagination-estimate active-number" : "pagination-estimate",
-            onClick: clickPagination
-          }, " ", item);
-        });
-        setlistPaginationEstimate(resultPagination);
+        var lengthData = index_1["default"].Estimate.pagination.length;
+        createList(data, lengthData); //    const resultPagination : any = store.Estimate.pagination.map((item: number, i: number) =>{
+        //     return ( 
+        //         <div key={"pagination" + item } className= { (lengthData == item) ? "pagination-estimate active-number" : "pagination-estimate" } onClick={clickPagination}> { item }</div>
+        //      )
+        //    })
+        //    setlistPaginationEstimate(resultPagination);
+
+        createNumberPagination();
       }
     });
   }, [index_1["default"].Estimate.sumRows]);
 
   function clickPagination(e) {
     index_1["default"].Estimate.activePagination !== e.target.textContent ? index_1["default"].Estimate.activePagination = e.target.textContent : "";
-    createList(index_1["default"].Estimate.dataRows);
   }
 
-  function createList(data) {
-    var list = data.map(function (item, i, array) {
+  function createNumberPagination() {
+    var resultPagination = index_1["default"].Estimate.pagination.map(function (item, i) {
+      return react_1["default"].createElement("div", {
+        key: "pagination" + item,
+        className: index_1["default"].Estimate.activePagination == item ? "pagination-estimate active-number" : "pagination-estimate",
+        onClick: clickPagination
+      }, " ", item);
+    });
+    setlistPaginationEstimate(resultPagination);
+  }
+
+  function createList(data, pagination) {
+    var list = data.map(function (item, i) {
       return react_1["default"].createElement("tr", {
         key: "RowEstimate" + i,
-        className: !((index_1["default"].Estimate.activePagination - 1) * 10 < i + 1 && i + 1 <= (index_1["default"].Estimate.activePagination - 1) * 10 + 10) ? "display-none" : ""
+        className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? "display-none" : ""
       }, react_1["default"].createElement("td", {
         className: "namber-one-item"
       }, " ", i + 1, " "), react_1["default"].createElement("td", {
@@ -2561,6 +2570,10 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
     setlistRowsEstimate(list);
   }
 
+  react_1.useEffect(function () {
+    createList(index_1["default"].Estimate.dataRows, index_1["default"].Estimate.activePagination);
+    createNumberPagination();
+  }, [index_1["default"].Estimate.activePagination]);
   return react_1["default"].createElement("div", {
     className: "wrapper-one-estimate"
   }, react_1["default"].createElement("div", {
@@ -2592,17 +2605,17 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
   }, react_1["default"].createElement("img", {
     src: "../images/arrow-left.svg",
     onClick: function onClick() {
-      return console.log("he");
+      index_1["default"].Estimate.activePagination > 1 ? index_1["default"].Estimate.activePagination = index_1["default"].Estimate.activePagination - 1 : "";
     },
     alt: "arrow-left",
     "arrow-data": "left",
     className: "image-pagination"
   }), listPaginationEstimate, react_1["default"].createElement("img", {
     src: "../images/arrow-right.svg",
-    alt: "piggy",
-    onClick: function onClick(e) {
-      return index_1["default"].Estimate.clickArrowPagination(e);
+    onClick: function onClick() {
+      index_1["default"].Estimate.activePagination < index_1["default"].Estimate.pagination.length ? index_1["default"].Estimate.activePagination = +index_1["default"].Estimate.activePagination + 1 : "";
     },
+    alt: "piggy",
     "arrow-data": "right",
     className: "image-pagination"
   })), react_1["default"].createElement(AddRowEstimate_1["default"], null)));
@@ -2958,7 +2971,7 @@ function () {
     this.newRowCost = "";
     this.pagination = new Array();
     this.reactElemPagination = new Array();
-    this.activePagination = 0;
+    this.activePagination = 3;
     mobx_1.makeObservable(this, {
       idEstimate: mobx_1.observable,
       sumRows: mobx_1.observable,
@@ -2974,7 +2987,8 @@ function () {
       requestOneEstimate: mobx_1.action,
       requestNewRow: mobx_1.action,
       changeActivePagination: mobx_1.action,
-      clickArrowPagination: mobx_1.action
+      clickArrowPaginationLeft: mobx_1.action,
+      clickArrowPaginationRight: mobx_1.action
     });
   }
 
@@ -2997,8 +3011,8 @@ function () {
             arrayPagination.push(index + 1);
           }
 
-          _this.pagination = arrayPagination;
-          _this.activePagination = arrayPagination.length;
+          _this.pagination = arrayPagination; // this.activePagination =  arrayPagination.length;
+
           var summAllRows = response.data.rows.reduce(function (sum, elem) {
             return sum + elem.amount;
           }, 0);
@@ -3041,9 +3055,13 @@ function () {
     this.activePagination !== e.target.textContent ? this.activePagination = e.target.textContent : "";
   };
 
-  Estimate.prototype.clickArrowPagination = function (e) {
-    e.target.getAttribute("arrow-data") === "left" ? this.activePagination = this.activePagination - 1 : this.activePagination = this.activePagination + 1;
+  Estimate.prototype.clickArrowPaginationLeft = function () {
+    // this.activePagination = this.activePagination-1;
     console.log(this.activePagination);
+  };
+
+  Estimate.prototype.clickArrowPaginationRight = function () {
+    this.activePagination = this.activePagination + 1;
   };
 
   return Estimate;
