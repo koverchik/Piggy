@@ -2527,13 +2527,8 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
       } else {
         index_1["default"].Estimate.dataRows = data;
         var lengthData = index_1["default"].Estimate.pagination.length;
-        createList(data, lengthData); //    const resultPagination : any = store.Estimate.pagination.map((item: number, i: number) =>{
-        //     return ( 
-        //         <div key={"pagination" + item } className= { (lengthData == item) ? "pagination-estimate active-number" : "pagination-estimate" } onClick={clickPagination}> { item }</div>
-        //      )
-        //    })
-        //    setlistPaginationEstimate(resultPagination);
-
+        index_1["default"].Estimate.activePagination = index_1["default"].Estimate.pagination.length;
+        createList(data, lengthData);
         createNumberPagination();
       }
     });
@@ -2608,16 +2603,14 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
       index_1["default"].Estimate.activePagination > 1 ? index_1["default"].Estimate.activePagination = index_1["default"].Estimate.activePagination - 1 : "";
     },
     alt: "arrow-left",
-    "arrow-data": "left",
-    className: "image-pagination"
+    className: index_1["default"].Estimate.activePagination == 1 ? "disable-pagination image-pagination" : "image-pagination"
   }), listPaginationEstimate, react_1["default"].createElement("img", {
     src: "../images/arrow-right.svg",
     onClick: function onClick() {
       index_1["default"].Estimate.activePagination < index_1["default"].Estimate.pagination.length ? index_1["default"].Estimate.activePagination = +index_1["default"].Estimate.activePagination + 1 : "";
     },
     alt: "piggy",
-    "arrow-data": "right",
-    className: "image-pagination"
+    className: index_1["default"].Estimate.activePagination == index_1["default"].Estimate.pagination.length ? "disable-pagination image-pagination" : "image-pagination"
   })), react_1["default"].createElement(AddRowEstimate_1["default"], null)));
 });
 exports.default = OneEstimate;
@@ -2971,7 +2964,7 @@ function () {
     this.newRowCost = "";
     this.pagination = new Array();
     this.reactElemPagination = new Array();
-    this.activePagination = 3;
+    this.activePagination = 0;
     mobx_1.makeObservable(this, {
       idEstimate: mobx_1.observable,
       sumRows: mobx_1.observable,
@@ -2985,10 +2978,7 @@ function () {
       reactElemRows: mobx_1.observable,
       activePagination: mobx_1.observable,
       requestOneEstimate: mobx_1.action,
-      requestNewRow: mobx_1.action,
-      changeActivePagination: mobx_1.action,
-      clickArrowPaginationLeft: mobx_1.action,
-      clickArrowPaginationRight: mobx_1.action
+      requestNewRow: mobx_1.action
     });
   }
 
@@ -3011,8 +3001,7 @@ function () {
             arrayPagination.push(index + 1);
           }
 
-          _this.pagination = arrayPagination; // this.activePagination =  arrayPagination.length;
-
+          _this.pagination = arrayPagination;
           var summAllRows = response.data.rows.reduce(function (sum, elem) {
             return sum + elem.amount;
           }, 0);
@@ -3049,19 +3038,6 @@ function () {
       console.log("error request " + response);
       alert("Error" + response);
     });
-  };
-
-  Estimate.prototype.changeActivePagination = function (e) {
-    this.activePagination !== e.target.textContent ? this.activePagination = e.target.textContent : "";
-  };
-
-  Estimate.prototype.clickArrowPaginationLeft = function () {
-    // this.activePagination = this.activePagination-1;
-    console.log(this.activePagination);
-  };
-
-  Estimate.prototype.clickArrowPaginationRight = function () {
-    this.activePagination = this.activePagination + 1;
   };
 
   return Estimate;
@@ -7746,7 +7722,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-one-estimate {\n  background-color: #C4C4C4;\n  padding: 3vw;\n}\n.wrapper-one-estimate .one-estimate {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  padding: 3vw;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate {\n  display: flex;\n  justify-content: space-between;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate h2 {\n  margin: 0;\n  padding-bottom: 1rem;\n  color: #5354D2;\n  font-size: 3rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img {\n  background-color: white;\n  border: 1px solid #5354D2;\n  border-radius: 5px;\n  padding: 0.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img:hover {\n  cursor: pointer;\n  opacity: 0.6;\n}\n.wrapper-one-estimate .one-estimate .table-list-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-list-value td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.empty-head-item {\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.name-head-one-item {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.cost-head-one-item {\n  border-left: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.name-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.error-table {\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.display-none {\n  display: none;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.title-cost-all-item {\n  float: right;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.cost-all-item {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  background-color: #F5F5F5;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:active {\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:focus {\n  outline: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item {\n  background-color: #5354D2;\n  border: none;\n  border-radius: 10px;\n  display: inline;\n  width: 10%;\n  float: right;\n  padding: 1rem;\n  display: flex;\n  margin: 0rem;\n  padding: 0.4rem;\n  justify-content: center;\n  color: white;\n  font-size: 1.8rem;\n  outline: none;\n  font-weight: bold;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:hover {\n  background-color: #FE7BA7;\n  cursor: pointer;\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:active {\n  border: none;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:focus {\n  background-color: #FDB547;\n}\n\n.wrapper-number-pagination {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.wrapper-number-pagination .pagination-estimate {\n  color: #5354D2;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-weight: bold;\n}\n.wrapper-number-pagination .pagination-estimate:hover {\n  cursor: pointer;\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .image-pagination {\n  width: 2rem;\n}\n.wrapper-number-pagination .image-pagination:hover {\n  cursor: pointer;\n  opacity: 0.5;\n}\n.wrapper-number-pagination .active-number {\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .active-number:hover {\n  cursor: default;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-one-estimate {\n  background-color: #C4C4C4;\n  padding: 3vw;\n}\n.wrapper-one-estimate .one-estimate {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  padding: 3vw;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate {\n  display: flex;\n  justify-content: space-between;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate h2 {\n  margin: 0;\n  padding-bottom: 1rem;\n  color: #5354D2;\n  font-size: 3rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img {\n  background-color: white;\n  border-radius: 5px;\n  padding: 0.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img:hover {\n  cursor: pointer;\n  opacity: 0.8;\n  filter: grayscale(54%);\n}\n.wrapper-one-estimate .one-estimate .table-list-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-list-value td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.empty-head-item {\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.name-head-one-item {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.cost-head-one-item {\n  border-left: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.name-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.error-table {\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.display-none {\n  display: none;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.title-cost-all-item {\n  float: right;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.cost-all-item {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  background-color: #F5F5F5;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:active {\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:focus {\n  outline: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item {\n  background-color: #5354D2;\n  border: none;\n  border-radius: 10px;\n  display: inline;\n  width: 10%;\n  float: right;\n  padding: 1rem;\n  display: flex;\n  margin: 0rem;\n  padding: 0.4rem;\n  justify-content: center;\n  color: white;\n  font-size: 1.8rem;\n  outline: none;\n  font-weight: bold;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:hover {\n  background-color: #FE7BA7;\n  cursor: pointer;\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:active {\n  border: none;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:focus {\n  background-color: #FDB547;\n}\n\n.wrapper-number-pagination {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.wrapper-number-pagination .pagination-estimate {\n  color: #5354D2;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-weight: bold;\n}\n.wrapper-number-pagination .pagination-estimate:hover {\n  cursor: pointer;\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .image-pagination {\n  width: 2rem;\n}\n.wrapper-number-pagination .image-pagination:hover {\n  cursor: pointer;\n  opacity: 0.5;\n}\n.wrapper-number-pagination .disable-pagination {\n  filter: grayscale(100%);\n}\n.wrapper-number-pagination .disable-pagination:hover {\n  cursor: default;\n  opacity: 1;\n}\n.wrapper-number-pagination .active-number {\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .active-number:hover {\n  cursor: default;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

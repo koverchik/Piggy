@@ -25,13 +25,8 @@ const OneEstimate: React.FC = observer((props : any) => {
              }else{
                 store.Estimate.dataRows = data;
                 const lengthData : any = store.Estimate.pagination.length;
+                store.Estimate.activePagination = store.Estimate.pagination.length;
                 createList(data, lengthData);
-            //    const resultPagination : any = store.Estimate.pagination.map((item: number, i: number) =>{
-            //     return ( 
-            //         <div key={"pagination" + item } className= { (lengthData == item) ? "pagination-estimate active-number" : "pagination-estimate" } onClick={clickPagination}> { item }</div>
-            //      )
-            //    })
-            //    setlistPaginationEstimate(resultPagination);
                 createNumberPagination();
              }
         } )
@@ -40,7 +35,6 @@ const OneEstimate: React.FC = observer((props : any) => {
 
      function clickPagination( e: any ){
         store.Estimate.activePagination !== e.target.textContent ? store.Estimate.activePagination = e.target.textContent: "";
-       
      }
      function createNumberPagination() {
         const resultPagination : any = store.Estimate.pagination.map((item: number, i: number) =>{
@@ -95,11 +89,13 @@ const OneEstimate: React.FC = observer((props : any) => {
             <div className="wrapper-number-pagination">
                 <img src="../images/arrow-left.svg" onClick={()=> {store.Estimate.activePagination > 1 ?
                     store.Estimate.activePagination = store.Estimate.activePagination - 1 :
-                    "";}} alt="arrow-left" arrow-data="left" className="image-pagination"/>
+                    "";}} alt="arrow-left" 
+                    className={store.Estimate.activePagination == 1 ? "disable-pagination image-pagination" : "image-pagination"}/>
                  { listPaginationEstimate }
                 <img src="../images/arrow-right.svg" onClick={()=> {store.Estimate.activePagination < store.Estimate.pagination.length ?
                                                                     store.Estimate.activePagination = +store.Estimate.activePagination + 1 : "";
-                                                                               }} alt="piggy" arrow-data="right" className="image-pagination"/>
+                                                                               }} alt="piggy"
+                 className={store.Estimate.activePagination == store.Estimate.pagination.length ? "disable-pagination image-pagination" : "image-pagination"} />
             </div>
             <AddRow />
         </div>

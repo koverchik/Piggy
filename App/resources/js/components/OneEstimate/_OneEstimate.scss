@@ -19,7 +19,7 @@
             }
             img{
                 background-color: white;
-                border: 1px solid #5354D2;
+             
                 border-radius: 5px;
                 padding: 0.5rem;
                 display: flex;
@@ -27,7 +27,8 @@
                 align-items: center;
                 &:hover{
                     cursor: pointer;
-                    opacity: 0.6;
+                    opacity: 0.8;
+                    filter: grayscale(54%); 
                 }
             }
 
@@ -185,6 +186,13 @@
         &:hover{
             cursor: pointer;
             opacity: 0.5;
+        }
+    }
+    .disable-pagination{
+        filter: grayscale(100%);
+        &:hover{
+        cursor: default;
+        opacity: 1;
         }
     }
     .active-number{
