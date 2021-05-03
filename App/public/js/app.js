@@ -2197,8 +2197,11 @@ var OneEstimate_1 = __importDefault(__webpack_require__(/*! ./OneEstimate/OneEst
 
 var OneWallet_1 = __importDefault(__webpack_require__(/*! ./OneWallet/OneWallet */ "./resources/js/components/OneWallet/OneWallet.tsx"));
 
-var App = function App() {
-  ;
+var EditOneEstimate_1 = __importDefault(__webpack_require__(/*! ./OneEstimate/EditOneEstimate/EditOneEstimate */ "./resources/js/components/OneEstimate/EditOneEstimate/EditOneEstimate.tsx"));
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var App = mobx_react_lite_1.observer(function (props) {
   return react_1["default"].createElement("div", {
     className: "wrapper-all-app"
   }, react_1["default"].createElement(Header_1["default"], null), react_1["default"].createElement(react_router_dom_1.BrowserRouter, null, react_1["default"].createElement(react_router_dom_1.Switch, null, react_1["default"].createElement(react_router_dom_1.Route, {
@@ -2209,14 +2212,16 @@ var App = function App() {
     path: "/estimate-:id",
     component: OneEstimate_1["default"]
   }), react_1["default"].createElement(react_router_dom_1.Route, {
+    path: "/edit-estimate-:id",
+    component: EditOneEstimate_1["default"]
+  }), react_1["default"].createElement(react_router_dom_1.Route, {
     path: "/one-estimate",
     component: AllEstimate_1["default"]
   }), react_1["default"].createElement(react_router_dom_1.Route, {
     path: "/wallet",
     component: OneWallet_1["default"]
   }))), react_1["default"].createElement(Footer_1["default"], null));
-};
-
+});
 exports.default = App;
 
 /***/ }),
@@ -2441,6 +2446,88 @@ exports.default = AddRowEstimate;
 
 /***/ }),
 
+/***/ "./resources/js/components/OneEstimate/EditOneEstimate/EditOneEstimate.tsx":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/OneEstimate/EditOneEstimate/EditOneEstimate.tsx ***!
+  \*********************************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+__webpack_require__(/*! ./_EditOneEstimate.scss */ "./resources/js/components/OneEstimate/EditOneEstimate/_EditOneEstimate.scss");
+
+__webpack_require__(/*! ./../_OneEstimate.scss */ "./resources/js/components/OneEstimate/_OneEstimate.scss");
+
+var EditOneEstimate = function EditOneEstimate() {
+  return react_1["default"].createElement("div", {
+    className: "wrapper-one-estimate"
+  }, react_1["default"].createElement("div", {
+    className: "one-estimate"
+  }, react_1["default"].createElement("div", {
+    className: "wrapper-header-one-estimate"
+  }, react_1["default"].createElement("h2", {
+    className: "header-one-estimate"
+  }, " \u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 ")), react_1["default"].createElement("table", {
+    className: "table-list-value"
+  }, react_1["default"].createElement("thead", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
+    className: "empty-head-item"
+  }, "  "), react_1["default"].createElement("td", {
+    className: "name-head-one-item"
+  }, "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435"), react_1["default"].createElement("td", {
+    className: "name-head-one-item"
+  }, " \u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C "), react_1["default"].createElement("td", {
+    className: "cost-head-one-item"
+  }))), react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
+    className: "namber-one-item"
+  }, " 1"), react_1["default"].createElement("td", {
+    className: "name-head-one-item"
+  }, react_1["default"].createElement("input", {
+    value: "\u0421\u043E\u043A"
+  })), react_1["default"].createElement("td", {
+    className: "cost-head-one-item"
+  }, react_1["default"].createElement("input", {
+    value: "3"
+  }), "  "), react_1["default"].createElement("td", {
+    className: "namber-one-item trash-image"
+  }, react_1["default"].createElement("img", {
+    src: "../images/delete-one-peope.svg"
+  }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
+    className: "namber-one-item"
+  }, " 2"), react_1["default"].createElement("td", {
+    className: "name-head-one-item"
+  }, react_1["default"].createElement("input", {
+    value: "\u041C\u0430\u0448\u0438\u043D\u0430"
+  })), react_1["default"].createElement("td", {
+    className: "cost-head-one-item"
+  }, react_1["default"].createElement("input", {
+    value: "120"
+  })))), react_1["default"].createElement("tfoot", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", null), react_1["default"].createElement("td", {
+    className: "title-cost-all-item",
+    colSpan: 2
+  }, " \u0418\u0442\u043E\u0433\u043E: "), react_1["default"].createElement("td", {
+    className: "cost-all-item"
+  }, " 3 \u0440\u0443\u0431 "), react_1["default"].createElement("td", {
+    className: "empty-item"
+  }, "  "))))));
+};
+
+exports.default = EditOneEstimate;
+
+/***/ }),
+
 /***/ "./resources/js/components/OneEstimate/OneEstimate.tsx":
 /*!*************************************************************!*\
   !*** ./resources/js/components/OneEstimate/OneEstimate.tsx ***!
@@ -2559,7 +2646,15 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
         className: "name-one-item"
       }, " ", item['name'], " "), react_1["default"].createElement("td", {
         className: "cost-one-item"
-      }, " ", item['amount'], " \u0440\u0443\u0431 "));
+      }, " ", item['amount'], " \u0440\u0443\u0431 "), react_1["default"].createElement("td", {
+        className: "namber-one-item trash-image"
+      }, react_1["default"].createElement("img", {
+        src: "../images/delete-one-peope.svg",
+        "id-data": item['id'],
+        onClick: function onClick(e) {
+          return index_1["default"].Estimate.deleteRow(e.target.getAttribute("id-data"));
+        }
+      })));
     });
     setlistRowsEstimate(list);
   }
@@ -2573,22 +2668,29 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
   }, react_1["default"].createElement("div", {
     className: "one-estimate"
   }, react_1["default"].createElement("div", {
-    className: "wrapper-header-one-estimate"
+    className: "wrapper-header-one-estimate section-to-print"
   }, react_1["default"].createElement("h2", {
     className: "header-one-estimate"
-  }, index_1["default"].Estimate.nameEstimate), react_1["default"].createElement("div", {
+  }, index_1["default"].Estimate.nameEstimate), react_1["default"].createElement("a", {
+    media: "print",
+    onClick: function onClick() {
+      return window.print();
+    }
+  }, react_1["default"].createElement("div", {
     className: "wrapper-button-edit-one-estimate"
   }, react_1["default"].createElement("img", {
-    src: "../images/pensil.svg"
-  }))), react_1["default"].createElement("table", {
-    className: "table-list-value"
+    src: "../images/print.svg"
+  })))), react_1["default"].createElement("table", {
+    className: "table-list-value section-to-print-table"
   }, react_1["default"].createElement("thead", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: "empty-head-item"
   }, "  "), react_1["default"].createElement("td", {
     className: "name-head-one-item"
   }, "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435"), react_1["default"].createElement("td", {
+    className: "name-head-one-item"
+  }, " \u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C "), react_1["default"].createElement("td", {
     className: "cost-head-one-item"
-  }, " \u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C "))), react_1["default"].createElement("tbody", null, listRowsEstimate), react_1["default"].createElement("tfoot", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
+  }))), react_1["default"].createElement("tbody", null, listRowsEstimate), react_1["default"].createElement("tfoot", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: "empty-item"
   }, "  "), react_1["default"].createElement("td", {
     className: "title-cost-all-item"
@@ -2977,7 +3079,8 @@ function () {
       reactElemRows: mobx_1.observable,
       activePagination: mobx_1.observable,
       requestOneEstimate: mobx_1.action,
-      requestNewRow: mobx_1.action
+      requestNewRow: mobx_1.action,
+      deleteRow: mobx_1.action
     });
   }
 
@@ -3021,6 +3124,18 @@ function () {
     var _this = this;
 
     var id_user = "9";
+    var data = {
+      id: this.idEstimate,
+      name: this.newRow,
+      cost: this.newRowCost,
+      id_user: id_user
+    };
+    var rules = {
+      id: 'required|numeric',
+      name: 'required|string|min:2|max:150',
+      cost: 'required|numeric',
+      id_user: 'required|numeric'
+    };
     var result = axios_1["default"].post('http://localhost:8000/write-one-estimates', {
       id: this.idEstimate,
       name: this.newRow,
@@ -3036,6 +3151,21 @@ function () {
     }, function (response) {
       console.log("error request " + response);
       alert("Error" + response);
+    });
+  };
+
+  Estimate.prototype.deleteRow = function (numberRow) {
+    var _this = this;
+
+    axios_1["default"].post('http://localhost:8000/delete-estimate', {
+      id_row: numberRow
+    }).then(function (response) {
+      if (response.status === 200) {
+        _this.requestOneEstimate();
+      }
+    }, function (response) {
+      console.log("error request " + response);
+      alert("Что-то пошло не так, попробуйте перезагрузить страницу...");
     });
   };
 
@@ -7704,6 +7834,30 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-header {\n  height: 150px;\n 
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneEstimate/EditOneEstimate/_EditOneEstimate.scss":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneEstimate/EditOneEstimate/_EditOneEstimate.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".table-list-value .name-head-one-item input, .table-list-value .cost-head-one-item input {\n  width: 100%;\n  font-family: \"Podkova\", serif;\n  font-size: 1.2rem;\n  border: none;\n  background-color: #F5F5F5;\n}\n.table-list-value .name-head-one-item input:active, .table-list-value .cost-head-one-item input:active {\n  border: none;\n}\n.table-list-value .name-head-one-item input:focus, .table-list-value .cost-head-one-item input:focus {\n  outline: none;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneEstimate/_OneEstimate.scss":
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneEstimate/_OneEstimate.scss ***!
@@ -7721,7 +7875,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-one-estimate {\n  background-color: #C4C4C4;\n  padding: 3vw;\n}\n.wrapper-one-estimate .one-estimate {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  padding: 3vw;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate {\n  display: flex;\n  justify-content: space-between;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate h2 {\n  margin: 0;\n  padding-bottom: 1rem;\n  color: #5354D2;\n  font-size: 3rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img {\n  background-color: white;\n  border-radius: 5px;\n  padding: 0.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img:hover {\n  cursor: pointer;\n  opacity: 0.8;\n  filter: grayscale(54%);\n}\n.wrapper-one-estimate .one-estimate .table-list-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-list-value td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.empty-head-item {\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.name-head-one-item {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.cost-head-one-item {\n  border-left: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.name-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.error-table {\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.display-none {\n  display: none;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.title-cost-all-item {\n  float: right;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.cost-all-item {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  background-color: #F5F5F5;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:active {\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:focus {\n  outline: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item {\n  background-color: #5354D2;\n  border: none;\n  border-radius: 10px;\n  display: inline;\n  width: 10%;\n  float: right;\n  padding: 1rem;\n  display: flex;\n  margin: 0rem;\n  padding: 0.4rem;\n  justify-content: center;\n  color: white;\n  font-size: 1.8rem;\n  outline: none;\n  font-weight: bold;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:hover {\n  background-color: #FE7BA7;\n  cursor: pointer;\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:active {\n  border: none;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:focus {\n  background-color: #FDB547;\n}\n\n.wrapper-number-pagination {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.wrapper-number-pagination .pagination-estimate {\n  color: #5354D2;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-weight: bold;\n}\n.wrapper-number-pagination .pagination-estimate:hover {\n  cursor: pointer;\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .image-pagination {\n  width: 2rem;\n}\n.wrapper-number-pagination .image-pagination:hover {\n  cursor: pointer;\n  opacity: 0.5;\n}\n.wrapper-number-pagination .disable-pagination {\n  filter: grayscale(100%);\n}\n.wrapper-number-pagination .disable-pagination:hover {\n  cursor: default;\n  opacity: 1;\n}\n.wrapper-number-pagination .active-number {\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .active-number:hover {\n  cursor: default;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-one-estimate {\n  background-color: #C4C4C4;\n  padding: 3vw;\n}\n.wrapper-one-estimate .one-estimate {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  padding: 3vw;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate {\n  display: flex;\n  justify-content: space-between;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate h2 {\n  margin: 0;\n  padding-bottom: 1rem;\n  color: #5354D2;\n  font-size: 3rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img {\n  background-color: white;\n  border-radius: 5px;\n  padding: 0.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img:hover {\n  cursor: pointer;\n  opacity: 0.8;\n  filter: grayscale(54%);\n}\n.wrapper-one-estimate .one-estimate .table-list-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-list-value td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.empty-head-item {\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.name-head-one-item {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.cost-head-one-item {\n  border-left: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.name-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.error-table {\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.display-none {\n  display: none;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody .trash-image img:hover {\n  cursor: pointer;\n  opacity: 0.8;\n  filter: grayscale(54%);\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.title-cost-all-item {\n  float: right;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.cost-all-item {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  background-color: #F5F5F5;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:active {\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:focus {\n  outline: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item {\n  background-color: #5354D2;\n  border: none;\n  border-radius: 10px;\n  display: inline;\n  width: 10%;\n  float: right;\n  padding: 1rem;\n  display: flex;\n  margin: 0rem;\n  padding: 0.4rem;\n  justify-content: center;\n  color: white;\n  font-size: 1.8rem;\n  outline: none;\n  font-weight: bold;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:hover {\n  background-color: #FE7BA7;\n  cursor: pointer;\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:active {\n  border: none;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:focus {\n  background-color: #FDB547;\n}\n\n.wrapper-number-pagination {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.wrapper-number-pagination .pagination-estimate {\n  color: #5354D2;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-weight: bold;\n}\n.wrapper-number-pagination .pagination-estimate:hover {\n  cursor: pointer;\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .image-pagination {\n  width: 2rem;\n}\n.wrapper-number-pagination .image-pagination:hover {\n  cursor: pointer;\n  opacity: 0.5;\n}\n.wrapper-number-pagination .disable-pagination {\n  filter: grayscale(100%);\n}\n.wrapper-number-pagination .disable-pagination:hover {\n  cursor: default;\n  opacity: 1;\n}\n.wrapper-number-pagination .active-number {\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .active-number:hover {\n  cursor: default;\n}\n\n@media print {\n  body * {\n    visibility: hidden;\n  }\n\n  .section-to-print-table, .section-to-print-table *, .section-to-print, .section-to-print * {\n    visibility: visible;\n  }\n\n  .section-to-print {\n    position: absolute;\n    left: 0;\n    top: 0;\n  }\n\n  .section-to-print-table {\n    position: absolute;\n    left: 0;\n    top: 50px;\n  }\n  .section-to-print-table tr {\n    display: table-row !important;\n  }\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -79010,6 +79164,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_Header_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./resources/js/components/OneEstimate/EditOneEstimate/_EditOneEstimate.scss":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/OneEstimate/EditOneEstimate/_EditOneEstimate.scss ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_EditOneEstimate_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./_EditOneEstimate.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneEstimate/EditOneEstimate/_EditOneEstimate.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_EditOneEstimate_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_EditOneEstimate_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 

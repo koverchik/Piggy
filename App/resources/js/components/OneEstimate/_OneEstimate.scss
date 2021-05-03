@@ -83,6 +83,15 @@
                         display: none;
                     }
                 }
+                .trash-image{
+                    img{
+                        &:hover{
+                            cursor: pointer;
+                            opacity: 0.8;
+                            filter: grayscale(54%); 
+                        }
+                    }
+                }
              }
              tfoot{
 
@@ -202,3 +211,28 @@
         }
     }
 }
+
+@media print {
+    body * {
+      visibility: hidden;
+    }
+  
+    .section-to-print-table, .section-to-print-table *, .section-to-print, .section-to-print * {
+      visibility: visible;
+    }
+  
+    .section-to-print {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .section-to-print-table{
+        position: absolute;
+        left: 0;
+        top: 50px;
+        tr{
+           display: table-row !important;
+        }
+    }
+
+  }

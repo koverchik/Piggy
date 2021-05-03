@@ -39,6 +39,8 @@ Route::post('/all-estimates', [ListController::class, 'store']);
 
 Route::post('/one-estimates', [ListController::class, 'show']);
 
+Route::post('/delete-estimate', [ListController::class, 'delete']);
+
 Route::post('/write-one-estimates', [ListController::class, 'updateOne']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

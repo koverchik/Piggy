@@ -11,11 +11,11 @@ import AllEstimateAndWallet from "./AllEstimateAndWallet/AllEstimateAndWallet";
 import AllEstimate from "./AllEstimate/AllEstimate";
 import OneEstimate from "./OneEstimate/OneEstimate";
 import OneWallet from "./OneWallet/OneWallet";
+import EditOneEstimate from "./OneEstimate/EditOneEstimate/EditOneEstimate"
+import { observer } from "mobx-react-lite";
 
+const App: React.FC = observer(( props: any) => {
 
-const App: React.FC = () => {
-
-;
     return (
     <div className="wrapper-all-app">
         <Header />
@@ -23,12 +23,14 @@ const App: React.FC = () => {
             <Switch>
                 <Route exact path="/" component={AllEstimateAndWallet} />
                 <Route path="/estimate-:id" component={OneEstimate} />
+                <Route path="/edit-estimate-:id" component={EditOneEstimate} />
                 <Route path="/one-estimate" component={AllEstimate} />
                 <Route path="/wallet" component={OneWallet} />
-            </Switch>
-        </Router>
+            </Switch> 
+          </Router>
+
         <Footer />
     </div>
     )
-};
+});
 export default App;

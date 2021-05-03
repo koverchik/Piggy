@@ -4,7 +4,6 @@ import AddRow from "./AddRowEstimate/AddRowEstimate";
 import { observer } from "mobx-react-lite";
 import store from "../../state/index";
 
-
 const OneEstimate: React.FC = observer((props : any) => {
    
     store.Estimate.idEstimate = props.match.params.id;
@@ -43,11 +42,12 @@ const OneEstimate: React.FC = observer((props : any) => {
            setlistPaginationEstimate(resultPagination);
      }
      function createList( data: any, pagination: number ){
-        const list : any  = data.map((item: any, i: number) => {
+        const list : any  = data.map((item: any, i: number) => {          
             return ( <tr key={"RowEstimate"+i} className={ !((pagination-1) * 10 < i+1 && i+1 <= (pagination-1)*10 + 10)  ? "display-none": ""}>
                           <td className="namber-one-item"> { i + 1 } </td>
                           <td className="name-one-item"> { item['name'] } </td>
                           <td className="cost-one-item"> { item['amount'] } руб </td>
+                          <td className="namber-one-item trash-image"><img src="../images/delete-one-peope.svg" id-data={item['id']} onClick={ (e:any)=>store.Estimate.deleteRow(e.target.getAttribute("id-data")) }/></td>
                        </tr>)
        })  
        setlistRowsEstimate(list);
@@ -58,19 +58,21 @@ const OneEstimate: React.FC = observer((props : any) => {
         createNumberPagination();
      }, [store.Estimate.activePagination])
 
+
     return (
     <div className="wrapper-one-estimate">
         <div className="one-estimate">
-            <div className="wrapper-header-one-estimate">
+            <div className="wrapper-header-one-estimate section-to-print">
                 <h2 className="header-one-estimate">{ store.Estimate.nameEstimate }</h2>
-                <div className="wrapper-button-edit-one-estimate"><img src="../images/pensil.svg"></img></div>
+                <a media="print" onClick={() => window.print()}><div className="wrapper-button-edit-one-estimate"><img src="../images/print.svg"></img></div></a>
             </div>
-            <table className="table-list-value">
+            <table className="table-list-value section-to-print-table">
                 <thead>
                     <tr>
                         <td className="empty-head-item">  </td>
                         <td className="name-head-one-item">Название</td>
-                        <td className="cost-head-one-item"> Стоимость </td>
+                        <td className="name-head-one-item"> Стоимость </td>
+                        <td className="cost-head-one-item"></td>
                     </tr>
                 </thead>
                 <tbody> 

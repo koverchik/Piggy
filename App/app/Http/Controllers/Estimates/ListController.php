@@ -68,6 +68,13 @@ class ListController extends BaseController
         return $estimate->toJson();
     }
 
+
+    public function delete(Request $data)
+    {       
+        DB::table('row_estimates')->where('id', '=', $data["id_row"])->delete(); 
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *

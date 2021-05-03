@@ -1,7 +1,7 @@
 import { makeObservable, action, observable, set, toJS, configure, autorun, runInAction } from "mobx";
 import axios from 'axios';
 import env from "react-dotenv";
-
+import  Validator from 'validatorjs';
 
 
 export default class Estimate {
@@ -33,7 +33,7 @@ export default class Estimate {
       activePagination: observable,
       requestOneEstimate: action,
       requestNewRow: action,
- 
+      deleteRow: action,
       },
     );
   }
@@ -75,7 +75,21 @@ export default class Estimate {
   requestNewRow(){
 
     const id_user = "9";
-    
+
+    const data: any = {
+      id: this.idEstimate, 
+      name: this.newRow, 
+      cost:this.newRowCost, 
+      id_user: id_user,
+    }
+
+    const rules: Validator.Rules = {
+      id: 'required|numeric',
+      name: 'required|string|min:2|max:150',
+      cost: 'required|numeric',
+      id_user: 'required|numeric',
+    };
+
     const result = axios.post('http://localhost:8000/write-one-estimates', {id: this.idEstimate, name: this.newRow, cost:this.newRowCost, id_user: id_user} )
       .then(response => {
         if(response.status === 200){
@@ -90,6 +104,20 @@ export default class Estimate {
         alert("Error" + response);
         
           })
+    }
+    deleteRow( numberRow: number ){
+      axios.post('http://localhost:8000/delete-estimate', { id_row: numberRow })
+      .then(response => {
+        if(response.status === 200){
+          this.requestOneEstimate();
+        }
+
+       },
+      response => {
+        console.log("error request " + response);      
+        alert("Что-то пошло не так, попробуйте перезагрузить страницу...")  
+          })
+         
     }
 
 }
