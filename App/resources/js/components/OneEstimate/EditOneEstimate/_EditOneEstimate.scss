@@ -1,6 +1,5 @@
 .table-list-value{
     .name-head-one-item, .cost-head-one-item{
-
         input{
             width: 100%;
             font-family: 'Podkova', serif;
@@ -16,4 +15,7 @@
         }
     }
 
+}
+.name-head-one-item{
+    cursor: text;
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Button from "../ButtonCreate/ButtonCreate";
 import './_AllEstimateAndWallet.scss';
 import axios from 'axios';
-import {Route, Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
 
@@ -14,7 +14,7 @@ const AllEstimateAndWallet: React.FC = observer(() => {
     useEffect(() => {
         axios.post('http://localhost:8000/all-estimates', {id: 9 } ).then(response => {
  
-            let list = response.data.map(( item: any, i: number ) =>{
+            const list = response.data.map(( item: any, i: number ) =>{
               return (  <li key={"listEstimate"+i}>
                            <Link to={"/estimate-" + item['names_estimates_id']}>{item['full_name']}</Link>
                         </li>)
@@ -24,7 +24,7 @@ const AllEstimateAndWallet: React.FC = observer(() => {
             },
             response => {
                 console.log("error request " + response);
-                let notiseError : any = <li  key={"listEstimateEmpty"}> Упс, что-то пошло не так попробуйте перезагрузить стараницу.</li>
+                const notiseError : any = <li  key={"listEstimateEmpty"}> Упс, что-то пошло не так попробуйте перезагрузить стараницу.</li>
                 setlistEstimate(notiseError);
              }
             )

@@ -13,6 +13,6 @@ const mix = require('laravel-mix');
 
 
 mix.ts('resources/js/app.js', 'public/js')
-.browserSync('localhost:8000');
+.browserSync('localhost:3000');
 
 mix.browserSync('http://localhost:8000/');

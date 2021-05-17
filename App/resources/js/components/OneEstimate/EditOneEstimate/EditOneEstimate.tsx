@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import './_EditOneEstimate.scss';
 import'./../_OneEstimate.scss';
 
 
 const EditOneEstimate: React.FC = () => {
+
+    const [valueChange, setValueChange] = useState();
+    const [activeRow, setActiveRow] = useState(true);
+
+ function changeValue(e:any) {
+    setActiveRow(false);
+    // const fragment = new DocumentFragment();
+    // var element = document.createElement("input");
+    // element.textContent = "Hello";
+    // const fragment: any = (<input value={valueChange} onChange={(event:any)=>{ setValueChange(e.target.textContent)}}></input>)
+    //  e.target.appendChild(fragment);
+  
+ }
+function handleInputChange(e:any) {
+    console.log(e.target.value);
+    setValueChange(e.target.value);
+}
     return (
     <div className="wrapper-one-estimate">
         <div className="one-estimate">
@@ -21,16 +38,18 @@ const EditOneEstimate: React.FC = () => {
                 </thead>
                 <tbody> 
                     <tr>    
-                        <td className="namber-one-item"> 1</td>
-                        <td className="name-head-one-item"><input value="Сок"></input></td>
-                        <td className="cost-head-one-item"><input value="3"></input>  </td>
+                        <td className="namber-one-item" > 1</td>
+                        <td className="name-head-one-item" ><input type="text" 
+                        value="Сок" 
+                        onChange={e => { e.target.value  }} /></td>
+                        <td className="cost-head-one-item">4</td>
                         <td className="namber-one-item trash-image"><img src="../images/delete-one-peope.svg"/></td>
                     </tr>
                     <tr>    
                         <td className="namber-one-item"> 2</td>
-                        <td className="name-head-one-item"><input value="Машина"></input></td>
-                        <td className="cost-head-one-item"><input value="120"></input></td>
-                       
+                        <td className="name-head-one-item" onClick={changeValue}><input type="text" value={activeRow? "Машина" : valueChange} onChange={e => handleInputChange(e)} /></td>
+                        <td className="cost-head-one-item">3</td>
+                        <td className="namber-one-item trash-image"><img src="../images/delete-one-peope.svg"/></td>
                     </tr>
                 </tbody>
                 <tfoot>

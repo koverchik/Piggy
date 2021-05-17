@@ -1,8 +1,5 @@
-import { makeObservable, action, observable, set, toJS, configure, autorun, runInAction } from "mobx";
+import { makeObservable, action, observable } from "mobx";
 import axios from 'axios';
-import env from "react-dotenv";
-import  Validator from 'validatorjs';
-
 
 export default class Estimate {
   
@@ -17,6 +14,10 @@ export default class Estimate {
   pagination = new Array();
   reactElemPagination = new Array();
   activePagination = 0;
+  validationNewRow = false;
+  validationNewRowCost = false;
+  messegeNewRow = "";
+  messegeNewRowCost = "";    
   
   constructor() {
     makeObservable(this, {
@@ -34,6 +35,7 @@ export default class Estimate {
       requestOneEstimate: action,
       requestNewRow: action,
       deleteRow: action,
+      validationAdd: action,
       },
     );
   }
@@ -41,8 +43,8 @@ export default class Estimate {
   
 
   async requestOneEstimate(){
-  
-  const result = axios.post('http://localhost:8000/one-estimates', {id: this.idEstimate } )
+
+    const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'one-estimates', {id: this.idEstimate } )
     .then(response => {
      
       this.nameEstimate  = response.data[0].name;
@@ -72,25 +74,27 @@ export default class Estimate {
     return result;
   }
 
+  validationAdd(){
+    // if(this.newRow.length > 2 &&)
+    // this.newRow
+    // this.newRowCost
+    // validationNewRow = false;
+    // validationNewRowCost = false;
+    // messegeNewRow = "";
+    // messegeNewRowCost = ""; 
+      // name: this.newRow, 
+      // cost:this.newRowCost, 
+      // name: 'required|string|min:2|max:150',
+      // cost: 'required|numeric',
+    
+  }
+
   requestNewRow(){
 
     const id_user = "9";
 
-    const data: any = {
-      id: this.idEstimate, 
-      name: this.newRow, 
-      cost:this.newRowCost, 
-      id_user: id_user,
-    }
-
-    const rules: Validator.Rules = {
-      id: 'required|numeric',
-      name: 'required|string|min:2|max:150',
-      cost: 'required|numeric',
-      id_user: 'required|numeric',
-    };
-
-    const result = axios.post('http://localhost:8000/write-one-estimates', {id: this.idEstimate, name: this.newRow, cost:this.newRowCost, id_user: id_user} )
+  
+    const result = axios.post(process.env.MIX_APP_URL_FOR_TEST + 'write-one-estimates', {id: this.idEstimate, name: this.newRow, cost:this.newRowCost, id_user: id_user} )
       .then(response => {
         if(response.status === 200){
           this.requestOneEstimate();
@@ -106,7 +110,7 @@ export default class Estimate {
           })
     }
     deleteRow( numberRow: number ){
-      axios.post('http://localhost:8000/delete-estimate', { id_row: numberRow })
+      axios.post(process.env.MIX_APP_URL_FOR_TEST + 'delete-estimate', { id_row: numberRow })
       .then(response => {
         if(response.status === 200){
           this.requestOneEstimate();

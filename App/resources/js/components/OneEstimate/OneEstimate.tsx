@@ -34,7 +34,7 @@ const OneEstimate: React.FC = observer((props : any) => {
         store.Estimate.activePagination !== e.target.textContent ? store.Estimate.activePagination = e.target.textContent: "";
      }
      function createNumberPagination() {
-        const resultPagination : any = store.Estimate.pagination.map((item: number, i: number) =>{
+        const resultPagination : any = store.Estimate.pagination.map((item: number) =>{
             return ( 
                 <div key={"pagination" + item } className= { (store.Estimate.activePagination == item) ? "pagination-estimate active-number" : "pagination-estimate" } onClick={clickPagination}> { item }</div>
              )

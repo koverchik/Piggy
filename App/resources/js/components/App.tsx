@@ -14,7 +14,7 @@ import OneWallet from "./OneWallet/OneWallet";
 import EditOneEstimate from "./OneEstimate/EditOneEstimate/EditOneEstimate"
 import { observer } from "mobx-react-lite";
 
-const App: React.FC = observer(( props: any) => {
+const App: React.FC = observer(() => {
 
     return (
     <div className="wrapper-all-app">
