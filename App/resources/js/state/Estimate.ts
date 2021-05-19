@@ -1,7 +1,13 @@
-import { makeObservable, action, observable } from "mobx";
+import { makeObservable, action, observable, configure } from "mobx";
 import axios from 'axios';
 
+
+configure({
+  enforceActions: "never",
+})
+
 export default class Estimate {
+  
   
   idEstimate = "";
   nameEstimate = "";
@@ -14,8 +20,8 @@ export default class Estimate {
   pagination = new Array();
   reactElemPagination = new Array();
   activePagination = 0;
-  validationNewRow = false;
-  validationNewRowCost = false;
+  validationNewRow = true;
+  validationNewRowCost = true;
   messegeNewRow = "";
   messegeNewRowCost = "";    
   
@@ -36,6 +42,7 @@ export default class Estimate {
       requestNewRow: action,
       deleteRow: action,
       validationAdd: action,
+
       },
     );
   }
@@ -43,7 +50,8 @@ export default class Estimate {
   
 
   async requestOneEstimate(){
-
+    console.log("hello");
+    
     const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'one-estimates', {id: this.idEstimate } )
     .then(response => {
      
@@ -74,25 +82,31 @@ export default class Estimate {
     return result;
   }
 
-  validationAdd(){
-    // if(this.newRow.length > 2 &&)
-    // this.newRow
-    // this.newRowCost
-    // validationNewRow = false;
-    // validationNewRowCost = false;
-    // messegeNewRow = "";
-    // messegeNewRowCost = ""; 
-      // name: this.newRow, 
-      // cost:this.newRowCost, 
-      // name: 'required|string|min:2|max:150',
-      // cost: 'required|numeric',
-    
-  }
+  validationAdd(){     
+    if(this.newRow.length < 2 ){     
+      this.validationNewRow = true;
+      this.messegeNewRow = "Обязательное поле для заполнение, необходимо использовать не менее двух символов."
+        }else if(this.newRow.length > 150){
+          this.validationNewRow = true;
+          this.messegeNewRow = "Поле не может быть более 150 символов."
+          }else{
+            this.validationNewRow = false;
+           }
+
+    if(Number.isNaN(Number(this.newRowCost))){
+      this.validationNewRowCost = true;
+      this.messegeNewRowCost = "Необходимо ввести число."
+      }else if(Number(this.newRowCost)<=0){
+        this.validationNewRowCost = true;
+        this.messegeNewRowCost = "Введите число больше 0"
+        }else{
+          this.validationNewRowCost = false;
+        }         
+    }
 
   requestNewRow(){
 
     const id_user = "9";
-
   
     const result = axios.post(process.env.MIX_APP_URL_FOR_TEST + 'write-one-estimates', {id: this.idEstimate, name: this.newRow, cost:this.newRowCost, id_user: id_user} )
       .then(response => {
@@ -100,6 +114,8 @@ export default class Estimate {
           this.requestOneEstimate();
           this.newRow = "";
           this.newRowCost = "";
+          this.validationNewRow = true;
+          this.validationNewRowCost = true;
         }
 
        },
@@ -109,6 +125,7 @@ export default class Estimate {
         
           })
     }
+
     deleteRow( numberRow: number ){
       axios.post(process.env.MIX_APP_URL_FOR_TEST + 'delete-estimate', { id_row: numberRow })
       .then(response => {

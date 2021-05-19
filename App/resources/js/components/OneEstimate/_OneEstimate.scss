@@ -172,6 +172,9 @@
             &:focus{
                 background-color:  #FDB547;
             }
+            &:disabled{
+                background-color: #C4C4C4;
+            }
         }
     }
 }

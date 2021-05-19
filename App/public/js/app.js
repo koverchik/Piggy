@@ -2408,7 +2408,7 @@ var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modul
 
 var index_1 = __importDefault(__webpack_require__(/*! ../../../state/index */ "./resources/js/state/index.ts"));
 
-__webpack_require__(/*! ./AddRowEstimate */ "./resources/js/components/OneEstimate/AddRowEstimate/AddRowEstimate.tsx");
+__webpack_require__(/*! ./_AddRowEstimate.scss */ "./resources/js/components/OneEstimate/AddRowEstimate/_AddRowEstimate.scss");
 
 var AddRowEstimate = mobx_react_lite_1.observer(function () {
   function requestNewRow(event) {
@@ -2429,6 +2429,7 @@ var AddRowEstimate = mobx_react_lite_1.observer(function () {
     value: index_1["default"].Estimate.newRow,
     onChange: function onChange(event) {
       index_1["default"].Estimate.newRow = event.target.value;
+      index_1["default"].Estimate.validationAdd();
     }
   }), react_1["default"].createElement("span", null, index_1["default"].Estimate.validationNewRow ? index_1["default"].Estimate.messegeNewRow : "")), react_1["default"].createElement("td", {
     className: "new-cost-one-item"
@@ -2437,13 +2438,15 @@ var AddRowEstimate = mobx_react_lite_1.observer(function () {
     value: index_1["default"].Estimate.newRowCost,
     onChange: function onChange(event) {
       index_1["default"].Estimate.newRowCost = event.target.value;
+      index_1["default"].Estimate.validationAdd();
     }
   }), react_1["default"].createElement("span", null, index_1["default"].Estimate.validationNewRowCost ? index_1["default"].Estimate.messegeNewRowCost : "")), react_1["default"].createElement("td", {
     className: "empty-item"
   }, "  ")))), react_1["default"].createElement("div", null, react_1["default"].createElement("input", {
     className: "button-add-new-item ",
     type: "submit",
-    value: "+"
+    value: "+",
+    disabled: !index_1["default"].Estimate.validationNewRow && !index_1["default"].Estimate.validationNewRowCost ? false : true
   }))));
 });
 exports.default = AddRowEstimate;
@@ -3113,6 +3116,10 @@ var mobx_1 = __webpack_require__(/*! mobx */ "./node_modules/mobx/dist/mobx.esm.
 
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 
+mobx_1.configure({
+  enforceActions: "never"
+});
+
 var Estimate =
 /** @class */
 function () {
@@ -3128,8 +3135,8 @@ function () {
     this.pagination = new Array();
     this.reactElemPagination = new Array();
     this.activePagination = 0;
-    this.validationNewRow = false;
-    this.validationNewRowCost = false;
+    this.validationNewRow = true;
+    this.validationNewRowCost = true;
     this.messegeNewRow = "";
     this.messegeNewRowCost = "";
     mobx_1.makeObservable(this, {
@@ -3158,6 +3165,7 @@ function () {
       var _this = this;
 
       return __generator(this, function (_a) {
+        console.log("hello");
         result = axios_1["default"].post("http://localhost:8000/" + 'one-estimates', {
           id: this.idEstimate
         }).then(function (response) {
@@ -3187,17 +3195,26 @@ function () {
     });
   };
 
-  Estimate.prototype.validationAdd = function () {// if(this.newRow.length > 2 &&)
-    // this.newRow
-    // this.newRowCost
-    // validationNewRow = false;
-    // validationNewRowCost = false;
-    // messegeNewRow = "";
-    // messegeNewRowCost = ""; 
-    // name: this.newRow, 
-    // cost:this.newRowCost, 
-    // name: 'required|string|min:2|max:150',
-    // cost: 'required|numeric',
+  Estimate.prototype.validationAdd = function () {
+    if (this.newRow.length < 2) {
+      this.validationNewRow = true;
+      this.messegeNewRow = "Обязательное поле для заполнение, необходимо использовать не менее двух символов.";
+    } else if (this.newRow.length > 150) {
+      this.validationNewRow = true;
+      this.messegeNewRow = "Поле не может быть более 150 символов.";
+    } else {
+      this.validationNewRow = false;
+    }
+
+    if (Number.isNaN(Number(this.newRowCost))) {
+      this.validationNewRowCost = true;
+      this.messegeNewRowCost = "Необходимо ввести число.";
+    } else if (Number(this.newRowCost) <= 0) {
+      this.validationNewRowCost = true;
+      this.messegeNewRowCost = "Введите число больше 0";
+    } else {
+      this.validationNewRowCost = false;
+    }
   };
 
   Estimate.prototype.requestNewRow = function () {
@@ -3215,6 +3232,8 @@ function () {
 
         _this.newRow = "";
         _this.newRowCost = "";
+        _this.validationNewRow = true;
+        _this.validationNewRowCost = true;
       }
     }, function (response) {
       console.log("error request " + response);
@@ -7902,6 +7921,30 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-header {\n  height: 150px;\n 
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneEstimate/AddRowEstimate/_AddRowEstimate.scss":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneEstimate/AddRowEstimate/_AddRowEstimate.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".table-add-new-value .warning-add-one-item {\n  background-color: blueviolet;\n  color: cadetblue;\n}\n\n.new-one-item span, .new-cost-one-item span {\n  color: #FE7BA7;\n  margin-top: 10px;\n  height: 10px;\n  font-size: 0.8rem;\n  position: absolute;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneEstimate/EditOneEstimate/_EditOneEstimate.scss":
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneEstimate/EditOneEstimate/_EditOneEstimate.scss ***!
@@ -7943,7 +7986,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-one-estimate {\n  background-color: #C4C4C4;\n  padding: 3vw;\n}\n.wrapper-one-estimate .one-estimate {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  padding: 3vw;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate {\n  display: flex;\n  justify-content: space-between;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate h2 {\n  margin: 0;\n  padding-bottom: 1rem;\n  color: #5354D2;\n  font-size: 3rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img {\n  background-color: white;\n  border-radius: 5px;\n  padding: 0.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img:hover {\n  cursor: pointer;\n  opacity: 0.8;\n  filter: grayscale(54%);\n}\n.wrapper-one-estimate .one-estimate .table-list-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-list-value td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.empty-head-item {\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.name-head-one-item {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.cost-head-one-item {\n  border-left: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.name-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.error-table {\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.display-none {\n  display: none;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody .trash-image img:hover {\n  cursor: pointer;\n  opacity: 0.8;\n  filter: grayscale(54%);\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.title-cost-all-item {\n  float: right;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.cost-all-item {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  background-color: #F5F5F5;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:active {\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:focus {\n  outline: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item {\n  background-color: #5354D2;\n  border: none;\n  border-radius: 10px;\n  display: inline;\n  width: 10%;\n  float: right;\n  padding: 1rem;\n  display: flex;\n  margin: 0rem;\n  padding: 0.4rem;\n  justify-content: center;\n  color: white;\n  font-size: 1.8rem;\n  outline: none;\n  font-weight: bold;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:hover {\n  background-color: #FE7BA7;\n  cursor: pointer;\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:active {\n  border: none;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:focus {\n  background-color: #FDB547;\n}\n\n.wrapper-number-pagination {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.wrapper-number-pagination .pagination-estimate {\n  color: #5354D2;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-weight: bold;\n}\n.wrapper-number-pagination .pagination-estimate:hover {\n  cursor: pointer;\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .image-pagination {\n  width: 2rem;\n}\n.wrapper-number-pagination .image-pagination:hover {\n  cursor: pointer;\n  opacity: 0.5;\n}\n.wrapper-number-pagination .disable-pagination {\n  filter: grayscale(100%);\n}\n.wrapper-number-pagination .disable-pagination:hover {\n  cursor: default;\n  opacity: 1;\n}\n.wrapper-number-pagination .active-number {\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .active-number:hover {\n  cursor: default;\n}\n\n@media print {\n  body * {\n    visibility: hidden;\n  }\n\n  .section-to-print-table, .section-to-print-table *, .section-to-print, .section-to-print * {\n    visibility: visible;\n  }\n\n  .section-to-print {\n    position: absolute;\n    left: 0;\n    top: 0;\n  }\n\n  .section-to-print-table {\n    position: absolute;\n    left: 0;\n    top: 50px;\n  }\n  .section-to-print-table tr {\n    display: table-row !important;\n  }\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-one-estimate {\n  background-color: #C4C4C4;\n  padding: 3vw;\n}\n.wrapper-one-estimate .one-estimate {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  padding: 3vw;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate {\n  display: flex;\n  justify-content: space-between;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate h2 {\n  margin: 0;\n  padding-bottom: 1rem;\n  color: #5354D2;\n  font-size: 3rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img {\n  background-color: white;\n  border-radius: 5px;\n  padding: 0.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img:hover {\n  cursor: pointer;\n  opacity: 0.8;\n  filter: grayscale(54%);\n}\n.wrapper-one-estimate .one-estimate .table-list-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-list-value td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.empty-head-item {\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.name-head-one-item {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.cost-head-one-item {\n  border-left: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.name-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.error-table {\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.display-none {\n  display: none;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody .trash-image img:hover {\n  cursor: pointer;\n  opacity: 0.8;\n  filter: grayscale(54%);\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.title-cost-all-item {\n  float: right;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.cost-all-item {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  background-color: #F5F5F5;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:active {\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:focus {\n  outline: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item {\n  background-color: #5354D2;\n  border: none;\n  border-radius: 10px;\n  display: inline;\n  width: 10%;\n  float: right;\n  padding: 1rem;\n  display: flex;\n  margin: 0rem;\n  padding: 0.4rem;\n  justify-content: center;\n  color: white;\n  font-size: 1.8rem;\n  outline: none;\n  font-weight: bold;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:hover {\n  background-color: #FE7BA7;\n  cursor: pointer;\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:active {\n  border: none;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:focus {\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:disabled {\n  background-color: #C4C4C4;\n}\n\n.wrapper-number-pagination {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.wrapper-number-pagination .pagination-estimate {\n  color: #5354D2;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-weight: bold;\n}\n.wrapper-number-pagination .pagination-estimate:hover {\n  cursor: pointer;\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .image-pagination {\n  width: 2rem;\n}\n.wrapper-number-pagination .image-pagination:hover {\n  cursor: pointer;\n  opacity: 0.5;\n}\n.wrapper-number-pagination .disable-pagination {\n  filter: grayscale(100%);\n}\n.wrapper-number-pagination .disable-pagination:hover {\n  cursor: default;\n  opacity: 1;\n}\n.wrapper-number-pagination .active-number {\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .active-number:hover {\n  cursor: default;\n}\n\n@media print {\n  body * {\n    visibility: hidden;\n  }\n\n  .section-to-print-table, .section-to-print-table *, .section-to-print, .section-to-print * {\n    visibility: visible;\n  }\n\n  .section-to-print {\n    position: absolute;\n    left: 0;\n    top: 0;\n  }\n\n  .section-to-print-table {\n    position: absolute;\n    left: 0;\n    top: 50px;\n  }\n  .section-to-print-table tr {\n    display: table-row !important;\n  }\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -78201,6 +78244,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_Header_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./resources/js/components/OneEstimate/AddRowEstimate/_AddRowEstimate.scss":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/OneEstimate/AddRowEstimate/_AddRowEstimate.scss ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AddRowEstimate_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./_AddRowEstimate.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneEstimate/AddRowEstimate/_AddRowEstimate.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AddRowEstimate_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AddRowEstimate_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 

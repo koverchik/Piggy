@@ -1,4 +1,16 @@
-.exciting-text::after {
-    content: "→";
-    color: green;
+.table-add-new-value{
+  .warning-add-one-item{
+    background-color: blueviolet;
+    color: cadetblue;
   }
+}
+.new-one-item, .new-cost-one-item{
+  span{
+    color: #FE7BA7;
+    margin-top: 10px;
+    height: 10px;
+    font-size: 0.8rem;
+    position: absolute;
+  }
+}
+
