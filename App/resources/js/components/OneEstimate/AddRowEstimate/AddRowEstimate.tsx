@@ -5,14 +5,13 @@ import "./_AddRowEstimate.scss";
 
 
 const AddRowEstimate: React.FC = observer(() => {
-    function requestNewRow(event: any){
-        store.Estimate.requestNewRow();
-        event.preventDefault();
-
-    }
+  
    return (
         <div>
-            <form onSubmit={ requestNewRow  }>
+            <form onSubmit={ (event: any)=>{
+                store.Estimate.requestNewRow();
+                event.preventDefault(); 
+                } }>
                 <table className="table-add-new-value">
                 <tbody> 
                     <tr>
@@ -43,7 +42,11 @@ const AddRowEstimate: React.FC = observer(() => {
                 </tbody>
                 </table>
                 <div>
-                    <input className="button-add-new-item " type="submit" value="+" disabled={!store.Estimate.validationNewRow && !store.Estimate.validationNewRowCost ? false : true } />          
+                    <input 
+                        className="button-add-new-item " 
+                        type="submit" 
+                        value="+" 
+                        disabled={!store.Estimate.validationNewRow && !store.Estimate.validationNewRowCost ? false : true } />          
                 </div>
            </form>
          </div>
