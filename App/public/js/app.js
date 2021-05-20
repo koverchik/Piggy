@@ -2115,6 +2115,10 @@ var AllEstimateAndWallet = mobx_react_lite_1.observer(function () {
       listEstimate = _a[0],
       setlistEstimate = _a[1];
 
+  var _b = react_1.useState([]),
+      listWallet = _b[0],
+      setlistWallet = _b[1];
+
   react_1.useEffect(function () {
     axios_1["default"].post('http://localhost:8000/all-estimates', {
       id: 9
@@ -2134,6 +2138,25 @@ var AllEstimateAndWallet = mobx_react_lite_1.observer(function () {
       }, " \u0423\u043F\u0441, \u0447\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0430\u0440\u0430\u043D\u0438\u0446\u0443.");
       setlistEstimate(notiseError);
     });
+    axios_1["default"].post('http://localhost:8000/all-wallets', {
+      id: 9
+    }).then(function (response) {
+      var list = response.data.map(function (item, i) {
+        console.log(item);
+        return react_1["default"].createElement("li", {
+          key: "listWallet" + i
+        }, react_1["default"].createElement(react_router_dom_1.Link, {
+          to: "/wallet-" + item['names_wallets_id']
+        }, item['full_name']));
+      });
+      setlistWallet(list);
+    }, function (response) {
+      console.log("error request " + response);
+      var notiseError = react_1["default"].createElement("li", {
+        key: "listWalletEmpty"
+      }, " \u0423\u043F\u0441, \u0447\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0430\u0440\u0430\u043D\u0438\u0446\u0443.");
+      setlistEstimate(notiseError);
+    });
   }, []);
   return react_1["default"].createElement("div", {
     className: "wrapper-all-estimate-wallet"
@@ -2149,13 +2172,7 @@ var AllEstimateAndWallet = mobx_react_lite_1.observer(function () {
     className: "header-blok-view"
   }, "\u041A\u043E\u0448\u0435\u043B\u0435\u043A\u0438"), react_1["default"].createElement("ul", {
     className: "list-wallet"
-  }, react_1["default"].createElement("li", null, react_1["default"].createElement("a", {
-    href: "#"
-  }, "\u0425\u043E\u0437 \u0440\u0430\u0441\u0445\u043E\u0434\u044B")), react_1["default"].createElement("li", null, react_1["default"].createElement("a", {
-    href: "#"
-  }, "\u0425\u043E\u043B\u043E\u0434\u0438\u043B\u044C\u043D\u0438\u043A")), react_1["default"].createElement("li", null, react_1["default"].createElement("a", {
-    href: "#"
-  }, "\u041F\u043E\u0434\u0430\u0440\u043A\u0438"))), react_1["default"].createElement(ButtonCreate_1["default"], null)));
+  }, listWallet), react_1["default"].createElement(ButtonCreate_1["default"], null)));
 });
 exports.default = AllEstimateAndWallet;
 
@@ -2218,7 +2235,7 @@ var App = mobx_react_lite_1.observer(function () {
     path: "/one-estimate",
     component: AllEstimate_1["default"]
   }), react_1["default"].createElement(react_router_dom_1.Route, {
-    path: "/wallet",
+    path: "/wallet-:id",
     component: OneWallet_1["default"]
   }))), react_1["default"].createElement(Footer_1["default"], null));
 });

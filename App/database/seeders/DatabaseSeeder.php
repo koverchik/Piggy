@@ -83,40 +83,7 @@ class DatabaseSeeder extends Seeder
 
        
         //Добавление видов доступа 
-         $colectionScopeDiscriptionsEtimates = [
-             [ "name" => "Создатель",
-                "delete_table" => 1,
-                "edit_permission" => 1,
-                "edit_row" => 1,
-                "browsing" => 1,
-                "add_row" => 1,
-                "delete_row" => 1,
-                ],  
-              [ "name" => "Владелец",
-                "delete_table" => 0,
-                "edit_permission" => 1,
-                "edit_row" => 1,
-                "browsing" => 1,
-                "add_row" => 1,
-                "delete_row" => 1,
-                ], 
-            [ "name" => "Редактор",
-                "delete_table" => 0,
-                "edit_permission" => 0,
-                "edit_row" => 1,
-                "browsing" => 1,
-                "add_row" => 1,
-                "delete_row" => 1,
-                ],
-            [ "name" => "Просмотр",
-                "delete_table" => 0,
-                "edit_permission" => 0,
-                "edit_row" => 0,
-                "browsing" => 1,
-                "add_row" => 0,
-                "delete_row" => 0,
-                ]
-            ];    
+        
        $colectionScopeDiscriptionsEtimates = [];
             for ($i = 0; $i <= 100; $i++) {
                 array_push($colectionScopeDiscriptionsEtimates, 
@@ -130,6 +97,7 @@ class DatabaseSeeder extends Seeder
                 "user_id" => rand(1,10),]
                 );
             }
+
             
         DB::table('scope_discriptions')->insert($colectionScopeDiscriptionsEtimates);
      

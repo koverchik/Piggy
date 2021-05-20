@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Estimates\ListController;
+use App\Http\Controllers\Wallets\ListWallets;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,23 +21,11 @@ Route::get('/{path?}', function () {
     return view('app');
 });
 
-// Route::get('/estimate/{path?}', function () {
-//     return view('estimate');
-// });
-
-// Route::resource('/estimate', [EstimatesController::class, 'index']) -> names('estimateTest');
-
-// Route::view('/estimate{id?}', 'app', ['id' => 3])->where('id','/\d+/');
-
-// Route::view('/estimate{id?}', 'app')->where('id','/\d+/');
-
-// Route::get('/estimate{id}', function ($id) {
-//     return view('app');
-// });
-
-//Получить список всех смет для одного пользователя
+//Получить список всех смет для одного пользователяf
 
 Route::post('/all-estimates', [ListController::class, 'store']);
+
+Route::post('/all-wallets', [ListWallets::class, 'store']);
 
 Route::post('/one-estimates', [ListController::class, 'show']);
 

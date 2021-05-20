@@ -9,11 +9,11 @@ import { observer } from "mobx-react-lite";
 const AllEstimateAndWallet: React.FC = observer(() => {
   
     const [listEstimate, setlistEstimate] = useState([]);
+    const [listWallet, setlistWallet] = useState([]);
     
          
     useEffect(() => {
         axios.post('http://localhost:8000/all-estimates', {id: 9 } ).then(response => {
- 
             const list = response.data.map(( item: any, i: number ) =>{
               return (  <li key={"listEstimate"+i}>
                            <Link to={"/estimate-" + item['names_estimates_id']}>{item['full_name']}</Link>
@@ -28,7 +28,26 @@ const AllEstimateAndWallet: React.FC = observer(() => {
                 setlistEstimate(notiseError);
              }
             )
-
+        
+            axios.post('http://localhost:8000/all-wallets', {id: 9 } ).then(response => {
+                const list = response.data.map(( item: any, i: number ) =>{
+                    console.log(item);
+                    
+                  return (  
+                        <li key={"listWallet"+i}>
+                            <Link to={"/wallet-" + item['names_wallets_id']}>{item['full_name']}</Link>
+                        </li>
+                        )
+                    })
+                setlistWallet(list);
+              
+                },
+                response => {
+                    console.log("error request " + response);
+                    const notiseError : any = <li  key={"listWalletEmpty"}> Упс, что-то пошло не так попробуйте перезагрузить стараницу.</li>
+                    setlistEstimate(notiseError);
+                 }
+                )
     }, []);
 
     return (
@@ -43,9 +62,7 @@ const AllEstimateAndWallet: React.FC = observer(() => {
             <div className="wapper-wallet">
                 <p className="header-blok-view">Кошелеки</p>
                 <ul className="list-wallet">
-                    <li><a href="#">Хоз расходы</a></li>
-                    <li><a href="#">Холодильник</a></li>
-                    <li><a href="#">Подарки</a></li>
+                    {listWallet}
                  </ul>
                 <Button/>
             </div>

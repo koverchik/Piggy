@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class RowWallets extends Model
 {
     use HasFactory;
+
+    public function NamesWallet()
+    {
+      return $this->belongsTo(NamesWallet::class);
+    }
 }

@@ -25,7 +25,7 @@ const App: React.FC = observer(() => {
                 <Route path="/estimate-:id" component={OneEstimate} />
                 <Route path="/edit-estimate-:id" component={EditOneEstimate} />
                 <Route path="/one-estimate" component={AllEstimate} />
-                <Route path="/wallet" component={OneWallet} />
+                <Route path="/wallet-:id" component={OneWallet} />
             </Switch> 
           </Router>
 

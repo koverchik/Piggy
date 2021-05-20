@@ -1,8 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Wallets;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\ScopeDiscription;
+use App\Models\NamesWallet;
+use App\Models\RowWallets;
 
 class ListWallets extends Controller
 {
@@ -32,11 +36,19 @@ class ListWallets extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $id)
     {
-        //Показать все кошельки пользователя
-        
+        //Показать все кошельки доступные пользователю
+
+        $names = ScopeDiscription::where('user_id', $id["id"])->get();
+            
+        foreach ($names as $name) {
+            $name->full_name = $name->NamesWallet->name;
+            $name->ouner_id = $name->NamesWallet->user_id; 
+          }
+         return $names;
     }
+
 
     /**
      * Display the specified resource.
