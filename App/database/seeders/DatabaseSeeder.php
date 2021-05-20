@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         }
         
         DB::table('names_wallets')->insert($colectionNamesWallets);
+        
          //Создание строк для колекции кошельков
         $colectionRoWallets = [];
 
@@ -116,7 +117,20 @@ class DatabaseSeeder extends Seeder
                 "delete_row" => 0,
                 ]
             ];    
-
+       $colectionScopeDiscriptionsEtimates = [];
+            for ($i = 0; $i <= 100; $i++) {
+                array_push($colectionScopeDiscriptionsEtimates, 
+                ["delete_table" => rand(0,1),
+                "edit_permission" => rand(0,1),
+                "edit_row" => rand(0,1),
+                "browsing" => rand(0,1),
+                "add_row" => rand(0,1),
+                "delete_row" => rand(0,1),
+                "names_wallets_id" => rand(1,100),
+                "user_id" => rand(1,10),]
+                );
+            }
+            
         DB::table('scope_discriptions')->insert($colectionScopeDiscriptionsEtimates);
      
     }

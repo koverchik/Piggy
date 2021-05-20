@@ -15,13 +15,14 @@ class CreateScopeDiscriptionsTable extends Migration
     {
         Schema::create('scope_discriptions', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100);
             $table->boolean('delete_table');
             $table->boolean('edit_permission');
             $table->boolean('edit_row');
             $table->boolean('browsing');
             $table->boolean('add_row');
             $table->boolean('delete_row');
+            $table->foreignId('names_wallets_id')->constrained('names_wallets')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
