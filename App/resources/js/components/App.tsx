@@ -28,7 +28,6 @@ const App: React.FC = observer(() => {
                 <Route path="/wallet-:id" component={OneWallet} />
             </Switch> 
           </Router>
-
         <Footer />
     </div>
     )

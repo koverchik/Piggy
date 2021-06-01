@@ -2957,9 +2957,12 @@ Object.defineProperty(exports, "__esModule", ({
 
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
+var state_1 = __importDefault(__webpack_require__(/*! ../../../../state */ "./resources/js/state/index.ts"));
+
 __webpack_require__(/*! ./_AddNewRowWallet.scss */ "./resources/js/components/OneWallet/TableOneWallet/AddNewRowWallet/_AddNewRowWallet.scss");
 
 var AddNewRowWallet = function AddNewRowWallet() {
+  state_1["default"].Wallet.startWalet();
   return react_1["default"].createElement("div", null, react_1["default"].createElement("table", {
     className: "table-add-new-value"
   }, react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
@@ -2967,7 +2970,8 @@ var AddNewRowWallet = function AddNewRowWallet() {
   }, " 3 "), react_1["default"].createElement("td", {
     className: "data-new-one-item"
   }, react_1["default"].createElement("input", {
-    type: "date"
+    type: "date",
+    value: state_1["default"].Wallet.newDataRaw
   })), react_1["default"].createElement("td", {
     className: "new-one-item"
   }, " ", react_1["default"].createElement("input", null), " "), react_1["default"].createElement("td", {
@@ -3381,6 +3385,53 @@ exports.default = Estimate;
 
 /***/ }),
 
+/***/ "./resources/js/state/Wallet.tsx":
+/*!***************************************!*\
+  !*** ./resources/js/state/Wallet.tsx ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var mobx_1 = __webpack_require__(/*! mobx */ "./node_modules/mobx/dist/mobx.esm.js");
+
+mobx_1.configure({
+  enforceActions: "never"
+});
+
+var Wallet =
+/** @class */
+function () {
+  function Wallet() {
+    this.newDataRaw = "";
+    mobx_1.makeObservable(this, {
+      newDataRaw: mobx_1.observable,
+      startWalet: mobx_1.action,
+      addZero: mobx_1.action
+    });
+  }
+
+  Wallet.prototype.addZero = function (number) {
+    return number < 10 ? "0" + number : number;
+  };
+
+  Wallet.prototype.startWalet = function () {
+    var nowDay = new Date();
+    this.newDataRaw = nowDay.getFullYear() + "-" + this.addZero(nowDay.getMonth()) + "-" + this.addZero(nowDay.getDate());
+  };
+
+  return Wallet;
+}();
+
+exports.default = Wallet;
+
+/***/ }),
+
 /***/ "./resources/js/state/index.ts":
 /*!*************************************!*\
   !*** ./resources/js/state/index.ts ***!
@@ -3402,8 +3453,11 @@ Object.defineProperty(exports, "__esModule", ({
 
 var Estimate_1 = __importDefault(__webpack_require__(/*! ./Estimate */ "./resources/js/state/Estimate.ts"));
 
+var Wallet_1 = __importDefault(__webpack_require__(/*! ./Wallet */ "./resources/js/state/Wallet.tsx"));
+
 var store = {
-  Estimate: new Estimate_1["default"]()
+  Estimate: new Estimate_1["default"](),
+  Wallet: new Wallet_1["default"]()
 };
 exports.default = store;
 
@@ -8176,7 +8230,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".table-add-new-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.table-add-new-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.table-add-new-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.table-add-new-value tbody td.data-new-one-item {\n  width: 25%;\n}\n.table-add-new-value tbody td.new-one-item {\n  width: 45%;\n}\n.table-add-new-value tbody td.new-cost-one-item {\n  width: 20%;\n}\n.table-add-new-value tbody td.user-write-item {\n  width: 5%;\n}\n.table-add-new-value tbody td input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n}\n.table-add-new-value tbody td input:active {\n  border: none;\n}\n.table-add-new-value tbody td input:focus {\n  outline: none;\n}\n\n.button-add-new-item {\n  background-color: #5354D2;\n  border-radius: 10px;\n  display: inline;\n  width: 10%;\n  float: right;\n  padding: 1rem;\n  display: flex;\n  justify-content: center;\n}\n.button-add-new-item:hover {\n  background-color: #FE7BA7;\n  cursor: pointer;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".table-add-new-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.table-add-new-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.table-add-new-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.table-add-new-value tbody td.data-new-one-item {\n  width: 25%;\n}\n.table-add-new-value tbody td.data-new-one-item input {\n  width: 100%;\n  padding: 0;\n  margin: 0;\n}\n.table-add-new-value tbody td.new-one-item {\n  width: 45%;\n}\n.table-add-new-value tbody td.new-cost-one-item {\n  width: 20%;\n}\n.table-add-new-value tbody td.user-write-item {\n  width: 5%;\n}\n.table-add-new-value tbody td input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n}\n.table-add-new-value tbody td input:active {\n  border: none;\n}\n.table-add-new-value tbody td input:focus {\n  outline: none;\n}\n\n.button-add-new-item {\n  background-color: #5354D2;\n  border-radius: 10px;\n  display: inline;\n  width: 10%;\n  float: right;\n  padding: 1rem;\n  display: flex;\n  justify-content: center;\n}\n.button-add-new-item:hover {\n  background-color: #FE7BA7;\n  cursor: pointer;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
