@@ -17,6 +17,10 @@
                     width: 100%;
                     padding: 0;
                     margin: 0;
+                    &::-webkit-calendar-picker-indicator {
+                        padding: 0rem;
+                        margin: 0rem;
+                     }
                 }
             }
             &.new-one-item{
