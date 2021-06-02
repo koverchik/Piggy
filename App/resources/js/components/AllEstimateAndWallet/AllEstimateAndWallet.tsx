@@ -31,11 +31,11 @@ const AllEstimateAndWallet: React.FC = observer(() => {
         
             axios.post('http://localhost:8000/all-wallets', {id: 9 } ).then(response => {
                 const list = response.data.map(( item: any, i: number ) =>{
-                    console.log(item);
+                    console.log(item['full_name']);
                     
                   return (  
                         <li key={"listWallet"+i}>
-                            <Link to={"/wallet-" + item['names_wallets_id']}>{item['full_name']}</Link>
+                            <Link to={"/wallet-" + item['names_wallets_id']+ '-' + item['full_name']}>{item['full_name']}</Link>
                         </li>
                         )
                     })

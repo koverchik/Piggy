@@ -2142,11 +2142,11 @@ var AllEstimateAndWallet = mobx_react_lite_1.observer(function () {
       id: 9
     }).then(function (response) {
       var list = response.data.map(function (item, i) {
-        console.log(item);
+        console.log(item['full_name']);
         return react_1["default"].createElement("li", {
           key: "listWallet" + i
         }, react_1["default"].createElement(react_router_dom_1.Link, {
-          to: "/wallet-" + item['names_wallets_id']
+          to: "/wallet-" + item['names_wallets_id'] + '-' + item['full_name']
         }, item['full_name']));
       });
       setlistWallet(list);
@@ -2235,7 +2235,7 @@ var App = mobx_react_lite_1.observer(function () {
     path: "/one-estimate",
     component: AllEstimate_1["default"]
   }), react_1["default"].createElement(react_router_dom_1.Route, {
-    path: "/wallet-:id",
+    path: "/wallet-:id-:name",
     component: OneWallet_1["default"]
   }))), react_1["default"].createElement(Footer_1["default"], null));
 });
@@ -2910,11 +2910,19 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 
 __webpack_require__(/*! ./_OneWallet.scss */ "./resources/js/components/OneWallet/_OneWallet.scss");
 
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
 var TableOneWallet_1 = __importDefault(__webpack_require__(/*! ./TableOneWallet/TableOneWallet */ "./resources/js/components/OneWallet/TableOneWallet/TableOneWallet.tsx"));
 
 var BurdenSharing_1 = __importDefault(__webpack_require__(/*! ./BurdenSharing/BurdenSharing */ "./resources/js/components/OneWallet/BurdenSharing/BurdenSharing.tsx"));
 
-var OneWallet = function OneWallet() {
+var state_1 = __importDefault(__webpack_require__(/*! ../../state */ "./resources/js/state/index.ts"));
+
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+var OneWallet = mobx_react_lite_1.observer(function () {
+  var params = react_router_dom_1.useParams();
+  state_1["default"].Wallet.idWallet = params.id;
   return react_1["default"].createElement("div", {
     className: "wrapper-one-wallet"
   }, react_1["default"].createElement("div", {
@@ -2923,15 +2931,14 @@ var OneWallet = function OneWallet() {
     className: "wrapper-header-one-wallet"
   }, react_1["default"].createElement("h2", {
     className: "header-one-wallet"
-  }, "\u0425\u043E\u0437 \u0440\u0430\u0441\u0445\u043E\u0434\u044B"), react_1["default"].createElement("div", {
+  }, params.name), react_1["default"].createElement("div", {
     className: "wrapper-button-edit-one-wallet"
   }, react_1["default"].createElement("img", {
     src: "../images/pensil.svg"
   }))), react_1["default"].createElement("div", {
     className: "wrapper-table-wallet"
   }, react_1["default"].createElement(TableOneWallet_1["default"], null), react_1["default"].createElement(BurdenSharing_1["default"], null))));
-};
-
+});
 exports.default = OneWallet;
 
 /***/ }),
@@ -2961,8 +2968,9 @@ var state_1 = __importDefault(__webpack_require__(/*! ../../../../state */ "./re
 
 __webpack_require__(/*! ./_AddNewRowWallet.scss */ "./resources/js/components/OneWallet/TableOneWallet/AddNewRowWallet/_AddNewRowWallet.scss");
 
-var AddNewRowWallet = function AddNewRowWallet() {
-  state_1["default"].Wallet.startWalet();
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var AddNewRowWallet = mobx_react_lite_1.observer(function (props) {
   return react_1["default"].createElement("div", null, react_1["default"].createElement("table", {
     className: "table-add-new-value"
   }, react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
@@ -2971,22 +2979,24 @@ var AddNewRowWallet = function AddNewRowWallet() {
     className: "data-new-one-item"
   }, react_1["default"].createElement("input", {
     type: "date",
-    value: state_1["default"].Wallet.newDataRaw
+    value: state_1["default"].Wallet.newDataRaw,
+    onChange: function onChange(event) {
+      state_1["default"].Wallet.newDataRaw = event.target.value;
+    }
   })), react_1["default"].createElement("td", {
     className: "new-one-item"
-  }, " ", react_1["default"].createElement("input", null), " "), react_1["default"].createElement("td", {
+  }, react_1["default"].createElement("input", null)), react_1["default"].createElement("td", {
     className: "new-cost-one-item"
-  }, " ", react_1["default"].createElement("input", null), " "), react_1["default"].createElement("td", {
+  }, react_1["default"].createElement("input", null)), react_1["default"].createElement("td", {
     className: "user-write-item"
   }, react_1["default"].createElement("img", {
     src: "../images/people.svg"
-  }), " ")))), react_1["default"].createElement("div", null, react_1["default"].createElement("div", {
+  }))))), react_1["default"].createElement("div", null, react_1["default"].createElement("div", {
     className: "button-add-new-item"
   }, react_1["default"].createElement("img", {
     src: "../images/plus.svg"
   }))));
-};
-
+});
 exports.default = AddNewRowWallet;
 
 /***/ }),
@@ -3000,6 +3010,40 @@ exports.default = AddNewRowWallet;
 "use strict";
 
 
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -3010,7 +3054,7 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 __webpack_require__(/*! ./_TableOneWallet.scss */ "./resources/js/components/OneWallet/TableOneWallet/_TableOneWallet.scss");
 
@@ -3018,7 +3062,57 @@ __webpack_require__(/*! ./../_OneWallet.scss */ "./resources/js/components/OneWa
 
 var AddNewRowWallet_1 = __importDefault(__webpack_require__(/*! ./AddNewRowWallet/AddNewRowWallet */ "./resources/js/components/OneWallet/TableOneWallet/AddNewRowWallet/AddNewRowWallet.tsx"));
 
-var TableOneWallet = function TableOneWallet() {
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var state_1 = __importDefault(__webpack_require__(/*! ../../../state */ "./resources/js/state/index.ts"));
+
+var TableOneWallet = mobx_react_lite_1.observer(function () {
+  var _a = react_1.useState([]),
+      listRowsWallet = _a[0],
+      setlistRowsWallet = _a[1];
+
+  react_1.useEffect(function () {
+    state_1["default"].Wallet.startOneWalet().then(function (data) {
+      if (data === "Error") {
+        var messageError = react_1["default"].createElement("tr", {
+          className: "error-one-walet"
+        }, react_1["default"].createElement("td", {
+          colSpan: 5
+        }, "\u0427\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443"));
+        setlistRowsWallet(messageError);
+      } else {
+        setlistRowsWallet(createListRows(data.data.rows));
+      }
+    });
+  }, []);
+
+  function createListRows(data) {
+    var result = data.map(function (item, i) {
+      var dataOneRow = new Date(item["created_at_time"]);
+      state_1["default"].Wallet.allSumm += item["amount"];
+      return react_1["default"].createElement("tr", {
+        key: "row-walet-" + i
+      }, react_1["default"].createElement("td", {
+        className: "namber-one-item"
+      }, " ", i + 1, " "), react_1["default"].createElement("td", {
+        className: "data-item"
+      }, addZero(dataOneRow.getDate()) + "." + addZero(dataOneRow.getMonth()) + "." + dataOneRow.getFullYear()), react_1["default"].createElement("td", {
+        className: "name-one-item"
+      }, " ", item["name"], " "), react_1["default"].createElement("td", {
+        className: "cost-one-item"
+      }, " ", item["amount"], " \u0440\u0443\u0431 "), react_1["default"].createElement("td", {
+        className: "user-write-item"
+      }, react_1["default"].createElement("img", {
+        src: "../images/people.svg"
+      }), " "));
+    });
+    return result;
+  }
+
+  function addZero(number) {
+    return number < 10 ? "0" + number : number;
+  }
+
   return react_1["default"].createElement("div", {
     className: "wrapper-tables-list-add"
   }, react_1["default"].createElement("table", {
@@ -3033,31 +3127,7 @@ var TableOneWallet = function TableOneWallet() {
     className: "cost-head-one-item"
   }, " \u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C "), react_1["default"].createElement("td", {
     className: "empty-head-item-user"
-  }, "  "))), react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
-    className: "namber-one-item"
-  }, " 1 "), react_1["default"].createElement("td", {
-    className: "data-item"
-  }, "24.03.2021"), react_1["default"].createElement("td", {
-    className: "name-one-item"
-  }, " \u0422\u043E\u0440\u0442 "), react_1["default"].createElement("td", {
-    className: "cost-one-item"
-  }, " 10 \u0440\u0443\u0431 "), react_1["default"].createElement("td", {
-    className: "user-write-item"
-  }, react_1["default"].createElement("img", {
-    src: "../images/people.svg"
-  }), " ")), react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
-    className: "namber-one-item"
-  }, " 2 "), react_1["default"].createElement("td", {
-    className: "data-item"
-  }, "25.03.2021"), react_1["default"].createElement("td", {
-    className: "name-one-item"
-  }, " \u0421\u043E\u043A "), react_1["default"].createElement("td", {
-    className: "cost-one-item"
-  }, " 5 \u0440\u0443\u0431 "), react_1["default"].createElement("td", {
-    className: "user-write-item"
-  }, react_1["default"].createElement("img", {
-    src: "../images/people.svg"
-  }), " "))), react_1["default"].createElement("tfoot", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
+  }, "  "))), react_1["default"].createElement("tbody", null, listRowsWallet), react_1["default"].createElement("tfoot", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: "empty-item"
   }, "  "), react_1["default"].createElement("td", {
     className: "empty-item"
@@ -3065,9 +3135,8 @@ var TableOneWallet = function TableOneWallet() {
     className: "title-cost-all-item"
   }, " \u0418\u0442\u043E\u0433\u043E:  "), react_1["default"].createElement("td", {
     className: "cost-all-item"
-  }, " 15 \u0440\u0443\u0431 ")))), react_1["default"].createElement(AddNewRowWallet_1["default"], null));
-};
-
+  }, " ", state_1["default"].Wallet.allSumm.toFixed(2), " \u0440\u0443\u0431 ")))), react_1["default"].createElement(AddNewRowWallet_1["default"], null));
+});
 exports.default = TableOneWallet;
 
 /***/ }),
@@ -3287,7 +3356,6 @@ function () {
       var _this = this;
 
       return __generator(this, function (_a) {
-        console.log("hello");
         result = axios_1["default"].post("http://localhost:8000/" + 'one-estimates', {
           id: this.idEstimate
         }).then(function (response) {
@@ -3389,16 +3457,24 @@ exports.default = Estimate;
 /*!***************************************!*\
   !*** ./resources/js/state/Wallet.tsx ***!
   \***************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
 var mobx_1 = __webpack_require__(/*! mobx */ "./node_modules/mobx/dist/mobx.esm.js");
+
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 
 mobx_1.configure({
   enforceActions: "never"
@@ -3409,9 +3485,13 @@ var Wallet =
 function () {
   function Wallet() {
     this.newDataRaw = "";
+    this.idWallet = "";
+    this.allSumm = 0;
     mobx_1.makeObservable(this, {
       newDataRaw: mobx_1.observable,
-      startWalet: mobx_1.action,
+      idWallet: mobx_1.observable,
+      allSumm: mobx_1.observable,
+      startOneWalet: mobx_1.action,
       addZero: mobx_1.action
     });
   }
@@ -3420,9 +3500,18 @@ function () {
     return number < 10 ? "0" + number : number;
   };
 
-  Wallet.prototype.startWalet = function () {
+  Wallet.prototype.startOneWalet = function () {
     var nowDay = new Date();
     this.newDataRaw = nowDay.getFullYear() + "-" + this.addZero(nowDay.getMonth()) + "-" + this.addZero(nowDay.getDate());
+    var result = axios_1["default"].post("http://localhost:8000/" + 'one-wallets', {
+      id: this.idWallet
+    }).then(function (response) {
+      return response;
+    }, function (response) {
+      console.log("error request " + response);
+      return "Error";
+    });
+    return result;
   };
 
   return Wallet;
@@ -8206,7 +8295,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".table-add-new-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.table-add-new-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.table-add-new-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.table-add-new-value tbody td.data-new-one-item {\n  width: 25%;\n}\n.table-add-new-value tbody td.data-new-one-item input {\n  width: 100%;\n  padding: 0;\n  margin: 0;\n}\n.table-add-new-value tbody td.data-new-one-item input::-webkit-calendar-picker-indicator {\n  padding: 0rem;\n  margin: 0rem;\n}\n.table-add-new-value tbody td.new-one-item {\n  width: 45%;\n}\n.table-add-new-value tbody td.new-cost-one-item {\n  width: 20%;\n}\n.table-add-new-value tbody td.user-write-item {\n  width: 5%;\n}\n.table-add-new-value tbody td input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n}\n.table-add-new-value tbody td input:active {\n  border: none;\n}\n.table-add-new-value tbody td input:focus {\n  outline: none;\n}\n\n.button-add-new-item {\n  background-color: #5354D2;\n  border-radius: 10px;\n  display: inline;\n  width: 10%;\n  float: right;\n  padding: 1rem;\n  display: flex;\n  justify-content: center;\n}\n.button-add-new-item:hover {\n  background-color: #FE7BA7;\n  cursor: pointer;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -8230,7 +8319,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".table-add-new-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.table-add-new-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.table-add-new-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.table-add-new-value tbody td.data-new-one-item {\n  width: 25%;\n}\n.table-add-new-value tbody td.data-new-one-item input {\n  width: 100%;\n  padding: 0;\n  margin: 0;\n}\n.table-add-new-value tbody td.data-new-one-item input::-webkit-calendar-picker-indicator {\n  padding: 0rem;\n  margin: 0rem;\n}\n.table-add-new-value tbody td.new-one-item {\n  width: 45%;\n}\n.table-add-new-value tbody td.new-cost-one-item {\n  width: 20%;\n}\n.table-add-new-value tbody td.user-write-item {\n  width: 5%;\n}\n.table-add-new-value tbody td input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n}\n.table-add-new-value tbody td input:active {\n  border: none;\n}\n.table-add-new-value tbody td input:focus {\n  outline: none;\n}\n\n.button-add-new-item {\n  background-color: #5354D2;\n  border-radius: 10px;\n  display: inline;\n  width: 10%;\n  float: right;\n  padding: 1rem;\n  display: flex;\n  justify-content: center;\n}\n.button-add-new-item:hover {\n  background-color: #FE7BA7;\n  cursor: pointer;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".error-one-walet {\n  text-align: center;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

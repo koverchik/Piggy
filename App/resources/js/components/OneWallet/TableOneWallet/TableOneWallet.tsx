@@ -1,10 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './_TableOneWallet.scss';
 import './../_OneWallet.scss';
 import AddNewRowWallet from "./AddNewRowWallet/AddNewRowWallet";
+import { observer } from "mobx-react-lite";
+import store from "../../../state";
 
-const TableOneWallet: React.FC = () => {
+const TableOneWallet: React.FC = observer(() => {
+
+const [listRowsWallet, setlistRowsWallet] = useState([]);
+
+useEffect(() => {
+    store.Wallet.startOneWalet().then((data: any) => {
+        if(data === "Error"){
+            const messageError: any =   
+            (<tr className="error-one-walet">    
+                <td colSpan={5}>
+                    Что-то пошло не так, попробуйте перезагрузить страницу
+                </td>
+            </tr>)
+            setlistRowsWallet(messageError);
+        }else{
+            setlistRowsWallet(createListRows(data.data.rows));
+        }
+        
+        })
+
+}, [])
+function createListRows(data:any) {
     
+    const result:any = data.map((item: any, i: number) => {
+        const dataOneRow = new Date(item["created_at_time"]);
+        store.Wallet.allSumm += item["amount"];
+                    return(
+                        <tr key={"row-walet-" + i}>
+                            <td className="namber-one-item"> {i+1} </td>
+                            <td className="data-item">{`${addZero(dataOneRow.getDate())}.${addZero(dataOneRow.getMonth())}.${dataOneRow.getFullYear()}`}</td>
+                            <td className="name-one-item" > {item["name"]} </td>
+                            <td className="cost-one-item"> {item["amount"]} руб </td>
+                            <td className="user-write-item"><img src="../images/people.svg"></img> </td>
+                        </tr>
+                    )
+                })  
+    return result;
+}
+
+function addZero(number:number){
+    return number<10 ? `0${number}` : number;   
+  }
+  
     return (
             <div className="wrapper-tables-list-add">
                 <table className="table-list-value">
@@ -18,32 +61,19 @@ const TableOneWallet: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody> 
-                        <tr>
-                            <td className="namber-one-item"> 1 </td>
-                            <td className="data-item">24.03.2021</td>
-                            <td className="name-one-item" > Торт </td>
-                            <td className="cost-one-item"> 10 руб </td>
-                            <td className="user-write-item"><img src="../images/people.svg"></img> </td>
-                        </tr>
-                        <tr>
-                            <td className="namber-one-item"> 2 </td>
-                            <td className="data-item">25.03.2021</td>
-                            <td className="name-one-item"> Сок </td>
-                            <td className="cost-one-item"> 5 руб </td>
-                            <td className="user-write-item"><img src="../images/people.svg"></img> </td>
-                        </tr>
+                        { listRowsWallet }
                     </tbody>
                     <tfoot>
-                    <tr>
+                        <tr>
                             <td className="empty-item">  </td>
                             <td className="empty-item">  </td>
                             <td className="title-cost-all-item"> Итого:  </td>
-                            <td className="cost-all-item"> 15 руб </td>
+                            <td className="cost-all-item"> {store.Wallet.allSumm.toFixed(2)} руб </td>
                         </tr>
                     </tfoot>
                 </table>
                 <AddNewRowWallet/>
             </div>
     )
-}
+})
 export default TableOneWallet;

@@ -46,11 +46,8 @@ export default class Estimate {
     );
   }
 
-  
-
   async requestOneEstimate(){
-    console.log("hello");
-    
+   
     const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'one-estimates', {id: this.idEstimate } )
     .then(response => {
      

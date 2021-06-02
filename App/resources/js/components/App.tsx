@@ -17,19 +17,19 @@ import { observer } from "mobx-react-lite";
 const App: React.FC = observer(() => {
 
     return (
-    <div className="wrapper-all-app">
-        <Header />
+      <div className="wrapper-all-app">
+          <Header />
           <Router>
             <Switch>
                 <Route exact path="/" component={AllEstimateAndWallet} />
                 <Route path="/estimate-:id" component={OneEstimate} />
                 <Route path="/edit-estimate-:id" component={EditOneEstimate} />
                 <Route path="/one-estimate" component={AllEstimate} />
-                <Route path="/wallet-:id" component={OneWallet} />
+                <Route path="/wallet-:id-:name" component={OneWallet} />
             </Switch> 
           </Router>
-        <Footer />
-    </div>
+          <Footer />
+      </div>
     )
 });
 export default App;

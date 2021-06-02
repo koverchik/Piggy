@@ -56,9 +56,12 @@ class ListWallets extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $id)
     {
-        //
+        $wallet = NamesWallet::where('id', $id["id"])->get();
+        $walletRows = RowWallets::where('names_wallets_id', $id["id"])->get();
+        array_add($wallet, 'rows', $walletRows);
+        return $wallet->toJson();
     }
 
     /**
