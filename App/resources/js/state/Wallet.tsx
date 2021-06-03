@@ -10,15 +10,19 @@ export default class Wallet {
     newDataRaw = "";
     idWallet = "";
     allSumm = 0;
+    newRowWallet = "";
+    newRowCost = "";
 
     constructor() {
       makeObservable(this, {
         newDataRaw: observable,
         idWallet:observable,
         allSumm: observable,
+        newRowWallet: observable,
+        newRowCost:observable,
         startOneWalet: action,
         addZero: action, 
-        
+        addNewRow: action, 
       })
     }
     addZero(number:number){
@@ -40,5 +44,7 @@ export default class Wallet {
             })
       return result;
     }
-    
+    addNewRow(){
+      
+    }
 }

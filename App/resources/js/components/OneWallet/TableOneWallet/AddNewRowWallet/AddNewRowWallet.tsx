@@ -2,40 +2,54 @@ import React from "react";
 import store from "../../../../state";
 import './_AddNewRowWallet.scss';
 import { observer } from "mobx-react-lite";
+import AddNewButton from "../../../ButtonAddNewRow/ButtonAddNewRow";
 
 const AddNewRowWallet: React.FC = observer((props : any) => {
 
     return (
         <div>
-            <table className="table-add-new-value">
-                <tbody> 
-                    <tr>
-                        <td className="namber-one-item"> 3 </td>
-                        <td className="data-new-one-item">
-                            <input type="date" 
-                                    value={store.Wallet.newDataRaw}
-                                    onChange={(event)=>{
-                                        store.Wallet.newDataRaw = event.target.value;
-                                    }}>                 
-                            </input>
-                        </td>
-                        <td className="new-one-item">
-                         <input></input>
-                        </td>
-                        <td className="new-cost-one-item" > 
-                         <input></input> 
-                        </td>
-                        <td className="user-write-item">
-                            <img src="../images/people.svg"></img>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div>
-                <div className="button-add-new-item">
-                    <img src="../images/plus.svg"></img>
+            <form onSubmit={ (event: any)=>{
+                        store.Wallet.addNewRow();
+                        event.preventDefault(); 
+                        } }>
+                <table className="table-add-new-value">
+                    <tbody> 
+                        <tr>
+                            <td className="namber-one-item"> 3 </td>
+                            <td className="data-new-one-item">
+                                <input type="date" 
+                                        value={store.Wallet.newDataRaw}
+                                        onChange={(event)=>{
+                                            store.Wallet.newDataRaw = event.target.value;
+                                        }}>                 
+                                </input>
+                            </td>
+                            <td className="new-one-item">
+                                <input type="text" 
+                                        value={ store.Wallet.newRowWallet} 
+                                        onChange={(event)=>{ 
+                                            store.Wallet.newRowWallet = event.target.value;
+                                        }}
+                                        ></input>
+                            </td>
+                            <td className="new-cost-one-item" > 
+                                <input type="text" 
+                                        value={ store.Wallet.newRowCost} 
+                                        onChange={(event)=>{ 
+                                            store.Wallet.newRowCost = event.target.value;
+                                        }}
+                                        ></input> 
+                            </td>
+                            <td className="user-write-item">
+                                <img src="../images/people.svg"></img>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <AddNewButton/>
                 </div>
-            </div>
+             </form>
         </div>
     
         )

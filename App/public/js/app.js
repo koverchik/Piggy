@@ -2278,6 +2278,41 @@ exports.default = ButtonAdd;
 
 /***/ }),
 
+/***/ "./resources/js/components/ButtonAddNewRow/ButtonAddNewRow.tsx":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/ButtonAddNewRow/ButtonAddNewRow.tsx ***!
+  \*********************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+__webpack_require__(/*! ./_ButtonAddNewRow.scss */ "./resources/js/components/ButtonAddNewRow/_ButtonAddNewRow.scss");
+
+var ButtonAddNewRow = function ButtonAddNewRow() {
+  return react_1["default"].createElement("div", null, react_1["default"].createElement("input", {
+    className: "button-add-new-item ",
+    type: "submit",
+    value: "+"
+  }));
+};
+
+exports.default = ButtonAddNewRow;
+
+/***/ }),
+
 /***/ "./resources/js/components/ButtonCreate/ButtonCreate.tsx":
 /*!***************************************************************!*\
   !*** ./resources/js/components/ButtonCreate/ButtonCreate.tsx ***!
@@ -2387,9 +2422,11 @@ __webpack_require__(/*! ./_Header.scss */ "./resources/js/components/Header/_Hea
 var Header = function Header() {
   return react_1["default"].createElement("div", {
     className: "wrapper-header"
+  }, react_1["default"].createElement("a", {
+    href: "/"
   }, react_1["default"].createElement("h1", {
     className: "logo-header"
-  }, "Piggy"), react_1["default"].createElement("img", {
+  }, "Piggy")), react_1["default"].createElement("img", {
     src: "../images/image-for-header.png",
     alt: "piggy",
     className: "image-header"
@@ -2970,8 +3007,15 @@ __webpack_require__(/*! ./_AddNewRowWallet.scss */ "./resources/js/components/On
 
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
+var ButtonAddNewRow_1 = __importDefault(__webpack_require__(/*! ../../../ButtonAddNewRow/ButtonAddNewRow */ "./resources/js/components/ButtonAddNewRow/ButtonAddNewRow.tsx"));
+
 var AddNewRowWallet = mobx_react_lite_1.observer(function (props) {
-  return react_1["default"].createElement("div", null, react_1["default"].createElement("table", {
+  return react_1["default"].createElement("div", null, react_1["default"].createElement("form", {
+    onSubmit: function onSubmit(event) {
+      state_1["default"].Wallet.addNewRow();
+      event.preventDefault();
+    }
+  }, react_1["default"].createElement("table", {
     className: "table-add-new-value"
   }, react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: "namber-one-item"
@@ -2985,17 +3029,25 @@ var AddNewRowWallet = mobx_react_lite_1.observer(function (props) {
     }
   })), react_1["default"].createElement("td", {
     className: "new-one-item"
-  }, react_1["default"].createElement("input", null)), react_1["default"].createElement("td", {
+  }, react_1["default"].createElement("input", {
+    type: "text",
+    value: state_1["default"].Wallet.newRowWallet,
+    onChange: function onChange(event) {
+      state_1["default"].Wallet.newRowWallet = event.target.value;
+    }
+  })), react_1["default"].createElement("td", {
     className: "new-cost-one-item"
-  }, react_1["default"].createElement("input", null)), react_1["default"].createElement("td", {
+  }, react_1["default"].createElement("input", {
+    type: "text",
+    value: state_1["default"].Wallet.newRowCost,
+    onChange: function onChange(event) {
+      state_1["default"].Wallet.newRowCost = event.target.value;
+    }
+  })), react_1["default"].createElement("td", {
     className: "user-write-item"
   }, react_1["default"].createElement("img", {
     src: "../images/people.svg"
-  }))))), react_1["default"].createElement("div", null, react_1["default"].createElement("div", {
-    className: "button-add-new-item"
-  }, react_1["default"].createElement("img", {
-    src: "../images/plus.svg"
-  }))));
+  }))))), react_1["default"].createElement("div", null, react_1["default"].createElement(ButtonAddNewRow_1["default"], null))));
 });
 exports.default = AddNewRowWallet;
 
@@ -3487,12 +3539,17 @@ function () {
     this.newDataRaw = "";
     this.idWallet = "";
     this.allSumm = 0;
+    this.newRowWallet = "";
+    this.newRowCost = "";
     mobx_1.makeObservable(this, {
       newDataRaw: mobx_1.observable,
       idWallet: mobx_1.observable,
       allSumm: mobx_1.observable,
+      newRowWallet: mobx_1.observable,
+      newRowCost: mobx_1.observable,
       startOneWalet: mobx_1.action,
-      addZero: mobx_1.action
+      addZero: mobx_1.action,
+      addNewRow: mobx_1.action
     });
   }
 
@@ -3513,6 +3570,8 @@ function () {
     });
     return result;
   };
+
+  Wallet.prototype.addNewRow = function () {};
 
   return Wallet;
 }();
@@ -8110,6 +8169,30 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".button-main {\n  display: flex;\n  ju
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/ButtonAddNewRow/_ButtonAddNewRow.scss":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/ButtonAddNewRow/_ButtonAddNewRow.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".button-add-new-item {\n  background-color: #5354D2;\n  border: none;\n  border-radius: 10px;\n  display: inline;\n  width: 10%;\n  float: right;\n  padding: 1rem;\n  display: flex;\n  margin: 0rem;\n  margin-top: 1rem;\n  padding: 0.4rem;\n  justify-content: center;\n  color: white;\n  font-size: 1.8rem;\n  outline: none;\n  font-weight: bold;\n}\n.button-add-new-item:hover {\n  background-color: #FE7BA7;\n  cursor: pointer;\n  border: none;\n}\n.button-add-new-item:active {\n  border: none;\n  background-color: #FDB547;\n}\n.button-add-new-item:focus {\n  background-color: #FDB547;\n}\n.button-add-new-item:disabled {\n  background-color: #C4C4C4;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/ButtonCreate/_ButtonCreate.scss":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/ButtonCreate/_ButtonCreate.scss ***!
@@ -8175,7 +8258,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-header {\n  height: 150px;\n  background-color: #F5F5F5;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.wrapper-header .logo-header {\n  color: #FE7BA7;\n  font-size: 70px;\n  margin: 0;\n  padding: 0;\n  font-family: \"Podkova\", serif;\n  margin-left: 20px;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.wrapper-header .image-header {\n  height: 100%;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-header {\n  height: 150px;\n  background-color: #F5F5F5;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.wrapper-header a {\n  text-decoration: none;\n}\n.wrapper-header a .logo-header {\n  color: #FE7BA7;\n  font-size: 70px;\n  margin: 0;\n  padding: 0;\n  font-family: \"Podkova\", serif;\n  margin-left: 20px;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.wrapper-header a .logo-header:hover {\n  cursor: pointer;\n}\n.wrapper-header .image-header {\n  height: 100%;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -78487,6 +78570,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_ButtonAdd_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./resources/js/components/ButtonAddNewRow/_ButtonAddNewRow.scss":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/ButtonAddNewRow/_ButtonAddNewRow.scss ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_ButtonAddNewRow_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./_ButtonAddNewRow.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/ButtonAddNewRow/_ButtonAddNewRow.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_ButtonAddNewRow_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_ButtonAddNewRow_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 

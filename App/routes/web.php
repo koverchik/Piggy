@@ -21,9 +21,6 @@ Route::get('/{path?}', function () {
     return view('app');
 });
 
-//Получить список всех смет для одного пользователя
-
-
 Route::post('/all-estimates', [ListController::class, 'store']);
 
 Route::post('/all-wallets', [ListWallets::class, 'store']);
