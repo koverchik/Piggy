@@ -3148,7 +3148,7 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
         className: "namber-one-item"
       }, " ", i + 1, " "), react_1["default"].createElement("td", {
         className: "data-item"
-      }, addZero(dataOneRow.getDate()) + "." + addZero(dataOneRow.getMonth()) + "." + dataOneRow.getFullYear()), react_1["default"].createElement("td", {
+      }, state_1["default"].Wallet.addZero(dataOneRow.getDate()) + "." + state_1["default"].Wallet.addZero(dataOneRow.getMonth() + 1) + "." + dataOneRow.getFullYear()), react_1["default"].createElement("td", {
         className: "name-one-item"
       }, " ", item["name"], " "), react_1["default"].createElement("td", {
         className: "cost-one-item"
@@ -3161,8 +3161,18 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
     return result;
   }
 
-  function addZero(number) {
-    return number < 10 ? "0" + number : number;
+  function AddNewRowInList(data) {
+    console.log("hello"); // const newRow:any = (
+    // <tr key={"row-walet-" + i}>
+    //     <td className="namber-one-item"> {i+1} </td>
+    //     <td className="data-item">{`${store.Wallet.addZero(dataOneRow.getDate())}.${store.Wallet.addZero(dataOneRow.getMonth()+1)}.${dataOneRow.getFullYear()}`}</td>
+    //     <td className="name-one-item" > {item["name"]} </td>
+    //     <td className="cost-one-item"> {item["amount"]} руб </td>
+    //     <td className="user-write-item"><img src="../images/people.svg"></img> </td>
+    // </tr>
+    // )
+    // const newList = listRowsWallet.concat(newRow);
+    // setlistRowsWallet(newList);
   }
 
   return react_1["default"].createElement("div", {
@@ -3559,7 +3569,7 @@ function () {
 
   Wallet.prototype.startOneWalet = function () {
     var nowDay = new Date();
-    this.newDataRaw = nowDay.getFullYear() + "-" + this.addZero(nowDay.getMonth()) + "-" + this.addZero(nowDay.getDate());
+    this.newDataRaw = nowDay.getFullYear() + "-" + this.addZero(nowDay.getMonth() + 1) + "-" + this.addZero(nowDay.getDate());
     var result = axios_1["default"].post("http://localhost:8000/" + 'one-wallets', {
       id: this.idWallet
     }).then(function (response) {
@@ -3571,7 +3581,29 @@ function () {
     return result;
   };
 
-  Wallet.prototype.addNewRow = function () {};
+  Wallet.prototype.addNewRow = function () {
+    var _this = this;
+
+    var data = {
+      date: this.newDataRaw,
+      name: this.newRowWallet,
+      cost: this.newRowCost,
+      namesWalletsId: this.idWallet
+    };
+    var result = axios_1["default"].post("http://localhost:8000/" + 'add-new-row-wallet', {
+      data: data
+    }).then(function (response) {
+      if (response.status === 200) {
+        _this.allSumm = _this.allSumm + +_this.newRowCost;
+        console.log(response);
+        return response;
+      }
+    }, function (response) {
+      console.log("error request " + response);
+      return "Error";
+    });
+    return result;
+  };
 
   return Wallet;
 }();

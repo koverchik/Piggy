@@ -11,30 +11,29 @@ const [listRowsWallet, setlistRowsWallet] = useState([]);
 
 useEffect(() => {
     store.Wallet.startOneWalet().then((data: any) => {
-        if(data === "Error"){
-            const messageError: any =   
-            (<tr className="error-one-walet">    
-                <td colSpan={5}>
-                    Что-то пошло не так, попробуйте перезагрузить страницу
-                </td>
-            </tr>)
-            setlistRowsWallet(messageError);
-        }else{
-            setlistRowsWallet(createListRows(data.data.rows));
-        }
+            if(data === "Error"){
+                const messageError: any =   
+                (<tr className="error-one-walet">    
+                    <td colSpan={5}>
+                        Что-то пошло не так, попробуйте перезагрузить страницу
+                    </td>
+                </tr>)
+                setlistRowsWallet(messageError);
+            }else{
+                setlistRowsWallet(createListRows(data.data.rows));
+            }
         
         })
 
 }, [])
 function createListRows(data:any) {
-    
     const result:any = data.map((item: any, i: number) => {
         const dataOneRow = new Date(item["created_at_time"]);
         store.Wallet.allSumm += item["amount"];
                     return(
                         <tr key={"row-walet-" + i}>
                             <td className="namber-one-item"> {i+1} </td>
-                            <td className="data-item">{`${addZero(dataOneRow.getDate())}.${addZero(dataOneRow.getMonth())}.${dataOneRow.getFullYear()}`}</td>
+                            <td className="data-item">{`${store.Wallet.addZero(dataOneRow.getDate())}.${store.Wallet.addZero(dataOneRow.getMonth()+1)}.${dataOneRow.getFullYear()}`}</td>
                             <td className="name-one-item" > {item["name"]} </td>
                             <td className="cost-one-item"> {item["amount"]} руб </td>
                             <td className="user-write-item"><img src="../images/people.svg"></img> </td>
@@ -43,11 +42,21 @@ function createListRows(data:any) {
                 })  
     return result;
 }
-
-function addZero(number:number){
-    return number<10 ? `0${number}` : number;   
-  }
-  
+function AddNewRowInList(data:any) {
+    console.log("hello");
+    
+    // const newRow:any = (
+        // <tr key={"row-walet-" + i}>
+        //     <td className="namber-one-item"> {i+1} </td>
+        //     <td className="data-item">{`${store.Wallet.addZero(dataOneRow.getDate())}.${store.Wallet.addZero(dataOneRow.getMonth()+1)}.${dataOneRow.getFullYear()}`}</td>
+        //     <td className="name-one-item" > {item["name"]} </td>
+        //     <td className="cost-one-item"> {item["amount"]} руб </td>
+        //     <td className="user-write-item"><img src="../images/people.svg"></img> </td>
+        // </tr>
+    // )
+    // const newList = listRowsWallet.concat(newRow);
+    // setlistRowsWallet(newList);
+}
     return (
             <div className="wrapper-tables-list-add">
                 <table className="table-list-value">

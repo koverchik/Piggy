@@ -82,9 +82,17 @@ class ListWallets extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function AddNewRow(Request $data)
     {
-        //
+        $id = 9; 
+        $RowWallets = new RowWallets;
+        $RowWallets -> name = $data->data["name"];
+        $RowWallets -> amount = $data->data["cost"];
+        $RowWallets -> created_at_time = $data->data["date"];
+        $RowWallets -> user_id = $id;
+        $RowWallets -> names_wallets_id = $data->data["namesWalletsId"];
+        $RowWallets->save();
+        
     }
 
     /**

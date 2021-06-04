@@ -31,7 +31,7 @@ export default class Wallet {
     
     startOneWalet(){
       const nowDay = new Date();
-      this.newDataRaw = `${nowDay.getFullYear()}-${this.addZero(nowDay.getMonth())}-${this.addZero(nowDay.getDate())}`;
+      this.newDataRaw = `${nowDay.getFullYear()}-${this.addZero(nowDay.getMonth()+1)}-${this.addZero(nowDay.getDate())}`;
       
       const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'one-wallets', {id: this.idWallet } )
         .then(response => {
@@ -44,7 +44,29 @@ export default class Wallet {
             })
       return result;
     }
+
     addNewRow(){
-      
+      const data = {
+                  date: this.newDataRaw,
+                  name: this.newRowWallet,
+                  cost: this.newRowCost,
+                  namesWalletsId: this.idWallet
+                }
+
+
+      const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'add-new-row-wallet', { data: data })
+      .then(response => {
+        if(response.status === 200){
+          this.allSumm = this.allSumm + (+this.newRowCost);
+          console.log(response);
+          return response;
+        }
+      },
+      response => {
+        console.log("error request " + response);
+        return "Error";
+
+          })
+    return result;
     }
 }
