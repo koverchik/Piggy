@@ -7,15 +7,14 @@ import AddNewButton from "../../../ButtonAddNewRow/ButtonAddNewRow";
 const AddNewRowWallet: React.FC = observer((props : any) => {
 
     return (
-        <div>
-            <form onSubmit={ (event: any)=>{
+            <form onSubmit={ (event: React.FormEvent)=>{
                         store.Wallet.addNewRow();
                         event.preventDefault(); 
                         } }>
                 <table className="table-add-new-value">
                     <tbody> 
                         <tr>
-                            <td className="namber-one-item"> 3 </td>
+                            <td className="namber-one-item"> {store.Wallet.lengthRows + 1} </td>
                             <td className="data-new-one-item">
                                 <input type="date" 
                                         value={store.Wallet.newDataRaw}
@@ -50,7 +49,7 @@ const AddNewRowWallet: React.FC = observer((props : any) => {
                     <AddNewButton/>
                 </div>
              </form>
-        </div>
+ 
     
         )
 })

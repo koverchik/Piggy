@@ -3010,7 +3010,7 @@ var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modul
 var ButtonAddNewRow_1 = __importDefault(__webpack_require__(/*! ../../../ButtonAddNewRow/ButtonAddNewRow */ "./resources/js/components/ButtonAddNewRow/ButtonAddNewRow.tsx"));
 
 var AddNewRowWallet = mobx_react_lite_1.observer(function (props) {
-  return react_1["default"].createElement("div", null, react_1["default"].createElement("form", {
+  return react_1["default"].createElement("form", {
     onSubmit: function onSubmit(event) {
       state_1["default"].Wallet.addNewRow();
       event.preventDefault();
@@ -3019,7 +3019,7 @@ var AddNewRowWallet = mobx_react_lite_1.observer(function (props) {
     className: "table-add-new-value"
   }, react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: "namber-one-item"
-  }, " 3 "), react_1["default"].createElement("td", {
+  }, " ", state_1["default"].Wallet.lengthRows + 1, " "), react_1["default"].createElement("td", {
     className: "data-new-one-item"
   }, react_1["default"].createElement("input", {
     type: "date",
@@ -3047,7 +3047,7 @@ var AddNewRowWallet = mobx_react_lite_1.observer(function (props) {
     className: "user-write-item"
   }, react_1["default"].createElement("img", {
     src: "../images/people.svg"
-  }))))), react_1["default"].createElement("div", null, react_1["default"].createElement(ButtonAddNewRow_1["default"], null))));
+  }))))), react_1["default"].createElement("div", null, react_1["default"].createElement(ButtonAddNewRow_1["default"], null)));
 });
 exports.default = AddNewRowWallet;
 
@@ -3133,7 +3133,9 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
         }, "\u0427\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443"));
         setlistRowsWallet(messageError);
       } else {
-        setlistRowsWallet(createListRows(data.data.rows));
+        state_1["default"].Wallet.allRows = data.data.rows;
+        state_1["default"].Wallet.lengthRows = data.data.rows.length;
+        setlistRowsWallet(createListRows(state_1["default"].Wallet.allRows));
       }
     });
   }, []);
@@ -3159,20 +3161,6 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
       }), " "));
     });
     return result;
-  }
-
-  function AddNewRowInList(data) {
-    console.log("hello"); // const newRow:any = (
-    // <tr key={"row-walet-" + i}>
-    //     <td className="namber-one-item"> {i+1} </td>
-    //     <td className="data-item">{`${store.Wallet.addZero(dataOneRow.getDate())}.${store.Wallet.addZero(dataOneRow.getMonth()+1)}.${dataOneRow.getFullYear()}`}</td>
-    //     <td className="name-one-item" > {item["name"]} </td>
-    //     <td className="cost-one-item"> {item["amount"]} руб </td>
-    //     <td className="user-write-item"><img src="../images/people.svg"></img> </td>
-    // </tr>
-    // )
-    // const newList = listRowsWallet.concat(newRow);
-    // setlistRowsWallet(newList);
   }
 
   return react_1["default"].createElement("div", {
@@ -3551,12 +3539,16 @@ function () {
     this.allSumm = 0;
     this.newRowWallet = "";
     this.newRowCost = "";
+    this.allRows = new Array();
+    this.lengthRows = 0;
     mobx_1.makeObservable(this, {
       newDataRaw: mobx_1.observable,
       idWallet: mobx_1.observable,
       allSumm: mobx_1.observable,
       newRowWallet: mobx_1.observable,
       newRowCost: mobx_1.observable,
+      allRows: mobx_1.observable,
+      lengthRows: mobx_1.observable,
       startOneWalet: mobx_1.action,
       addZero: mobx_1.action,
       addNewRow: mobx_1.action
@@ -3595,7 +3587,10 @@ function () {
     }).then(function (response) {
       if (response.status === 200) {
         _this.allSumm = _this.allSumm + +_this.newRowCost;
-        console.log(response);
+        _this.lengthRows += 1;
+
+        _this.allRows.push(data);
+
         return response;
       }
     }, function (response) {

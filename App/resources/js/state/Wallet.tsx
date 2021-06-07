@@ -12,6 +12,8 @@ export default class Wallet {
     allSumm = 0;
     newRowWallet = "";
     newRowCost = "";
+    allRows= new Array();
+    lengthRows = 0;
 
     constructor() {
       makeObservable(this, {
@@ -20,6 +22,8 @@ export default class Wallet {
         allSumm: observable,
         newRowWallet: observable,
         newRowCost:observable,
+        allRows: observable,
+        lengthRows: observable,
         startOneWalet: action,
         addZero: action, 
         addNewRow: action, 
@@ -46,6 +50,7 @@ export default class Wallet {
     }
 
     addNewRow(){
+
       const data = {
                   date: this.newDataRaw,
                   name: this.newRowWallet,
@@ -53,12 +58,12 @@ export default class Wallet {
                   namesWalletsId: this.idWallet
                 }
 
-
       const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'add-new-row-wallet', { data: data })
       .then(response => {
         if(response.status === 200){
           this.allSumm = this.allSumm + (+this.newRowCost);
-          console.log(response);
+          this.lengthRows += 1;
+          this.allRows.push(data);         
           return response;
         }
       },
@@ -67,6 +72,7 @@ export default class Wallet {
         return "Error";
 
           })
+
     return result;
     }
 }
