@@ -33,13 +33,18 @@ export default class Wallet {
       return number<10 ? `0${number}` : number;   
     }
     
-    startOneWalet(){
+    async startOneWalet(){
       const nowDay = new Date();
       this.newDataRaw = `${nowDay.getFullYear()}-${this.addZero(nowDay.getMonth()+1)}-${this.addZero(nowDay.getDate())}`;
       
       const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'one-wallets', {id: this.idWallet } )
         .then(response => {
-          return response;
+          const summAllRows : number = response.data.rows.reduce(function(sum: number, elem: any) {
+              return sum + elem.amount;
+          }, 0);
+
+        this.allSumm = +summAllRows.toFixed(2);
+        return response;
         },
         response => {
           console.log("error request " + response);
@@ -61,10 +66,10 @@ export default class Wallet {
       const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'add-new-row-wallet', { data: data })
       .then(response => {
         if(response.status === 200){
-          this.allSumm = this.allSumm + (+this.newRowCost);
-          this.lengthRows += 1;
-          this.allRows.push(data);         
-          return response;
+          this.startOneWalet();
+          this.newRowWallet = "";
+          this.newRowCost = "";            
+ 
         }
       },
       response => {
@@ -73,6 +78,6 @@ export default class Wallet {
 
           })
 
-    return result;
+
     }
 }

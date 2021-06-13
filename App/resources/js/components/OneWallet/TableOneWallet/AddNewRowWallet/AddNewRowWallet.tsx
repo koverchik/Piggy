@@ -4,11 +4,12 @@ import './_AddNewRowWallet.scss';
 import { observer } from "mobx-react-lite";
 import AddNewButton from "../../../ButtonAddNewRow/ButtonAddNewRow";
 
-const AddNewRowWallet: React.FC = observer((props : any) => {
+const AddNewRowWallet: React.FC = observer(() => {
 
     return (
             <form onSubmit={ (event: React.FormEvent)=>{
-                        store.Wallet.addNewRow();
+                        store.Wallet.addNewRow();    
+                        store.Wallet.startOneWalet();     
                         event.preventDefault(); 
                         } }>
                 <table className="table-add-new-value">

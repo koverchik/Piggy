@@ -10,11 +10,6 @@ const EditOneEstimate: React.FC = () => {
 
  function changeValue(e:any) {
     setActiveRow(false);
-    // const fragment = new DocumentFragment();
-    // var element = document.createElement("input");
-    // element.textContent = "Hello";
-    // const fragment: any = (<input value={valueChange} onChange={(event:any)=>{ setValueChange(e.target.textContent)}}></input>)
-    //  e.target.appendChild(fragment);
   
  }
 function handleInputChange(e:any) {

@@ -22,18 +22,16 @@ useEffect(() => {
                 setlistRowsWallet(messageError);
             }else{
                 store.Wallet.allRows = data.data.rows;
-                store.Wallet.lengthRows = data.data.rows.length;
-                setlistRowsWallet(createListRows(store.Wallet.allRows));
+                store.Wallet.lengthRows = data.data.rows.length;                   
+                createListRows(data.data.rows);
             }
-        
         })
-
-}, [])
+}, [ store.Wallet.allSumm ])
 
 function createListRows(data:any) {
     const result:any = data.map((item: any, i: number) => {
         const dataOneRow = new Date(item["created_at_time"]);
-        store.Wallet.allSumm += item["amount"];
+       
                     return(
                         <tr key={"row-walet-" + i}>
                             <td className="namber-one-item"> {i+1} </td>
@@ -44,7 +42,7 @@ function createListRows(data:any) {
                         </tr>
                     )
                 })  
-    return result;
+   setlistRowsWallet(result);
 }
 
 
