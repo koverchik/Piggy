@@ -29,17 +29,16 @@ const PaginationRows: React.FC = observer(() => {
 
     return (
         <div className="wrapper-number-pagination">
-        <img src="../images/arrow-left.svg" onClick={()=> {store.Estimate.activePagination > 1 ?
-            store.Estimate.activePagination = store.Estimate.activePagination - 1 :
-            "";}} alt="arrow-left" 
-            className={store.Estimate.activePagination == 1 ? "disable-pagination image-pagination" : "image-pagination"}/>
-         { listPaginationEstimate }
-        <img src="../images/arrow-right.svg" onClick={()=> {store.Estimate.activePagination < store.Estimate.pagination.length ?
-                                                            store.Estimate.activePagination = +store.Estimate.activePagination + 1 : "";
-                                                                       }} alt="arrow-right"
-         className={store.Estimate.activePagination == store.Estimate.pagination.length ? "disable-pagination image-pagination" : "image-pagination"} />
-    </div>
-    
+            <img src="../images/arrow-left.svg" onClick={()=> {store.Estimate.activePagination > 1 ?
+                store.Estimate.activePagination = store.Estimate.activePagination - 1 :
+                "";}} alt="arrow-left" 
+                className={store.Estimate.activePagination == 1 ? "disable-pagination image-pagination" : "image-pagination"}/>
+            { listPaginationEstimate }
+            <img src="../images/arrow-right.svg" onClick={()=> {store.Estimate.activePagination < store.Estimate.pagination.length ?
+                                                                store.Estimate.activePagination = +store.Estimate.activePagination + 1 : "";
+                                                                        }} alt="arrow-right"
+            className={store.Estimate.activePagination == store.Estimate.pagination.length ? "disable-pagination image-pagination" : "image-pagination"} />
+        </div>
         )
 })
 export default PaginationRows;

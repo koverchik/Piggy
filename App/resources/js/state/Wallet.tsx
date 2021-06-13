@@ -14,6 +14,7 @@ export default class Wallet {
     newRowCost = "";
     allRows= new Array();
     numberPagination = new Array();
+    activePagination = 0;
     lengthRows = 0;
 
     constructor() {
@@ -26,10 +27,10 @@ export default class Wallet {
         allRows: observable,
         lengthRows: observable,
         numberPagination: observable,
+        activePagination: observable,
         startOneWalet: action,
         addZero: action, 
         addNewRow: action, 
-        pagination: action,
       })
     }
     addZero(number:number){
@@ -45,7 +46,11 @@ export default class Wallet {
           const summAllRows : number = response.data.rows.reduce(function(sum: number, elem: any) {
               return sum + elem.amount;
           }, 0);
-
+        const quantity : number = Math.ceil(this.lengthRows/10); 
+        for (let i = 0; i < quantity; i++) {
+          this.numberPagination.push(i+1);
+        }
+        this.activePagination = this.numberPagination.length;
         this.allSumm = +summAllRows.toFixed(2);
         return response;
         },
@@ -82,10 +87,4 @@ export default class Wallet {
           })
     }
 
-    pagination(){
-    const quantity : number = Math.ceil(this.lengthRows/10); 
-    for (let i = 0; i < quantity; i++) {
-      this.numberPagination.push(i+1);
-    }
-  }
 }

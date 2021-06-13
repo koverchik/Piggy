@@ -3188,24 +3188,40 @@ var PaginationRows = mobx_react_lite_1.observer(function () {
       setListNumberPagination = _a[1];
 
   react_1.useEffect(function () {
-    var resultPagination = state_1["default"].Wallet.numberPagination.map(function (i, item) {
+    createNumberPagination();
+  }, [state_1["default"].Wallet.activePagination]);
+
+  function createNumberPagination() {
+    var resultPagination = state_1["default"].Wallet.numberPagination.map(function (item) {
       return react_1["default"].createElement("div", {
-        key: "pagination" + i,
-        className: "pagination-walet"
+        key: "pagination" + item,
+        className: state_1["default"].Wallet.activePagination == item ? "pagination-estimate active-number" : "pagination-estimate",
+        onClick: clickPagination
       }, item);
     });
     setListNumberPagination(resultPagination);
-  }, []);
+  }
+
+  function clickPagination(e) {
+    state_1["default"].Wallet.activePagination !== e.target.textContent ? state_1["default"].Wallet.activePagination = e.target.textContent : "";
+  }
+
   return react_1["default"].createElement("div", {
     className: "wrapper-number-pagination"
   }, react_1["default"].createElement("img", {
     src: "../images/arrow-left.svg",
-    alt: "left"
-  }), react_1["default"].createElement("div", {
-    className: "wrapper-number-pagination"
-  }, listNumberPagination), react_1["default"].createElement("img", {
+    onClick: function onClick() {
+      state_1["default"].Wallet.activePagination > 1 ? state_1["default"].Wallet.activePagination = state_1["default"].Wallet.activePagination - 1 : "";
+    },
+    alt: "arrow-left",
+    className: state_1["default"].Wallet.activePagination == 1 ? "disable-pagination image-pagination" : "image-pagination"
+  }), listNumberPagination, react_1["default"].createElement("img", {
     src: "../images/arrow-right.svg",
-    alt: "right"
+    onClick: function onClick() {
+      state_1["default"].Wallet.activePagination < state_1["default"].Wallet.numberPagination.length ? state_1["default"].Wallet.activePagination = +state_1["default"].Wallet.activePagination + 1 : "";
+    },
+    alt: "arrow-right",
+    className: state_1["default"].Wallet.activePagination == state_1["default"].Wallet.numberPagination.length ? "disable-pagination image-pagination" : "image-pagination"
   }));
 });
 exports.default = PaginationRows;
@@ -3296,17 +3312,20 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
       } else {
         state_1["default"].Wallet.allRows = data.data.rows;
         state_1["default"].Wallet.lengthRows = data.data.rows.length;
-        createListRows(data.data.rows);
-        state_1["default"].Wallet.pagination();
+        createListRows(data.data.rows, state_1["default"].Wallet.activePagination);
       }
     });
   }, [state_1["default"].Wallet.allSumm]);
+  react_1.useEffect(function () {
+    createListRows(state_1["default"].Wallet.allRows, state_1["default"].Wallet.activePagination);
+  }, [state_1["default"].Wallet.activePagination]);
 
-  function createListRows(data) {
+  function createListRows(data, pagination) {
     var result = data.map(function (item, i) {
       var dataOneRow = new Date(item["created_at_time"]);
       return react_1["default"].createElement("tr", {
-        key: "row-walet-" + i
+        key: "row-walet-" + i,
+        className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? "hide-row" : ""
       }, react_1["default"].createElement("td", {
         className: "namber-one-item"
       }, " ", i + 1, " "), react_1["default"].createElement("td", {
@@ -3346,7 +3365,7 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
     className: "title-cost-all-item"
   }, " \u0418\u0442\u043E\u0433\u043E:  "), react_1["default"].createElement("td", {
     className: "cost-all-item"
-  }, " ", state_1["default"].Wallet.allSumm.toFixed(2), " \u0440\u0443\u0431 ")))), react_1["default"].createElement(PaginationRows_1["default"], null), react_1["default"].createElement(AddNewRowWallet_1["default"], null));
+  }, " ", state_1["default"].Wallet.allSumm.toFixed(2), " \u0440\u0443\u0431 ")))), state_1["default"].Wallet.numberPagination.length < 1 ? react_1["default"].createElement(PaginationRows_1["default"], null) : "", react_1["default"].createElement(AddNewRowWallet_1["default"], null));
 });
 exports.default = TableOneWallet;
 
@@ -3845,6 +3864,7 @@ function () {
     this.newRowCost = "";
     this.allRows = new Array();
     this.numberPagination = new Array();
+    this.activePagination = 0;
     this.lengthRows = 0;
     mobx_1.makeObservable(this, {
       newDataRaw: mobx_1.observable,
@@ -3855,10 +3875,10 @@ function () {
       allRows: mobx_1.observable,
       lengthRows: mobx_1.observable,
       numberPagination: mobx_1.observable,
+      activePagination: mobx_1.observable,
       startOneWalet: mobx_1.action,
       addZero: mobx_1.action,
-      addNewRow: mobx_1.action,
-      pagination: mobx_1.action
+      addNewRow: mobx_1.action
     });
   }
 
@@ -3881,6 +3901,13 @@ function () {
           var summAllRows = response.data.rows.reduce(function (sum, elem) {
             return sum + elem.amount;
           }, 0);
+          var quantity = Math.ceil(_this.lengthRows / 10);
+
+          for (var i = 0; i < quantity; i++) {
+            _this.numberPagination.push(i + 1);
+          }
+
+          _this.activePagination = _this.numberPagination.length;
           _this.allSumm = +summAllRows.toFixed(2);
           return response;
         }, function (response) {
@@ -3916,14 +3943,6 @@ function () {
       console.log("error request " + response);
       return "Error";
     });
-  };
-
-  Wallet.prototype.pagination = function () {
-    var quantity = Math.ceil(this.lengthRows / 10);
-
-    for (var i = 0; i < quantity; i++) {
-      this.numberPagination.push(i + 1);
-    }
   };
 
   return Wallet;
@@ -8779,7 +8798,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".error-one-walet {\n  text-align: center;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".error-one-walet {\n  text-align: center;\n}\n\n.hide-row {\n  display: none;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

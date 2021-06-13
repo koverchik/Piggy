@@ -23,18 +23,22 @@ useEffect(() => {
             }else{
                 store.Wallet.allRows = data.data.rows;
                 store.Wallet.lengthRows = data.data.rows.length;                   
-                createListRows(data.data.rows);
-                store.Wallet.pagination();
+                createListRows(data.data.rows, store.Wallet.activePagination);
+     
             }
         })
 }, [ store.Wallet.allSumm ])
 
-function createListRows(data:any) {
+useEffect(() => {
+    createListRows(store.Wallet.allRows, store.Wallet.activePagination);
+ }, [store.Wallet.activePagination])
+
+
+function createListRows(data:any, pagination: number) {
     const result:any = data.map((item: any, i: number) => {
-        const dataOneRow = new Date(item["created_at_time"]);
-       
+        const dataOneRow = new Date(item["created_at_time"]);            
                     return(
-                        <tr key={"row-walet-" + i}>
+                        <tr key={"row-walet-" + i} className={ !((pagination-1) * 10 < i+1 && i+1 <= (pagination-1)*10 + 10)  ? "hide-row" : ""}>
                             <td className="namber-one-item"> {i+1} </td>
                             <td className="data-item">{`${store.Wallet.addZero(dataOneRow.getDate())}.${store.Wallet.addZero(dataOneRow.getMonth()+1)}.${dataOneRow.getFullYear()}`}</td>
                             <td className="name-one-item" > {item["name"]} </td>
@@ -69,7 +73,7 @@ function createListRows(data:any) {
                         </tr>
                     </tfoot>
                 </table>
-                <PaginationRows/>
+                {store.Wallet.numberPagination.length < 1 ? <PaginationRows/> : ""}
                 <AddNewRowWallet />
             </div>
     )
