@@ -3365,7 +3365,7 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
     className: "title-cost-all-item"
   }, " \u0418\u0442\u043E\u0433\u043E:  "), react_1["default"].createElement("td", {
     className: "cost-all-item"
-  }, " ", state_1["default"].Wallet.allSumm.toFixed(2), " \u0440\u0443\u0431 ")))), state_1["default"].Wallet.numberPagination.length < 1 ? react_1["default"].createElement(PaginationRows_1["default"], null) : "", react_1["default"].createElement(AddNewRowWallet_1["default"], null));
+  }, " ", state_1["default"].Wallet.allSumm.toFixed(2), " \u0440\u0443\u0431 ")))), state_1["default"].Wallet.numberPagination.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], null) : "", react_1["default"].createElement(AddNewRowWallet_1["default"], null));
 });
 exports.default = TableOneWallet;
 
@@ -3902,11 +3902,13 @@ function () {
             return sum + elem.amount;
           }, 0);
           var quantity = Math.ceil(_this.lengthRows / 10);
+          var arrayForPagination = new Array();
 
           for (var i = 0; i < quantity; i++) {
-            _this.numberPagination.push(i + 1);
+            arrayForPagination.push(i + 1);
           }
 
+          _this.numberPagination = arrayForPagination;
           _this.activePagination = _this.numberPagination.length;
           _this.allSumm = +summAllRows.toFixed(2);
           return response;

@@ -47,9 +47,11 @@ export default class Wallet {
               return sum + elem.amount;
           }, 0);
         const quantity : number = Math.ceil(this.lengthRows/10); 
+        const arrayForPagination = new Array();
         for (let i = 0; i < quantity; i++) {
-          this.numberPagination.push(i+1);
+          arrayForPagination.push(i+1);
         }
+        this.numberPagination = arrayForPagination;
         this.activePagination = this.numberPagination.length;
         this.allSumm = +summAllRows.toFixed(2);
         return response;

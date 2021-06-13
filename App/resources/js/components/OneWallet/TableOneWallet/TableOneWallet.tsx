@@ -73,7 +73,7 @@ function createListRows(data:any, pagination: number) {
                         </tr>
                     </tfoot>
                 </table>
-                {store.Wallet.numberPagination.length < 1 ? <PaginationRows/> : ""}
+                {store.Wallet.numberPagination.length > 1 ? <PaginationRows/> : ""}
                 <AddNewRowWallet />
             </div>
     )
