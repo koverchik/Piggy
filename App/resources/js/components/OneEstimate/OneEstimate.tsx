@@ -74,7 +74,7 @@ const OneEstimate: React.FC = observer((props : any) => {
                     </tr>
                 </tfoot>
             </table>
-            <PaginationRows/>
+            {store.Estimate.pagination.length > 1 ? <PaginationRows/> : ""}
             <AddRow />
         </div>
     </div>

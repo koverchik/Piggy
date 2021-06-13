@@ -36,7 +36,7 @@ const PaginationRows: React.FC = observer(() => {
          { listPaginationEstimate }
         <img src="../images/arrow-right.svg" onClick={()=> {store.Estimate.activePagination < store.Estimate.pagination.length ?
                                                             store.Estimate.activePagination = +store.Estimate.activePagination + 1 : "";
-                                                                       }} alt="piggy"
+                                                                       }} alt="arrow-right"
          className={store.Estimate.activePagination == store.Estimate.pagination.length ? "disable-pagination image-pagination" : "image-pagination"} />
     </div>
     

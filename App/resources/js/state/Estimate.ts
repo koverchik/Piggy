@@ -59,7 +59,7 @@ export default class Estimate {
         arrayPagination.push( index + 1 );
       }
       this.pagination = arrayPagination;
-   
+      
       const summAllRows : number = response.data.rows.reduce(function(sum: number, elem: any) {
           return sum + elem.amount;
       }, 0);

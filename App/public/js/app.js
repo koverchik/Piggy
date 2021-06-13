@@ -2790,7 +2790,7 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
     className: "title-cost-all-item"
   }, " \u0418\u0442\u043E\u0433\u043E:  "), react_1["default"].createElement("td", {
     className: "cost-all-item"
-  }, " ", index_1["default"].Estimate.sumRows, " \u0440\u0443\u0431 ")))), react_1["default"].createElement(PaginationRows_1["default"], null), react_1["default"].createElement(AddRowEstimate_1["default"], null)));
+  }, " ", index_1["default"].Estimate.sumRows, " \u0440\u0443\u0431 ")))), index_1["default"].Estimate.pagination.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], null) : "", react_1["default"].createElement(AddRowEstimate_1["default"], null)));
 });
 exports.default = OneEstimate;
 
@@ -2894,7 +2894,7 @@ var PaginationRows = mobx_react_lite_1.observer(function () {
     onClick: function onClick() {
       state_1["default"].Estimate.activePagination < state_1["default"].Estimate.pagination.length ? state_1["default"].Estimate.activePagination = +state_1["default"].Estimate.activePagination + 1 : "";
     },
-    alt: "piggy",
+    alt: "arrow-right",
     className: state_1["default"].Estimate.activePagination == state_1["default"].Estimate.pagination.length ? "disable-pagination image-pagination" : "image-pagination"
   }));
 });
