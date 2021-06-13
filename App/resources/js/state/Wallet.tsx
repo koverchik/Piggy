@@ -13,6 +13,7 @@ export default class Wallet {
     newRowWallet = "";
     newRowCost = "";
     allRows= new Array();
+    numberPagination = new Array();
     lengthRows = 0;
 
     constructor() {
@@ -24,9 +25,11 @@ export default class Wallet {
         newRowCost:observable,
         allRows: observable,
         lengthRows: observable,
+        numberPagination: observable,
         startOneWalet: action,
         addZero: action, 
         addNewRow: action, 
+        pagination: action,
       })
     }
     addZero(number:number){
@@ -77,7 +80,12 @@ export default class Wallet {
         return "Error";
 
           })
-
-
     }
+
+    pagination(){
+    const quantity : number = Math.ceil(this.lengthRows/10); 
+    for (let i = 0; i < quantity; i++) {
+      this.numberPagination.push(i+1);
+    }
+  }
 }

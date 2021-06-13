@@ -2700,6 +2700,8 @@ __webpack_require__(/*! ./_OneEstimate.scss */ "./resources/js/components/OneEst
 
 var AddRowEstimate_1 = __importDefault(__webpack_require__(/*! ./AddRowEstimate/AddRowEstimate */ "./resources/js/components/OneEstimate/AddRowEstimate/AddRowEstimate.tsx"));
 
+var PaginationRows_1 = __importDefault(__webpack_require__(/*! ./PaginationRows/PaginationRows */ "./resources/js/components/OneEstimate/PaginationRows/PaginationRows.tsx"));
+
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
 var index_1 = __importDefault(__webpack_require__(/*! ../../state/index */ "./resources/js/state/index.ts"));
@@ -2710,10 +2712,6 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
   var _a = react_1.useState([]),
       listRowsEstimate = _a[0],
       setlistRowsEstimate = _a[1];
-
-  var _b = react_1.useState([]),
-      listPaginationEstimate = _b[0],
-      setlistPaginationEstimate = _b[1];
 
   react_1.useEffect(function () {
     index_1["default"].Estimate.requestOneEstimate().then(function (data) {
@@ -2728,25 +2726,9 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
         var lengthData = index_1["default"].Estimate.pagination.length;
         index_1["default"].Estimate.activePagination = index_1["default"].Estimate.pagination.length;
         createList(data, lengthData);
-        createNumberPagination();
       }
     });
   }, [index_1["default"].Estimate.sumRows]);
-
-  function clickPagination(e) {
-    index_1["default"].Estimate.activePagination !== e.target.textContent ? index_1["default"].Estimate.activePagination = e.target.textContent : "";
-  }
-
-  function createNumberPagination() {
-    var resultPagination = index_1["default"].Estimate.pagination.map(function (item) {
-      return react_1["default"].createElement("div", {
-        key: "pagination" + item,
-        className: index_1["default"].Estimate.activePagination == item ? "pagination-estimate active-number" : "pagination-estimate",
-        onClick: clickPagination
-      }, " ", item);
-    });
-    setlistPaginationEstimate(resultPagination);
-  }
 
   function createList(data, pagination) {
     var list = data.map(function (item, i) {
@@ -2774,7 +2756,6 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
 
   react_1.useEffect(function () {
     createList(index_1["default"].Estimate.dataRows, index_1["default"].Estimate.activePagination);
-    createNumberPagination();
   }, [index_1["default"].Estimate.activePagination]);
   return react_1["default"].createElement("div", {
     className: "wrapper-one-estimate"
@@ -2809,25 +2790,115 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
     className: "title-cost-all-item"
   }, " \u0418\u0442\u043E\u0433\u043E:  "), react_1["default"].createElement("td", {
     className: "cost-all-item"
-  }, " ", index_1["default"].Estimate.sumRows, " \u0440\u0443\u0431 ")))), react_1["default"].createElement("div", {
+  }, " ", index_1["default"].Estimate.sumRows, " \u0440\u0443\u0431 ")))), react_1["default"].createElement(PaginationRows_1["default"], null), react_1["default"].createElement(AddRowEstimate_1["default"], null)));
+});
+exports.default = OneEstimate;
+
+/***/ }),
+
+/***/ "./resources/js/components/OneEstimate/PaginationRows/PaginationRows.tsx":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/OneEstimate/PaginationRows/PaginationRows.tsx ***!
+  \*******************************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var state_1 = __importDefault(__webpack_require__(/*! ../../../state */ "./resources/js/state/index.ts"));
+
+__webpack_require__(/*! ./_PaginationRows.scss */ "./resources/js/components/OneEstimate/PaginationRows/_PaginationRows.scss");
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var PaginationRows = mobx_react_lite_1.observer(function () {
+  var _a = react_1.useState([]),
+      listPaginationEstimate = _a[0],
+      setlistPaginationEstimate = _a[1];
+
+  function createNumberPagination() {
+    var resultPagination = state_1["default"].Estimate.pagination.map(function (item) {
+      return react_1["default"].createElement("div", {
+        key: "pagination" + item,
+        className: state_1["default"].Estimate.activePagination == item ? "pagination-estimate active-number" : "pagination-estimate",
+        onClick: clickPagination
+      }, item);
+    });
+    setlistPaginationEstimate(resultPagination);
+  }
+
+  function clickPagination(e) {
+    state_1["default"].Estimate.activePagination !== e.target.textContent ? state_1["default"].Estimate.activePagination = e.target.textContent : "";
+  }
+
+  react_1.useEffect(function () {
+    createNumberPagination();
+  }, [state_1["default"].Estimate.activePagination, state_1["default"].Estimate.sumRows]);
+  return react_1["default"].createElement("div", {
     className: "wrapper-number-pagination"
   }, react_1["default"].createElement("img", {
     src: "../images/arrow-left.svg",
     onClick: function onClick() {
-      index_1["default"].Estimate.activePagination > 1 ? index_1["default"].Estimate.activePagination = index_1["default"].Estimate.activePagination - 1 : "";
+      state_1["default"].Estimate.activePagination > 1 ? state_1["default"].Estimate.activePagination = state_1["default"].Estimate.activePagination - 1 : "";
     },
     alt: "arrow-left",
-    className: index_1["default"].Estimate.activePagination == 1 ? "disable-pagination image-pagination" : "image-pagination"
+    className: state_1["default"].Estimate.activePagination == 1 ? "disable-pagination image-pagination" : "image-pagination"
   }), listPaginationEstimate, react_1["default"].createElement("img", {
     src: "../images/arrow-right.svg",
     onClick: function onClick() {
-      index_1["default"].Estimate.activePagination < index_1["default"].Estimate.pagination.length ? index_1["default"].Estimate.activePagination = +index_1["default"].Estimate.activePagination + 1 : "";
+      state_1["default"].Estimate.activePagination < state_1["default"].Estimate.pagination.length ? state_1["default"].Estimate.activePagination = +state_1["default"].Estimate.activePagination + 1 : "";
     },
     alt: "piggy",
-    className: index_1["default"].Estimate.activePagination == index_1["default"].Estimate.pagination.length ? "disable-pagination image-pagination" : "image-pagination"
-  })), react_1["default"].createElement(AddRowEstimate_1["default"], null)));
+    className: state_1["default"].Estimate.activePagination == state_1["default"].Estimate.pagination.length ? "disable-pagination image-pagination" : "image-pagination"
+  }));
 });
-exports.default = OneEstimate;
+exports.default = PaginationRows;
 
 /***/ }),
 
@@ -3050,6 +3121,97 @@ exports.default = AddNewRowWallet;
 
 /***/ }),
 
+/***/ "./resources/js/components/OneWallet/TableOneWallet/PaginationRows/PaginationRows.tsx":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/OneWallet/TableOneWallet/PaginationRows/PaginationRows.tsx ***!
+  \********************************************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var state_1 = __importDefault(__webpack_require__(/*! ../../../../state */ "./resources/js/state/index.ts"));
+
+__webpack_require__(/*! ../../../OneEstimate/PaginationRows/_PaginationRows.scss */ "./resources/js/components/OneEstimate/PaginationRows/_PaginationRows.scss");
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var PaginationRows = mobx_react_lite_1.observer(function () {
+  var _a = react_1.useState(),
+      listNumberPagination = _a[0],
+      setListNumberPagination = _a[1];
+
+  react_1.useEffect(function () {
+    var resultPagination = state_1["default"].Wallet.numberPagination.map(function (i, item) {
+      return react_1["default"].createElement("div", {
+        key: "pagination" + i,
+        className: "pagination-walet"
+      }, item);
+    });
+    setListNumberPagination(resultPagination);
+  }, []);
+  return react_1["default"].createElement("div", {
+    className: "wrapper-number-pagination"
+  }, react_1["default"].createElement("img", {
+    src: "../images/arrow-left.svg",
+    alt: "left"
+  }), react_1["default"].createElement("div", {
+    className: "wrapper-number-pagination"
+  }, listNumberPagination), react_1["default"].createElement("img", {
+    src: "../images/arrow-right.svg",
+    alt: "right"
+  }));
+});
+exports.default = PaginationRows;
+
+/***/ }),
+
 /***/ "./resources/js/components/OneWallet/TableOneWallet/TableOneWallet.tsx":
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/OneWallet/TableOneWallet/TableOneWallet.tsx ***!
@@ -3111,6 +3273,8 @@ __webpack_require__(/*! ./../_OneWallet.scss */ "./resources/js/components/OneWa
 
 var AddNewRowWallet_1 = __importDefault(__webpack_require__(/*! ./AddNewRowWallet/AddNewRowWallet */ "./resources/js/components/OneWallet/TableOneWallet/AddNewRowWallet/AddNewRowWallet.tsx"));
 
+var PaginationRows_1 = __importDefault(__webpack_require__(/*! ./PaginationRows/PaginationRows */ "./resources/js/components/OneWallet/TableOneWallet/PaginationRows/PaginationRows.tsx"));
+
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
 var state_1 = __importDefault(__webpack_require__(/*! ../../../state */ "./resources/js/state/index.ts"));
@@ -3133,6 +3297,7 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
         state_1["default"].Wallet.allRows = data.data.rows;
         state_1["default"].Wallet.lengthRows = data.data.rows.length;
         createListRows(data.data.rows);
+        state_1["default"].Wallet.pagination();
       }
     });
   }, [state_1["default"].Wallet.allSumm]);
@@ -3181,7 +3346,7 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
     className: "title-cost-all-item"
   }, " \u0418\u0442\u043E\u0433\u043E:  "), react_1["default"].createElement("td", {
     className: "cost-all-item"
-  }, " ", state_1["default"].Wallet.allSumm.toFixed(2), " \u0440\u0443\u0431 ")))), react_1["default"].createElement(AddNewRowWallet_1["default"], null));
+  }, " ", state_1["default"].Wallet.allSumm.toFixed(2), " \u0440\u0443\u0431 ")))), react_1["default"].createElement(PaginationRows_1["default"], null), react_1["default"].createElement(AddNewRowWallet_1["default"], null));
 });
 exports.default = TableOneWallet;
 
@@ -3679,6 +3844,7 @@ function () {
     this.newRowWallet = "";
     this.newRowCost = "";
     this.allRows = new Array();
+    this.numberPagination = new Array();
     this.lengthRows = 0;
     mobx_1.makeObservable(this, {
       newDataRaw: mobx_1.observable,
@@ -3688,9 +3854,11 @@ function () {
       newRowCost: mobx_1.observable,
       allRows: mobx_1.observable,
       lengthRows: mobx_1.observable,
+      numberPagination: mobx_1.observable,
       startOneWalet: mobx_1.action,
       addZero: mobx_1.action,
-      addNewRow: mobx_1.action
+      addNewRow: mobx_1.action,
+      pagination: mobx_1.action
     });
   }
 
@@ -3748,6 +3916,14 @@ function () {
       console.log("error request " + response);
       return "Error";
     });
+  };
+
+  Wallet.prototype.pagination = function () {
+    var quantity = Math.ceil(this.lengthRows / 10);
+
+    for (var i = 0; i < quantity; i++) {
+      this.numberPagination.push(i + 1);
+    }
   };
 
   return Wallet;
@@ -8490,6 +8666,30 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".table-list-value .name-head-one-item 
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneEstimate/PaginationRows/_PaginationRows.scss":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneEstimate/PaginationRows/_PaginationRows.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-number-pagination {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.wrapper-number-pagination .pagination-estimate {\n  color: #5354D2;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-weight: bold;\n}\n.wrapper-number-pagination .pagination-estimate:hover {\n  cursor: pointer;\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .image-pagination {\n  width: 2rem;\n}\n.wrapper-number-pagination .image-pagination:hover {\n  cursor: pointer;\n  opacity: 0.5;\n}\n.wrapper-number-pagination .disable-pagination {\n  filter: grayscale(100%);\n}\n.wrapper-number-pagination .disable-pagination:hover {\n  cursor: default;\n  opacity: 1;\n}\n.wrapper-number-pagination .active-number {\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .active-number:hover {\n  cursor: default;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneEstimate/_OneEstimate.scss":
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneEstimate/_OneEstimate.scss ***!
@@ -8507,7 +8707,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-one-estimate {\n  background-color: #C4C4C4;\n  padding: 3vw;\n}\n.wrapper-one-estimate .one-estimate {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  padding: 3vw;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate {\n  display: flex;\n  justify-content: space-between;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate h2 {\n  margin: 0;\n  padding-bottom: 1rem;\n  color: #5354D2;\n  font-size: 3rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img {\n  background-color: white;\n  border-radius: 5px;\n  padding: 0.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img:hover {\n  cursor: pointer;\n  opacity: 0.8;\n  filter: grayscale(54%);\n}\n.wrapper-one-estimate .one-estimate .table-list-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-list-value td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.empty-head-item {\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.name-head-one-item {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.cost-head-one-item {\n  border-left: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.name-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.error-table {\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.display-none {\n  display: none;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody .trash-image img:hover {\n  cursor: pointer;\n  opacity: 0.8;\n  filter: grayscale(54%);\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.title-cost-all-item {\n  float: right;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.cost-all-item {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  background-color: #F5F5F5;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:active {\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:focus {\n  outline: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item {\n  background-color: #5354D2;\n  border: none;\n  border-radius: 10px;\n  display: inline;\n  width: 10%;\n  float: right;\n  padding: 1rem;\n  display: flex;\n  margin: 0rem;\n  margin-top: 1rem;\n  padding: 0.4rem;\n  justify-content: center;\n  color: white;\n  font-size: 1.8rem;\n  outline: none;\n  font-weight: bold;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:hover {\n  background-color: #FE7BA7;\n  cursor: pointer;\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:active {\n  border: none;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:focus {\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:disabled {\n  background-color: #C4C4C4;\n}\n\n.wrapper-number-pagination {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.wrapper-number-pagination .pagination-estimate {\n  color: #5354D2;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-weight: bold;\n}\n.wrapper-number-pagination .pagination-estimate:hover {\n  cursor: pointer;\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .image-pagination {\n  width: 2rem;\n}\n.wrapper-number-pagination .image-pagination:hover {\n  cursor: pointer;\n  opacity: 0.5;\n}\n.wrapper-number-pagination .disable-pagination {\n  filter: grayscale(100%);\n}\n.wrapper-number-pagination .disable-pagination:hover {\n  cursor: default;\n  opacity: 1;\n}\n.wrapper-number-pagination .active-number {\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .active-number:hover {\n  cursor: default;\n}\n\n@media print {\n  body * {\n    visibility: hidden;\n  }\n\n  .section-to-print-table, .section-to-print-table *, .section-to-print, .section-to-print * {\n    visibility: visible;\n  }\n\n  .section-to-print {\n    position: absolute;\n    left: 0;\n    top: 0;\n  }\n\n  .section-to-print-table {\n    position: absolute;\n    left: 0;\n    top: 50px;\n  }\n  .section-to-print-table tr {\n    display: table-row !important;\n  }\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-one-estimate {\n  background-color: #C4C4C4;\n  padding: 3vw;\n}\n.wrapper-one-estimate .one-estimate {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  padding: 3vw;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate {\n  display: flex;\n  justify-content: space-between;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate h2 {\n  margin: 0;\n  padding-bottom: 1rem;\n  color: #5354D2;\n  font-size: 3rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img {\n  background-color: white;\n  border-radius: 5px;\n  padding: 0.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img:hover {\n  cursor: pointer;\n  opacity: 0.8;\n  filter: grayscale(54%);\n}\n.wrapper-one-estimate .one-estimate .table-list-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-list-value td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.empty-head-item {\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.name-head-one-item {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.cost-head-one-item {\n  border-left: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.name-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.error-table {\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.display-none {\n  display: none;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody .trash-image img:hover {\n  cursor: pointer;\n  opacity: 0.8;\n  filter: grayscale(54%);\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.title-cost-all-item {\n  float: right;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.cost-all-item {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  background-color: #F5F5F5;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:active {\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:focus {\n  outline: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item {\n  background-color: #5354D2;\n  border: none;\n  border-radius: 10px;\n  display: inline;\n  width: 10%;\n  float: right;\n  padding: 1rem;\n  display: flex;\n  margin: 0rem;\n  margin-top: 1rem;\n  padding: 0.4rem;\n  justify-content: center;\n  color: white;\n  font-size: 1.8rem;\n  outline: none;\n  font-weight: bold;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:hover {\n  background-color: #FE7BA7;\n  cursor: pointer;\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:active {\n  border: none;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:focus {\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:disabled {\n  background-color: #C4C4C4;\n}\n\n@media print {\n  body * {\n    visibility: hidden;\n  }\n\n  .section-to-print-table, .section-to-print-table *, .section-to-print, .section-to-print * {\n    visibility: visible;\n  }\n\n  .section-to-print {\n    position: absolute;\n    left: 0;\n    top: 0;\n  }\n\n  .section-to-print-table {\n    position: absolute;\n    left: 0;\n    top: 50px;\n  }\n  .section-to-print-table tr {\n    display: table-row !important;\n  }\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -78927,6 +79127,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_EditOneEstimate_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./resources/js/components/OneEstimate/PaginationRows/_PaginationRows.scss":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/OneEstimate/PaginationRows/_PaginationRows.scss ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_PaginationRows_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./_PaginationRows.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneEstimate/PaginationRows/_PaginationRows.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_PaginationRows_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_PaginationRows_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 

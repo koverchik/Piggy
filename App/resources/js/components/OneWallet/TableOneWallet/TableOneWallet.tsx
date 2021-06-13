@@ -1,14 +1,14 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import './_TableOneWallet.scss';
 import './../_OneWallet.scss';
 import AddNewRowWallet from "./AddNewRowWallet/AddNewRowWallet";
+import PaginationRows from "./PaginationRows/PaginationRows";
 import { observer } from "mobx-react-lite";
 import store from "../../../state";
 
 const TableOneWallet: React.FC = observer(() => {
 
 const [listRowsWallet, setlistRowsWallet] = useState([]);
-
 
 useEffect(() => {
     store.Wallet.startOneWalet().then((data: any) => {
@@ -24,6 +24,7 @@ useEffect(() => {
                 store.Wallet.allRows = data.data.rows;
                 store.Wallet.lengthRows = data.data.rows.length;                   
                 createListRows(data.data.rows);
+                store.Wallet.pagination();
             }
         })
 }, [ store.Wallet.allSumm ])
@@ -44,8 +45,6 @@ function createListRows(data:any) {
                 })  
    setlistRowsWallet(result);
 }
-
-
     return (
             <div className="wrapper-tables-list-add">
                 <table className="table-list-value">
@@ -70,6 +69,7 @@ function createListRows(data:any) {
                         </tr>
                     </tfoot>
                 </table>
+                <PaginationRows/>
                 <AddNewRowWallet />
             </div>
     )
