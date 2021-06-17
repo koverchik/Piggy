@@ -14,7 +14,7 @@ class NamesWallet extends Model
 
   public function RowWallets()
   {
-    return $this->hasMany(RowWallets::class, 'foreign_key');
+    return $this->hasMany(RowWallets::class, "id", "names_wallets_id",);
   }
     use HasFactory;
 

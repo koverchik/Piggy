@@ -12,6 +12,8 @@ const [listRowsWallet, setlistRowsWallet] = useState([]);
 
 useEffect(() => {
     store.Wallet.startOneWalet().then((data: any) => {
+        console.log(data);
+        
             if(data === "Error"){
                 const messageError: any =   
                 (<tr className="error-one-walet">    

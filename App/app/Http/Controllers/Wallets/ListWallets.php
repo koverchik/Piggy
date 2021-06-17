@@ -25,9 +25,21 @@ class ListWallets extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $id)
     {
-        //
+
+        $array = RowWallets::with('NamesWallet')->where("names_wallets_id", 1)->get();
+  
+        $comments = RowWallets::find(1)->NamesWallet;
+        // $names = NamesWallet::where('id', $id["id"])->get();
+        dd($array);
+        foreach ($array as $one) {
+            $test= $one->NamesWallet;
+            dd($test);
+            $name->full_name = $name->NamesWallet->name;
+            $name->ouner_id = $name->NamesWallet->user_id; 
+          }
+        // return $wallet->toJson();
     }
 
     /**
@@ -61,6 +73,7 @@ class ListWallets extends Controller
         $wallet = NamesWallet::where('id', $id["id"])->get();
         $walletRows = RowWallets::where('names_wallets_id', $id["id"])->get();
         array_add($wallet, 'rows', $walletRows);
+        dd($wallet);
         return $wallet->toJson();
     }
 

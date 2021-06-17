@@ -3302,6 +3302,8 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
 
   react_1.useEffect(function () {
     state_1["default"].Wallet.startOneWalet().then(function (data) {
+      console.log(data);
+
       if (data === "Error") {
         var messageError = react_1["default"].createElement("tr", {
           className: "error-one-walet"

@@ -29,14 +29,75 @@ class DatabaseSeeder extends Seeder
         
          //Создание строк для колекции кошельков
         $colectionRoWallets = [];
+        $colectionObligationsWallets = [];
+        $colectionScopeDiscriptionsEtimates = [];
 
         for ($i = 0; $i <= 1000; $i++) {
             $current = Carbon::now();
             $date = Carbon::now()->addDays(-$i);
-            array_push($colectionRoWallets, [ 'name' => str_random(40),'amount' => rand(50,10000)/100, 'created_at_time'=> $date, 'names_wallets_id' => rand(1,100), 'user_id' => rand(1,10)  ]);
-        }
-        DB::table('row_wallets')->insert($colectionRoWallets);
 
+            $names_wallets = rand(1,100);
+            $user_id = rand(1,10);
+
+            $oneRow = ['name' => str_random(40),
+                        'amount' => rand(50,10000)/100, 
+                        'created_at_time'=> $date, 
+                        'names_wallets_id' => $names_wallets, 
+                        'user_id' => $user_id];
+            
+            array_push($colectionRoWallets, $oneRow);
+        
+            // Вклад каждого участника
+
+            $oneRowObligationsWallets = [ 
+                'compensation' => 50, 
+                'model_wallets' => 0,
+                'user_id' => $user_id,
+                'names_wallets_id' => $names_wallets ];
+            
+            $discriptionsEtimates = ["delete_table" => rand(0,1),
+                "edit_permission" => rand(0,1),
+                "edit_row" => rand(0,1),
+                "browsing" => rand(0,1),
+                "add_row" => rand(0,1),
+                "delete_row" => rand(0,1),
+                "names_wallets_id" => $names_wallets,
+                "user_id" => $user_id,];
+            
+
+            $statusObligationsWallets = true;
+            foreach ($colectionObligationsWallets as $one) {
+                if ($one['names_wallets_id'] == $names_wallets && $one['user_id'] == $user_id) {
+                    $statusObligationsWallets = false;
+                    break; 
+                }         
+            }  
+
+           if($statusObligationsWallets){
+            array_push($colectionObligationsWallets, $oneRowObligationsWallets);
+            }       
+
+            //Добавление видов доступа 
+            $statusObligationsWallets = true;
+            foreach ($colectionScopeDiscriptionsEtimates as $one) {
+            if ($one['names_wallets_id'] == $names_wallets && $one['user_id'] == $user_id) {
+                $statusObligationsWallets = false;
+                break; 
+                }         
+            }  
+            if($statusObligationsWallets){
+                array_push($colectionScopeDiscriptionsEtimates, $discriptionsEtimates);
+                }
+          
+    }
+    
+        DB::table('scope_discriptions')->insert($colectionScopeDiscriptionsEtimates);
+        DB::table('row_wallets')->insert($colectionRoWallets);
+        DB::table('obligations_wallets')->insert($colectionObligationsWallets);
+
+     
+
+      
           //Создание названия колекции смет
           $colectionNamesEstimates = [];
           for ($i = 0; $i <= 100; $i++) {
@@ -63,43 +124,6 @@ class DatabaseSeeder extends Seeder
         DB::table('scope_estimates')->insert($colectionScopeEtimates);
     
 
-          $colectionObligationsWallets = [];
-          for ($i = 1; $i <= 100; $i++) {
-              
-          array_push($colectionObligationsWallets, [ 
-                'compensation' => 50, 
-                'model_wallets' => 0,
-                'user_id' => rand(1,10),
-                'names_wallets_id' => $i ]);
-    
-          array_push($colectionObligationsWallets, [ 
-            'compensation' => 150, 
-            'model_wallets' => 1,
-            'user_id' => rand(1,10),
-            'names_wallets_id' => rand(1,100) ]);
-              };
-          
-          DB::table('obligations_wallets')->insert($colectionObligationsWallets);
-
-       
-        //Добавление видов доступа 
-        
-       $colectionScopeDiscriptionsEtimates = [];
-            for ($i = 0; $i <= 100; $i++) {
-                array_push($colectionScopeDiscriptionsEtimates, 
-                ["delete_table" => rand(0,1),
-                "edit_permission" => rand(0,1),
-                "edit_row" => rand(0,1),
-                "browsing" => rand(0,1),
-                "add_row" => rand(0,1),
-                "delete_row" => rand(0,1),
-                "names_wallets_id" => rand(1,100),
-                "user_id" => rand(1,10),]
-                );
-            }
-
-            
-        DB::table('scope_discriptions')->insert($colectionScopeDiscriptionsEtimates);
      
     }
 }
