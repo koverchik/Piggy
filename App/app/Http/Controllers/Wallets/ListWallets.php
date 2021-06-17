@@ -28,17 +28,19 @@ class ListWallets extends Controller
     public function create(Request $id)
     {
 
-        $array = RowWallets::with('NamesWallet')->where("names_wallets_id", 1)->get();
-  
-        $comments = RowWallets::find(1)->NamesWallet;
+        // $array = RowWallets::with('NamesWallet')->where("names_wallets_id", 1)->get();
+        // $array = RowWallets::with('Autor')->where("names_wallets_id", 1)->get();
+        // $comments = RowWallets::find(1)->NamesWallet;
         // $names = NamesWallet::where('id', $id["id"])->get();
-        dd($array);
-        foreach ($array as $one) {
-            $test= $one->NamesWallet;
-            dd($test);
-            $name->full_name = $name->NamesWallet->name;
-            $name->ouner_id = $name->NamesWallet->user_id; 
-          }
+        // // dd($array);
+        // $test = RowWallets::with('Autor')->where("names_wallets_id", 1)->get();
+        // foreach ($test as $one) {
+        //     dd($one->Autor);
+            
+        //     $test= $one;
+        //     $name->full_name = $name->NamesWallet->name;
+        //     $name->ouner_id = $name->NamesWallet->user_id; 
+        //   }
         // return $wallet->toJson();
     }
 
@@ -52,12 +54,8 @@ class ListWallets extends Controller
     {
         //Показать все кошельки доступные пользователю
 
-        $names = ScopeDiscription::where('user_id', $id["id"])->get();
+        $names = ScopeDiscription::with('NamesWallet')->where('user_id', $id["id"])->get();
             
-        foreach ($names as $name) {
-            $name->full_name = $name->NamesWallet->name;
-            $name->ouner_id = $name->NamesWallet->user_id; 
-          }
          return $names;
     }
 
@@ -72,8 +70,7 @@ class ListWallets extends Controller
     {
         $wallet = NamesWallet::where('id', $id["id"])->get();
         $walletRows = RowWallets::where('names_wallets_id', $id["id"])->get();
-        array_add($wallet, 'rows', $walletRows);
-        dd($wallet);
+        array_add($wallet, 'rows', $walletRows);   
         return $wallet->toJson();
     }
 

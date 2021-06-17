@@ -95,9 +95,6 @@ class DatabaseSeeder extends Seeder
         DB::table('row_wallets')->insert($colectionRoWallets);
         DB::table('obligations_wallets')->insert($colectionObligationsWallets);
 
-     
-
-      
           //Создание названия колекции смет
           $colectionNamesEstimates = [];
           for ($i = 0; $i <= 100; $i++) {

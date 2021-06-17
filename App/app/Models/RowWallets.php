@@ -14,7 +14,7 @@ class RowWallets extends Model
 
   public function Autor()
   {
-    return $this->hasOne(User::class);
+    return $this->hasOne(User::class, "id", "user_id");
   }
     use HasFactory;
 

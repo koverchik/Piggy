@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ScopeDiscription extends Model
 {
+    use HasFactory;
+    
     public function NamesWallet()
     {
-     return $this->belongsTo(NamesWallet::class, 'id');
+     return $this->belongsTo(NamesWallet::class, 'names_wallets_id', 'id');
     }
-    use HasFactory;
-
+    
 }
