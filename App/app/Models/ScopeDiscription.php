@@ -13,5 +13,10 @@ class ScopeDiscription extends Model
     {
      return $this->belongsTo(NamesWallet::class, 'names_wallets_id', 'id');
     }
-    
+
+    public function User()
+    {
+     return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
 }

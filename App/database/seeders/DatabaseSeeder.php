@@ -58,8 +58,8 @@ class DatabaseSeeder extends Seeder
             $discriptionsEtimates = ["delete_table" => rand(0,1),
                 "edit_permission" => rand(0,1),
                 "edit_row" => rand(0,1),
-                "browsing" => rand(0,1),
-                "add_row" => rand(0,1),
+                "browsing" => 1,
+                "add_row" => 1,
                 "delete_row" => rand(0,1),
                 "names_wallets_id" => $names_wallets,
                 "user_id" => $user_id,];

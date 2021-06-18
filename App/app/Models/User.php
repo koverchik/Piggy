@@ -44,4 +44,14 @@ class User extends Authenticatable
     {
       return $this->hasMany(RowWallets::class, "user_id", "id");
     }
+
+    public function NameWallets()
+    {
+      return $this->belongsTo(NamesWallet::class, "user_id", "id");
+    }
+
+    public function ScopeDiscription()
+    {
+      return $this->belongsTo(ScopeDiscription::class, "id", "user_id");
+    }
 }

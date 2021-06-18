@@ -28,7 +28,7 @@ class ListWallets extends Controller
     public function create(Request $id)
     {
 
-        // $array = RowWallets::with('NamesWallet')->where("names_wallets_id", 1)->get();
+        // $array = ScopeDiscription::with('Autor')->where("names_wallets_id", 1)->get();
         // $array = RowWallets::with('Autor')->where("names_wallets_id", 1)->get();
         // $comments = RowWallets::find(1)->NamesWallet;
         // $names = NamesWallet::where('id', $id["id"])->get();
@@ -56,7 +56,7 @@ class ListWallets extends Controller
 
         $names = ScopeDiscription::with('NamesWallet')->where('user_id', $id["id"])->get();
             
-         return $names;
+        return $names;
     }
 
 
@@ -69,11 +69,16 @@ class ListWallets extends Controller
     public function show(Request $id)
     {
         $wallet = NamesWallet::where('id', $id["id"])->get();
-        $walletRows = RowWallets::where('names_wallets_id', $id["id"])->get();
+        $walletRows = RowWallets::with('Autor')->where('names_wallets_id', $id["id"])->get();
         array_add($wallet, 'rows', $walletRows);   
         return $wallet->toJson();
     }
 
+    public function scopeOneWallet(Request $id)
+    {
+        $names = ScopeDiscription::with('User')->where('names_wallets_id', $id["id"])->get();
+        return $names;
+    }
     /**
      * Show the form for editing the specified resource.
      *

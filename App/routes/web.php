@@ -29,6 +29,7 @@ Route::post('/write-one-estimates', [ListController::class, 'updateOne']);
 Route::post('/all-wallets', [ListWallets::class, 'store']);
 Route::post('/add-new-row-wallet', [ListWallets::class, 'AddNewRow']);
 Route::post('/one-wallets', [ListWallets::class, 'show']);
+Route::post('/scope-one-wallet', [ListWallets::class, 'scopeOneWallet']);
 // Route::get('/test', [ListWallets::class, 'create']);
 
 

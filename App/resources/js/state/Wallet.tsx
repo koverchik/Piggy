@@ -28,8 +28,10 @@ export default class Wallet {
         numberPagination: observable,
         activePagination: observable,
         startOneWalet: action,
+        scopeOneWallet: action,
         addZero: action, 
         addNewRow: action, 
+        gradeUser:action,
       })
     }
     addZero(number:number){
@@ -87,5 +89,33 @@ export default class Wallet {
 
           })
     }
+    async scopeOneWallet(){
+      const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'scope-one-wallet', { id: this.idWallet  })
+      .then(response => {
+        if(response.status === 200){
+          
+        }
+      
+        
+       return response.data;
+      },
+      response => {
+        console.log("error request " + response);
+        return "Error";
 
+          })
+      return result;
+    }
+
+    gradeUser(item:any) {
+      let grade: string = "";
+      if(item['edit_permission'] === 1 && item['delete_table'] === 1){
+          grade = "Владелец";
+      }else if (item['edit_row'] === 1 && item['delete_row'] === 1){
+          grade = "Редактор";
+      }else{
+          grade = "Пользователь";
+      }
+   return grade;
+  }
 }

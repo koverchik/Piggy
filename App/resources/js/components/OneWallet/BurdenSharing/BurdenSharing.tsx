@@ -1,8 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './_BurdenSharing.scss';
 import "../_OneWallet.scss";
+import store from "../../../state";
+import { observer } from "mobx-react-lite";
 
-const BurdenSharing: React.FC = () => {
+const BurdenSharing: React.FC = observer(() => {
+    const [listScopeOneWallet, setListScopeOneWallet] = useState([]);
+
+
+    useEffect(() => {
+        store.Wallet.scopeOneWallet().then((data: any) => {
+             createListRows(data);
+        });
+     }, [])
+
+    function createListRows(data:any) {
+        const result:any = data.map((item: any, i: number) => {     
+            const grade: string = store.Wallet.gradeUser(item);
+                        return(
+                         <tr key={"scope-one-wallet" + i}>
+                            <td className="name-user-table"> {item['user']['name']} </td>
+                            <td className="premission-user-table"> { grade } </td>
+                            <td className="contribution-user-table" > 50% <img src="../images/list-premision.svg"></img> </td>
+                        </tr>
+                        )
+                    })  
+        setListScopeOneWallet(result);
+    }
+
     return (
     <div className="wapper-user-table">
         <table className="table-user">
@@ -14,16 +39,7 @@ const BurdenSharing: React.FC = () => {
                 </tr>
             </thead>
             <tbody> 
-                <tr>
-                    <td className="name-user-table"> Оля </td>
-                    <td className="premission-user-table"> Владелец </td>
-                    <td className="contribution-user-table" > 50% <img src="../images/list-premision.svg"></img> </td>
-                </tr>
-                <tr>
-                    <td className="name-user-table"> Маша </td>
-                    <td className="premission-user-table"> Редактор </td>
-                    <td className="contribution-user-table" > 50% <img src="../images/list-premision.svg"></img> </td>
-                </tr>
+                { listScopeOneWallet }
             </tbody>
         </table>
         <div className="button-add-new-user">
@@ -56,5 +72,5 @@ const BurdenSharing: React.FC = () => {
         </table>
     </div>      
     )
-};
+});
 export default BurdenSharing;

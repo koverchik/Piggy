@@ -2141,7 +2141,6 @@ var AllEstimateAndWallet = mobx_react_lite_1.observer(function () {
       id: 9
     }).then(function (response) {
       var list = response.data.map(function (item, i) {
-        console.log(item['names_wallet']['name']);
         return react_1["default"].createElement("li", {
           key: "listWallet" + i
         }, react_1["default"].createElement(react_router_dom_1.Link, {
@@ -2910,6 +2909,40 @@ exports.default = PaginationRows;
 "use strict";
 
 
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -2920,13 +2953,45 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 __webpack_require__(/*! ./_BurdenSharing.scss */ "./resources/js/components/OneWallet/BurdenSharing/_BurdenSharing.scss");
 
 __webpack_require__(/*! ../_OneWallet.scss */ "./resources/js/components/OneWallet/_OneWallet.scss");
 
-var BurdenSharing = function BurdenSharing() {
+var state_1 = __importDefault(__webpack_require__(/*! ../../../state */ "./resources/js/state/index.ts"));
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var BurdenSharing = mobx_react_lite_1.observer(function () {
+  var _a = react_1.useState([]),
+      listScopeOneWallet = _a[0],
+      setListScopeOneWallet = _a[1];
+
+  react_1.useEffect(function () {
+    state_1["default"].Wallet.scopeOneWallet().then(function (data) {
+      createListRows(data);
+    });
+  }, []);
+
+  function createListRows(data) {
+    var result = data.map(function (item, i) {
+      var grade = state_1["default"].Wallet.gradeUser(item);
+      return react_1["default"].createElement("tr", {
+        key: "scope-one-wallet" + i
+      }, react_1["default"].createElement("td", {
+        className: "name-user-table"
+      }, " ", item['user']['name'], " "), react_1["default"].createElement("td", {
+        className: "premission-user-table"
+      }, " ", grade, " "), react_1["default"].createElement("td", {
+        className: "contribution-user-table"
+      }, " 50% ", react_1["default"].createElement("img", {
+        src: "../images/list-premision.svg"
+      }), " "));
+    });
+    setListScopeOneWallet(result);
+  }
+
   return react_1["default"].createElement("div", {
     className: "wapper-user-table"
   }, react_1["default"].createElement("table", {
@@ -2937,23 +3002,7 @@ var BurdenSharing = function BurdenSharing() {
     className: "head-premission-user-table"
   }, " \u041F\u0440\u0430\u0432\u0430 "), react_1["default"].createElement("td", {
     className: "head-contribution-user-table"
-  }, " \u0412\u043A\u043B\u0430\u0434 "))), react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
-    className: "name-user-table"
-  }, " \u041E\u043B\u044F "), react_1["default"].createElement("td", {
-    className: "premission-user-table"
-  }, " \u0412\u043B\u0430\u0434\u0435\u043B\u0435\u0446 "), react_1["default"].createElement("td", {
-    className: "contribution-user-table"
-  }, " 50% ", react_1["default"].createElement("img", {
-    src: "../images/list-premision.svg"
-  }), " ")), react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
-    className: "name-user-table"
-  }, " \u041C\u0430\u0448\u0430 "), react_1["default"].createElement("td", {
-    className: "premission-user-table"
-  }, " \u0420\u0435\u0434\u0430\u043A\u0442\u043E\u0440 "), react_1["default"].createElement("td", {
-    className: "contribution-user-table"
-  }, " 50% ", react_1["default"].createElement("img", {
-    src: "../images/list-premision.svg"
-  }), " ")))), react_1["default"].createElement("div", {
+  }, " \u0412\u043A\u043B\u0430\u0434 "))), react_1["default"].createElement("tbody", null, listScopeOneWallet)), react_1["default"].createElement("div", {
     className: "button-add-new-user"
   }, react_1["default"].createElement("img", {
     src: "../images/add-user.svg"
@@ -2984,8 +3033,7 @@ var BurdenSharing = function BurdenSharing() {
   }, " -10 \u0440\u0443\u0431 "), react_1["default"].createElement("td", {
     className: "second-side-user-debit-credit"
   }, " \u041E\u043B\u044F ")))));
-};
-
+});
 exports.default = BurdenSharing;
 
 /***/ }),
@@ -3301,8 +3349,6 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
 
   react_1.useEffect(function () {
     state_1["default"].Wallet.startOneWalet().then(function (data) {
-      console.log(data);
-
       if (data === "Error") {
         var messageError = react_1["default"].createElement("tr", {
           className: "error-one-walet"
@@ -3323,6 +3369,7 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
 
   function createListRows(data, pagination) {
     var result = data.map(function (item, i) {
+      console.log(item.autor.name);
       var dataOneRow = new Date(item["created_at_time"]);
       return react_1["default"].createElement("tr", {
         key: "row-walet-" + i,
@@ -3338,7 +3385,9 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
       }, " ", item["amount"], " \u0440\u0443\u0431 "), react_1["default"].createElement("td", {
         className: "user-write-item"
       }, react_1["default"].createElement("img", {
-        src: "../images/people.svg"
+        src: "../images/people.svg",
+        alt: "icon-user",
+        title: item.autor.name
       }), " "));
     });
     setlistRowsWallet(result);
@@ -3878,8 +3927,10 @@ function () {
       numberPagination: mobx_1.observable,
       activePagination: mobx_1.observable,
       startOneWalet: mobx_1.action,
+      scopeOneWallet: mobx_1.action,
       addZero: mobx_1.action,
-      addNewRow: mobx_1.action
+      addNewRow: mobx_1.action,
+      gradeUser: mobx_1.action
     });
   }
 
@@ -3946,6 +3997,41 @@ function () {
       console.log("error request " + response);
       return "Error";
     });
+  };
+
+  Wallet.prototype.scopeOneWallet = function () {
+    return __awaiter(this, void 0, void 0, function () {
+      var result;
+      return __generator(this, function (_a) {
+        result = axios_1["default"].post("http://localhost:8000/" + 'scope-one-wallet', {
+          id: this.idWallet
+        }).then(function (response) {
+          if (response.status === 200) {}
+
+          return response.data;
+        }, function (response) {
+          console.log("error request " + response);
+          return "Error";
+        });
+        return [2
+        /*return*/
+        , result];
+      });
+    });
+  };
+
+  Wallet.prototype.gradeUser = function (item) {
+    var grade = "";
+
+    if (item['edit_permission'] === 1 && item['delete_table'] === 1) {
+      grade = "Владелец";
+    } else if (item['edit_row'] === 1 && item['delete_row'] === 1) {
+      grade = "Редактор";
+    } else {
+      grade = "Пользователь";
+    }
+
+    return grade;
   };
 
   return Wallet;

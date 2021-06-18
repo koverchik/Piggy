@@ -15,6 +15,8 @@ const AllEstimateAndWallet: React.FC = observer(() => {
     useEffect(() => {
         axios.post(process.env.MIX_APP_URL_FOR_TEST + 'all-estimates', {id: 9 } ).then(response => {
             const list = response.data.map(( item: any, i: number ) =>{
+          
+                
               return (  <li key={"listEstimate"+i}>
                            <Link to={"/estimate-" + item['names_estimates_id']}>{item['full_name']}</Link>
                         </li>)
@@ -29,9 +31,8 @@ const AllEstimateAndWallet: React.FC = observer(() => {
             )
         
             axios.post(process.env.MIX_APP_URL_FOR_TEST + 'all-wallets', {id: 9 } ).then(response => {
-                
                 const list = response.data.map(( item: any, i: number ) =>{                    
-                    console.log(item['names_wallet']['name']);
+                    
                   return (  
                         <li key={"listWallet"+i}>
                             <Link to={"/wallet-" + item['names_wallets_id']+ '-' + item['names_wallet']['name']}>{item['names_wallet']['name']}</Link>
