@@ -7,8 +7,6 @@ import TableDebetCredit from "./TableDebetCredit/TableDebetCredit";
 
 const BurdenSharing: React.FC = observer(() => {
     const [listScopeOneWallet, setListScopeOneWallet] = useState([]);
-
-
     useEffect(() => {
         store.Wallet.scopeOneWallet().then((data: any) => {
             store.Wallet.lengthBurdenUser = data.length;
@@ -25,13 +23,12 @@ const BurdenSharing: React.FC = observer(() => {
                 debitСredit: 0,
             })
             const grade: string = store.Wallet.gradeUser(item);
-       
             
             return(
                 <tr key={"scope-one-wallet" + i}>
                 <td className="name-user-table"> {item['user']['name']} </td>
                 <td className="premission-user-table"> { grade } </td>
-                <td className="contribution-user-table" > {100 / store.Wallet.lengthBurdenUser}% <img src="../images/list-premision.svg"></img> </td>
+                <td className="contribution-user-table" > {(100 / store.Wallet.lengthBurdenUser).toFixed(2)}%</td>
             </tr>
             )
                     })  

@@ -2993,9 +2993,7 @@ var BurdenSharing = mobx_react_lite_1.observer(function () {
         className: "premission-user-table"
       }, " ", grade, " "), react_1["default"].createElement("td", {
         className: "contribution-user-table"
-      }, " ", 100 / state_1["default"].Wallet.lengthBurdenUser, "% ", react_1["default"].createElement("img", {
-        src: "../images/list-premision.svg"
-      }), " "));
+      }, " ", (100 / state_1["default"].Wallet.lengthBurdenUser).toFixed(2), "%"));
     });
     setListScopeOneWallet(result);
   }
