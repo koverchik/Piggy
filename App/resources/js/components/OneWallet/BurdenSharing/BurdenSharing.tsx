@@ -3,6 +3,7 @@ import './_BurdenSharing.scss';
 import "../_OneWallet.scss";
 import store from "../../../state";
 import { observer } from "mobx-react-lite";
+import TableDebetCredit from "./TableDebetCredit/TableDebetCredit";
 
 const BurdenSharing: React.FC = observer(() => {
     const [listScopeOneWallet, setListScopeOneWallet] = useState([]);
@@ -10,20 +11,29 @@ const BurdenSharing: React.FC = observer(() => {
 
     useEffect(() => {
         store.Wallet.scopeOneWallet().then((data: any) => {
-             createListRows(data);
+            store.Wallet.lengthBurdenUser = data.length;
+            createListRows(data);
         });
      }, [])
 
     function createListRows(data:any) {
+
         const result:any = data.map((item: any, i: number) => {     
+            store.Wallet.allUsers.push({
+                userName: item.user.name,
+                userId: item.user.id,
+                debitСredit: 0,
+            })
             const grade: string = store.Wallet.gradeUser(item);
-                        return(
-                         <tr key={"scope-one-wallet" + i}>
-                            <td className="name-user-table"> {item['user']['name']} </td>
-                            <td className="premission-user-table"> { grade } </td>
-                            <td className="contribution-user-table" > 50% <img src="../images/list-premision.svg"></img> </td>
-                        </tr>
-                        )
+       
+            
+            return(
+                <tr key={"scope-one-wallet" + i}>
+                <td className="name-user-table"> {item['user']['name']} </td>
+                <td className="premission-user-table"> { grade } </td>
+                <td className="contribution-user-table" > {100 / store.Wallet.lengthBurdenUser}% <img src="../images/list-premision.svg"></img> </td>
+            </tr>
+            )
                     })  
         setListScopeOneWallet(result);
     }
@@ -46,30 +56,7 @@ const BurdenSharing: React.FC = observer(() => {
             <img src="../images/add-user.svg"></img>
             <p>Добавить</p>
         </div>
-        <table className="table-debit-credit">
-            <thead>
-                <tr>
-                    <td className="empty-name-user-head-debit-credit">  </td>
-                    <td className="column-head-debit"> Дебет </td>
-                    <td className="column-head-credit" > Кредит </td>
-                    <td className="second-side-user-head-debit-credit">  </td>
-                </tr>
-            </thead>
-            <tbody> 
-                <tr>
-                    <td className="name-user-debit-credit"> Оля </td>
-                    <td className="column-debit"> -10 руб </td>
-                    <td className="column-credit" > 10 руб </td>
-                    <td className="second-side-user-debit-credit" > Маша </td>
-                </tr>
-                <tr>
-                    <td className="name-user-debit-credit"> Маша </td>
-                    <td className="column-debit"> 10 руб </td>
-                    <td className="column-credit" > -10 руб </td>
-                    <td className="second-side-user-debit-credit" > Оля </td>
-                </tr>
-            </tbody>
-        </table>
+        <TableDebetCredit/>
     </div>      
     )
 });

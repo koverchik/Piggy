@@ -13,8 +13,10 @@ export default class Wallet {
     newRowCost = "";
     allRows= new Array();
     numberPagination = new Array();
+    allUsers = new Array();
     activePagination = 0;
     lengthRows = 0;
+    lengthBurdenUser = 0;
 
     constructor() {
       makeObservable(this, {
@@ -25,6 +27,8 @@ export default class Wallet {
         newRowCost:observable,
         allRows: observable,
         lengthRows: observable,
+        allUsers: observable,
+        lengthBurdenUser: observable,
         numberPagination: observable,
         activePagination: observable,
         startOneWalet: action,

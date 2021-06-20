@@ -37,9 +37,7 @@ useEffect(() => {
 
 
 function createListRows(data:any, pagination: number) {
-    const result:any = data.map((item: any, i: number) => {
-        console.log(item.autor.name);
-        
+    const result:any = data.map((item: any, i: number) => {       
         const dataOneRow = new Date(item["created_at_time"]);            
                     return(
                         <tr key={"row-walet-" + i} className={ !((pagination-1) * 10 < i+1 && i+1 <= (pagination-1)*10 + 10)  ? "hide-row" : ""}>
@@ -47,7 +45,7 @@ function createListRows(data:any, pagination: number) {
                             <td className="data-item">{`${store.Wallet.addZero(dataOneRow.getDate())}.${store.Wallet.addZero(dataOneRow.getMonth()+1)}.${dataOneRow.getFullYear()}`}</td>
                             <td className="name-one-item" > {item["name"]} </td>
                             <td className="cost-one-item"> {item["amount"]} руб </td>
-                            <td className="user-write-item"><img src="../images/people.svg" alt="icon-user" title={item.autor.name}></img> </td>
+                            <td className="user-write-item"><img src="../images/people.svg" alt="icon-user" title={item.autor.name}></img></td>
                         </tr>
                     )
                 })  
