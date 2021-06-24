@@ -7,11 +7,16 @@
         border-radius: 10px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         padding: 2rem;
         margin: 1rem;
         width: 30%;
+        .wrapper-block-name-list, .wrapper-pagination-button-create{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
         .header-blok-view{
             color: #5354D2;
             font-size: 48px;
@@ -32,7 +37,9 @@
                     color: #5354D2;
                 }
             }
-           
+           hide-row{
+               display: none;
+           }
            } 
         }
     }

@@ -2054,6 +2054,60 @@ exports.default = AllEstimate;
 "use strict";
 
 
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+__webpack_require__(/*! ./_AllEstimateAndWallet.scss */ "./resources/js/components/AllEstimateAndWallet/_AllEstimateAndWallet.scss");
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var AllEstimateMainPage_1 = __importDefault(__webpack_require__(/*! ./AllEstimateMainPage/AllEstimateMainPage */ "./resources/js/components/AllEstimateAndWallet/AllEstimateMainPage/AllEstimateMainPage.tsx"));
+
+var AllWalletsMainPage_1 = __importDefault(__webpack_require__(/*! ./AllWalletsMainPage/AllWalletsMainPage */ "./resources/js/components/AllEstimateAndWallet/AllWalletsMainPage/AllWalletsMainPage.tsx"));
+
+var AllEstimateAndWallet = mobx_react_lite_1.observer(function () {
+  return react_1["default"].createElement("div", {
+    className: "wrapper-all-estimate-wallet"
+  }, react_1["default"].createElement(AllEstimateMainPage_1["default"], null), react_1["default"].createElement(AllWalletsMainPage_1["default"], null));
+});
+exports.default = AllEstimateAndWallet;
+
+/***/ }),
+
+/***/ "./resources/js/components/AllEstimateAndWallet/AllEstimateMainPage/AllEstimateMainPage.tsx":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/AllEstimateAndWallet/AllEstimateMainPage/AllEstimateMainPage.tsx ***!
+  \**************************************************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
   if (k2 === undefined) k2 = k;
   Object.defineProperty(o, k2, {
@@ -2100,79 +2154,254 @@ Object.defineProperty(exports, "__esModule", ({
 
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
-var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
+var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
 
-__webpack_require__(/*! ./_AllEstimateAndWallet.scss */ "./resources/js/components/AllEstimateAndWallet/_AllEstimateAndWallet.scss");
+__webpack_require__(/*! ./../_AllEstimateAndWallet.scss */ "./resources/js/components/AllEstimateAndWallet/_AllEstimateAndWallet.scss");
 
-var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+var state_1 = __importDefault(__webpack_require__(/*! ../../../state */ "./resources/js/state/index.ts"));
 
 var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
-var AllEstimateAndWallet = mobx_react_lite_1.observer(function () {
+var PaginationRows_1 = __importDefault(__webpack_require__(/*! ../../PaginationRows/PaginationRows */ "./resources/js/components/PaginationRows/PaginationRows.tsx"));
+
+var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
   var _a = react_1.useState([]),
       listEstimate = _a[0],
       setlistEstimate = _a[1];
 
   var _b = react_1.useState([]),
-      listWallet = _b[0],
-      setlistWallet = _b[1];
+      listEstimateData = _b[0],
+      setlistEstimateData = _b[1];
 
+  var paginationDataEstimate = {
+    arrayNumber: state_1["default"].GeneralData.arrayNameAllEstimates,
+    activeNumber: state_1["default"].GeneralData.activePaginationAllEstimates,
+    callbackPaginationArray: callbackPaginationArray,
+    callbackPaginationLeft: callbackPaginationLeft,
+    callbackPaginationRight: callbackPaginationRight
+  };
   react_1.useEffect(function () {
-    axios_1["default"].post("http://localhost:8000/" + 'all-estimates', {
-      id: 9
-    }).then(function (response) {
-      var list = response.data.map(function (item, i) {
-        return react_1["default"].createElement("li", {
-          key: "listEstimate" + i
-        }, react_1["default"].createElement(react_router_dom_1.Link, {
-          to: "/estimate-" + item['names_estimates_id']
-        }, item['full_name']));
-      });
-      setlistEstimate(list);
-    }, function (response) {
-      var notiseError = react_1["default"].createElement("li", {
-        key: "listEstimateEmpty"
-      }, " \u0423\u043F\u0441, \u0447\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0430\u0440\u0430\u043D\u0438\u0446\u0443.");
-      setlistEstimate(notiseError);
-    });
-    axios_1["default"].post("http://localhost:8000/" + 'all-wallets', {
-      id: 9
-    }).then(function (response) {
-      var list = response.data.map(function (item, i) {
-        return react_1["default"].createElement("li", {
-          key: "listWallet" + i
-        }, react_1["default"].createElement(react_router_dom_1.Link, {
-          to: "/wallet-" + item['names_wallets_id'] + '-' + item['names_wallet']['name']
-        }, item['names_wallet']['name']));
-      });
-      setlistWallet(list);
-    }, function (response) {
-      console.log("error request " + response);
-      var notiseError = react_1["default"].createElement("li", {
-        key: "listWalletEmpty"
-      }, " \u0423\u043F\u0441, \u0447\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0430\u0440\u0430\u043D\u0438\u0446\u0443.");
-      setlistWallet(notiseError);
+    state_1["default"].GeneralData.allEstimates().then(function (data) {
+      if (data === "Error") {
+        var notiseError = react_1["default"].createElement("li", {
+          key: "listEstimateEmpty"
+        }, "\u0423\u043F\u0441, \u0447\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0430\u0440\u0430\u043D\u0438\u0446\u0443.");
+        setlistEstimate(notiseError);
+      } else {
+        state_1["default"].GeneralData.allDataEstimate = data;
+        setlistEstimateData(data);
+        createRowsEstimate(data, state_1["default"].GeneralData.activePaginationAllEstimates);
+      }
     });
   }, []);
+
+  function callbackPaginationArray(event) {
+    var textContent = event.target.textContent;
+
+    if (textContent != null) {
+      state_1["default"].GeneralData.activePaginationAllEstimates = +textContent;
+    }
+  }
+
+  function callbackPaginationRight() {
+    state_1["default"].GeneralData.activePaginationAllEstimates > 1 ? state_1["default"].GeneralData.activePaginationAllEstimates = state_1["default"].GeneralData.activePaginationAllEstimates - 1 : "";
+  }
+
+  function callbackPaginationLeft() {
+    state_1["default"].GeneralData.activePaginationAllEstimates < state_1["default"].GeneralData.arrayNameAllEstimates.length ? state_1["default"].GeneralData.activePaginationAllEstimates = +state_1["default"].GeneralData.activePaginationAllEstimates + 1 : "";
+  }
+
+  function createRowsEstimate(data, pagination) {
+    var list = data.map(function (item, i) {
+      return react_1["default"].createElement("li", {
+        key: "listEstimate" + i,
+        className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? "hide-row" : ""
+      }, react_1["default"].createElement(react_router_dom_1.Link, {
+        to: "/estimate-" + item['names_estimates_id']
+      }, item['full_name']));
+    });
+    setlistEstimate(list);
+  }
+
+  react_1.useEffect(function () {
+    createRowsEstimate(listEstimateData, state_1["default"].GeneralData.activePaginationAllEstimates);
+  }, [state_1["default"].GeneralData.activePaginationAllEstimates]);
   return react_1["default"].createElement("div", {
-    className: "wrapper-all-estimate-wallet"
-  }, react_1["default"].createElement("div", {
     className: "wapper-estimate"
+  }, react_1["default"].createElement("div", {
+    className: "wrapper-block-name-list"
   }, react_1["default"].createElement("p", {
     className: "header-blok-view"
   }, "\u0421\u043C\u0435\u0442\u044B"), react_1["default"].createElement("ul", {
     className: "list-estimate"
-  }, listEstimate), react_1["default"].createElement(ButtonCreate_1["default"], null)), react_1["default"].createElement("div", {
+  }, listEstimate)), react_1["default"].createElement("div", {
+    className: "wrapper-pagination-button-create"
+  }, state_1["default"].GeneralData.arrayNameAllEstimates.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], __assign({}, paginationDataEstimate)) : "", react_1["default"].createElement(ButtonCreate_1["default"], null)));
+});
+exports.default = AllEstimateMainPage;
+
+/***/ }),
+
+/***/ "./resources/js/components/AllEstimateAndWallet/AllWalletsMainPage/AllWalletsMainPage.tsx":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/AllEstimateAndWallet/AllWalletsMainPage/AllWalletsMainPage.tsx ***!
+  \************************************************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
+
+__webpack_require__(/*! ./../_AllEstimateAndWallet.scss */ "./resources/js/components/AllEstimateAndWallet/_AllEstimateAndWallet.scss");
+
+var state_1 = __importDefault(__webpack_require__(/*! ../../../state */ "./resources/js/state/index.ts"));
+
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var PaginationRows_1 = __importDefault(__webpack_require__(/*! ../../PaginationRows/PaginationRows */ "./resources/js/components/PaginationRows/PaginationRows.tsx"));
+
+var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
+  var _a = react_1.useState([]),
+      listWallet = _a[0],
+      setlistWallet = _a[1];
+
+  var _b = react_1.useState([]),
+      listWalletData = _b[0],
+      settWalletData = _b[1];
+
+  var paginationDataWallet = {
+    arrayNumber: state_1["default"].GeneralData.arrayNameAllWallets,
+    activeNumber: state_1["default"].GeneralData.activePaginationAllWallets,
+    callbackPaginationArray: callbackPaginationArray,
+    callbackPaginationRight: callbackPaginationRight,
+    callbackPaginationLeft: callbackPaginationLeft
+  };
+  react_1.useEffect(function () {
+    state_1["default"].GeneralData.allWallets().then(function (data) {
+      if (data === "Error") {
+        var notiseError = react_1["default"].createElement("li", {
+          key: "listEstimateEmpty"
+        }, "\u0423\u043F\u0441, \u0447\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0430\u0440\u0430\u043D\u0438\u0446\u0443.");
+        setlistWallet(notiseError);
+      } else {
+        state_1["default"].GeneralData.allDataWallets = data;
+        settWalletData(data);
+        createRowsWallets(data, state_1["default"].GeneralData.activePaginationAllWallets);
+      }
+    });
+  }, []);
+
+  function callbackPaginationArray(event) {
+    var textContent = event.target.textContent;
+
+    if (textContent != null) {
+      state_1["default"].GeneralData.activePaginationAllWallets = +textContent;
+    }
+  }
+
+  function callbackPaginationRight() {
+    state_1["default"].GeneralData.activePaginationAllWallets < state_1["default"].GeneralData.arrayNameAllWallets.length ? state_1["default"].GeneralData.activePaginationAllWallets = +state_1["default"].GeneralData.activePaginationAllWallets + 1 : "";
+  }
+
+  function callbackPaginationLeft() {
+    state_1["default"].GeneralData.activePaginationAllWallets > 1 ? state_1["default"].GeneralData.activePaginationAllWallets = state_1["default"].GeneralData.activePaginationAllWallets - 1 : "";
+  }
+
+  function createRowsWallets(data, pagination) {
+    var list = data.map(function (item, i) {
+      return react_1["default"].createElement("li", {
+        key: "listWallet" + i,
+        className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? "hide-row" : ""
+      }, react_1["default"].createElement(react_router_dom_1.Link, {
+        to: "/wallet-" + item['names_wallets_id'] + '-' + item['names_wallet']['name']
+      }, item['names_wallet']['name']));
+    });
+    setlistWallet(list);
+  }
+
+  react_1.useEffect(function () {
+    createRowsWallets(listWalletData, state_1["default"].GeneralData.activePaginationAllWallets);
+  }, [state_1["default"].GeneralData.activePaginationAllWallets]);
+  return react_1["default"].createElement("div", {
     className: "wapper-wallet"
+  }, react_1["default"].createElement("div", {
+    className: "wrapper-block-name-list"
   }, react_1["default"].createElement("p", {
     className: "header-blok-view"
   }, "\u041A\u043E\u0448\u0435\u043B\u0435\u043A\u0438"), react_1["default"].createElement("ul", {
     className: "list-wallet"
-  }, listWallet), react_1["default"].createElement(ButtonCreate_1["default"], null)));
+  }, listWallet)), react_1["default"].createElement("div", {
+    className: "wrapper-pagination-button-create"
+  }, state_1["default"].GeneralData.arrayNameAllWallets.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], __assign({}, paginationDataWallet)) : "", react_1["default"].createElement(ButtonCreate_1["default"], null)));
 });
-exports.default = AllEstimateAndWallet;
+exports.default = AllWalletsMainPage;
 
 /***/ }),
 
@@ -3857,6 +4086,114 @@ exports.default = Estimate;
 
 /***/ }),
 
+/***/ "./resources/js/state/GeneralData.ts":
+/*!*******************************************!*\
+  !*** ./resources/js/state/GeneralData.ts ***!
+  \*******************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var mobx_1 = __webpack_require__(/*! mobx */ "./node_modules/mobx/dist/mobx.esm.js");
+
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+
+mobx_1.configure({
+  enforceActions: "never"
+});
+
+var GeneralData =
+/** @class */
+function () {
+  function GeneralData() {
+    this.idUser = 9;
+    this.nameAllEstimates = 0;
+    this.nameAllWallets = 0;
+    this.activePaginationAllWallets = 0;
+    this.activePaginationAllEstimates = 0;
+    this.arrayNameAllEstimates = new Array();
+    this.arrayNameAllWallets = new Array();
+    this.allDataEstimate = {};
+    this.allDataWallets = {};
+    mobx_1.makeObservable(this, {
+      idUser: mobx_1.observable,
+      nameAllEstimates: mobx_1.observable,
+      arrayNameAllEstimates: mobx_1.observable,
+      nameAllWallets: mobx_1.observable,
+      allDataEstimate: mobx_1.observable,
+      allDataWallets: mobx_1.observable,
+      activePaginationAllWallets: mobx_1.observable,
+      activePaginationAllEstimates: mobx_1.observable,
+      arrayNameAllWallets: mobx_1.observable,
+      allWallets: mobx_1.action,
+      allEstimates: mobx_1.action
+    });
+  }
+
+  GeneralData.prototype.allEstimates = function () {
+    var _this = this;
+
+    var result = axios_1["default"].post("http://localhost:8000/" + 'all-estimates', {
+      id: this.idUser
+    }).then(function (response) {
+      var countNameEstimates = Math.ceil(response.data.length / 10);
+      var arrayPaginationEstimate = [];
+
+      for (var index = 0; index < countNameEstimates; index++) {
+        arrayPaginationEstimate.push(index + 1);
+      }
+
+      _this.activePaginationAllEstimates = arrayPaginationEstimate.length;
+      _this.arrayNameAllEstimates = arrayPaginationEstimate;
+      return response.data;
+    }, function (response) {
+      console.log("error request " + response);
+      return "Error";
+    });
+    return result;
+  };
+
+  GeneralData.prototype.allWallets = function () {
+    var _this = this;
+
+    var result = axios_1["default"].post("http://localhost:8000/" + 'all-wallets', {
+      id: this.idUser
+    }).then(function (response) {
+      var countPaginationWallets = Math.ceil(response.data.length / 10);
+      var arrayPaginationWallets = [];
+
+      for (var index = 0; index < countPaginationWallets; index++) {
+        arrayPaginationWallets.push(index + 1);
+      }
+
+      _this.arrayNameAllWallets = arrayPaginationWallets;
+      _this.activePaginationAllWallets = _this.arrayNameAllWallets.length;
+      return response.data;
+    }, function (response) {
+      console.log("error request " + response);
+      return "Error";
+    });
+    return result;
+  };
+
+  return GeneralData;
+}();
+
+exports.default = GeneralData;
+
+/***/ }),
+
 /***/ "./resources/js/state/Wallet.tsx":
 /*!***************************************!*\
   !*** ./resources/js/state/Wallet.tsx ***!
@@ -4188,11 +4525,14 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
+var GeneralData_1 = __importDefault(__webpack_require__(/*! ./GeneralData */ "./resources/js/state/GeneralData.ts"));
+
 var Estimate_1 = __importDefault(__webpack_require__(/*! ./Estimate */ "./resources/js/state/Estimate.ts"));
 
 var Wallet_1 = __importDefault(__webpack_require__(/*! ./Wallet */ "./resources/js/state/Wallet.tsx"));
 
 var store = {
+  GeneralData: new GeneralData_1["default"](),
   Estimate: new Estimate_1["default"](),
   Wallet: new Wallet_1["default"]()
 };
@@ -8727,7 +9067,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-all-estimate-wallet {\n  display: flex;\n  justify-content: space-around;\n  background-color: #C4C4C4;\n}\n.wrapper-all-estimate-wallet .wapper-estimate, .wrapper-all-estimate-wallet .wapper-wallet {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding: 2rem;\n  margin: 1rem;\n  width: 30%;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .header-blok-view, .wrapper-all-estimate-wallet .wapper-wallet .header-blok-view {\n  color: #5354D2;\n  font-size: 48px;\n  margin: 1rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .list-estimate, .wrapper-all-estimate-wallet .wapper-estimate .list-wallet, .wrapper-all-estimate-wallet .wapper-wallet .list-estimate, .wrapper-all-estimate-wallet .wapper-wallet .list-wallet {\n  margin: 0;\n  padding: 10px;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .list-estimate li, .wrapper-all-estimate-wallet .wapper-estimate .list-wallet li, .wrapper-all-estimate-wallet .wapper-wallet .list-estimate li, .wrapper-all-estimate-wallet .wapper-wallet .list-wallet li {\n  list-style-type: none;\n  margin-bottom: 10px;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .list-estimate li a, .wrapper-all-estimate-wallet .wapper-estimate .list-wallet li a, .wrapper-all-estimate-wallet .wapper-wallet .list-estimate li a, .wrapper-all-estimate-wallet .wapper-wallet .list-wallet li a {\n  text-decoration: none;\n  color: black;\n  font-size: 1.25rem;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .list-estimate li a:hover, .wrapper-all-estimate-wallet .wapper-estimate .list-wallet li a:hover, .wrapper-all-estimate-wallet .wapper-wallet .list-estimate li a:hover, .wrapper-all-estimate-wallet .wapper-wallet .list-wallet li a:hover {\n  color: #5354D2;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-all-estimate-wallet {\n  display: flex;\n  justify-content: space-around;\n  background-color: #C4C4C4;\n}\n.wrapper-all-estimate-wallet .wapper-estimate, .wrapper-all-estimate-wallet .wapper-wallet {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  align-items: center;\n  padding: 2rem;\n  margin: 1rem;\n  width: 30%;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .wrapper-block-name-list, .wrapper-all-estimate-wallet .wapper-estimate .wrapper-pagination-button-create, .wrapper-all-estimate-wallet .wapper-wallet .wrapper-block-name-list, .wrapper-all-estimate-wallet .wapper-wallet .wrapper-pagination-button-create {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .header-blok-view, .wrapper-all-estimate-wallet .wapper-wallet .header-blok-view {\n  color: #5354D2;\n  font-size: 48px;\n  margin: 1rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .list-estimate, .wrapper-all-estimate-wallet .wapper-estimate .list-wallet, .wrapper-all-estimate-wallet .wapper-wallet .list-estimate, .wrapper-all-estimate-wallet .wapper-wallet .list-wallet {\n  margin: 0;\n  padding: 10px;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .list-estimate li, .wrapper-all-estimate-wallet .wapper-estimate .list-wallet li, .wrapper-all-estimate-wallet .wapper-wallet .list-estimate li, .wrapper-all-estimate-wallet .wapper-wallet .list-wallet li {\n  list-style-type: none;\n  margin-bottom: 10px;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .list-estimate li a, .wrapper-all-estimate-wallet .wapper-estimate .list-wallet li a, .wrapper-all-estimate-wallet .wapper-wallet .list-estimate li a, .wrapper-all-estimate-wallet .wapper-wallet .list-wallet li a {\n  text-decoration: none;\n  color: black;\n  font-size: 1.25rem;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .list-estimate li a:hover, .wrapper-all-estimate-wallet .wapper-estimate .list-wallet li a:hover, .wrapper-all-estimate-wallet .wapper-wallet .list-estimate li a:hover, .wrapper-all-estimate-wallet .wapper-wallet .list-wallet li a:hover {\n  color: #5354D2;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .list-estimate li hide-row, .wrapper-all-estimate-wallet .wapper-estimate .list-wallet li hide-row, .wrapper-all-estimate-wallet .wapper-wallet .list-estimate li hide-row, .wrapper-all-estimate-wallet .wapper-wallet .list-wallet li hide-row {\n  display: none;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
