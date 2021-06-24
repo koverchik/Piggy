@@ -18,7 +18,7 @@ const PaginationRows: React.FC = observer((props: any) => {
                      { item }
                 </div>
              )
-           })
+           }) 
            setlistPaginationEstimate(resultPagination);
      }
 
