@@ -41,7 +41,6 @@ export default class Estimate {
       requestNewRow: action,
       deleteRow: action,
       validationAdd: action,
-
       },
     );
   }

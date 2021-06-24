@@ -1,14 +1,42 @@
 import React, { useEffect, useState } from "react";
 import './_OneEstimate.scss';
 import AddRow from "./AddRowEstimate/AddRowEstimate";
-import PaginationRows from "./PaginationRows/PaginationRows";
 import { observer } from "mobx-react-lite";
 import store from "../../state/index";
+import Pagination from "../PaginationRows/PaginationRows";
+import PaginationInterface from "../../interfaces/interfacesPagination";
 
 const OneEstimate: React.FC = observer((props : any) => {
    
     store.Estimate.idEstimate = props.match.params.id;
     const [listRowsEstimate, setlistRowsEstimate] = useState([]);
+
+    useEffect(() => {
+        createList(store.Estimate.dataRows, store.Estimate.activePagination);
+        }, [store.Estimate.activePagination])
+
+    const paginationData: PaginationInterface = {
+    arrayNumber: store.Estimate.pagination,
+    activeNumber: store.Estimate.activePagination,
+    callbackPaginationArray,
+    callbackPaginationLeft,
+    callbackPaginationRight,
+    }
+
+    function callbackPaginationArray(event: Event) {
+        const { textContent } = event.target as HTMLDivElement;
+        if(textContent != null){store.Estimate.activePagination = +textContent;} 
+        }
+
+    function callbackPaginationLeft() {
+        store.Estimate.activePagination > 1 ?
+            store.Estimate.activePagination = store.Estimate.activePagination - 1 : "";
+        }
+
+    function callbackPaginationRight() {
+        store.Estimate.activePagination < store.Estimate.pagination.length ? 
+        store.Estimate.activePagination = +store.Estimate.activePagination + 1 : "";
+            }
 
     useEffect(() => {
 
@@ -47,11 +75,6 @@ const OneEstimate: React.FC = observer((props : any) => {
        setlistRowsEstimate(list);
      }
 
-     useEffect(() => {
-        createList(store.Estimate.dataRows, store.Estimate.activePagination);
-     }, [store.Estimate.activePagination])
-
-
     return (
     <div className="wrapper-one-estimate">
         <div className="one-estimate">
@@ -79,7 +102,7 @@ const OneEstimate: React.FC = observer((props : any) => {
                     </tr>
                 </tfoot>
             </table>
-            {store.Estimate.pagination.length > 1 ? <PaginationRows/> : ""}
+            {store.Estimate.pagination.length > 1 ? <Pagination {...paginationData}/> : ""}    
             <AddRow />
         </div>
     </div>

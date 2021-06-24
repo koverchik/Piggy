@@ -2648,6 +2648,22 @@ exports.default = EditOneEstimate;
 "use strict";
 
 
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
   if (k2 === undefined) k2 = k;
   Object.defineProperty(o, k2, {
@@ -2698,11 +2714,11 @@ __webpack_require__(/*! ./_OneEstimate.scss */ "./resources/js/components/OneEst
 
 var AddRowEstimate_1 = __importDefault(__webpack_require__(/*! ./AddRowEstimate/AddRowEstimate */ "./resources/js/components/OneEstimate/AddRowEstimate/AddRowEstimate.tsx"));
 
-var PaginationRows_1 = __importDefault(__webpack_require__(/*! ./PaginationRows/PaginationRows */ "./resources/js/components/OneEstimate/PaginationRows/PaginationRows.tsx"));
-
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
 var index_1 = __importDefault(__webpack_require__(/*! ../../state/index */ "./resources/js/state/index.ts"));
+
+var PaginationRows_1 = __importDefault(__webpack_require__(/*! ../PaginationRows/PaginationRows */ "./resources/js/components/PaginationRows/PaginationRows.tsx"));
 
 var OneEstimate = mobx_react_lite_1.observer(function (props) {
   index_1["default"].Estimate.idEstimate = props.match.params.id;
@@ -2710,6 +2726,33 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
   var _a = react_1.useState([]),
       listRowsEstimate = _a[0],
       setlistRowsEstimate = _a[1];
+
+  react_1.useEffect(function () {
+    createList(index_1["default"].Estimate.dataRows, index_1["default"].Estimate.activePagination);
+  }, [index_1["default"].Estimate.activePagination]);
+  var paginationData = {
+    arrayNumber: index_1["default"].Estimate.pagination,
+    activeNumber: index_1["default"].Estimate.activePagination,
+    callbackPaginationArray: callbackPaginationArray,
+    callbackPaginationLeft: callbackPaginationLeft,
+    callbackPaginationRight: callbackPaginationRight
+  };
+
+  function callbackPaginationArray(event) {
+    var textContent = event.target.textContent;
+
+    if (textContent != null) {
+      index_1["default"].Estimate.activePagination = +textContent;
+    }
+  }
+
+  function callbackPaginationLeft() {
+    index_1["default"].Estimate.activePagination > 1 ? index_1["default"].Estimate.activePagination = index_1["default"].Estimate.activePagination - 1 : "";
+  }
+
+  function callbackPaginationRight() {
+    index_1["default"].Estimate.activePagination < index_1["default"].Estimate.pagination.length ? index_1["default"].Estimate.activePagination = +index_1["default"].Estimate.activePagination + 1 : "";
+  }
 
   react_1.useEffect(function () {
     index_1["default"].Estimate.requestOneEstimate().then(function (data) {
@@ -2752,9 +2795,6 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
     setlistRowsEstimate(list);
   }
 
-  react_1.useEffect(function () {
-    createList(index_1["default"].Estimate.dataRows, index_1["default"].Estimate.activePagination);
-  }, [index_1["default"].Estimate.activePagination]);
   return react_1["default"].createElement("div", {
     className: "wrapper-one-estimate"
   }, react_1["default"].createElement("div", {
@@ -2788,115 +2828,9 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
     className: "title-cost-all-item"
   }, " \u0418\u0442\u043E\u0433\u043E:  "), react_1["default"].createElement("td", {
     className: "cost-all-item"
-  }, " ", index_1["default"].Estimate.sumRows, " \u0440\u0443\u0431 ")))), index_1["default"].Estimate.pagination.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], null) : "", react_1["default"].createElement(AddRowEstimate_1["default"], null)));
+  }, " ", index_1["default"].Estimate.sumRows, " \u0440\u0443\u0431 ")))), index_1["default"].Estimate.pagination.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], __assign({}, paginationData)) : "", react_1["default"].createElement(AddRowEstimate_1["default"], null)));
 });
 exports.default = OneEstimate;
-
-/***/ }),
-
-/***/ "./resources/js/components/OneEstimate/PaginationRows/PaginationRows.tsx":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/OneEstimate/PaginationRows/PaginationRows.tsx ***!
-  \*******************************************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
-} : function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  o[k2] = m[k];
-});
-
-var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
-  Object.defineProperty(o, "default", {
-    enumerable: true,
-    value: v
-  });
-} : function (o, v) {
-  o["default"] = v;
-});
-
-var __importStar = this && this.__importStar || function (mod) {
-  if (mod && mod.__esModule) return mod;
-  var result = {};
-  if (mod != null) for (var k in mod) {
-    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-  }
-
-  __setModuleDefault(result, mod);
-
-  return result;
-};
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-
-var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var state_1 = __importDefault(__webpack_require__(/*! ../../../state */ "./resources/js/state/index.ts"));
-
-__webpack_require__(/*! ./_PaginationRows.scss */ "./resources/js/components/OneEstimate/PaginationRows/_PaginationRows.scss");
-
-var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
-
-var PaginationRows = mobx_react_lite_1.observer(function () {
-  var _a = react_1.useState([]),
-      listPaginationEstimate = _a[0],
-      setlistPaginationEstimate = _a[1];
-
-  function createNumberPagination() {
-    var resultPagination = state_1["default"].Estimate.pagination.map(function (item) {
-      return react_1["default"].createElement("div", {
-        key: "pagination" + item,
-        className: state_1["default"].Estimate.activePagination == item ? "pagination-estimate active-number" : "pagination-estimate",
-        onClick: clickPagination
-      }, item);
-    });
-    setlistPaginationEstimate(resultPagination);
-  }
-
-  function clickPagination(e) {
-    state_1["default"].Estimate.activePagination !== e.target.textContent ? state_1["default"].Estimate.activePagination = e.target.textContent : "";
-  }
-
-  react_1.useEffect(function () {
-    createNumberPagination();
-  }, [state_1["default"].Estimate.activePagination, state_1["default"].Estimate.sumRows]);
-  return react_1["default"].createElement("div", {
-    className: "wrapper-number-pagination"
-  }, react_1["default"].createElement("img", {
-    src: "../images/arrow-left.svg",
-    onClick: function onClick() {
-      state_1["default"].Estimate.activePagination > 1 ? state_1["default"].Estimate.activePagination = state_1["default"].Estimate.activePagination - 1 : "";
-    },
-    alt: "arrow-left",
-    className: state_1["default"].Estimate.activePagination == 1 ? "disable-pagination image-pagination" : "image-pagination"
-  }), listPaginationEstimate, react_1["default"].createElement("img", {
-    src: "../images/arrow-right.svg",
-    onClick: function onClick() {
-      state_1["default"].Estimate.activePagination < state_1["default"].Estimate.pagination.length ? state_1["default"].Estimate.activePagination = +state_1["default"].Estimate.activePagination + 1 : "";
-    },
-    alt: "arrow-right",
-    className: state_1["default"].Estimate.activePagination == state_1["default"].Estimate.pagination.length ? "disable-pagination image-pagination" : "image-pagination"
-  }));
-});
-exports.default = PaginationRows;
 
 /***/ }),
 
@@ -3518,6 +3452,96 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
   }, " ", state_1["default"].Wallet.allSumm.toFixed(2), " \u0440\u0443\u0431 ")))), state_1["default"].Wallet.numberPagination.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], null) : "", react_1["default"].createElement(AddNewRowWallet_1["default"], null));
 });
 exports.default = TableOneWallet;
+
+/***/ }),
+
+/***/ "./resources/js/components/PaginationRows/PaginationRows.tsx":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/PaginationRows/PaginationRows.tsx ***!
+  \*******************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+__webpack_require__(/*! ./_PaginationRows.scss */ "./resources/js/components/PaginationRows/_PaginationRows.scss");
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var PaginationRows = mobx_react_lite_1.observer(function (props) {
+  var _a = react_1.useState([]),
+      listPaginationEstimate = _a[0],
+      setlistPaginationEstimate = _a[1];
+
+  function createNumberPagination() {
+    var resultPagination = props.arrayNumber.map(function (item) {
+      return react_1["default"].createElement("div", {
+        key: "pagination" + item,
+        className: props.activeNumber == item ? "pagination-estimate active-number" : "pagination-estimate",
+        onClick: props.callbackPaginationArray
+      }, item);
+    });
+    setlistPaginationEstimate(resultPagination);
+  }
+
+  react_1.useEffect(function () {
+    createNumberPagination();
+  }, [props.activeNumber]);
+  return react_1["default"].createElement("div", {
+    className: "wrapper-number-pagination"
+  }, react_1["default"].createElement("img", {
+    src: "../images/arrow-left.svg",
+    onClick: props.callbackPaginationLeft,
+    alt: "arrow-left",
+    className: props.activeNumber == 1 ? "disable-pagination image-pagination" : "image-pagination"
+  }), listPaginationEstimate, react_1["default"].createElement("img", {
+    src: "../images/arrow-right.svg",
+    onClick: props.callbackPaginationRight,
+    alt: "arrow-right",
+    className: props.activeNumber == props.arrayNumber.length ? "disable-pagination image-pagination" : "image-pagination"
+  }));
+});
+exports.default = PaginationRows;
 
 /***/ }),
 
@@ -9040,6 +9064,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-one-wallet {\n  background-color: #C4C4C4;\n  padding: 3vw;\n}\n.wrapper-one-wallet .one-wallet {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  padding: 3vw;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-one-wallet .one-wallet .wrapper-header-one-wallet {\n  display: flex;\n  justify-content: space-between;\n}\n.wrapper-one-wallet .one-wallet .wrapper-header-one-wallet h2 {\n  margin: 0;\n  padding-bottom: 1rem;\n  color: #5354D2;\n  font-size: 3rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  margin-left: 1rem;\n}\n.wrapper-one-wallet .one-wallet .wrapper-header-one-wallet img {\n  background-color: #C4C4C4;\n  border: 1px solid #5354D2;\n  border-radius: 5px;\n  padding: 0.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-header-one-wallet img:hover {\n  cursor: pointer;\n  opacity: 0.6;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet {\n  display: flex;\n  justify-content: space-between;\n  align-items: flex-start;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .wrapper-tables-list-add, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .wapper-user-table {\n  background-color: white;\n  border-radius: 10px;\n  margin: 1rem;\n  padding: 2rem;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit td {\n  padding: 0.5rem;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.empty-head-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.empty-name-user-head-debit-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.empty-head-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.empty-name-user-head-debit-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.empty-head-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.empty-name-user-head-debit-credit {\n  border-right: 1px solid white;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.name-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.column-head-debit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.name-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.column-head-debit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.name-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.column-head-debit {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.cost-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.column-head-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.cost-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.column-head-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.cost-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.column-head-credit {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.data-head-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.data-head-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.data-head-item {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.empty-head-item-user, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.second-side-user-head-debit-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.empty-head-item-user, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.second-side-user-head-debit-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.empty-head-item-user, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.second-side-user-head-debit-credit {\n  border-left: 1px solid white;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.namber-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.namber-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.data-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.data-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.data-item {\n  width: 25%;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.name-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.name-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.name-one-item {\n  width: 45%;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.cost-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.cost-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.cost-one-item {\n  width: 20%;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.user-write-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.user-write-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.user-write-item {\n  width: 5%;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.user-write-item img, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.user-write-item img, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.user-write-item img {\n  cursor: pointer;\n  text-align: center;\n  vertical-align: middle;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tfoot td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tfoot td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tfoot td {\n  padding: 0.5rem;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tfoot td.title-cost-all-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tfoot td.title-cost-all-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tfoot td.title-cost-all-item {\n  float: right;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tfoot td.cost-all-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tfoot td.cost-all-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tfoot td.cost-all-item {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/PaginationRows/_PaginationRows.scss":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/PaginationRows/_PaginationRows.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-number-pagination {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.wrapper-number-pagination .pagination-estimate {\n  color: #5354D2;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-weight: bold;\n}\n.wrapper-number-pagination .pagination-estimate:hover {\n  cursor: pointer;\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .image-pagination {\n  width: 2rem;\n}\n.wrapper-number-pagination .image-pagination:hover {\n  cursor: pointer;\n  opacity: 0.5;\n}\n.wrapper-number-pagination .disable-pagination {\n  filter: grayscale(100%);\n}\n.wrapper-number-pagination .disable-pagination:hover {\n  cursor: default;\n  opacity: 1;\n}\n.wrapper-number-pagination .active-number {\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .active-number:hover {\n  cursor: default;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -79573,6 +79621,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_OneWallet_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./resources/js/components/PaginationRows/_PaginationRows.scss":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/PaginationRows/_PaginationRows.scss ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_PaginationRows_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./_PaginationRows.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/PaginationRows/_PaginationRows.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_PaginationRows_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_PaginationRows_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 
