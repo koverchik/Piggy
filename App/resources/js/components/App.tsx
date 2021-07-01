@@ -12,12 +12,14 @@ import AllEstimate from "./AllEstimate/AllEstimate";
 import OneEstimate from "./OneEstimate/OneEstimate";
 import OneWallet from "./OneWallet/OneWallet";
 import EditOneEstimate from "./OneEstimate/EditOneEstimate/EditOneEstimate"
+import PopUp from "./PopUp/PopUp";
 import { observer } from "mobx-react-lite";
 
 const App: React.FC = observer(() => {
 
     return (
       <div className="wrapper-all-app">
+          <PopUp />
           <Header />
           <Router>
             <Switch>

@@ -2443,12 +2443,14 @@ var OneWallet_1 = __importDefault(__webpack_require__(/*! ./OneWallet/OneWallet 
 
 var EditOneEstimate_1 = __importDefault(__webpack_require__(/*! ./OneEstimate/EditOneEstimate/EditOneEstimate */ "./resources/js/components/OneEstimate/EditOneEstimate/EditOneEstimate.tsx"));
 
+var PopUp_1 = __importDefault(__webpack_require__(/*! ./PopUp/PopUp */ "./resources/js/components/PopUp/PopUp.tsx"));
+
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
 var App = mobx_react_lite_1.observer(function () {
   return react_1["default"].createElement("div", {
     className: "wrapper-all-app"
-  }, react_1["default"].createElement(Header_1["default"], null), react_1["default"].createElement(react_router_dom_1.BrowserRouter, null, react_1["default"].createElement(react_router_dom_1.Switch, null, react_1["default"].createElement(react_router_dom_1.Route, {
+  }, react_1["default"].createElement(PopUp_1["default"], null), react_1["default"].createElement(Header_1["default"], null), react_1["default"].createElement(react_router_dom_1.BrowserRouter, null, react_1["default"].createElement(react_router_dom_1.Switch, null, react_1["default"].createElement(react_router_dom_1.Route, {
     exact: true,
     path: "/",
     component: AllEstimateAndWallet_1["default"]
@@ -3771,6 +3773,56 @@ var PaginationRows = mobx_react_lite_1.observer(function (props) {
   }));
 });
 exports.default = PaginationRows;
+
+/***/ }),
+
+/***/ "./resources/js/components/PopUp/PopUp.tsx":
+/*!*************************************************!*\
+  !*** ./resources/js/components/PopUp/PopUp.tsx ***!
+  \*************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+__webpack_require__(/*! ./_PopUp.scss */ "./resources/js/components/PopUp/_PopUp.scss");
+
+var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
+
+var PopUp = mobx_react_lite_1.observer(function () {
+  return react_1["default"].createElement("div", {
+    className: "wrapper-for-background"
+  }, react_1["default"].createElement("div", {
+    className: "wrapper-pop-up"
+  }, react_1["default"].createElement("div", {
+    className: "wrapper-header-create-new-name"
+  }, react_1["default"].createElement("p", null, "\u0421\u043E\u0437\u0434\u0430\u043D\u0438\u0435 \u0441\u043C\u0435\u0442\u044B "), react_1["default"].createElement("img", {
+    src: "../images/cancel_white.svg",
+    alt: "close",
+    className: "close-img"
+  })), react_1["default"].createElement("div", {
+    className: "wrapper-for-name"
+  }, react_1["default"].createElement("p", null, "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 "), react_1["default"].createElement("input", {
+    type: "text"
+  })), react_1["default"].createElement("div", {
+    className: "wrapper-for-button"
+  }, react_1["default"].createElement(ButtonCreate_1["default"], null))));
+});
+exports.default = PopUp;
 
 /***/ }),
 
@@ -9428,6 +9480,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-number-pagination {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.wrapper-number-pagination .pagination-estimate {\n  color: #5354D2;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-weight: bold;\n}\n.wrapper-number-pagination .pagination-estimate:hover {\n  cursor: pointer;\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .image-pagination {\n  width: 2rem;\n}\n.wrapper-number-pagination .image-pagination:hover {\n  cursor: pointer;\n  opacity: 0.5;\n}\n.wrapper-number-pagination .disable-pagination {\n  filter: grayscale(100%);\n}\n.wrapper-number-pagination .disable-pagination:hover {\n  cursor: default;\n  opacity: 1;\n}\n.wrapper-number-pagination .active-number {\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .active-number:hover {\n  cursor: default;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/PopUp/_PopUp.scss":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/PopUp/_PopUp.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-for-background {\n  position: absolute;\n  height: 100%;\n  width: 100%;\n  background: #C4C4C4;\n  align-items: center;\n  justify-content: center;\n  display: flex;\n  z-index: 1;\n}\n.wrapper-for-background .wrapper-pop-up {\n  background: #F5F5F5;\n  display: flex;\n  flex-direction: column;\n  font-size: 1.5rem;\n  width: 40%;\n  height: 40%;\n  border-radius: 10px;\n  justify-content: space-between;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-header-create-new-name {\n  border-radius: 10px 10px 0 0;\n  display: flex;\n  justify-content: space-between;\n  background: #FE7BA7;\n  padding: 0 10px 0 20px;\n  color: #FFFFFF;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-header-create-new-name .close-img {\n  height: 50%;\n  padding: 10px 0;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-name {\n  padding: 0 20px;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-name input {\n  width: 90%;\n  border: 1px solid #FDB547;\n  align-self: center;\n  height: 36px;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-button {\n  align-self: center;\n  padding-bottom: 20px;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -79991,6 +80067,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_PaginationRows_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./resources/js/components/PopUp/_PopUp.scss":
+/*!***************************************************!*\
+  !*** ./resources/js/components/PopUp/_PopUp.scss ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_PopUp_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./_PopUp.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/PopUp/_PopUp.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_PopUp_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_PopUp_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 

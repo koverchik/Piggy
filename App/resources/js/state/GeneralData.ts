@@ -76,4 +76,5 @@ export default class GeneralData {
             })
     return result;
     }
+
 }
