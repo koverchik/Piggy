@@ -21,6 +21,7 @@ const AllEstimateMainPage: React.FC = observer(() => {
                                                 callbackClick,
                                                 }; 
     const popUpData: interfacesPopUp = {
+        name: "сметы",
         closeClick,
     }                                          
 

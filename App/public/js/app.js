@@ -2187,6 +2187,7 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
     callbackClick: callbackClick
   };
   var popUpData = {
+    name: "сметы",
     closeClick: closeClick
   };
   var paginationDataEstimate = {
@@ -2347,6 +2348,8 @@ var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_mod
 
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
+var PopUp_1 = __importDefault(__webpack_require__(/*! ../../PopUp/PopUp */ "./resources/js/components/PopUp/PopUp.tsx"));
+
 var PaginationRows_1 = __importDefault(__webpack_require__(/*! ../../PaginationRows/PaginationRows */ "./resources/js/components/PaginationRows/PaginationRows.tsx"));
 
 var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
@@ -2358,9 +2361,14 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
       listWalletData = _b[0],
       settWalletData = _b[1];
 
+  var _c = react_1.useState(false),
+      statePopUp = _c[0],
+      setStatePopUp = _c[1];
+
   var buttonName = {
     name: "Создать",
-    type: "button"
+    type: "button",
+    callbackClick: callbackClick
   };
   var paginationDataWallet = {
     arrayNumber: state_1["default"].GeneralData.arrayNameAllWallets,
@@ -2369,6 +2377,19 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
     callbackPaginationRight: callbackPaginationRight,
     callbackPaginationLeft: callbackPaginationLeft
   };
+  var popUpData = {
+    name: "кошелька",
+    closeClick: closeClick
+  };
+
+  function callbackClick() {
+    setStatePopUp(true);
+  }
+
+  function closeClick() {
+    setStatePopUp(false);
+  }
+
   react_1.useEffect(function () {
     state_1["default"].GeneralData.allWallets().then(function (data) {
       if (data === "Error") {
@@ -2417,7 +2438,7 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
   }, [state_1["default"].GeneralData.activePaginationAllWallets]);
   return react_1["default"].createElement("div", {
     className: "wapper-wallet"
-  }, react_1["default"].createElement("div", {
+  }, statePopUp ? react_1["default"].createElement(PopUp_1["default"], __assign({}, popUpData)) : null, react_1["default"].createElement("div", {
     className: "wrapper-block-name-list"
   }, react_1["default"].createElement("p", {
     className: "header-blok-view"
@@ -3822,7 +3843,7 @@ var PopUp = mobx_react_lite_1.observer(function (props) {
     className: "wrapper-pop-up"
   }, react_1["default"].createElement("div", {
     className: "wrapper-header-create-new-name"
-  }, react_1["default"].createElement("p", null, "\u0421\u043E\u0437\u0434\u0430\u043D\u0438\u0435 \u0441\u043C\u0435\u0442\u044B "), react_1["default"].createElement("img", {
+  }, react_1["default"].createElement("p", null, "\u0421\u043E\u0437\u0434\u0430\u043D\u0438\u0435 ", props.name, " "), react_1["default"].createElement("img", {
     src: "../images/cancel_white.svg",
     alt: "close",
     className: "close-img",

@@ -7,13 +7,17 @@ import { observer } from "mobx-react-lite";
 import PopUp from "../../PopUp/PopUp";
 import PaginationInterface from "../../../interfaces/interfacesPagination";
 import Pagination from "../../PaginationRows/PaginationRows";
+import interfacesPopUp from "../../../interfaces/interfacesPopUp";
 
 const AllWalletsMainPage: React.FC = observer(() => {
   
 const [listWallet, setlistWallet] = useState([]);
 const [listWalletData, settWalletData] = useState([]);
+const [statePopUp, setStatePopUp] = useState(false);
+
 const buttonName: object = {name: "Создать",
-                            type: "button"};
+                            type: "button",
+                            callbackClick};
 
 const paginationDataWallet: PaginationInterface = {
     arrayNumber: store.GeneralData.arrayNameAllWallets,
@@ -22,7 +26,16 @@ const paginationDataWallet: PaginationInterface = {
     callbackPaginationRight,
     callbackPaginationLeft,
     }
-
+const popUpData: interfacesPopUp = {
+    name: "кошелька",
+    closeClick,
+}    
+function callbackClick (){
+    setStatePopUp(true);
+}
+function closeClick() {
+    setStatePopUp(false);
+}
 useEffect(() => {
     store.GeneralData.allWallets().then((data: any) => {
         if(data === "Error"){
@@ -68,6 +81,7 @@ useEffect(() => {
 
     return (
             <div className="wapper-wallet">
+             {statePopUp ? <PopUp { ...popUpData}/> : null}
                 <div className="wrapper-block-name-list">
                     <p className="header-blok-view">Кошелеки</p>
                     <ul className="list-wallet">

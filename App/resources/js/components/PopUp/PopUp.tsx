@@ -10,7 +10,7 @@ const PopUp: React.FC = observer((props: any) => {
       <div className={"wrapper-for-background"}>
          <div className="wrapper-pop-up">
             <div className="wrapper-header-create-new-name">
-               <p>Создание сметы </p> 
+               <p>Создание {props.name} </p> 
                <img src="../images/cancel_white.svg" alt="close" className="close-img" onClick={props.closeClick}/>
             </div>
             <div className="wrapper-for-name">
