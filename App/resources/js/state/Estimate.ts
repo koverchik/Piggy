@@ -6,8 +6,7 @@ configure({
 })
 
 export default class Estimate {
-  
-  
+ 
   idEstimate = "";
   nameEstimate = "";
   reactElemRows = new Array();

@@ -1959,7 +1959,7 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 
 __webpack_require__(/*! ./_AllEstimate.scss */ "./resources/js/components/AllEstimate/_AllEstimate.scss");
 
-var ButtonAdd_1 = __importDefault(__webpack_require__(/*! ../ButtonAdd/ButtonAdd */ "./resources/js/components/ButtonAdd/ButtonAdd.tsx"));
+var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
 
 var AllEstimate = function AllEstimate() {
   return react_1["default"].createElement("div", {
@@ -1998,7 +1998,7 @@ var AllEstimate = function AllEstimate() {
     className: "premission-one-item"
   }, " \u0420\u0435\u0434\u0430\u043A\u0442\u043E\u0440 ", react_1["default"].createElement("img", {
     src: "../images/list-premision.svg"
-  }))))), react_1["default"].createElement(ButtonAdd_1["default"], null))), react_1["default"].createElement("div", {
+  }))))), react_1["default"].createElement(ButtonCreate_1["default"], null))), react_1["default"].createElement("div", {
     className: "wrappter-one-estimate"
   }, react_1["default"].createElement("div", {
     className: "wrapper-header-estimate"
@@ -2030,7 +2030,7 @@ var AllEstimate = function AllEstimate() {
     className: "premission-one-item"
   }, " \u041F\u0440\u043E\u0441\u043C\u043E\u0442\u0440    ", react_1["default"].createElement("img", {
     src: "../images/list-premision.svg"
-  }))))), react_1["default"].createElement(ButtonAdd_1["default"], null))), react_1["default"].createElement("div", {
+  }))))), react_1["default"].createElement(ButtonCreate_1["default"], null))), react_1["default"].createElement("div", {
     className: "pagination-list-estimate"
   }, react_1["default"].createElement("div", null, react_1["default"].createElement("img", {
     src: "../images/pagination-left.svg",
@@ -2166,6 +2166,8 @@ var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modul
 
 var PaginationRows_1 = __importDefault(__webpack_require__(/*! ../../PaginationRows/PaginationRows */ "./resources/js/components/PaginationRows/PaginationRows.tsx"));
 
+var PopUp_1 = __importDefault(__webpack_require__(/*! ../../PopUp/PopUp */ "./resources/js/components/PopUp/PopUp.tsx"));
+
 var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
   var _a = react_1.useState([]),
       listEstimate = _a[0],
@@ -2175,6 +2177,18 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
       listEstimateData = _b[0],
       setlistEstimateData = _b[1];
 
+  var _c = react_1.useState(false),
+      statePopUp = _c[0],
+      setStatePopUp = _c[1];
+
+  var buttonName = {
+    name: "Создать",
+    type: "button",
+    callbackClick: callbackClick
+  };
+  var popUpData = {
+    closeClick: closeClick
+  };
   var paginationDataEstimate = {
     arrayNumber: state_1["default"].GeneralData.arrayNameAllEstimates,
     activeNumber: state_1["default"].GeneralData.activePaginationAllEstimates,
@@ -2213,6 +2227,14 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
     state_1["default"].GeneralData.activePaginationAllEstimates < state_1["default"].GeneralData.arrayNameAllEstimates.length ? state_1["default"].GeneralData.activePaginationAllEstimates = +state_1["default"].GeneralData.activePaginationAllEstimates + 1 : "";
   }
 
+  function callbackClick() {
+    setStatePopUp(true);
+  }
+
+  function closeClick() {
+    setStatePopUp(false);
+  }
+
   function createRowsEstimate(data, pagination) {
     var list = data.map(function (item, i) {
       return react_1["default"].createElement("li", {
@@ -2230,7 +2252,7 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
   }, [state_1["default"].GeneralData.activePaginationAllEstimates]);
   return react_1["default"].createElement("div", {
     className: "wapper-estimate"
-  }, react_1["default"].createElement("div", {
+  }, statePopUp ? react_1["default"].createElement(PopUp_1["default"], __assign({}, popUpData)) : null, react_1["default"].createElement("div", {
     className: "wrapper-block-name-list"
   }, react_1["default"].createElement("p", {
     className: "header-blok-view"
@@ -2238,7 +2260,7 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
     className: "list-estimate"
   }, listEstimate)), react_1["default"].createElement("div", {
     className: "wrapper-pagination-button-create"
-  }, state_1["default"].GeneralData.arrayNameAllEstimates.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], __assign({}, paginationDataEstimate)) : "", react_1["default"].createElement(ButtonCreate_1["default"], null)));
+  }, state_1["default"].GeneralData.arrayNameAllEstimates.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], __assign({}, paginationDataEstimate)) : "", react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, buttonName))));
 });
 exports.default = AllEstimateMainPage;
 
@@ -2336,6 +2358,10 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
       listWalletData = _b[0],
       settWalletData = _b[1];
 
+  var buttonName = {
+    name: "Создать",
+    type: "button"
+  };
   var paginationDataWallet = {
     arrayNumber: state_1["default"].GeneralData.arrayNameAllWallets,
     activeNumber: state_1["default"].GeneralData.activePaginationAllWallets,
@@ -2399,7 +2425,7 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
     className: "list-wallet"
   }, listWallet)), react_1["default"].createElement("div", {
     className: "wrapper-pagination-button-create"
-  }, state_1["default"].GeneralData.arrayNameAllWallets.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], __assign({}, paginationDataWallet)) : "", react_1["default"].createElement(ButtonCreate_1["default"], null)));
+  }, state_1["default"].GeneralData.arrayNameAllWallets.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], __assign({}, paginationDataWallet)) : "", react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, buttonName))));
 });
 exports.default = AllWalletsMainPage;
 
@@ -2443,14 +2469,12 @@ var OneWallet_1 = __importDefault(__webpack_require__(/*! ./OneWallet/OneWallet 
 
 var EditOneEstimate_1 = __importDefault(__webpack_require__(/*! ./OneEstimate/EditOneEstimate/EditOneEstimate */ "./resources/js/components/OneEstimate/EditOneEstimate/EditOneEstimate.tsx"));
 
-var PopUp_1 = __importDefault(__webpack_require__(/*! ./PopUp/PopUp */ "./resources/js/components/PopUp/PopUp.tsx"));
-
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
 var App = mobx_react_lite_1.observer(function () {
   return react_1["default"].createElement("div", {
     className: "wrapper-all-app"
-  }, react_1["default"].createElement(PopUp_1["default"], null), react_1["default"].createElement(Header_1["default"], null), react_1["default"].createElement(react_router_dom_1.BrowserRouter, null, react_1["default"].createElement(react_router_dom_1.Switch, null, react_1["default"].createElement(react_router_dom_1.Route, {
+  }, react_1["default"].createElement(Header_1["default"], null), react_1["default"].createElement(react_router_dom_1.BrowserRouter, null, react_1["default"].createElement(react_router_dom_1.Switch, null, react_1["default"].createElement(react_router_dom_1.Route, {
     exact: true,
     path: "/",
     component: AllEstimateAndWallet_1["default"]
@@ -2469,41 +2493,6 @@ var App = mobx_react_lite_1.observer(function () {
   }))), react_1["default"].createElement(Footer_1["default"], null));
 });
 exports.default = App;
-
-/***/ }),
-
-/***/ "./resources/js/components/ButtonAdd/ButtonAdd.tsx":
-/*!*********************************************************!*\
-  !*** ./resources/js/components/ButtonAdd/ButtonAdd.tsx ***!
-  \*********************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-__webpack_require__(/*! ./_ButtonAdd.scss */ "./resources/js/components/ButtonAdd/_ButtonAdd.scss");
-
-var ButtonAdd = function ButtonAdd() {
-  return react_1["default"].createElement("div", {
-    className: "button-main"
-  }, react_1["default"].createElement("a", {
-    href: "#"
-  }, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C"));
-};
-
-exports.default = ButtonAdd;
 
 /***/ }),
 
@@ -2565,12 +2554,15 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 
 __webpack_require__(/*! ./_ButtonCreate.scss */ "./resources/js/components/ButtonCreate/_ButtonCreate.scss");
 
-var ButtonCreate = function ButtonCreate() {
+var ButtonCreate = function ButtonCreate(props) {
   return react_1["default"].createElement("div", {
     className: "button-main"
-  }, react_1["default"].createElement("a", {
-    href: "#"
-  }, "\u0421\u043E\u0437\u0434\u0430\u0442\u044C"));
+  }, react_1["default"].createElement("input", {
+    className: "button-add-new-item ",
+    type: props.type,
+    value: props.name,
+    onClick: props.callbackClick
+  }));
 };
 
 exports.default = ButtonCreate;
@@ -3785,6 +3777,22 @@ exports.default = PaginationRows;
 "use strict";
 
 
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -3803,7 +3811,11 @@ __webpack_require__(/*! ./_PopUp.scss */ "./resources/js/components/PopUp/_PopUp
 
 var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
 
-var PopUp = mobx_react_lite_1.observer(function () {
+var PopUp = mobx_react_lite_1.observer(function (props) {
+  var buttonName = {
+    name: "Создать",
+    type: "submit"
+  };
   return react_1["default"].createElement("div", {
     className: "wrapper-for-background"
   }, react_1["default"].createElement("div", {
@@ -3813,14 +3825,15 @@ var PopUp = mobx_react_lite_1.observer(function () {
   }, react_1["default"].createElement("p", null, "\u0421\u043E\u0437\u0434\u0430\u043D\u0438\u0435 \u0441\u043C\u0435\u0442\u044B "), react_1["default"].createElement("img", {
     src: "../images/cancel_white.svg",
     alt: "close",
-    className: "close-img"
+    className: "close-img",
+    onClick: props.closeClick
   })), react_1["default"].createElement("div", {
     className: "wrapper-for-name"
   }, react_1["default"].createElement("p", null, "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 "), react_1["default"].createElement("input", {
     type: "text"
   })), react_1["default"].createElement("div", {
     className: "wrapper-for-button"
-  }, react_1["default"].createElement(ButtonCreate_1["default"], null))));
+  }, react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, buttonName)))));
 });
 exports.default = PopUp;
 
@@ -4583,12 +4596,48 @@ var Estimate_1 = __importDefault(__webpack_require__(/*! ./Estimate */ "./resour
 
 var Wallet_1 = __importDefault(__webpack_require__(/*! ./Wallet */ "./resources/js/state/Wallet.tsx"));
 
+var _reationEditingEstimates_1 = __importDefault(__webpack_require__(/*! ./СreationEditingEstimates */ "./resources/js/state/СreationEditingEstimates.ts"));
+
 var store = {
   GeneralData: new GeneralData_1["default"](),
   Estimate: new Estimate_1["default"](),
-  Wallet: new Wallet_1["default"]()
+  Wallet: new Wallet_1["default"](),
+  СreationEditingEstimates: new _reationEditingEstimates_1["default"]()
 };
 exports.default = store;
+
+/***/ }),
+
+/***/ "./resources/js/state/СreationEditingEstimates.ts":
+/*!********************************************************!*\
+  !*** ./resources/js/state/СreationEditingEstimates.ts ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var mobx_1 = __webpack_require__(/*! mobx */ "./node_modules/mobx/dist/mobx.esm.js");
+
+mobx_1.configure({
+  enforceActions: "never"
+});
+
+var СreationEditingEstimates =
+/** @class */
+function () {
+  function СreationEditingEstimates() {
+    mobx_1.makeObservable(this, {});
+  }
+
+  return СreationEditingEstimates;
+}();
+
+exports.default = СreationEditingEstimates;
 
 /***/ }),
 
@@ -9126,30 +9175,6 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-all-estimate-wallet {\n  disp
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/ButtonAdd/_ButtonAdd.scss":
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/ButtonAdd/_ButtonAdd.scss ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, ".button-main {\n  display: flex;\n  justify-content: flex-end;\n}\n.button-main a {\n  font-family: \"Podkova\", serif;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 24px;\n  width: 200px;\n  height: 46px;\n  background-color: #5354D2;\n  color: white;\n  border-radius: 10px;\n  cursor: pointer;\n  border: none;\n  text-decoration: none;\n}\n.button-main a:hover {\n  opacity: 0.8;\n  background-color: #FE7BA7;\n}", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/ButtonAddNewRow/_ButtonAddNewRow.scss":
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/ButtonAddNewRow/_ButtonAddNewRow.scss ***!
@@ -9191,7 +9216,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".button-main {\n  display: flex;\n  justify-content: center;\n}\n.button-main a {\n  font-family: \"Podkova\", serif;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 24px;\n  width: 200px;\n  height: 46px;\n  background-color: #5354D2;\n  color: white;\n  border-radius: 10px;\n  cursor: pointer;\n  border: none;\n  text-decoration: none;\n}\n.button-main a:hover {\n  opacity: 0.8;\n  background-color: #FE7BA7;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".button-main {\n  display: flex;\n  justify-content: flex-end;\n}\n.button-main input {\n  font-family: \"Podkova\", serif;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 24px;\n  width: 200px;\n  height: 46px;\n  background-color: #5354D2;\n  color: white;\n  border-radius: 10px;\n  cursor: pointer;\n  border: none;\n  text-decoration: none;\n}\n.button-main input:hover {\n  opacity: 0.8;\n  background-color: #FE7BA7;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9239,7 +9264,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-header {\n  height: 150px;\n  background-color: #F5F5F5;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.wrapper-header a {\n  text-decoration: none;\n}\n.wrapper-header a .logo-header {\n  color: #FE7BA7;\n  font-size: 70px;\n  margin: 0;\n  padding: 0;\n  font-family: \"Podkova\", serif;\n  margin-left: 20px;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.wrapper-header a .logo-header:hover {\n  cursor: pointer;\n}\n.wrapper-header .image-header {\n  height: 100%;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-header {\n  height: 130px;\n  background-color: #F5F5F5;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.wrapper-header a {\n  text-decoration: none;\n}\n.wrapper-header a .logo-header {\n  color: #FE7BA7;\n  font-size: 70px;\n  margin: 0;\n  padding: 0;\n  font-family: \"Podkova\", serif;\n  margin-left: 20px;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.wrapper-header a .logo-header:hover {\n  cursor: pointer;\n}\n.wrapper-header .image-header {\n  height: 100%;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9503,7 +9528,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-for-background {\n  position: absolute;\n  height: 100%;\n  width: 100%;\n  background: #C4C4C4;\n  align-items: center;\n  justify-content: center;\n  display: flex;\n  z-index: 1;\n}\n.wrapper-for-background .wrapper-pop-up {\n  background: #F5F5F5;\n  display: flex;\n  flex-direction: column;\n  font-size: 1.5rem;\n  width: 40%;\n  height: 40%;\n  border-radius: 10px;\n  justify-content: space-between;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-header-create-new-name {\n  border-radius: 10px 10px 0 0;\n  display: flex;\n  justify-content: space-between;\n  background: #FE7BA7;\n  padding: 0 10px 0 20px;\n  color: #FFFFFF;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-header-create-new-name .close-img {\n  height: 50%;\n  padding: 10px 0;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-name {\n  padding: 0 20px;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-name input {\n  width: 90%;\n  border: 1px solid #FDB547;\n  align-self: center;\n  height: 36px;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-button {\n  align-self: center;\n  padding-bottom: 20px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-for-background {\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  background: #C4C4C4;\n  align-items: center;\n  justify-content: center;\n  display: flex;\n  z-index: 1;\n}\n.wrapper-for-background .wrapper-pop-up {\n  background: #F5F5F5;\n  display: flex;\n  flex-direction: column;\n  font-size: 1.5rem;\n  width: 40%;\n  height: 40%;\n  border-radius: 10px;\n  justify-content: space-between;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-header-create-new-name {\n  border-radius: 10px 10px 0 0;\n  display: flex;\n  justify-content: space-between;\n  background: #FE7BA7;\n  padding: 0 10px 0 20px;\n  color: #FFFFFF;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-header-create-new-name .close-img {\n  height: 50%;\n  padding: 10px 0;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-name {\n  padding: 0 20px;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-name input {\n  width: 90%;\n  border: 1px solid #FDB547;\n  align-self: center;\n  height: 36px;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-button {\n  align-self: center;\n  padding-bottom: 20px;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -79617,36 +79642,6 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AllEstimateAndWallet_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
-
-/***/ }),
-
-/***/ "./resources/js/components/ButtonAdd/_ButtonAdd.scss":
-/*!***********************************************************!*\
-  !*** ./resources/js/components/ButtonAdd/_ButtonAdd.scss ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_ButtonAdd_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./_ButtonAdd.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/ButtonAdd/_ButtonAdd.scss");
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_ButtonAdd_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_ButtonAdd_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 

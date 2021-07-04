@@ -1,6 +1,6 @@
 import React from "react";
 import './_AllEstimate.scss';
-import ButtonAdd from "../ButtonAdd/ButtonAdd";
+import ButtonAdd from "../ButtonCreate/ButtonCreate";
 
 const AllEstimate: React.FC = () => {
     return (

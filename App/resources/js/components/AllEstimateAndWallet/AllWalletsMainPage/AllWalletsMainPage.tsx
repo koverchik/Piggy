@@ -4,6 +4,7 @@ import './../_AllEstimateAndWallet.scss';
 import store from "../../../state";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
+import PopUp from "../../PopUp/PopUp";
 import PaginationInterface from "../../../interfaces/interfacesPagination";
 import Pagination from "../../PaginationRows/PaginationRows";
 
@@ -11,6 +12,8 @@ const AllWalletsMainPage: React.FC = observer(() => {
   
 const [listWallet, setlistWallet] = useState([]);
 const [listWalletData, settWalletData] = useState([]);
+const buttonName: object = {name: "Создать",
+                            type: "button"};
 
 const paginationDataWallet: PaginationInterface = {
     arrayNumber: store.GeneralData.arrayNameAllWallets,
@@ -73,7 +76,7 @@ useEffect(() => {
                 </div>
                 <div className="wrapper-pagination-button-create">
                 {store.GeneralData.arrayNameAllWallets.length > 1 ? <Pagination {...paginationDataWallet} /> : ""} 
-                    <Button/>
+                    <Button {...buttonName} />
                 </div>
             </div>
         )

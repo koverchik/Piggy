@@ -4,13 +4,25 @@ import './../_AllEstimateAndWallet.scss';
 import store from "../../../state";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
+import interfacesButtonCreate from "../../../interfaces/intefacesButtonCreate";
 import PaginationInterface from "../../../interfaces/interfacesPagination";
 import Pagination from "../../PaginationRows/PaginationRows";
+import PopUp from "../../PopUp/PopUp";
+import interfacesPopUp from "../../../interfaces/interfacesPopUp";
 
 const AllEstimateMainPage: React.FC = observer(() => {
-  
+ 
     const [listEstimate, setlistEstimate] = useState([]);
     const [listEstimateData, setlistEstimateData] = useState([]);
+    const [statePopUp, setStatePopUp] = useState(false);
+
+    const buttonName: interfacesButtonCreate = { name: "Создать",
+                                                type: "button",
+                                                callbackClick,
+                                                }; 
+    const popUpData: interfacesPopUp = {
+        closeClick,
+    }                                          
 
     const paginationDataEstimate: PaginationInterface = {
         arrayNumber: store.GeneralData.arrayNameAllEstimates,
@@ -22,8 +34,7 @@ const AllEstimateMainPage: React.FC = observer(() => {
   
     useEffect(() => {
 
-        store.GeneralData.allEstimates().then((data: any) => {
-            
+        store.GeneralData.allEstimates().then((data: any) => {        
             
             if(data === "Error"){
                 const notiseError : any = 
@@ -36,9 +47,10 @@ const AllEstimateMainPage: React.FC = observer(() => {
                 setlistEstimateData(data);               
                 createRowsEstimate(data, store.GeneralData.activePaginationAllEstimates);        
             }
-        })
-
+        })        
     }, []);
+
+
 
 function callbackPaginationArray(event: Event) {
     const { textContent } = event.target as HTMLDivElement;
@@ -52,6 +64,12 @@ function callbackPaginationLeft() {
     store.GeneralData.activePaginationAllEstimates < store.GeneralData.arrayNameAllEstimates.length ? 
         store.GeneralData.activePaginationAllEstimates = +store.GeneralData.activePaginationAllEstimates + 1 : "";
 }
+function callbackClick (){
+    setStatePopUp(true);
+}
+function closeClick() {
+    setStatePopUp(false);
+}
 
 function createRowsEstimate(data:any, pagination: number) {
     const list = data.map(( item: any, i: number ) =>{
@@ -64,9 +82,11 @@ function createRowsEstimate(data:any, pagination: number) {
 
 useEffect(() => {
     createRowsEstimate(listEstimateData, store.GeneralData.activePaginationAllEstimates);
+    
 }, [store.GeneralData.activePaginationAllEstimates]);
     return (
         <div className="wapper-estimate">
+           {statePopUp ? <PopUp { ...popUpData}/> : null}
             <div className="wrapper-block-name-list">
                 <p className="header-blok-view">Сметы</p>
                 <ul className="list-estimate">
@@ -75,7 +95,7 @@ useEffect(() => {
             </div>
             <div className="wrapper-pagination-button-create">
                 {store.GeneralData.arrayNameAllEstimates.length > 1 ? <Pagination {...paginationDataEstimate}/> : ""}
-                <Button/>
+                <Button {...buttonName} />
             </div>
         </div>
 
