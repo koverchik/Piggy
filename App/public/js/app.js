@@ -3810,7 +3810,11 @@ var PopUp = mobx_react_lite_1.observer(function (props) {
     type: "submit"
   };
   return react_1["default"].createElement("div", {
-    className: "wrapper-for-background"
+    className: "wrapper-for-background",
+    onClick: function onClick(event) {
+      props.closeClick();
+      event.stopPropagation();
+    }
   }, react_1["default"].createElement("div", {
     className: "wrapper-pop-up"
   }, react_1["default"].createElement("div", {

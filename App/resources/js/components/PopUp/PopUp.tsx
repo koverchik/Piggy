@@ -7,7 +7,7 @@ const PopUp: React.FC = observer((props: any) => {
    const buttonName: object = {name: "Создать",
                                type: "submit"}; 
     return (
-      <div className={"wrapper-for-background"}>
+      <div className="wrapper-for-background" onClick={(event)=> { props.closeClick(); event.stopPropagation();}}>
          <div className="wrapper-pop-up">
             <div className="wrapper-header-create-new-name">
                <p>Создание {props.kind} </p> 
