@@ -15,20 +15,24 @@ const [listWallet, setlistWallet] = useState([]);
 const [listWalletData, settWalletData] = useState([]);
 const [statePopUp, setStatePopUp] = useState(false);
 
-const buttonName: object = {name: "Создать",
-                            type: "button",
-                            callbackClick};
+const buttonName: object = {
+    name: "Создать",
+    type: "button",
+    callbackClick};
 
 const paginationDataWallet: PaginationInterface = {
     arrayNumber: store.GeneralData.arrayNameAllWallets,
     activeNumber: store.GeneralData.activePaginationAllWallets,
-    callbackPaginationArray,
-    callbackPaginationRight,
-    callbackPaginationLeft,
+    callbackPaginationArray: store.GeneralData.callbackPaginationArrayW,
+    callbackPaginationRight: store.GeneralData.callbackPaginationRightW,
+    callbackPaginationLeft: store.GeneralData.callbackPaginationLeftW,
     }
+
 const popUpData: interfacesPopUp = {
-    name: "кошелька",
+    name: store.СreationEditingEstimates.newNameWallet,
+    kind: "кошелька",
     closeClick,
+    onChangeFunction: store.СreationEditingEstimates.onChangeFnWalletName,
 }    
 function callbackClick (){
     setStatePopUp(true);
@@ -36,6 +40,7 @@ function callbackClick (){
 function closeClick() {
     setStatePopUp(false);
 }
+
 useEffect(() => {
     store.GeneralData.allWallets().then((data: any) => {
         if(data === "Error"){
@@ -52,18 +57,6 @@ useEffect(() => {
     })
 }, []);
 
-function callbackPaginationArray(event: Event) {
-    const { textContent } = event.target as HTMLDivElement;   
-    if(textContent != null){store.GeneralData.activePaginationAllWallets = +textContent;} 
-}
-function callbackPaginationRight() {
-    store.GeneralData.activePaginationAllWallets < store.GeneralData.arrayNameAllWallets.length ? 
-        store.GeneralData.activePaginationAllWallets = +store.GeneralData.activePaginationAllWallets + 1 : "";
-}
-function callbackPaginationLeft() {
-    store.GeneralData.activePaginationAllWallets > 1 ?
-            store.GeneralData.activePaginationAllWallets = store.GeneralData.activePaginationAllWallets - 1 : "";
-}
 function createRowsWallets(data:any, pagination: number) {
     const list = data.map(( item: any, i: number ) =>{
         return (  

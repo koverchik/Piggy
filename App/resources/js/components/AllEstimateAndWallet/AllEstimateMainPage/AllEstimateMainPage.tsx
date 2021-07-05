@@ -21,16 +21,18 @@ const AllEstimateMainPage: React.FC = observer(() => {
                                                 callbackClick,
                                                 }; 
     const popUpData: interfacesPopUp = {
-        name: "сметы",
+        name: store.СreationEditingEstimates.newNameEstimate,
+        kind: "сметы",
         closeClick,
+        onChangeFunction: store.СreationEditingEstimates.onChangeFnEstimateName,
     }                                          
 
     const paginationDataEstimate: PaginationInterface = {
         arrayNumber: store.GeneralData.arrayNameAllEstimates,
         activeNumber: store.GeneralData.activePaginationAllEstimates,
-        callbackPaginationArray,
-        callbackPaginationLeft,
-        callbackPaginationRight,
+        callbackPaginationArray: store.GeneralData.callbackPaginationArrayE,
+        callbackPaginationRight: store.GeneralData.callbackPaginationRightE,
+        callbackPaginationLeft: store.GeneralData.callbackPaginationLeftE,
         }
   
     useEffect(() => {
@@ -51,40 +53,25 @@ const AllEstimateMainPage: React.FC = observer(() => {
         })        
     }, []);
 
+    function callbackClick (){
+        setStatePopUp(true);
+    }
+    function closeClick() {
+        setStatePopUp(false);
+    }
+    function createRowsEstimate(data:any, pagination: number) {
+        const list = data.map(( item: any, i: number ) =>{
+            return (  <li key={"listEstimate"+i} className={ !((pagination-1) * 10 < i+1 && i+1 <= (pagination-1)*10 + 10)  ? "hide-row" : ""}>
+                        <Link to={"/estimate-" + item['names_estimates_id']}>{item['full_name']}</Link>
+                    </li>)
+            })
+        setlistEstimate(list);
+    }
 
-
-function callbackPaginationArray(event: Event) {
-    const { textContent } = event.target as HTMLDivElement;
-    if(textContent != null){store.GeneralData.activePaginationAllEstimates = +textContent;} 
-}
-function callbackPaginationRight() {
-    store.GeneralData.activePaginationAllEstimates > 1 ?
-            store.GeneralData.activePaginationAllEstimates = store.GeneralData.activePaginationAllEstimates - 1 : "";
-}
-function callbackPaginationLeft() {
-    store.GeneralData.activePaginationAllEstimates < store.GeneralData.arrayNameAllEstimates.length ? 
-        store.GeneralData.activePaginationAllEstimates = +store.GeneralData.activePaginationAllEstimates + 1 : "";
-}
-function callbackClick (){
-    setStatePopUp(true);
-}
-function closeClick() {
-    setStatePopUp(false);
-}
-
-function createRowsEstimate(data:any, pagination: number) {
-    const list = data.map(( item: any, i: number ) =>{
-        return (  <li key={"listEstimate"+i} className={ !((pagination-1) * 10 < i+1 && i+1 <= (pagination-1)*10 + 10)  ? "hide-row" : ""}>
-                     <Link to={"/estimate-" + item['names_estimates_id']}>{item['full_name']}</Link>
-                  </li>)
-          })
-     setlistEstimate(list);
-}
-
-useEffect(() => {
-    createRowsEstimate(listEstimateData, store.GeneralData.activePaginationAllEstimates);
-    
-}, [store.GeneralData.activePaginationAllEstimates]);
+    useEffect(() => {
+        createRowsEstimate(listEstimateData, store.GeneralData.activePaginationAllEstimates);
+        
+    }, [store.GeneralData.activePaginationAllEstimates]);
     return (
         <div className="wapper-estimate">
            {statePopUp ? <PopUp { ...popUpData}/> : null}
@@ -99,7 +86,6 @@ useEffect(() => {
                 <Button {...buttonName} />
             </div>
         </div>
-
     )
 });
 export default AllEstimateMainPage;

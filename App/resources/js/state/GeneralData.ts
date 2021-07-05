@@ -29,6 +29,7 @@ export default class GeneralData {
             arrayNameAllWallets: observable,
             allWallets: action,
             allEstimates: action,
+            callbackPaginationRightW: action,
           },
         );
     }
@@ -77,4 +78,29 @@ export default class GeneralData {
     return result;
     }
 
-}
+  callbackPaginationRightW = () => {
+    this.activePaginationAllWallets < this.arrayNameAllWallets.length ? 
+      this.activePaginationAllWallets = +this.activePaginationAllWallets + 1 : "";
+  }
+  callbackPaginationLeftW = () => {
+    this.activePaginationAllWallets > 1 ?
+    this.activePaginationAllWallets = this.activePaginationAllWallets - 1 : "";
+  }
+  callbackPaginationArrayW = (event: Event) => {
+    const { textContent } = event.target as HTMLDivElement;   
+    if(textContent != null){this.activePaginationAllWallets = +textContent;} 
+  }
+
+  callbackPaginationRightE = () => {
+    this.activePaginationAllEstimates < this.arrayNameAllEstimates.length ? 
+      this.activePaginationAllEstimates = +this.activePaginationAllEstimates + 1 : "";
+  }
+  callbackPaginationLeftE = () => {
+    this.activePaginationAllEstimates > 1 ?
+    this.activePaginationAllEstimates = this.activePaginationAllEstimates - 1 : "";
+  }
+  callbackPaginationArrayE = (event: Event) => {
+    const { textContent } = event.target as HTMLDivElement;   
+    if(textContent != null){this.activePaginationAllEstimates = +textContent;} 
+  }
+} 

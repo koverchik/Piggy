@@ -28,6 +28,10 @@
             .close-img{
                 height: 50%;
                 padding: 10px 0 ;
+                &:hover{
+                    filter: brightness(0.1);
+                    cursor: pointer;
+                }
             }
         }
         .wrapper-for-name{
@@ -39,6 +43,13 @@
                 border: 1px solid #FDB547;
                 align-self: center;
                 height: 36px;
+                font-size: 1.3rem;
+                &:active{
+                    border: 1px solid #FDB547;
+                 }
+                &:focus{
+                    outline: none;
+                }
             }
         }
         .wrapper-for-button{

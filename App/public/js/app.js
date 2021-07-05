@@ -2187,15 +2187,17 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
     callbackClick: callbackClick
   };
   var popUpData = {
-    name: "сметы",
-    closeClick: closeClick
+    name: state_1["default"].СreationEditingEstimates.newNameEstimate,
+    kind: "сметы",
+    closeClick: closeClick,
+    onChangeFunction: state_1["default"].СreationEditingEstimates.onChangeFnEstimateName
   };
   var paginationDataEstimate = {
     arrayNumber: state_1["default"].GeneralData.arrayNameAllEstimates,
     activeNumber: state_1["default"].GeneralData.activePaginationAllEstimates,
-    callbackPaginationArray: callbackPaginationArray,
-    callbackPaginationLeft: callbackPaginationLeft,
-    callbackPaginationRight: callbackPaginationRight
+    callbackPaginationArray: state_1["default"].GeneralData.callbackPaginationArrayE,
+    callbackPaginationRight: state_1["default"].GeneralData.callbackPaginationRightE,
+    callbackPaginationLeft: state_1["default"].GeneralData.callbackPaginationLeftE
   };
   react_1.useEffect(function () {
     state_1["default"].GeneralData.allEstimates().then(function (data) {
@@ -2211,22 +2213,6 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
       }
     });
   }, []);
-
-  function callbackPaginationArray(event) {
-    var textContent = event.target.textContent;
-
-    if (textContent != null) {
-      state_1["default"].GeneralData.activePaginationAllEstimates = +textContent;
-    }
-  }
-
-  function callbackPaginationRight() {
-    state_1["default"].GeneralData.activePaginationAllEstimates > 1 ? state_1["default"].GeneralData.activePaginationAllEstimates = state_1["default"].GeneralData.activePaginationAllEstimates - 1 : "";
-  }
-
-  function callbackPaginationLeft() {
-    state_1["default"].GeneralData.activePaginationAllEstimates < state_1["default"].GeneralData.arrayNameAllEstimates.length ? state_1["default"].GeneralData.activePaginationAllEstimates = +state_1["default"].GeneralData.activePaginationAllEstimates + 1 : "";
-  }
 
   function callbackClick() {
     setStatePopUp(true);
@@ -2373,13 +2359,15 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
   var paginationDataWallet = {
     arrayNumber: state_1["default"].GeneralData.arrayNameAllWallets,
     activeNumber: state_1["default"].GeneralData.activePaginationAllWallets,
-    callbackPaginationArray: callbackPaginationArray,
-    callbackPaginationRight: callbackPaginationRight,
-    callbackPaginationLeft: callbackPaginationLeft
+    callbackPaginationArray: state_1["default"].GeneralData.callbackPaginationArrayW,
+    callbackPaginationRight: state_1["default"].GeneralData.callbackPaginationRightW,
+    callbackPaginationLeft: state_1["default"].GeneralData.callbackPaginationLeftW
   };
   var popUpData = {
-    name: "кошелька",
-    closeClick: closeClick
+    name: state_1["default"].СreationEditingEstimates.newNameWallet,
+    kind: "кошелька",
+    closeClick: closeClick,
+    onChangeFunction: state_1["default"].СreationEditingEstimates.onChangeFnWalletName
   };
 
   function callbackClick() {
@@ -2404,22 +2392,6 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
       }
     });
   }, []);
-
-  function callbackPaginationArray(event) {
-    var textContent = event.target.textContent;
-
-    if (textContent != null) {
-      state_1["default"].GeneralData.activePaginationAllWallets = +textContent;
-    }
-  }
-
-  function callbackPaginationRight() {
-    state_1["default"].GeneralData.activePaginationAllWallets < state_1["default"].GeneralData.arrayNameAllWallets.length ? state_1["default"].GeneralData.activePaginationAllWallets = +state_1["default"].GeneralData.activePaginationAllWallets + 1 : "";
-  }
-
-  function callbackPaginationLeft() {
-    state_1["default"].GeneralData.activePaginationAllWallets > 1 ? state_1["default"].GeneralData.activePaginationAllWallets = state_1["default"].GeneralData.activePaginationAllWallets - 1 : "";
-  }
 
   function createRowsWallets(data, pagination) {
     var list = data.map(function (item, i) {
@@ -3843,7 +3815,7 @@ var PopUp = mobx_react_lite_1.observer(function (props) {
     className: "wrapper-pop-up"
   }, react_1["default"].createElement("div", {
     className: "wrapper-header-create-new-name"
-  }, react_1["default"].createElement("p", null, "\u0421\u043E\u0437\u0434\u0430\u043D\u0438\u0435 ", props.name, " "), react_1["default"].createElement("img", {
+  }, react_1["default"].createElement("p", null, "\u0421\u043E\u0437\u0434\u0430\u043D\u0438\u0435 ", props.kind, " "), react_1["default"].createElement("img", {
     src: "../images/cancel_white.svg",
     alt: "close",
     className: "close-img",
@@ -3851,7 +3823,9 @@ var PopUp = mobx_react_lite_1.observer(function (props) {
   })), react_1["default"].createElement("div", {
     className: "wrapper-for-name"
   }, react_1["default"].createElement("p", null, "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 "), react_1["default"].createElement("input", {
-    type: "text"
+    type: "text",
+    value: props.name,
+    onChange: props.onChangeFunction
   })), react_1["default"].createElement("div", {
     className: "wrapper-for-button"
   }, react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, buttonName)))));
@@ -4203,6 +4177,8 @@ var GeneralData =
 /** @class */
 function () {
   function GeneralData() {
+    var _this = this;
+
     this.idUser = 9;
     this.nameAllEstimates = 0;
     this.nameAllWallets = 0;
@@ -4212,6 +4188,39 @@ function () {
     this.arrayNameAllWallets = new Array();
     this.allDataEstimate = {};
     this.allDataWallets = {};
+
+    this.callbackPaginationRightW = function () {
+      _this.activePaginationAllWallets < _this.arrayNameAllWallets.length ? _this.activePaginationAllWallets = +_this.activePaginationAllWallets + 1 : "";
+    };
+
+    this.callbackPaginationLeftW = function () {
+      _this.activePaginationAllWallets > 1 ? _this.activePaginationAllWallets = _this.activePaginationAllWallets - 1 : "";
+    };
+
+    this.callbackPaginationArrayW = function (event) {
+      var textContent = event.target.textContent;
+
+      if (textContent != null) {
+        _this.activePaginationAllWallets = +textContent;
+      }
+    };
+
+    this.callbackPaginationRightE = function () {
+      _this.activePaginationAllEstimates < _this.arrayNameAllEstimates.length ? _this.activePaginationAllEstimates = +_this.activePaginationAllEstimates + 1 : "";
+    };
+
+    this.callbackPaginationLeftE = function () {
+      _this.activePaginationAllEstimates > 1 ? _this.activePaginationAllEstimates = _this.activePaginationAllEstimates - 1 : "";
+    };
+
+    this.callbackPaginationArrayE = function (event) {
+      var textContent = event.target.textContent;
+
+      if (textContent != null) {
+        _this.activePaginationAllEstimates = +textContent;
+      }
+    };
+
     mobx_1.makeObservable(this, {
       idUser: mobx_1.observable,
       nameAllEstimates: mobx_1.observable,
@@ -4223,7 +4232,8 @@ function () {
       activePaginationAllEstimates: mobx_1.observable,
       arrayNameAllWallets: mobx_1.observable,
       allWallets: mobx_1.action,
-      allEstimates: mobx_1.action
+      allEstimates: mobx_1.action,
+      callbackPaginationRightW: mobx_1.action
     });
   }
 
@@ -4652,8 +4662,30 @@ var СreationEditingEstimates =
 /** @class */
 function () {
   function СreationEditingEstimates() {
-    mobx_1.makeObservable(this, {});
+    var _this = this;
+
+    this.newNameEstimate = "";
+    this.newNameWallet = "";
+
+    this.onChangeFnEstimateName = function (event) {
+      _this.newNameEstimate = event.target.value;
+    };
+
+    this.onChangeFnWalletName = function (event) {
+      _this.newNameWallet = event.target.value;
+    };
+
+    mobx_1.makeObservable(this, {
+      newNameEstimate: mobx_1.observable,
+      newNameWallet: mobx_1.observable,
+      createNewEstimate: mobx_1.action,
+      onChangeFnEstimateName: mobx_1.action,
+      onChangeFnWalletName: mobx_1.action
+    });
+    this.onChangeFnEstimateName.bind(this);
   }
+
+  СreationEditingEstimates.prototype.createNewEstimate = function (event) {};
 
   return СreationEditingEstimates;
 }();
@@ -9549,7 +9581,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-for-background {\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  background: #C4C4C4;\n  align-items: center;\n  justify-content: center;\n  display: flex;\n  z-index: 1;\n}\n.wrapper-for-background .wrapper-pop-up {\n  background: #F5F5F5;\n  display: flex;\n  flex-direction: column;\n  font-size: 1.5rem;\n  width: 40%;\n  height: 40%;\n  border-radius: 10px;\n  justify-content: space-between;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-header-create-new-name {\n  border-radius: 10px 10px 0 0;\n  display: flex;\n  justify-content: space-between;\n  background: #FE7BA7;\n  padding: 0 10px 0 20px;\n  color: #FFFFFF;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-header-create-new-name .close-img {\n  height: 50%;\n  padding: 10px 0;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-name {\n  padding: 0 20px;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-name input {\n  width: 90%;\n  border: 1px solid #FDB547;\n  align-self: center;\n  height: 36px;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-button {\n  align-self: center;\n  padding-bottom: 20px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-for-background {\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  background: #C4C4C4;\n  align-items: center;\n  justify-content: center;\n  display: flex;\n  z-index: 1;\n}\n.wrapper-for-background .wrapper-pop-up {\n  background: #F5F5F5;\n  display: flex;\n  flex-direction: column;\n  font-size: 1.5rem;\n  width: 40%;\n  height: 40%;\n  border-radius: 10px;\n  justify-content: space-between;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-header-create-new-name {\n  border-radius: 10px 10px 0 0;\n  display: flex;\n  justify-content: space-between;\n  background: #FE7BA7;\n  padding: 0 10px 0 20px;\n  color: #FFFFFF;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-header-create-new-name .close-img {\n  height: 50%;\n  padding: 10px 0;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-header-create-new-name .close-img:hover {\n  filter: brightness(0.1);\n  cursor: pointer;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-name {\n  padding: 0 20px;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-name input {\n  width: 90%;\n  border: 1px solid #FDB547;\n  align-self: center;\n  height: 36px;\n  font-size: 1.3rem;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-name input:active {\n  border: 1px solid #FDB547;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-name input:focus {\n  outline: none;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-button {\n  align-self: center;\n  padding-bottom: 20px;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

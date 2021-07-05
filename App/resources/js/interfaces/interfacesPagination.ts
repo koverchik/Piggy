@@ -4,7 +4,7 @@ interface Pagination extends React.HTMLAttributes<HTMLDivElement>{
     arrayNumber : number[],
     activeNumber: number,
     callbackPaginationArray(event: Event| null): void;
-    callbackPaginationLeft(): void;
+    callbackPaginationLeft(activePaginationAllWallets:number): void;
     callbackPaginationRight(): void;
 }
 export default Pagination;
