@@ -2,13 +2,17 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import './_PopUp.scss';
 import Button from "../ButtonCreate/ButtonCreate";
+import interfacesButtonCreate from "../../interfaces/intefacesButtonCreate";
 
 const PopUp: React.FC = observer((props: any) => {
-   const buttonName: object = {name: "Создать",
-                               type: "submit"}; 
+  
+   const buttonName: interfacesButtonCreate = {name: "Создать",
+                               type: "submit",
+                               callbackClick: props.callbackClick}; 
+                            
     return (
-      <div className="wrapper-for-background" onClick={(event)=> { props.closeClick(); event.stopPropagation();}}>
-         <div className="wrapper-pop-up">
+      <div className="wrapper-for-background" onClick={props.closeClick}>
+         <div className="wrapper-pop-up" onClick={(event)=> {event.stopPropagation()}}>
             <div className="wrapper-header-create-new-name">
                <p>Создание {props.kind} </p> 
                <img src="../images/cancel_white.svg" alt="close" className="close-img" onClick={props.closeClick}/>

@@ -1,38 +1,34 @@
 import { makeObservable, action, observable, configure } from "mobx";
 import axios from 'axios';
-
-configure({
-    enforceActions: "never",
-  })
   
 export default class СreationEditingEstimates {
     
   newNameEstimate = "";
-  newNameWallet = "";
 
   constructor() {
     makeObservable(this, {
       newNameEstimate: observable,
-      newNameWallet: observable,
       createNewEstimate: action,
       onChangeFnEstimateName: action,
-      onChangeFnWalletName: action,
     })
-    this.onChangeFnEstimateName.bind(this);
   }
   
 
-  createNewEstimate(event:any){
-    
-      
- 
- 
+  createNewEstimate = () => {   
+    const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'new-estimate', {name: this.newNameEstimate, idUser: 9} )
+    .then(response => {
+      this.newNameEstimate = "";
+      return response.data;
+    },
+    response => {
+        console.log("error request " + response);
+        return "Error";
+        })
+    return result;
   }
+
   onChangeFnEstimateName = (event:any) => {
     this.newNameEstimate = event.target.value;
   }
-  onChangeFnWalletName = (event:any) => {
-    this.newNameWallet = event.target.value;
 
-  }
 }

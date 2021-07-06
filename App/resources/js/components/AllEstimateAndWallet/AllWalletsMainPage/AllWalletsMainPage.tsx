@@ -29,10 +29,11 @@ const paginationDataWallet: PaginationInterface = {
     }
 
 const popUpData: interfacesPopUp = {
-    name: store.СreationEditingEstimates.newNameWallet,
+    name: store.СreationEditingWallets.newNameWallet,
     kind: "кошелька",
     closeClick,
-    onChangeFunction: store.СreationEditingEstimates.onChangeFnWalletName,
+    onChangeFunction: store.СreationEditingWallets.onChangeFnWalletName,
+    callbackClick: store.СreationEditingWallets.createNewWallet,
 }    
 function callbackClick (){
     setStatePopUp(true);

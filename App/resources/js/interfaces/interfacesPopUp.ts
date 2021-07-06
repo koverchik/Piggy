@@ -5,5 +5,7 @@ interface interfacesPopUp extends React.HTMLAttributes<HTMLDivElement>{
     kind: string,
     closeClick: () => void;
     onChangeFunction(event: Event| null): void;
+    callbackClick: () => Promise<string | void>;
 }
+
 export default interfacesPopUp;

@@ -2190,7 +2190,8 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
     name: state_1["default"].СreationEditingEstimates.newNameEstimate,
     kind: "сметы",
     closeClick: closeClick,
-    onChangeFunction: state_1["default"].СreationEditingEstimates.onChangeFnEstimateName
+    onChangeFunction: state_1["default"].СreationEditingEstimates.onChangeFnEstimateName,
+    callbackClick: state_1["default"].СreationEditingEstimates.createNewEstimate
   };
   var paginationDataEstimate = {
     arrayNumber: state_1["default"].GeneralData.arrayNameAllEstimates,
@@ -2364,10 +2365,11 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
     callbackPaginationLeft: state_1["default"].GeneralData.callbackPaginationLeftW
   };
   var popUpData = {
-    name: state_1["default"].СreationEditingEstimates.newNameWallet,
+    name: state_1["default"].СreationEditingWallets.newNameWallet,
     kind: "кошелька",
     closeClick: closeClick,
-    onChangeFunction: state_1["default"].СreationEditingEstimates.onChangeFnWalletName
+    onChangeFunction: state_1["default"].СreationEditingWallets.onChangeFnWalletName,
+    callbackClick: state_1["default"].СreationEditingWallets.createNewWallet
   };
 
   function callbackClick() {
@@ -3807,16 +3809,17 @@ var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../ButtonCreate/But
 var PopUp = mobx_react_lite_1.observer(function (props) {
   var buttonName = {
     name: "Создать",
-    type: "submit"
+    type: "submit",
+    callbackClick: props.callbackClick
   };
   return react_1["default"].createElement("div", {
     className: "wrapper-for-background",
+    onClick: props.closeClick
+  }, react_1["default"].createElement("div", {
+    className: "wrapper-pop-up",
     onClick: function onClick(event) {
-      props.closeClick();
       event.stopPropagation();
     }
-  }, react_1["default"].createElement("div", {
-    className: "wrapper-pop-up"
   }, react_1["default"].createElement("div", {
     className: "wrapper-header-create-new-name"
   }, react_1["default"].createElement("p", null, "\u0421\u043E\u0437\u0434\u0430\u043D\u0438\u0435 ", props.kind, " "), react_1["default"].createElement("img", {
@@ -4633,11 +4636,14 @@ var Wallet_1 = __importDefault(__webpack_require__(/*! ./Wallet */ "./resources/
 
 var _reationEditingEstimates_1 = __importDefault(__webpack_require__(/*! ./СreationEditingEstimates */ "./resources/js/state/СreationEditingEstimates.ts"));
 
+var _reationEditingWallets_1 = __importDefault(__webpack_require__(/*! ./СreationEditingWallets */ "./resources/js/state/СreationEditingWallets.ts"));
+
 var store = {
   GeneralData: new GeneralData_1["default"](),
   Estimate: new Estimate_1["default"](),
   Wallet: new Wallet_1["default"](),
-  СreationEditingEstimates: new _reationEditingEstimates_1["default"]()
+  СreationEditingEstimates: new _reationEditingEstimates_1["default"](),
+  СreationEditingWallets: new _reationEditingWallets_1["default"]()
 };
 exports.default = store;
 
@@ -4647,10 +4653,16 @@ exports.default = store;
 /*!********************************************************!*\
   !*** ./resources/js/state/СreationEditingEstimates.ts ***!
   \********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -4658,9 +4670,7 @@ Object.defineProperty(exports, "__esModule", ({
 
 var mobx_1 = __webpack_require__(/*! mobx */ "./node_modules/mobx/dist/mobx.esm.js");
 
-mobx_1.configure({
-  enforceActions: "never"
-});
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 
 var СreationEditingEstimates =
 /** @class */
@@ -4669,10 +4679,82 @@ function () {
     var _this = this;
 
     this.newNameEstimate = "";
-    this.newNameWallet = "";
+
+    this.createNewEstimate = function () {
+      var result = axios_1["default"].post("http://localhost:8000/" + 'new-estimate', {
+        name: _this.newNameEstimate,
+        idUser: 9
+      }).then(function (response) {
+        _this.newNameEstimate = "";
+        return response.data;
+      }, function (response) {
+        console.log("error request " + response);
+        return "Error";
+      });
+      return result;
+    };
 
     this.onChangeFnEstimateName = function (event) {
       _this.newNameEstimate = event.target.value;
+    };
+
+    mobx_1.makeObservable(this, {
+      newNameEstimate: mobx_1.observable,
+      createNewEstimate: mobx_1.action,
+      onChangeFnEstimateName: mobx_1.action
+    });
+  }
+
+  return СreationEditingEstimates;
+}();
+
+exports.default = СreationEditingEstimates;
+
+/***/ }),
+
+/***/ "./resources/js/state/СreationEditingWallets.ts":
+/*!******************************************************!*\
+  !*** ./resources/js/state/СreationEditingWallets.ts ***!
+  \******************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var mobx_1 = __webpack_require__(/*! mobx */ "./node_modules/mobx/dist/mobx.esm.js");
+
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+
+var СreationEditingWallets =
+/** @class */
+function () {
+  function СreationEditingWallets() {
+    var _this = this;
+
+    this.newNameWallet = "";
+
+    this.createNewWallet = function () {
+      var result = axios_1["default"].post("http://localhost:8000/" + 'new-wallet', {
+        name: _this.newNameWallet,
+        idUser: 9
+      }).then(function (response) {
+        _this.newNameWallet = "";
+        return response.data;
+      }, function (response) {
+        console.log("error request " + response);
+        return "Error";
+      });
+      return result;
     };
 
     this.onChangeFnWalletName = function (event) {
@@ -4680,21 +4762,16 @@ function () {
     };
 
     mobx_1.makeObservable(this, {
-      newNameEstimate: mobx_1.observable,
       newNameWallet: mobx_1.observable,
-      createNewEstimate: mobx_1.action,
-      onChangeFnEstimateName: mobx_1.action,
+      createNewWallet: mobx_1.action,
       onChangeFnWalletName: mobx_1.action
     });
-    this.onChangeFnEstimateName.bind(this);
   }
 
-  СreationEditingEstimates.prototype.createNewEstimate = function (event) {};
-
-  return СreationEditingEstimates;
+  return СreationEditingWallets;
 }();
 
-exports.default = СreationEditingEstimates;
+exports.default = СreationEditingWallets;
 
 /***/ }),
 

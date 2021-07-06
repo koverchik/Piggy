@@ -25,6 +25,7 @@ const AllEstimateMainPage: React.FC = observer(() => {
         kind: "сметы",
         closeClick,
         onChangeFunction: store.СreationEditingEstimates.onChangeFnEstimateName,
+        callbackClick: store.СreationEditingEstimates.createNewEstimate,
     }                                          
 
     const paginationDataEstimate: PaginationInterface = {

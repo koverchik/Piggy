@@ -28,9 +28,19 @@ class ListController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $data)
     {
-        //
+
+        $NamesEstimates = new NamesEstimates;
+        $NamesEstimates -> name = $data['name'];
+        $NamesEstimates -> user_id = $data['idUser'];
+        $NamesEstimates->save();
+        $idNewEstimate = $NamesEstimates->id;
+        $ScopeEstimates = new ScopeEstimates;
+        $ScopeEstimates -> names_estimates_id = $idNewEstimate;
+        $ScopeEstimates -> user_id = $data['idUser'];
+        $ScopeEstimates->save();
+        return $idNewEstimate;
     }
 
     /**

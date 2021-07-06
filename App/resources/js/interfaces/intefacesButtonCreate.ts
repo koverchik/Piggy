@@ -5,5 +5,6 @@ interface ButtonCreate extends React.HTMLAttributes<HTMLDivElement>{
     type: "button" | "submit",
     callbackClick: () => void;
     
+    
 }
 export default ButtonCreate;

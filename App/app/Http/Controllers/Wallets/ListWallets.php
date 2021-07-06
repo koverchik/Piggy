@@ -25,23 +25,25 @@ class ListWallets extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $id)
+    public function create(Request $data)
     {
 
-        // $array = ScopeDiscription::with('Autor')->where("names_wallets_id", 1)->get();
-        // $array = RowWallets::with('Autor')->where("names_wallets_id", 1)->get();
-        // $comments = RowWallets::find(1)->NamesWallet;
-        // $names = NamesWallet::where('id', $id["id"])->get();
-        // // dd($array);
-        // $test = RowWallets::with('Autor')->where("names_wallets_id", 1)->get();
-        // foreach ($test as $one) {
-        //     dd($one->Autor);
-            
-        //     $test= $one;
-        //     $name->full_name = $name->NamesWallet->name;
-        //     $name->ouner_id = $name->NamesWallet->user_id; 
-        //   }
-        // return $wallet->toJson();
+        $NamesWallet = new NamesWallet;
+        $NamesWallet -> name = $data['name'];
+        $NamesWallet -> user_id = $data['idUser'];
+        $NamesWallet->save();
+        $idNewWallet = $NamesWallet->id;
+        $ScopeDiscription = new ScopeDiscription;
+        $ScopeDiscription -> delete_table = 1;
+        $ScopeDiscription -> edit_permission = 1;
+        $ScopeDiscription -> edit_row = 1;
+        $ScopeDiscription -> browsing = 1;
+        $ScopeDiscription -> add_row = 1;
+        $ScopeDiscription -> delete_row = 1;
+        $ScopeDiscription -> names_wallets_id = $idNewWallet;
+        $ScopeDiscription -> user_id = $data['idUser'];
+        $ScopeDiscription->save();
+        return $idNewWallet;
     }
 
     /**
