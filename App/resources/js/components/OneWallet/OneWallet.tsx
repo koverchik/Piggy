@@ -10,7 +10,7 @@ const OneWallet: React.FC = observer(() => {
 
    const params: { id:string, 
                     name:string } = useParams();
-    store.Wallet.idWallet = params.id;
+    store.Wallet.idWallet = +params.id;
       
     return (
     <div className="wrapper-one-wallet">

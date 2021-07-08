@@ -43,7 +43,11 @@ class ListWallets extends Controller
         $ScopeDiscription -> names_wallets_id = $idNewWallet;
         $ScopeDiscription -> user_id = $data['idUser'];
         $ScopeDiscription->save();
-        return $idNewWallet;
+        $dataNewWallet = array(
+            "id" => $idNewWallet,
+            "name"  => $data['name'],
+        );
+        return $dataNewWallet;
     }
 
     /**

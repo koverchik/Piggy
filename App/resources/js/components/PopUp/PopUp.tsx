@@ -6,10 +6,11 @@ import interfacesButtonCreate from "../../interfaces/intefacesButtonCreate";
 
 const PopUp: React.FC = observer((props: any) => {
   
-   const buttonName: interfacesButtonCreate = {name: "Создать",
-                               type: "submit",
-                               callbackClick: props.callbackClick,
-                               redirectPage: props.redirectPage}; 
+   const buttonName: interfacesButtonCreate = {
+         name: "Создать",
+         type: "submit",
+         callbackClick: props.callbackClick,
+         redirectPage: props.redirectPage}; 
                             
     return (
       <div className="wrapper-for-background" onClick={props.closeClick}>

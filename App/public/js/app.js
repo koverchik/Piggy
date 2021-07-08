@@ -2335,13 +2335,15 @@ Object.defineProperty(exports, "__esModule", ({
 
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
 
 __webpack_require__(/*! ./../_AllEstimateAndWallet.scss */ "./resources/js/components/AllEstimateAndWallet/_AllEstimateAndWallet.scss");
 
 var state_1 = __importDefault(__webpack_require__(/*! ../../../state */ "./resources/js/state/index.ts"));
 
-var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+var react_router_dom_2 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
@@ -2362,10 +2364,16 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
       statePopUp = _c[0],
       setStatePopUp = _c[1];
 
+  var _d = react_1.useState(false),
+      renderRedirect = _d[0],
+      setRedirect = _d[1];
+
   var buttonName = {
     name: "Создать",
     type: "button",
-    callbackClick: callbackClick
+    callbackClick: function callbackClick() {
+      return setStatePopUp(true);
+    }
   };
   var paginationDataWallet = {
     arrayNumber: state_1["default"].GeneralData.arrayNameAllWallets,
@@ -2377,17 +2385,19 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
   var popUpData = {
     name: state_1["default"].СreationEditingWallets.newNameWallet,
     kind: "кошелька",
-    closeClick: closeClick,
+    closeClick: function closeClick() {
+      return setStatePopUp(false);
+    },
     onChangeFunction: state_1["default"].СreationEditingWallets.onChangeFnWalletName,
-    callbackClick: state_1["default"].СreationEditingWallets.createNewWallet
+    callbackClick: state_1["default"].СreationEditingWallets.createNewWallet,
+    redirectPage: redirectPage
   };
 
-  function callbackClick() {
-    setStatePopUp(true);
-  }
-
-  function closeClick() {
-    setStatePopUp(false);
+  function redirectPage(idPage) {
+    state_1["default"].Wallet.idWallet = idPage["id"];
+    state_1["default"].Wallet.nameWallet = idPage["name"];
+    console.log(idPage);
+    setRedirect(idPage);
   }
 
   react_1.useEffect(function () {
@@ -2410,7 +2420,7 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
       return react_1["default"].createElement("li", {
         key: "listWallet" + i,
         className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? "hide-row" : ""
-      }, react_1["default"].createElement(react_router_dom_1.Link, {
+      }, react_1["default"].createElement(react_router_dom_2.Link, {
         to: "/wallet-" + item['names_wallets_id'] + '-' + item['names_wallet']['name']
       }, item['names_wallet']['name']));
     });
@@ -2430,7 +2440,9 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
     className: "list-wallet"
   }, listWallet)), react_1["default"].createElement("div", {
     className: "wrapper-pagination-button-create"
-  }, state_1["default"].GeneralData.arrayNameAllWallets.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], __assign({}, paginationDataWallet)) : "", react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, buttonName))));
+  }, state_1["default"].GeneralData.arrayNameAllWallets.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], __assign({}, paginationDataWallet)) : "", renderRedirect ? react_1["default"].createElement(react_router_dom_1.Redirect, {
+    to: 'wallet-' + state_1["default"].Wallet.idWallet + "-" + state_1["default"].Wallet.nameWallet
+  }) : "", react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, buttonName))));
 });
 exports.default = AllWalletsMainPage;
 
@@ -3336,7 +3348,7 @@ var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_mod
 
 var OneWallet = mobx_react_lite_1.observer(function () {
   var params = react_router_dom_1.useParams();
-  state_1["default"].Wallet.idWallet = params.id;
+  state_1["default"].Wallet.idWallet = +params.id;
   return react_1["default"].createElement("div", {
     className: "wrapper-one-wallet"
   }, react_1["default"].createElement("div", {
@@ -4503,7 +4515,8 @@ var Wallet =
 function () {
   function Wallet() {
     this.newDataRaw = "";
-    this.idWallet = "";
+    this.idWallet = 0;
+    this.nameWallet = "";
     this.allSumm = 0;
     this.newRowWallet = "";
     this.newRowCost = "";
@@ -4525,6 +4538,7 @@ function () {
       lengthBurdenUser: mobx_1.observable,
       numberPagination: mobx_1.observable,
       activePagination: mobx_1.observable,
+      nameWallet: mobx_1.observable,
       startOneWalet: mobx_1.action,
       scopeOneWallet: mobx_1.action,
       addZero: mobx_1.action,

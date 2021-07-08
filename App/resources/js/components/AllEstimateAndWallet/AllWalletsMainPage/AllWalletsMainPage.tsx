@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Redirect } from 'react-router-dom'
 import Button from "../../ButtonCreate/ButtonCreate";
 import './../_AllEstimateAndWallet.scss';
 import store from "../../../state";
@@ -14,11 +15,12 @@ const AllWalletsMainPage: React.FC = observer(() => {
 const [listWallet, setlistWallet] = useState([]);
 const [listWalletData, settWalletData] = useState([]);
 const [statePopUp, setStatePopUp] = useState(false);
+const [renderRedirect, setRedirect] = useState(false);
 
 const buttonName: object = {
     name: "Создать",
     type: "button",
-    callbackClick,
+    callbackClick: () => setStatePopUp(true),
    };
 
 const paginationDataWallet: PaginationInterface = {
@@ -27,21 +29,23 @@ const paginationDataWallet: PaginationInterface = {
     callbackPaginationArray: store.GeneralData.callbackPaginationArrayW,
     callbackPaginationRight: store.GeneralData.callbackPaginationRightW,
     callbackPaginationLeft: store.GeneralData.callbackPaginationLeftW,
+    
     }
 
 const popUpData: interfacesPopUp = {
     name: store.СreationEditingWallets.newNameWallet,
     kind: "кошелька",
-    closeClick,
+    closeClick: () => setStatePopUp(false),
     onChangeFunction: store.СreationEditingWallets.onChangeFnWalletName,
     callbackClick: store.СreationEditingWallets.createNewWallet,
+    redirectPage: redirectPage,
+}   
 
-}    
-function callbackClick (){
-    setStatePopUp(true);
-}
-function closeClick() {
-    setStatePopUp(false);
+function redirectPage(idPage:any) {
+    store.Wallet.idWallet = idPage["id"];
+    store.Wallet.nameWallet = idPage["name"];
+    console.log(idPage);
+    setRedirect(idPage);
 }
 
 useEffect(() => {
@@ -86,6 +90,7 @@ useEffect(() => {
                 </div>
                 <div className="wrapper-pagination-button-create">
                 {store.GeneralData.arrayNameAllWallets.length > 1 ? <Pagination {...paginationDataWallet} /> : ""} 
+                    {renderRedirect ? <Redirect to={'wallet-' + store.Wallet.idWallet+ "-" +store.Wallet.nameWallet} /> : ""}
                     <Button {...buttonName} />
                 </div>
             </div>

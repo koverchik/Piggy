@@ -7,7 +7,8 @@ configure({
   
 export default class Wallet {
     newDataRaw = "";
-    idWallet = "";
+    idWallet = 0;
+    nameWallet = "";
     allSumm = 0;
     newRowWallet = "";
     newRowCost = "";
@@ -31,6 +32,7 @@ export default class Wallet {
         lengthBurdenUser: observable,
         numberPagination: observable,
         activePagination: observable,
+        nameWallet: observable,
         startOneWalet: action,
         scopeOneWallet: action,
         addZero: action, 
