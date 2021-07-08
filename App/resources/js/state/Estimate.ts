@@ -7,7 +7,7 @@ configure({
 
 export default class Estimate {
  
-  idEstimate = "";
+  idEstimate = 0;
   nameEstimate = "";
   reactElemRows = new Array();
   dataRows = new Array();
@@ -40,9 +40,25 @@ export default class Estimate {
       requestNewRow: action,
       deleteRow: action,
       validationAdd: action,
+      callbackPaginationArray: action,
       },
     );
   }
+
+  callbackPaginationArray = (event: Event) => {
+    const { textContent } = event.target as HTMLDivElement;
+    if(textContent != null){this.activePagination = +textContent;} 
+    }
+
+  callbackPaginationLeft = () =>  {
+      this.activePagination > 1 ?
+      this.activePagination = this.activePagination - 1 : "";
+      }
+
+  callbackPaginationRight = () =>  {
+    this.activePagination < this.pagination.length ? 
+    this.activePagination = +this.activePagination + 1 : "";
+        }
 
   async requestOneEstimate(){
    

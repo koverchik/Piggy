@@ -18,7 +18,8 @@ const [statePopUp, setStatePopUp] = useState(false);
 const buttonName: object = {
     name: "Создать",
     type: "button",
-    callbackClick};
+    callbackClick,
+   };
 
 const paginationDataWallet: PaginationInterface = {
     arrayNumber: store.GeneralData.arrayNameAllWallets,
@@ -34,6 +35,7 @@ const popUpData: interfacesPopUp = {
     closeClick,
     onChangeFunction: store.СreationEditingWallets.onChangeFnWalletName,
     callbackClick: store.СreationEditingWallets.createNewWallet,
+
 }    
 function callbackClick (){
     setStatePopUp(true);

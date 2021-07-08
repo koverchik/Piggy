@@ -2154,13 +2154,15 @@ Object.defineProperty(exports, "__esModule", ({
 
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
 
 __webpack_require__(/*! ./../_AllEstimateAndWallet.scss */ "./resources/js/components/AllEstimateAndWallet/_AllEstimateAndWallet.scss");
 
 var state_1 = __importDefault(__webpack_require__(/*! ../../../state */ "./resources/js/state/index.ts"));
 
-var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+var react_router_dom_2 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
@@ -2181,17 +2183,26 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
       statePopUp = _c[0],
       setStatePopUp = _c[1];
 
+  var _d = react_1.useState(false),
+      renderRedirect = _d[0],
+      setRedirect = _d[1];
+
   var buttonName = {
     name: "Создать",
     type: "button",
-    callbackClick: callbackClick
+    callbackClick: function callbackClick() {
+      return setStatePopUp(true);
+    }
   };
   var popUpData = {
     name: state_1["default"].СreationEditingEstimates.newNameEstimate,
     kind: "сметы",
-    closeClick: closeClick,
+    closeClick: function closeClick() {
+      return setStatePopUp(false);
+    },
     onChangeFunction: state_1["default"].СreationEditingEstimates.onChangeFnEstimateName,
-    callbackClick: state_1["default"].СreationEditingEstimates.createNewEstimate
+    callbackClick: state_1["default"].СreationEditingEstimates.createNewEstimate,
+    redirectPage: redirectPage
   };
   var paginationDataEstimate = {
     arrayNumber: state_1["default"].GeneralData.arrayNameAllEstimates,
@@ -2215,24 +2226,21 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
     });
   }, []);
 
-  function callbackClick() {
-    setStatePopUp(true);
-  }
-
-  function closeClick() {
-    setStatePopUp(false);
-  }
-
   function createRowsEstimate(data, pagination) {
     var list = data.map(function (item, i) {
       return react_1["default"].createElement("li", {
         key: "listEstimate" + i,
         className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? "hide-row" : ""
-      }, react_1["default"].createElement(react_router_dom_1.Link, {
+      }, react_1["default"].createElement(react_router_dom_2.Link, {
         to: "/estimate-" + item['names_estimates_id']
       }, item['full_name']));
     });
     setlistEstimate(list);
+  }
+
+  function redirectPage(idPage) {
+    state_1["default"].Estimate.idEstimate = idPage;
+    setRedirect(true);
   }
 
   react_1.useEffect(function () {
@@ -2248,7 +2256,9 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
     className: "list-estimate"
   }, listEstimate)), react_1["default"].createElement("div", {
     className: "wrapper-pagination-button-create"
-  }, state_1["default"].GeneralData.arrayNameAllEstimates.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], __assign({}, paginationDataEstimate)) : "", react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, buttonName))));
+  }, state_1["default"].GeneralData.arrayNameAllEstimates.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], __assign({}, paginationDataEstimate)) : "", renderRedirect ? react_1["default"].createElement(react_router_dom_1.Redirect, {
+    to: 'estimate-' + state_1["default"].Estimate.idEstimate
+  }) : "", react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, buttonName))));
 });
 exports.default = AllEstimateMainPage;
 
@@ -2556,7 +2566,15 @@ var ButtonCreate = function ButtonCreate(props) {
     className: "button-add-new-item ",
     type: props.type,
     value: props.name,
-    onClick: props.callbackClick
+    onClick: function onClick() {
+      var idPage = props.callbackClick();
+
+      if (idPage != undefined) {
+        idPage.then(function (data) {
+          return props.redirectPage(data);
+        });
+      }
+    }
   }));
 };
 
@@ -2951,27 +2969,10 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
   var paginationData = {
     arrayNumber: index_1["default"].Estimate.pagination,
     activeNumber: index_1["default"].Estimate.activePagination,
-    callbackPaginationArray: callbackPaginationArray,
-    callbackPaginationLeft: callbackPaginationLeft,
-    callbackPaginationRight: callbackPaginationRight
+    callbackPaginationArray: index_1["default"].Estimate.callbackPaginationArray,
+    callbackPaginationLeft: index_1["default"].Estimate.callbackPaginationLeft,
+    callbackPaginationRight: index_1["default"].Estimate.callbackPaginationRight
   };
-
-  function callbackPaginationArray(event) {
-    var textContent = event.target.textContent;
-
-    if (textContent != null) {
-      index_1["default"].Estimate.activePagination = +textContent;
-    }
-  }
-
-  function callbackPaginationLeft() {
-    index_1["default"].Estimate.activePagination > 1 ? index_1["default"].Estimate.activePagination = index_1["default"].Estimate.activePagination - 1 : "";
-  }
-
-  function callbackPaginationRight() {
-    index_1["default"].Estimate.activePagination < index_1["default"].Estimate.pagination.length ? index_1["default"].Estimate.activePagination = +index_1["default"].Estimate.activePagination + 1 : "";
-  }
-
   react_1.useEffect(function () {
     index_1["default"].Estimate.requestOneEstimate().then(function (data) {
       if (data === "Error") {
@@ -2984,7 +2985,16 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
         index_1["default"].Estimate.dataRows = data;
         var lengthData = index_1["default"].Estimate.pagination.length;
         index_1["default"].Estimate.activePagination = index_1["default"].Estimate.pagination.length;
-        createList(data, lengthData);
+
+        if (lengthData === 0) {
+          var list = react_1["default"].createElement("tr", {
+            key: "RowEstimate",
+            className: "error-table"
+          }, "\u0417\u0434\u0435\u0441\u044C \u043F\u043E\u043A\u0430 \u043D\u0438\u0447\u0435\u0433\u043E \u043D\u0435\u0442, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0441\u0442\u0440\u043E\u043A");
+          setlistRowsEstimate(list);
+        } else {
+          createList(data, lengthData);
+        }
       }
     });
   }, [index_1["default"].Estimate.sumRows]);
@@ -3810,7 +3820,8 @@ var PopUp = mobx_react_lite_1.observer(function (props) {
   var buttonName = {
     name: "Создать",
     type: "submit",
-    callbackClick: props.callbackClick
+    callbackClick: props.callbackClick,
+    redirectPage: props.redirectPage
   };
   return react_1["default"].createElement("div", {
     className: "wrapper-for-background",
@@ -4015,7 +4026,9 @@ var Estimate =
 /** @class */
 function () {
   function Estimate() {
-    this.idEstimate = "";
+    var _this = this;
+
+    this.idEstimate = 0;
     this.nameEstimate = "";
     this.reactElemRows = new Array();
     this.dataRows = new Array();
@@ -4030,6 +4043,23 @@ function () {
     this.validationNewRowCost = true;
     this.messegeNewRow = "";
     this.messegeNewRowCost = "";
+
+    this.callbackPaginationArray = function (event) {
+      var textContent = event.target.textContent;
+
+      if (textContent != null) {
+        _this.activePagination = +textContent;
+      }
+    };
+
+    this.callbackPaginationLeft = function () {
+      _this.activePagination > 1 ? _this.activePagination = _this.activePagination - 1 : "";
+    };
+
+    this.callbackPaginationRight = function () {
+      _this.activePagination < _this.pagination.length ? _this.activePagination = +_this.activePagination + 1 : "";
+    };
+
     mobx_1.makeObservable(this, {
       idEstimate: mobx_1.observable,
       sumRows: mobx_1.observable,
@@ -4045,7 +4075,8 @@ function () {
       requestOneEstimate: mobx_1.action,
       requestNewRow: mobx_1.action,
       deleteRow: mobx_1.action,
-      validationAdd: mobx_1.action
+      validationAdd: mobx_1.action,
+      callbackPaginationArray: mobx_1.action
     });
   }
 
@@ -4685,13 +4716,19 @@ function () {
         name: _this.newNameEstimate,
         idUser: 9
       }).then(function (response) {
-        _this.newNameEstimate = "";
-        return response.data;
+        if (response.status === 200) {
+          _this.newNameEstimate = "";
+          return response.data;
+        }
       }, function (response) {
         console.log("error request " + response);
         return "Error";
       });
       return result;
+    };
+
+    this.test = function () {
+      console.log("hello");
     };
 
     this.onChangeFnEstimateName = function (event) {

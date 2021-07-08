@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Redirect } from 'react-router-dom'
 import Button from "../../ButtonCreate/ButtonCreate";
 import './../_AllEstimateAndWallet.scss';
 import store from "../../../state";
@@ -10,22 +11,26 @@ import Pagination from "../../PaginationRows/PaginationRows";
 import PopUp from "../../PopUp/PopUp";
 import interfacesPopUp from "../../../interfaces/interfacesPopUp";
 
+
 const AllEstimateMainPage: React.FC = observer(() => {
  
     const [listEstimate, setlistEstimate] = useState([]);
     const [listEstimateData, setlistEstimateData] = useState([]);
     const [statePopUp, setStatePopUp] = useState(false);
-
+    const [renderRedirect, setRedirect] = useState(false);
+    
+   
     const buttonName: interfacesButtonCreate = { name: "Создать",
                                                 type: "button",
-                                                callbackClick,
+                                                callbackClick: () => setStatePopUp(true),
                                                 }; 
     const popUpData: interfacesPopUp = {
         name: store.СreationEditingEstimates.newNameEstimate,
         kind: "сметы",
-        closeClick,
+        closeClick: () => setStatePopUp(false),
         onChangeFunction: store.СreationEditingEstimates.onChangeFnEstimateName,
         callbackClick: store.СreationEditingEstimates.createNewEstimate,
+        redirectPage: redirectPage,
     }                                          
 
     const paginationDataEstimate: PaginationInterface = {
@@ -54,12 +59,6 @@ const AllEstimateMainPage: React.FC = observer(() => {
         })        
     }, []);
 
-    function callbackClick (){
-        setStatePopUp(true);
-    }
-    function closeClick() {
-        setStatePopUp(false);
-    }
     function createRowsEstimate(data:any, pagination: number) {
         const list = data.map(( item: any, i: number ) =>{
             return (  <li key={"listEstimate"+i} className={ !((pagination-1) * 10 < i+1 && i+1 <= (pagination-1)*10 + 10)  ? "hide-row" : ""}>
@@ -68,11 +67,14 @@ const AllEstimateMainPage: React.FC = observer(() => {
             })
         setlistEstimate(list);
     }
-
+    function redirectPage(idPage:number) {
+        store.Estimate.idEstimate = idPage;
+        setRedirect(true);
+    }
     useEffect(() => {
         createRowsEstimate(listEstimateData, store.GeneralData.activePaginationAllEstimates);
-        
     }, [store.GeneralData.activePaginationAllEstimates]);
+
     return (
         <div className="wapper-estimate">
            {statePopUp ? <PopUp { ...popUpData}/> : null}
@@ -84,6 +86,7 @@ const AllEstimateMainPage: React.FC = observer(() => {
             </div>
             <div className="wrapper-pagination-button-create">
                 {store.GeneralData.arrayNameAllEstimates.length > 1 ? <Pagination {...paginationDataEstimate}/> : ""}
+                { renderRedirect ? <Redirect to={'estimate-' + store.Estimate.idEstimate} /> : "" }
                 <Button {...buttonName} />
             </div>
         </div>

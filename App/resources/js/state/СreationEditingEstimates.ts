@@ -1,6 +1,7 @@
 import { makeObservable, action, observable, configure } from "mobx";
 import axios from 'axios';
-  
+import Estimate from "./Estimate";
+
 export default class СreationEditingEstimates {
     
   newNameEstimate = "";
@@ -17,14 +18,20 @@ export default class СreationEditingEstimates {
   createNewEstimate = () => {   
     const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'new-estimate', {name: this.newNameEstimate, idUser: 9} )
     .then(response => {
-      this.newNameEstimate = "";
-      return response.data;
+      if (response.status === 200) {
+        this.newNameEstimate = "";
+        return response.data;
+      }
     },
     response => {
         console.log("error request " + response);
         return "Error";
         })
     return result;
+  }
+
+  test = () =>{
+    console.log("hello");
   }
 
   onChangeFnEstimateName = (event:any) => {

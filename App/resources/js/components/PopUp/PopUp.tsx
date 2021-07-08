@@ -8,7 +8,8 @@ const PopUp: React.FC = observer((props: any) => {
   
    const buttonName: interfacesButtonCreate = {name: "Создать",
                                type: "submit",
-                               callbackClick: props.callbackClick}; 
+                               callbackClick: props.callbackClick,
+                               redirectPage: props.redirectPage}; 
                             
     return (
       <div className="wrapper-for-background" onClick={props.closeClick}>

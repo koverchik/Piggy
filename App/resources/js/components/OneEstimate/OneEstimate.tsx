@@ -18,25 +18,10 @@ const OneEstimate: React.FC = observer((props : any) => {
     const paginationData: PaginationInterface = {
     arrayNumber: store.Estimate.pagination,
     activeNumber: store.Estimate.activePagination,
-    callbackPaginationArray,
-    callbackPaginationLeft,
-    callbackPaginationRight,
+    callbackPaginationArray: store.Estimate.callbackPaginationArray,
+    callbackPaginationLeft: store.Estimate.callbackPaginationLeft,
+    callbackPaginationRight: store.Estimate.callbackPaginationRight,
     }
-
-    function callbackPaginationArray(event: Event) {
-        const { textContent } = event.target as HTMLDivElement;
-        if(textContent != null){store.Estimate.activePagination = +textContent;} 
-        }
-
-    function callbackPaginationLeft() {
-        store.Estimate.activePagination > 1 ?
-            store.Estimate.activePagination = store.Estimate.activePagination - 1 : "";
-        }
-
-    function callbackPaginationRight() {
-        store.Estimate.activePagination < store.Estimate.pagination.length ? 
-        store.Estimate.activePagination = +store.Estimate.activePagination + 1 : "";
-            }
 
     useEffect(() => {
 
@@ -49,9 +34,16 @@ const OneEstimate: React.FC = observer((props : any) => {
                  setlistRowsEstimate(list);
              }else{
                 store.Estimate.dataRows = data;
-                const lengthData : any = store.Estimate.pagination.length;
+                const lengthData : number = store.Estimate.pagination.length;
                 store.Estimate.activePagination = store.Estimate.pagination.length;
-                createList(data, lengthData);
+                if(lengthData === 0){
+                    const list : any  =  ( <tr key={"RowEstimate"} className="error-table">
+                    Здесь пока ничего нет, попробуйте добавить несколько строк
+                    </tr>)
+                    setlistRowsEstimate(list);
+                }else{
+                    createList(data, lengthData);
+                }               
              }
         } )
 
