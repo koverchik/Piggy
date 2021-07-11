@@ -9,6 +9,7 @@ const PopUp: React.FC = observer((props: any) => {
    const buttonName: interfacesButtonCreate = {
          name: "Создать",
          type: "submit",
+         image: false,
          callbackClick: props.callbackClick,
          redirectPage: props.redirectPage}; 
                             

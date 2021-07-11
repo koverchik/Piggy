@@ -24,19 +24,28 @@ useEffect(() => {
                 setlistRowsWallet(messageError);
             }else{
                 store.Wallet.allRows = data.data.rows;
-                store.Wallet.lengthRows = data.data.rows.length;                   
-                createListRows(data.data.rows, store.Wallet.activePagination);
-     
+            
+                
+                store.Wallet.lengthRows = data.data.rows.length; 
+                if(store.Wallet.lengthRows === 0) {
+                    const warning : any  =  ( <tr key={"RowWallet"} className="error-one-walet">
+                            <td colSpan={5} >Здесь пока ничего нет, попробуйте добавить несколько строк</td>
+                        </tr>)
+                    setlistRowsWallet(warning);
+                }else {
+                    createListRows(data.data.rows, store.Wallet.activePagination);
+                }            
             }
         })
 }, [ store.Wallet.allSumm ])
 
 useEffect(() => {
     createListRows(store.Wallet.allRows, store.Wallet.activePagination);
- }, [store.Wallet.activePagination])
+
+ }, [store.Wallet.activePagination, store.Wallet.allSumm])
 
 
-function createListRows(data:any, pagination: number) {
+function createListRows(data:any, pagination: number) {      
     const result:any = data.map((item: any, i: number) => {       
         const dataOneRow = new Date(item["created_at_time"]);            
                     return(
@@ -67,10 +76,9 @@ function createListRows(data:any, pagination: number) {
                         { listRowsWallet }
                     </tbody>
                     <tfoot>
-                        <tr>
-                            <td className="empty-item">  </td>
-                            <td className="empty-item">  </td>
-                            <td className="title-cost-all-item"> Итого:  </td>
+                        <tr>   
+                            <td className="empty-item" colSpan={2}></td>
+                            <td className="title-cost-all-item" > Итого:  </td>
                             <td className="cost-all-item"> {store.Wallet.allSumm.toFixed(2)} руб </td>
                         </tr>
                     </tfoot>

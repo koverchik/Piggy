@@ -4,12 +4,23 @@ import "../_OneWallet.scss";
 import store from "../../../state";
 import { observer } from "mobx-react-lite";
 import TableDebetCredit from "./TableDebetCredit/TableDebetCredit";
+import interfacesButtonCreate from "../../../interfaces/intefacesButtonCreate";
+import Button from "../../ButtonCreate/ButtonCreate";
 
 const BurdenSharing: React.FC = observer(() => {
     const [listScopeOneWallet, setListScopeOneWallet] = useState([]);
+    const [tableDebetCredit, setTableDebetCredit] = useState(false);
+
+    const buttonName: interfacesButtonCreate = { 
+    name: "Добавить",
+    type: "button",
+    image: true,
+    srcImage:"../images/add-user.svg",
+    }; 
     useEffect(() => {
         store.Wallet.scopeOneWallet().then((data: any) => {
             store.Wallet.lengthBurdenUser = data.length;
+            if(store.Wallet.lengthBurdenUser > 1){setTableDebetCredit(true)}
             createListRows(data);
         });
      }, [])
@@ -49,11 +60,8 @@ const BurdenSharing: React.FC = observer(() => {
                 { listScopeOneWallet }
             </tbody>
         </table>
-        <div className="button-add-new-user">
-            <img src="../images/add-user.svg"></img>
-            <p>Добавить</p>
-        </div>
-        <TableDebetCredit/>
+        <Button {... buttonName }/>
+        {tableDebetCredit ? <TableDebetCredit/>: ''}
     </div>      
     )
 });

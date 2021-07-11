@@ -24,8 +24,7 @@ const OneWallet: React.FC = observer(() => {
                 <BurdenSharing/>
             </div>
         </div>
-    </div>
-       
+    </div>  
     )
 });
 export default OneWallet;

@@ -22,12 +22,14 @@ const AllEstimateMainPage: React.FC = observer(() => {
    
     const buttonName: interfacesButtonCreate = { name: "Создать",
                                                 type: "button",
+                                                image: false,
                                                 callbackClick: () => setStatePopUp(true),
                                                 }; 
     const popUpData: interfacesPopUp = {
         name: store.СreationEditingEstimates.newNameEstimate,
         kind: "сметы",
         closeClick: () => setStatePopUp(false),
+        image: false,
         onChangeFunction: store.СreationEditingEstimates.onChangeFnEstimateName,
         callbackClick: store.СreationEditingEstimates.createNewEstimate,
         redirectPage: redirectPage,

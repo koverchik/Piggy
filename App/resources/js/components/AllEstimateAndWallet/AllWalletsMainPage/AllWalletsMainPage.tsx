@@ -20,6 +20,7 @@ const [renderRedirect, setRedirect] = useState(false);
 const buttonName: object = {
     name: "Создать",
     type: "button",
+    image: false,
     callbackClick: () => setStatePopUp(true),
    };
 
@@ -35,6 +36,7 @@ const paginationDataWallet: PaginationInterface = {
 const popUpData: interfacesPopUp = {
     name: store.СreationEditingWallets.newNameWallet,
     kind: "кошелька",
+    image: false,
     closeClick: () => setStatePopUp(false),
     onChangeFunction: store.СreationEditingWallets.onChangeFnWalletName,
     callbackClick: store.СreationEditingWallets.createNewWallet,

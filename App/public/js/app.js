@@ -2190,6 +2190,7 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
   var buttonName = {
     name: "Создать",
     type: "button",
+    image: false,
     callbackClick: function callbackClick() {
       return setStatePopUp(true);
     }
@@ -2200,6 +2201,7 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
     closeClick: function closeClick() {
       return setStatePopUp(false);
     },
+    image: false,
     onChangeFunction: state_1["default"].СreationEditingEstimates.onChangeFnEstimateName,
     callbackClick: state_1["default"].СreationEditingEstimates.createNewEstimate,
     redirectPage: redirectPage
@@ -2371,6 +2373,7 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
   var buttonName = {
     name: "Создать",
     type: "button",
+    image: false,
     callbackClick: function callbackClick() {
       return setStatePopUp(true);
     }
@@ -2385,6 +2388,7 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
   var popUpData = {
     name: state_1["default"].СreationEditingWallets.newNameWallet,
     kind: "кошелька",
+    image: false,
     closeClick: function closeClick() {
       return setStatePopUp(false);
     },
@@ -2574,7 +2578,9 @@ __webpack_require__(/*! ./_ButtonCreate.scss */ "./resources/js/components/Butto
 var ButtonCreate = function ButtonCreate(props) {
   return react_1["default"].createElement("div", {
     className: "button-main"
-  }, react_1["default"].createElement("input", {
+  }, props.image ? react_1["default"].createElement("img", {
+    src: props.srcImage
+  }) : "", react_1["default"].createElement("input", {
     className: "button-add-new-item ",
     type: props.type,
     value: props.name,
@@ -3083,6 +3089,22 @@ exports.default = OneEstimate;
 "use strict";
 
 
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
   if (k2 === undefined) k2 = k;
   Object.defineProperty(o, k2, {
@@ -3139,14 +3161,31 @@ var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modul
 
 var TableDebetCredit_1 = __importDefault(__webpack_require__(/*! ./TableDebetCredit/TableDebetCredit */ "./resources/js/components/OneWallet/BurdenSharing/TableDebetCredit/TableDebetCredit.tsx"));
 
+var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
+
 var BurdenSharing = mobx_react_lite_1.observer(function () {
   var _a = react_1.useState([]),
       listScopeOneWallet = _a[0],
       setListScopeOneWallet = _a[1];
 
+  var _b = react_1.useState(false),
+      tableDebetCredit = _b[0],
+      setTableDebetCredit = _b[1];
+
+  var buttonName = {
+    name: "Добавить",
+    type: "button",
+    image: true,
+    srcImage: "../images/add-user.svg"
+  };
   react_1.useEffect(function () {
     state_1["default"].Wallet.scopeOneWallet().then(function (data) {
       state_1["default"].Wallet.lengthBurdenUser = data.length;
+
+      if (state_1["default"].Wallet.lengthBurdenUser > 1) {
+        setTableDebetCredit(true);
+      }
+
       createListRows(data);
     });
   }, []);
@@ -3182,11 +3221,7 @@ var BurdenSharing = mobx_react_lite_1.observer(function () {
     className: "head-premission-user-table"
   }, " \u041F\u0440\u0430\u0432\u0430 "), react_1["default"].createElement("td", {
     className: "head-contribution-user-table"
-  }, " \u0412\u043A\u043B\u0430\u0434 "))), react_1["default"].createElement("tbody", null, listScopeOneWallet)), react_1["default"].createElement("div", {
-    className: "button-add-new-user"
-  }, react_1["default"].createElement("img", {
-    src: "../images/add-user.svg"
-  }), react_1["default"].createElement("p", null, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C")), react_1["default"].createElement(TableDebetCredit_1["default"], null));
+  }, " \u0412\u043A\u043B\u0430\u0434 "))), react_1["default"].createElement("tbody", null, listScopeOneWallet)), react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, buttonName)), tableDebetCredit ? react_1["default"].createElement(TableDebetCredit_1["default"], null) : '');
 });
 exports.default = BurdenSharing;
 
@@ -3634,13 +3669,24 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
       } else {
         state_1["default"].Wallet.allRows = data.data.rows;
         state_1["default"].Wallet.lengthRows = data.data.rows.length;
-        createListRows(data.data.rows, state_1["default"].Wallet.activePagination);
+
+        if (state_1["default"].Wallet.lengthRows === 0) {
+          var warning = react_1["default"].createElement("tr", {
+            key: "RowWallet",
+            className: "error-one-walet"
+          }, react_1["default"].createElement("td", {
+            colSpan: 5
+          }, "\u0417\u0434\u0435\u0441\u044C \u043F\u043E\u043A\u0430 \u043D\u0438\u0447\u0435\u0433\u043E \u043D\u0435\u0442, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0441\u0442\u0440\u043E\u043A"));
+          setlistRowsWallet(warning);
+        } else {
+          createListRows(data.data.rows, state_1["default"].Wallet.activePagination);
+        }
       }
     });
   }, [state_1["default"].Wallet.allSumm]);
   react_1.useEffect(function () {
     createListRows(state_1["default"].Wallet.allRows, state_1["default"].Wallet.activePagination);
-  }, [state_1["default"].Wallet.activePagination]);
+  }, [state_1["default"].Wallet.activePagination, state_1["default"].Wallet.allSumm]);
 
   function createListRows(data, pagination) {
     var result = data.map(function (item, i) {
@@ -3682,10 +3728,9 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
   }, " \u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C "), react_1["default"].createElement("td", {
     className: "empty-head-item-user"
   }, "  "))), react_1["default"].createElement("tbody", null, listRowsWallet), react_1["default"].createElement("tfoot", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
-    className: "empty-item"
-  }, "  "), react_1["default"].createElement("td", {
-    className: "empty-item"
-  }, "  "), react_1["default"].createElement("td", {
+    className: "empty-item",
+    colSpan: 2
+  }), react_1["default"].createElement("td", {
     className: "title-cost-all-item"
   }, " \u0418\u0442\u043E\u0433\u043E:  "), react_1["default"].createElement("td", {
     className: "cost-all-item"
@@ -3832,6 +3877,7 @@ var PopUp = mobx_react_lite_1.observer(function (props) {
   var buttonName = {
     name: "Создать",
     type: "submit",
+    image: false,
     callbackClick: props.callbackClick,
     redirectPage: props.redirectPage
   };
@@ -9401,7 +9447,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".button-main {\n  display: flex;\n  justify-content: flex-end;\n}\n.button-main input {\n  font-family: \"Podkova\", serif;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 24px;\n  width: 200px;\n  height: 46px;\n  background-color: #5354D2;\n  color: white;\n  border-radius: 10px;\n  cursor: pointer;\n  border: none;\n  text-decoration: none;\n}\n.button-main input:hover {\n  opacity: 0.8;\n  background-color: #FE7BA7;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".button-main {\n  display: flex;\n  justify-content: flex-end;\n  border-radius: 10px;\n  cursor: pointer;\n  border: none;\n  width: 200px;\n  height: 46px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: #5354D2;\n}\n.button-main input {\n  font-family: \"Podkova\", serif;\n  background: none;\n  font-size: 24px;\n  margin: 0;\n  padding: 0;\n  width: 120px;\n  color: white;\n  text-decoration: none;\n}\n.button-main:hover {\n  opacity: 0.8;\n  background-color: #FE7BA7;\n}\n.button-main:active {\n  border: none;\n  background-color: #FDB547;\n}\n.button-main:focus {\n  background-color: #FDB547;\n}\n.button-main:disabled {\n  background-color: #C4C4C4;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

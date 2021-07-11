@@ -1,24 +1,37 @@
 .button-main{
     display: flex;
     justify-content: flex-end;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    width: 200px;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #5354D2;
     input{
         font-family: 'Podkova', serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        background: none;
         font-size: 24px;
-        width: 200px;
-        height: 46px;
-        background-color: #5354D2;
+        margin: 0;
+        padding: 0;
+        width: 120px;
         color: white;
-        border-radius: 10px;
-        cursor: pointer;
-        border: none;
         text-decoration: none;
-        &:hover{
-            opacity: 0.8;
-            background-color: #FE7BA7;
-        }
     }
-    
+    &:hover{
+        opacity: 0.8;
+        background-color: #FE7BA7;
+    }
+    &:active{
+        border: none;
+        background-color:  #FDB547;
+    }
+    &:focus{
+        background-color:  #FDB547;
+    }
+    &:disabled{
+        background-color: #C4C4C4;
+    }
 }

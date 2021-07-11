@@ -4,8 +4,9 @@ import './_ButtonCreate.scss';
 const ButtonCreate:React.FC = (props: any) => {
     
     return (    
-    <div className="button-main">
-        <input 
+    <div className="button-main"> 
+        {props.image ? <img src={props.srcImage}></img> : ""}
+        <input
             className="button-add-new-item " 
             type={props.type}
             value={props.name} 
