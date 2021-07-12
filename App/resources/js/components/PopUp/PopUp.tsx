@@ -2,7 +2,7 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import './_PopUp.scss';
 import Button from "../ButtonCreate/ButtonCreate";
-import ListForPoints from "./ListForPoints/ListForPoints";
+import ListForPoints from "./ListForPoint/ListForPoints";
 import AccessList from "./AccessList/AccessList";
 
 const PopUp: React.FC = observer((props: any) => { 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ScopeDiscription;
 use App\Models\NamesWallet;
 use App\Models\RowWallets;
+use App\Models\User;
 
 class ListWallets extends Controller
 {
@@ -125,5 +126,11 @@ class ListWallets extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function usersSearch()
+    {
+        $users = User::get();
+        return $users;
     }
 }

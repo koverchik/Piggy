@@ -32,7 +32,7 @@ Route::post('/add-new-row-wallet', [ListWallets::class, 'AddNewRow']);
 Route::post('/one-wallets', [ListWallets::class, 'show']);
 Route::post('/scope-one-wallet', [ListWallets::class, 'scopeOneWallet']);
 Route::post('/new-wallet', [ListWallets::class, 'create']);
-// Route::get('/test', [ListWallets::class, 'create']);
+Route::post('/all-users-system', [ListWallets::class, 'usersSearch']);
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

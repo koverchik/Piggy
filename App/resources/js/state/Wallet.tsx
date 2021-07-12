@@ -19,6 +19,7 @@ export default class Wallet {
     lengthRows = 0;
     lengthBurdenUser = 0;
     newUser = "";
+    allUsersSystems = "";
 
     constructor() {
       makeObservable(this, {
@@ -35,6 +36,8 @@ export default class Wallet {
         activePagination: observable,
         nameWallet: observable,
         newUser: observable,
+        allUsersSystems:observable,
+        requestUsersSystems: action,
         startOneWalet: action,
         scopeOneWallet: action,
         addZero: action, 
@@ -128,11 +131,25 @@ export default class Wallet {
    return grade;
   }
 
-  userSearch = () =>{
-  console.log("hello");
+  userSearch = (event:any) => { 
+    this.newUser = event.target.value;
+  }
+  addUser =() =>{
 
   }
-  addUser=() =>{
 
+  requestUsersSystems (){
+    const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'all-users-system')
+    .then(response => {
+      if(response.status === 200){
+        return response.data;
+      }
+    },
+    response => {
+      console.log("error request " + response);
+      return "Error";
+
+        })
+    return  result;
   }
 }

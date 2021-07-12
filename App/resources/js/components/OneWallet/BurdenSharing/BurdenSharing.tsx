@@ -37,7 +37,7 @@ const BurdenSharing: React.FC = observer(() => {
         onChangeFunction: store.Wallet.userSearch,
     }  
 
-    useEffect(() => {
+    useEffect(() => {       
         store.Wallet.scopeOneWallet().then((data: any) => {
             store.Wallet.lengthBurdenUser = data.length;
             if(store.Wallet.lengthBurdenUser > 1){setTableDebetCredit(true)}

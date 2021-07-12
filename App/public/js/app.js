@@ -3919,14 +3919,48 @@ exports.default = AccessList;
 
 /***/ }),
 
-/***/ "./resources/js/components/PopUp/ListForPoints/ListForPoints.tsx":
-/*!***********************************************************************!*\
-  !*** ./resources/js/components/PopUp/ListForPoints/ListForPoints.tsx ***!
-  \***********************************************************************/
+/***/ "./resources/js/components/PopUp/ListForPoint/ListForPoints.tsx":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/PopUp/ListForPoint/ListForPoints.tsx ***!
+  \**********************************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
 
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
@@ -3938,72 +3972,38 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
-__webpack_require__(/*! ./_ListForPoints.scss */ "./resources/js/components/PopUp/ListForPoints/_ListForPoints.scss");
+__webpack_require__(/*! ./_ListForPoints.scss */ "./resources/js/components/PopUp/ListForPoint/_ListForPoints.scss");
+
+var state_1 = __importDefault(__webpack_require__(/*! ../../../state */ "./resources/js/state/index.ts"));
 
 var ListForPoints = mobx_react_lite_1.observer(function (props) {
+  var _a = react_1.useState(),
+      stateUsers = _a[0],
+      setStateUsers = _a[1];
+
+  react_1.useEffect(function () {
+    state_1["default"].Wallet.requestUsersSystems().then(function (data) {
+      var result = data.map(function (item, i) {
+        return react_1["default"].createElement("div", {
+          className: "one-user-list-user-data",
+          key: "user" + i
+        }, react_1["default"].createElement("div", {
+          className: "wrapper-one-user"
+        }, react_1["default"].createElement("img", {
+          src: "../images/people.svg",
+          alt: "close"
+        }), react_1["default"].createElement("p", null, item.name)), react_1["default"].createElement("p", null, item.email));
+      });
+      setStateUsers(result);
+    });
+  }, []);
   return react_1["default"].createElement("div", {
     className: "list-users-data"
-  }, react_1["default"].createElement("div", {
-    className: "one-user-list-user-data"
-  }, react_1["default"].createElement("div", {
-    className: "wrapper-one-user"
-  }, react_1["default"].createElement("img", {
-    src: "../images/people.svg",
-    alt: "close"
-  }), react_1["default"].createElement("p", null, " \u041C\u0430\u0448\u0430")), react_1["default"].createElement("p", null, "test@gmail.com")), react_1["default"].createElement("div", {
-    className: "one-user-list-user-data"
-  }, react_1["default"].createElement("div", {
-    className: "wrapper-one-user"
-  }, react_1["default"].createElement("img", {
-    src: "../images/people.svg",
-    alt: "close"
-  }), react_1["default"].createElement("p", null, " \u041C\u0430\u0448\u0430")), react_1["default"].createElement("p", null, "test@gmail.com")), react_1["default"].createElement("div", {
-    className: "one-user-list-user-data"
-  }, react_1["default"].createElement("div", {
-    className: "wrapper-one-user"
-  }, react_1["default"].createElement("img", {
-    src: "../images/people.svg",
-    alt: "close"
-  }), react_1["default"].createElement("p", null, " \u041C\u0430\u0448\u0430")), react_1["default"].createElement("p", null, "test@gmail.com")), react_1["default"].createElement("div", {
-    className: "one-user-list-user-data"
-  }, react_1["default"].createElement("div", {
-    className: "wrapper-one-user"
-  }, react_1["default"].createElement("img", {
-    src: "../images/people.svg",
-    alt: "close"
-  }), react_1["default"].createElement("p", null, " \u041C\u0430\u0448\u0430")), react_1["default"].createElement("p", null, "test@gmail.com")), react_1["default"].createElement("div", {
-    className: "one-user-list-user-data"
-  }, react_1["default"].createElement("div", {
-    className: "wrapper-one-user"
-  }, react_1["default"].createElement("img", {
-    src: "../images/people.svg",
-    alt: "close"
-  }), react_1["default"].createElement("p", null, " \u041C\u0430\u0448\u0430")), react_1["default"].createElement("p", null, "test@gmail.com")), react_1["default"].createElement("div", {
-    className: "one-user-list-user-data"
-  }, react_1["default"].createElement("div", {
-    className: "wrapper-one-user"
-  }, react_1["default"].createElement("img", {
-    src: "../images/people.svg",
-    alt: "close"
-  }), react_1["default"].createElement("p", null, " \u041C\u0430\u0448\u0430")), react_1["default"].createElement("p", null, "test@gmail.com")), react_1["default"].createElement("div", {
-    className: "one-user-list-user-data"
-  }, react_1["default"].createElement("div", {
-    className: "wrapper-one-user"
-  }, react_1["default"].createElement("img", {
-    src: "../images/people.svg",
-    alt: "close"
-  }), react_1["default"].createElement("p", null, " \u041C\u0430\u0448\u0430")), react_1["default"].createElement("p", null, "test@gmail.com")), react_1["default"].createElement("div", {
-    className: "one-user-list-user-data"
-  }, react_1["default"].createElement("div", {
-    className: "wrapper-one-user"
-  }, react_1["default"].createElement("img", {
-    src: "../images/people.svg",
-    alt: "close"
-  }), react_1["default"].createElement("p", null, " \u041C\u0430\u0448\u0430")), react_1["default"].createElement("p", null, "test@gmail.com")));
+  }, stateUsers);
 });
 exports.default = ListForPoints;
 
@@ -4052,7 +4052,7 @@ __webpack_require__(/*! ./_PopUp.scss */ "./resources/js/components/PopUp/_PopUp
 
 var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
 
-var ListForPoints_1 = __importDefault(__webpack_require__(/*! ./ListForPoints/ListForPoints */ "./resources/js/components/PopUp/ListForPoints/ListForPoints.tsx"));
+var ListForPoints_1 = __importDefault(__webpack_require__(/*! ./ListForPoint/ListForPoints */ "./resources/js/components/PopUp/ListForPoint/ListForPoints.tsx"));
 
 var AccessList_1 = __importDefault(__webpack_require__(/*! ./AccessList/AccessList */ "./resources/js/components/PopUp/AccessList/AccessList.tsx"));
 
@@ -4736,6 +4736,8 @@ var Wallet =
 /** @class */
 function () {
   function Wallet() {
+    var _this = this;
+
     this.newDataRaw = "";
     this.idWallet = 0;
     this.nameWallet = "";
@@ -4749,9 +4751,10 @@ function () {
     this.lengthRows = 0;
     this.lengthBurdenUser = 0;
     this.newUser = "";
+    this.allUsersSystems = "";
 
-    this.userSearch = function () {
-      console.log("hello");
+    this.userSearch = function (event) {
+      _this.newUser = event.target.value;
     };
 
     this.addUser = function () {};
@@ -4770,6 +4773,8 @@ function () {
       activePagination: mobx_1.observable,
       nameWallet: mobx_1.observable,
       newUser: mobx_1.observable,
+      allUsersSystems: mobx_1.observable,
+      requestUsersSystems: mobx_1.action,
       startOneWalet: mobx_1.action,
       scopeOneWallet: mobx_1.action,
       addZero: mobx_1.action,
@@ -4877,6 +4882,18 @@ function () {
     }
 
     return grade;
+  };
+
+  Wallet.prototype.requestUsersSystems = function () {
+    var result = axios_1["default"].post("http://localhost:8000/" + 'all-users-system').then(function (response) {
+      if (response.status === 200) {
+        return response.data;
+      }
+    }, function (response) {
+      console.log("error request " + response);
+      return "Error";
+    });
+    return result;
   };
 
   return Wallet;
@@ -9948,10 +9965,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".access-new-user {\n  position: absolu
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/PopUp/ListForPoints/_ListForPoints.scss":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/PopUp/ListForPoints/_ListForPoints.scss ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/PopUp/ListForPoint/_ListForPoints.scss":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/PopUp/ListForPoint/_ListForPoints.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -80556,10 +80573,10 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ "./resources/js/components/PopUp/ListForPoints/_ListForPoints.scss":
-/*!*************************************************************************!*\
-  !*** ./resources/js/components/PopUp/ListForPoints/_ListForPoints.scss ***!
-  \*************************************************************************/
+/***/ "./resources/js/components/PopUp/ListForPoint/_ListForPoints.scss":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/PopUp/ListForPoint/_ListForPoints.scss ***!
+  \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -80569,7 +80586,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_ListForPoints_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./_ListForPoints.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/PopUp/ListForPoints/_ListForPoints.scss");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_ListForPoints_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./_ListForPoints.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/PopUp/ListForPoint/_ListForPoints.scss");
 
             
 
