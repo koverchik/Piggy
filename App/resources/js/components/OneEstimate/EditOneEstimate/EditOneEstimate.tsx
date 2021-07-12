@@ -13,7 +13,6 @@ const EditOneEstimate: React.FC = () => {
   
  }
 function handleInputChange(e:any) {
-    console.log(e.target.value);
     setValueChange(e.target.value);
 }
     return (

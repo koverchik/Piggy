@@ -18,7 +18,7 @@ const AllEstimateMainPage: React.FC = observer(() => {
     const [listEstimateData, setlistEstimateData] = useState([]);
     const [statePopUp, setStatePopUp] = useState(false);
     const [renderRedirect, setRedirect] = useState(false);
-    
+ 
    
     const buttonName: interfacesButtonCreate = { name: "Создать",
                                                 type: "button",
@@ -27,12 +27,15 @@ const AllEstimateMainPage: React.FC = observer(() => {
                                                 }; 
     const popUpData: interfacesPopUp = {
         name: store.СreationEditingEstimates.newNameEstimate,
-        kind: "сметы",
+        kind: "Создание сметы",
         closeClick: () => setStatePopUp(false),
-        image: false,
+        button: {name: "Создать",
+                type: "submit",
+                image: false,
+                callbackClick: store.СreationEditingEstimates.createNewEstimate,
+                redirectPage: redirectPage},
         onChangeFunction: store.СreationEditingEstimates.onChangeFnEstimateName,
-        callbackClick: store.СreationEditingEstimates.createNewEstimate,
-        redirectPage: redirectPage,
+
     }                                          
 
     const paginationDataEstimate: PaginationInterface = {

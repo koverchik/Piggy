@@ -35,18 +35,19 @@ const paginationDataWallet: PaginationInterface = {
 
 const popUpData: interfacesPopUp = {
     name: store.СreationEditingWallets.newNameWallet,
-    kind: "кошелька",
-    image: false,
+    kind: "Создание кошелька",
     closeClick: () => setStatePopUp(false),
+    button: {name: "Создать",
+            type: "submit",
+            image: false,
+            callbackClick: store.СreationEditingWallets.createNewWallet,
+            redirectPage: redirectPage},
     onChangeFunction: store.СreationEditingWallets.onChangeFnWalletName,
-    callbackClick: store.СreationEditingWallets.createNewWallet,
-    redirectPage: redirectPage,
 }   
 
 function redirectPage(idPage:any) {
     store.Wallet.idWallet = idPage["id"];
     store.Wallet.nameWallet = idPage["name"];
-    console.log(idPage);
     setRedirect(idPage);
 }
 

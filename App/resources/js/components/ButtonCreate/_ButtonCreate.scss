@@ -21,17 +21,18 @@
         text-decoration: none;
     }
     &:hover{
+        &:active{
+            border: none;
+            background-color:  #FDB547;
+        }
+        &:focus{
+            background-color:  #FDB547;
+        }
+        &:disabled{
+            background-color: #C4C4C4;
+        }
+
         opacity: 0.8;
         background-color: #FE7BA7;
-    }
-    &:active{
-        border: none;
-        background-color:  #FDB547;
-    }
-    &:focus{
-        background-color:  #FDB547;
-    }
-    &:disabled{
-        background-color: #C4C4C4;
     }
 }

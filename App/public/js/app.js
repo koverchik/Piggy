@@ -2197,14 +2197,18 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
   };
   var popUpData = {
     name: state_1["default"].СreationEditingEstimates.newNameEstimate,
-    kind: "сметы",
+    kind: "Создание сметы",
     closeClick: function closeClick() {
       return setStatePopUp(false);
     },
-    image: false,
-    onChangeFunction: state_1["default"].СreationEditingEstimates.onChangeFnEstimateName,
-    callbackClick: state_1["default"].СreationEditingEstimates.createNewEstimate,
-    redirectPage: redirectPage
+    button: {
+      name: "Создать",
+      type: "submit",
+      image: false,
+      callbackClick: state_1["default"].СreationEditingEstimates.createNewEstimate,
+      redirectPage: redirectPage
+    },
+    onChangeFunction: state_1["default"].СreationEditingEstimates.onChangeFnEstimateName
   };
   var paginationDataEstimate = {
     arrayNumber: state_1["default"].GeneralData.arrayNameAllEstimates,
@@ -2387,20 +2391,23 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
   };
   var popUpData = {
     name: state_1["default"].СreationEditingWallets.newNameWallet,
-    kind: "кошелька",
-    image: false,
+    kind: "Создание кошелька",
     closeClick: function closeClick() {
       return setStatePopUp(false);
     },
-    onChangeFunction: state_1["default"].СreationEditingWallets.onChangeFnWalletName,
-    callbackClick: state_1["default"].СreationEditingWallets.createNewWallet,
-    redirectPage: redirectPage
+    button: {
+      name: "Создать",
+      type: "submit",
+      image: false,
+      callbackClick: state_1["default"].СreationEditingWallets.createNewWallet,
+      redirectPage: redirectPage
+    },
+    onChangeFunction: state_1["default"].СreationEditingWallets.onChangeFnWalletName
   };
 
   function redirectPage(idPage) {
     state_1["default"].Wallet.idWallet = idPage["id"];
     state_1["default"].Wallet.nameWallet = idPage["name"];
-    console.log(idPage);
     setRedirect(idPage);
   }
 
@@ -2824,7 +2831,6 @@ var EditOneEstimate = function EditOneEstimate() {
   }
 
   function handleInputChange(e) {
-    console.log(e.target.value);
     setValueChange(e.target.value);
   }
 
@@ -3163,6 +3169,8 @@ var TableDebetCredit_1 = __importDefault(__webpack_require__(/*! ./TableDebetCre
 
 var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
 
+var PopUp_1 = __importDefault(__webpack_require__(/*! ../../PopUp/PopUp */ "./resources/js/components/PopUp/PopUp.tsx"));
+
 var BurdenSharing = mobx_react_lite_1.observer(function () {
   var _a = react_1.useState([]),
       listScopeOneWallet = _a[0],
@@ -3172,12 +3180,30 @@ var BurdenSharing = mobx_react_lite_1.observer(function () {
       tableDebetCredit = _b[0],
       setTableDebetCredit = _b[1];
 
+  var _c = react_1.useState(false),
+      statePopUp = _c[0],
+      setStatePopUp = _c[1];
+
   var buttonName = {
     name: "Добавить",
     type: "button",
     image: true,
-    srcImage: "../images/add-user.svg"
+    srcImage: "../images/add-user.svg",
+    callbackClick: function callbackClick() {
+      return setStatePopUp(true);
+    }
   };
+  var popUpData = {
+    name: state_1["default"].СreationEditingWallets.newNameWallet,
+    kind: "Поиск пользователя",
+    closeClick: function closeClick() {
+      return setStatePopUp(false);
+    } // onChangeFunction: store.СreationEditingWallets.onChangeFnWalletName,
+    // callbackClick: store.СreationEditingWallets.createNewWallet,
+    // redirectPage: redirectPage,
+
+  }; // store.Wallet.userSearch,
+
   react_1.useEffect(function () {
     state_1["default"].Wallet.scopeOneWallet().then(function (data) {
       state_1["default"].Wallet.lengthBurdenUser = data.length;
@@ -3213,7 +3239,7 @@ var BurdenSharing = mobx_react_lite_1.observer(function () {
 
   return react_1["default"].createElement("div", {
     className: "wapper-user-table"
-  }, react_1["default"].createElement("table", {
+  }, statePopUp ? react_1["default"].createElement(PopUp_1["default"], __assign({}, popUpData)) : "", react_1["default"].createElement("table", {
     className: "table-user"
   }, react_1["default"].createElement("thead", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: "head-name-user-table"
@@ -3874,13 +3900,6 @@ __webpack_require__(/*! ./_PopUp.scss */ "./resources/js/components/PopUp/_PopUp
 var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
 
 var PopUp = mobx_react_lite_1.observer(function (props) {
-  var buttonName = {
-    name: "Создать",
-    type: "submit",
-    image: false,
-    callbackClick: props.callbackClick,
-    redirectPage: props.redirectPage
-  };
   return react_1["default"].createElement("div", {
     className: "wrapper-for-background",
     onClick: props.closeClick
@@ -3891,7 +3910,7 @@ var PopUp = mobx_react_lite_1.observer(function (props) {
     }
   }, react_1["default"].createElement("div", {
     className: "wrapper-header-create-new-name"
-  }, react_1["default"].createElement("p", null, "\u0421\u043E\u0437\u0434\u0430\u043D\u0438\u0435 ", props.kind, " "), react_1["default"].createElement("img", {
+  }, react_1["default"].createElement("p", null, props.kind, " "), react_1["default"].createElement("img", {
     src: "../images/cancel_white.svg",
     alt: "close",
     className: "close-img",
@@ -3904,7 +3923,7 @@ var PopUp = mobx_react_lite_1.observer(function (props) {
     onChange: props.onChangeFunction
   })), react_1["default"].createElement("div", {
     className: "wrapper-for-button"
-  }, react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, buttonName)))));
+  }, react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, props.button)))));
 });
 exports.default = PopUp;
 
@@ -4572,6 +4591,11 @@ function () {
     this.activePagination = 0;
     this.lengthRows = 0;
     this.lengthBurdenUser = 0;
+
+    this.userSearch = function () {
+      console.log("hello");
+    };
+
     mobx_1.makeObservable(this, {
       newDataRaw: mobx_1.observable,
       idWallet: mobx_1.observable,
@@ -4785,10 +4809,6 @@ function () {
         return "Error";
       });
       return result;
-    };
-
-    this.test = function () {
-      console.log("hello");
     };
 
     this.onChangeFnEstimateName = function (event) {
@@ -9447,7 +9467,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".button-main {\n  display: flex;\n  justify-content: flex-end;\n  border-radius: 10px;\n  cursor: pointer;\n  border: none;\n  width: 200px;\n  height: 46px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: #5354D2;\n}\n.button-main input {\n  font-family: \"Podkova\", serif;\n  background: none;\n  font-size: 24px;\n  margin: 0;\n  padding: 0;\n  width: 120px;\n  color: white;\n  text-decoration: none;\n}\n.button-main:hover {\n  opacity: 0.8;\n  background-color: #FE7BA7;\n}\n.button-main:active {\n  border: none;\n  background-color: #FDB547;\n}\n.button-main:focus {\n  background-color: #FDB547;\n}\n.button-main:disabled {\n  background-color: #C4C4C4;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".button-main {\n  display: flex;\n  justify-content: flex-end;\n  border-radius: 10px;\n  cursor: pointer;\n  border: none;\n  width: 200px;\n  height: 46px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: #5354D2;\n}\n.button-main input {\n  font-family: \"Podkova\", serif;\n  background: none;\n  font-size: 24px;\n  margin: 0;\n  padding: 0;\n  width: 120px;\n  color: white;\n  text-decoration: none;\n}\n.button-main:hover {\n  opacity: 0.8;\n  background-color: #FE7BA7;\n}\n.button-main:hover:active {\n  border: none;\n  background-color: #FDB547;\n}\n.button-main:hover:focus {\n  background-color: #FDB547;\n}\n.button-main:hover:disabled {\n  background-color: #C4C4C4;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

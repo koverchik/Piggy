@@ -6,17 +6,32 @@ import { observer } from "mobx-react-lite";
 import TableDebetCredit from "./TableDebetCredit/TableDebetCredit";
 import interfacesButtonCreate from "../../../interfaces/intefacesButtonCreate";
 import Button from "../../ButtonCreate/ButtonCreate";
+import PopUp from "../../PopUp/PopUp";
+import interfacesPopUp from "../../../interfaces/interfacesPopUp";
 
 const BurdenSharing: React.FC = observer(() => {
     const [listScopeOneWallet, setListScopeOneWallet] = useState([]);
     const [tableDebetCredit, setTableDebetCredit] = useState(false);
+    const [statePopUp, setStatePopUp] = useState(false);
 
     const buttonName: interfacesButtonCreate = { 
     name: "Добавить",
     type: "button",
     image: true,
     srcImage:"../images/add-user.svg",
+    callbackClick:( ) => setStatePopUp(true),
     }; 
+
+    const popUpData: interfacesPopUp = {
+        name: store.СreationEditingWallets.newNameWallet,
+        kind: "Поиск пользователя",
+       
+        closeClick: () => setStatePopUp(false),
+        // onChangeFunction: store.СreationEditingWallets.onChangeFnWalletName,
+        // callbackClick: store.СreationEditingWallets.createNewWallet,
+        // redirectPage: redirectPage,
+    }  
+    // store.Wallet.userSearch,
     useEffect(() => {
         store.Wallet.scopeOneWallet().then((data: any) => {
             store.Wallet.lengthBurdenUser = data.length;
@@ -48,6 +63,7 @@ const BurdenSharing: React.FC = observer(() => {
 
     return (
     <div className="wapper-user-table">
+        {statePopUp ? <PopUp {...popUpData}/> : ""}
         <table className="table-user">
             <thead>
                 <tr>

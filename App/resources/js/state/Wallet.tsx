@@ -124,4 +124,9 @@ export default class Wallet {
       }
    return grade;
   }
+
+  userSearch = () =>{
+console.log("hello");
+
+  }
 }

@@ -29,10 +29,6 @@ export default class СreationEditingEstimates {
     return result;
   }
 
-  test = () =>{
-    console.log("hello");
-  }
-
   onChangeFnEstimateName = (event:any) => {
     this.newNameEstimate = event.target.value;
   }

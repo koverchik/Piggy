@@ -1,8 +1,7 @@
 import React from "react";
 import './_ButtonCreate.scss';
 
-const ButtonCreate:React.FC = (props: any) => {
-    
+const ButtonCreate:React.FC = (props: any) => {    
     return (    
     <div className="button-main"> 
         {props.image ? <img src={props.srcImage}></img> : ""}
