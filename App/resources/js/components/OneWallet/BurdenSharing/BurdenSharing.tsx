@@ -25,7 +25,9 @@ const BurdenSharing: React.FC = observer(() => {
     const popUpData: interfacesPopUp = {
         name: store.Wallet.newUser,
         kind: "Поиск пользователя",
-        textMessage: "Введите имя пользователя или адрес электронной почты",
+        textMessage: "Добавьте имя и статус",
+        listUser: true,
+        accessOptions: true,
         closeClick: () => setStatePopUp(false),
         button: {name: "Добавить",
                 type: "button",

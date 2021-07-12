@@ -29,6 +29,8 @@ const AllEstimateMainPage: React.FC = observer(() => {
         name: store.СreationEditingEstimates.newNameEstimate,
         kind: "Создание сметы",
         textMessage: "Введите название",
+        listUser: false,
+        accessOptions: false,
         closeClick: () => setStatePopUp(false),
         button: {name: "Создать",
                 type: "submit",
@@ -83,7 +85,7 @@ const AllEstimateMainPage: React.FC = observer(() => {
 
     return (
         <div className="wapper-estimate">
-           {true ? <PopUp { ...popUpData}/> : null}
+           {statePopUp ? <PopUp { ...popUpData}/> : null}
             <div className="wrapper-block-name-list">
                 <p className="header-blok-view">Сметы</p>
                 <ul className="list-estimate">

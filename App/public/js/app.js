@@ -2199,6 +2199,8 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
     name: state_1["default"].СreationEditingEstimates.newNameEstimate,
     kind: "Создание сметы",
     textMessage: "Введите название",
+    listUser: false,
+    accessOptions: false,
     closeClick: function closeClick() {
       return setStatePopUp(false);
     },
@@ -2255,7 +2257,7 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
   }, [state_1["default"].GeneralData.activePaginationAllEstimates]);
   return react_1["default"].createElement("div", {
     className: "wapper-estimate"
-  },  true ? react_1["default"].createElement(PopUp_1["default"], __assign({}, popUpData)) : 0, react_1["default"].createElement("div", {
+  }, statePopUp ? react_1["default"].createElement(PopUp_1["default"], __assign({}, popUpData)) : null, react_1["default"].createElement("div", {
     className: "wrapper-block-name-list"
   }, react_1["default"].createElement("p", {
     className: "header-blok-view"
@@ -2394,6 +2396,8 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
     name: state_1["default"].СreationEditingWallets.newNameWallet,
     kind: "Создание кошелька",
     textMessage: "Введите название",
+    listUser: false,
+    accessOptions: false,
     closeClick: function closeClick() {
       return setStatePopUp(false);
     },
@@ -3198,7 +3202,9 @@ var BurdenSharing = mobx_react_lite_1.observer(function () {
   var popUpData = {
     name: state_1["default"].Wallet.newUser,
     kind: "Поиск пользователя",
-    textMessage: "Введите имя пользователя или адрес электронной почты",
+    textMessage: "Добавьте имя и статус",
+    listUser: true,
+    accessOptions: true,
     closeClick: function closeClick() {
       return setStatePopUp(false);
     },
@@ -3862,6 +3868,147 @@ exports.default = PaginationRows;
 
 /***/ }),
 
+/***/ "./resources/js/components/PopUp/AccessList/AccessList.tsx":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/PopUp/AccessList/AccessList.tsx ***!
+  \*****************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+__webpack_require__(/*! ./_AccessList.scss */ "./resources/js/components/PopUp/AccessList/_AccessList.scss");
+
+var AccessList = mobx_react_lite_1.observer(function () {
+  return react_1["default"].createElement("div", {
+    className: "access-new-user"
+  }, react_1["default"].createElement("div", {
+    className: "access-new-user-wrapper"
+  }, react_1["default"].createElement("p", null, react_1["default"].createElement("input", {
+    name: "access",
+    type: "radio",
+    value: "owner",
+    className: "radio-checkbox"
+  }), "\u0412\u043B\u0430\u0434\u0435\u043B\u0435\u0446"), react_1["default"].createElement("p", null, react_1["default"].createElement("input", {
+    name: "access",
+    type: "radio",
+    value: "editor",
+    className: "radio-checkbox"
+  }), "\u0420\u0435\u0434\u0430\u043A\u0442\u043E\u0440"), react_1["default"].createElement("p", null, react_1["default"].createElement("input", {
+    name: "access",
+    type: "radio",
+    value: "user",
+    className: "radio-checkbox"
+  }), "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C")));
+});
+exports.default = AccessList;
+
+/***/ }),
+
+/***/ "./resources/js/components/PopUp/ListForPoints/ListForPoints.tsx":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/PopUp/ListForPoints/ListForPoints.tsx ***!
+  \***********************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+__webpack_require__(/*! ./_ListForPoints.scss */ "./resources/js/components/PopUp/ListForPoints/_ListForPoints.scss");
+
+var ListForPoints = mobx_react_lite_1.observer(function (props) {
+  return react_1["default"].createElement("div", {
+    className: "list-users-data"
+  }, react_1["default"].createElement("div", {
+    className: "one-user-list-user-data"
+  }, react_1["default"].createElement("div", {
+    className: "wrapper-one-user"
+  }, react_1["default"].createElement("img", {
+    src: "../images/people.svg",
+    alt: "close"
+  }), react_1["default"].createElement("p", null, " \u041C\u0430\u0448\u0430")), react_1["default"].createElement("p", null, "test@gmail.com")), react_1["default"].createElement("div", {
+    className: "one-user-list-user-data"
+  }, react_1["default"].createElement("div", {
+    className: "wrapper-one-user"
+  }, react_1["default"].createElement("img", {
+    src: "../images/people.svg",
+    alt: "close"
+  }), react_1["default"].createElement("p", null, " \u041C\u0430\u0448\u0430")), react_1["default"].createElement("p", null, "test@gmail.com")), react_1["default"].createElement("div", {
+    className: "one-user-list-user-data"
+  }, react_1["default"].createElement("div", {
+    className: "wrapper-one-user"
+  }, react_1["default"].createElement("img", {
+    src: "../images/people.svg",
+    alt: "close"
+  }), react_1["default"].createElement("p", null, " \u041C\u0430\u0448\u0430")), react_1["default"].createElement("p", null, "test@gmail.com")), react_1["default"].createElement("div", {
+    className: "one-user-list-user-data"
+  }, react_1["default"].createElement("div", {
+    className: "wrapper-one-user"
+  }, react_1["default"].createElement("img", {
+    src: "../images/people.svg",
+    alt: "close"
+  }), react_1["default"].createElement("p", null, " \u041C\u0430\u0448\u0430")), react_1["default"].createElement("p", null, "test@gmail.com")), react_1["default"].createElement("div", {
+    className: "one-user-list-user-data"
+  }, react_1["default"].createElement("div", {
+    className: "wrapper-one-user"
+  }, react_1["default"].createElement("img", {
+    src: "../images/people.svg",
+    alt: "close"
+  }), react_1["default"].createElement("p", null, " \u041C\u0430\u0448\u0430")), react_1["default"].createElement("p", null, "test@gmail.com")), react_1["default"].createElement("div", {
+    className: "one-user-list-user-data"
+  }, react_1["default"].createElement("div", {
+    className: "wrapper-one-user"
+  }, react_1["default"].createElement("img", {
+    src: "../images/people.svg",
+    alt: "close"
+  }), react_1["default"].createElement("p", null, " \u041C\u0430\u0448\u0430")), react_1["default"].createElement("p", null, "test@gmail.com")), react_1["default"].createElement("div", {
+    className: "one-user-list-user-data"
+  }, react_1["default"].createElement("div", {
+    className: "wrapper-one-user"
+  }, react_1["default"].createElement("img", {
+    src: "../images/people.svg",
+    alt: "close"
+  }), react_1["default"].createElement("p", null, " \u041C\u0430\u0448\u0430")), react_1["default"].createElement("p", null, "test@gmail.com")), react_1["default"].createElement("div", {
+    className: "one-user-list-user-data"
+  }, react_1["default"].createElement("div", {
+    className: "wrapper-one-user"
+  }, react_1["default"].createElement("img", {
+    src: "../images/people.svg",
+    alt: "close"
+  }), react_1["default"].createElement("p", null, " \u041C\u0430\u0448\u0430")), react_1["default"].createElement("p", null, "test@gmail.com")));
+});
+exports.default = ListForPoints;
+
+/***/ }),
+
 /***/ "./resources/js/components/PopUp/PopUp.tsx":
 /*!*************************************************!*\
   !*** ./resources/js/components/PopUp/PopUp.tsx ***!
@@ -3905,6 +4052,10 @@ __webpack_require__(/*! ./_PopUp.scss */ "./resources/js/components/PopUp/_PopUp
 
 var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
 
+var ListForPoints_1 = __importDefault(__webpack_require__(/*! ./ListForPoints/ListForPoints */ "./resources/js/components/PopUp/ListForPoints/ListForPoints.tsx"));
+
+var AccessList_1 = __importDefault(__webpack_require__(/*! ./AccessList/AccessList */ "./resources/js/components/PopUp/AccessList/AccessList.tsx"));
+
 var PopUp = mobx_react_lite_1.observer(function (props) {
   return react_1["default"].createElement("div", {
     className: "wrapper-for-background",
@@ -3927,7 +4078,7 @@ var PopUp = mobx_react_lite_1.observer(function (props) {
     type: "text",
     value: props.name,
     onChange: props.onChangeFunction
-  })), react_1["default"].createElement("div", {
+  }), props.listUser ? react_1["default"].createElement(ListForPoints_1["default"], null) : "", props.accessOptions ? react_1["default"].createElement(AccessList_1["default"], null) : ""), react_1["default"].createElement("div", {
     className: "wrapper-for-button"
   }, react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, props.button)))));
 });
@@ -9767,6 +9918,54 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-number-pagination {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.wrapper-number-pagination .pagination-estimate {\n  color: #5354D2;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-weight: bold;\n}\n.wrapper-number-pagination .pagination-estimate:hover {\n  cursor: pointer;\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .image-pagination {\n  width: 2rem;\n}\n.wrapper-number-pagination .image-pagination:hover {\n  cursor: pointer;\n  opacity: 0.5;\n}\n.wrapper-number-pagination .disable-pagination {\n  filter: grayscale(100%);\n}\n.wrapper-number-pagination .disable-pagination:hover {\n  cursor: default;\n  opacity: 1;\n}\n.wrapper-number-pagination .active-number {\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .active-number:hover {\n  cursor: default;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/PopUp/AccessList/_AccessList.scss":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/PopUp/AccessList/_AccessList.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".access-new-user {\n  position: absolute;\n  bottom: 75px;\n  display: flex;\n  font-size: 1rem;\n  width: 90%;\n  align-items: center;\n  justify-content: center;\n}\n.access-new-user .access-new-user-wrapper {\n  display: flex;\n  width: 90%;\n  justify-content: space-between;\n}\n.access-new-user .access-new-user-wrapper p {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  padding: 0;\n  margin: 0;\n}\n.access-new-user .access-new-user-wrapper p .radio-checkbox {\n  width: 20px;\n  margin-right: 5px;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/PopUp/ListForPoints/_ListForPoints.scss":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/PopUp/ListForPoints/_ListForPoints.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".list-users-data {\n  background: white;\n  border: 1px solid #FDB547;\n  margin: 0;\n  padding: 0;\n  align-self: center;\n  padding: 0;\n  width: 90%;\n  height: 200px;\n  overflow: auto;\n  z-index: 1;\n}\n.list-users-data .one-user-list-user-data {\n  margin: 0;\n  padding: 0;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  font-size: 1.1rem;\n  padding-left: 5px;\n  border-bottom: 1px solid #C4C4C4;\n}\n.list-users-data .one-user-list-user-data .wrapper-one-user {\n  display: flex;\n  align-items: center;\n}\n.list-users-data .one-user-list-user-data .wrapper-one-user img {\n  margin-right: 5px;\n}\n.list-users-data .one-user-list-user-data:hover {\n  opacity: 0.6;\n  filter: brightness(0.1);\n  cursor: pointer;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -80324,6 +80523,66 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_PaginationRows_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./resources/js/components/PopUp/AccessList/_AccessList.scss":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/PopUp/AccessList/_AccessList.scss ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AccessList_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./_AccessList.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/PopUp/AccessList/_AccessList.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AccessList_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AccessList_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./resources/js/components/PopUp/ListForPoints/_ListForPoints.scss":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/PopUp/ListForPoints/_ListForPoints.scss ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_ListForPoints_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./_ListForPoints.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/PopUp/ListForPoints/_ListForPoints.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_ListForPoints_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_ListForPoints_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 

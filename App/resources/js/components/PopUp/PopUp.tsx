@@ -3,8 +3,10 @@ import { observer } from "mobx-react-lite";
 import './_PopUp.scss';
 import Button from "../ButtonCreate/ButtonCreate";
 import ListForPoints from "./ListForPoints/ListForPoints";
+import AccessList from "./AccessList/AccessList";
 
-const PopUp: React.FC = observer((props: any) => {                            
+const PopUp: React.FC = observer((props: any) => { 
+                         
     return (
       <div className="wrapper-for-background" onClick={props.closeClick}>
          <div className="wrapper-pop-up" onClick={(event)=> {event.stopPropagation()}}>
@@ -18,7 +20,8 @@ const PopUp: React.FC = observer((props: any) => {
                         value={ props.name } 
                         onChange={ props.onChangeFunction }
                         />
-               {/* <ListForPoints /> */}
+               {props.listUser ? <ListForPoints /> : ""}
+               {props.accessOptions ? <AccessList /> : ""}
             </div>
             <div className="wrapper-for-button">
                <Button {...props.button}/>
