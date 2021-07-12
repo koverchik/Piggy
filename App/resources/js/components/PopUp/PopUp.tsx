@@ -2,6 +2,7 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import './_PopUp.scss';
 import Button from "../ButtonCreate/ButtonCreate";
+import ListForPoints from "./ListForPoints/ListForPoints";
 
 const PopUp: React.FC = observer((props: any) => {                            
     return (
@@ -12,11 +13,12 @@ const PopUp: React.FC = observer((props: any) => {
                <img src="../images/cancel_white.svg" alt="close" className="close-img" onClick={props.closeClick}/>
             </div>
             <div className="wrapper-for-name">
-               <p>Введите название </p>
+               <p>{props.textMessage}</p>
                <input   type="text" 
                         value={ props.name } 
                         onChange={ props.onChangeFunction }
                         />
+               {/* <ListForPoints /> */}
             </div>
             <div className="wrapper-for-button">
                <Button {...props.button}/>

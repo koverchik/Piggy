@@ -23,15 +23,18 @@ const BurdenSharing: React.FC = observer(() => {
     }; 
 
     const popUpData: interfacesPopUp = {
-        name: store.СreationEditingWallets.newNameWallet,
+        name: store.Wallet.newUser,
         kind: "Поиск пользователя",
-       
+        textMessage: "Введите имя пользователя или адрес электронной почты",
         closeClick: () => setStatePopUp(false),
-        // onChangeFunction: store.СreationEditingWallets.onChangeFnWalletName,
-        // callbackClick: store.СreationEditingWallets.createNewWallet,
-        // redirectPage: redirectPage,
+        button: {name: "Добавить",
+                type: "button",
+                image: false,
+                callbackClick: store.Wallet.addUser,
+                },
+        onChangeFunction: store.Wallet.userSearch,
     }  
-    // store.Wallet.userSearch,
+
     useEffect(() => {
         store.Wallet.scopeOneWallet().then((data: any) => {
             store.Wallet.lengthBurdenUser = data.length;

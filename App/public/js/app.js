@@ -2198,6 +2198,7 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
   var popUpData = {
     name: state_1["default"].СreationEditingEstimates.newNameEstimate,
     kind: "Создание сметы",
+    textMessage: "Введите название",
     closeClick: function closeClick() {
       return setStatePopUp(false);
     },
@@ -2254,7 +2255,7 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
   }, [state_1["default"].GeneralData.activePaginationAllEstimates]);
   return react_1["default"].createElement("div", {
     className: "wapper-estimate"
-  }, statePopUp ? react_1["default"].createElement(PopUp_1["default"], __assign({}, popUpData)) : null, react_1["default"].createElement("div", {
+  },  true ? react_1["default"].createElement(PopUp_1["default"], __assign({}, popUpData)) : 0, react_1["default"].createElement("div", {
     className: "wrapper-block-name-list"
   }, react_1["default"].createElement("p", {
     className: "header-blok-view"
@@ -2392,6 +2393,7 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
   var popUpData = {
     name: state_1["default"].СreationEditingWallets.newNameWallet,
     kind: "Создание кошелька",
+    textMessage: "Введите название",
     closeClick: function closeClick() {
       return setStatePopUp(false);
     },
@@ -2584,13 +2586,7 @@ __webpack_require__(/*! ./_ButtonCreate.scss */ "./resources/js/components/Butto
 
 var ButtonCreate = function ButtonCreate(props) {
   return react_1["default"].createElement("div", {
-    className: "button-main"
-  }, props.image ? react_1["default"].createElement("img", {
-    src: props.srcImage
-  }) : "", react_1["default"].createElement("input", {
-    className: "button-add-new-item ",
-    type: props.type,
-    value: props.name,
+    className: "button-main",
     onClick: function onClick() {
       var idPage = props.callbackClick();
 
@@ -2600,6 +2596,12 @@ var ButtonCreate = function ButtonCreate(props) {
         });
       }
     }
+  }, props.image ? react_1["default"].createElement("img", {
+    src: props.srcImage
+  }) : "", react_1["default"].createElement("input", {
+    className: "button-add-new-item ",
+    type: props.type,
+    value: props.name
   }));
 };
 
@@ -3194,16 +3196,20 @@ var BurdenSharing = mobx_react_lite_1.observer(function () {
     }
   };
   var popUpData = {
-    name: state_1["default"].СreationEditingWallets.newNameWallet,
+    name: state_1["default"].Wallet.newUser,
     kind: "Поиск пользователя",
+    textMessage: "Введите имя пользователя или адрес электронной почты",
     closeClick: function closeClick() {
       return setStatePopUp(false);
-    } // onChangeFunction: store.СreationEditingWallets.onChangeFnWalletName,
-    // callbackClick: store.СreationEditingWallets.createNewWallet,
-    // redirectPage: redirectPage,
-
-  }; // store.Wallet.userSearch,
-
+    },
+    button: {
+      name: "Добавить",
+      type: "button",
+      image: false,
+      callbackClick: state_1["default"].Wallet.addUser
+    },
+    onChangeFunction: state_1["default"].Wallet.userSearch
+  };
   react_1.useEffect(function () {
     state_1["default"].Wallet.scopeOneWallet().then(function (data) {
       state_1["default"].Wallet.lengthBurdenUser = data.length;
@@ -3917,7 +3923,7 @@ var PopUp = mobx_react_lite_1.observer(function (props) {
     onClick: props.closeClick
   })), react_1["default"].createElement("div", {
     className: "wrapper-for-name"
-  }, react_1["default"].createElement("p", null, "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 "), react_1["default"].createElement("input", {
+  }, react_1["default"].createElement("p", null, props.textMessage), react_1["default"].createElement("input", {
     type: "text",
     value: props.name,
     onChange: props.onChangeFunction
@@ -4591,10 +4597,13 @@ function () {
     this.activePagination = 0;
     this.lengthRows = 0;
     this.lengthBurdenUser = 0;
+    this.newUser = "";
 
     this.userSearch = function () {
       console.log("hello");
     };
+
+    this.addUser = function () {};
 
     mobx_1.makeObservable(this, {
       newDataRaw: mobx_1.observable,
@@ -4609,11 +4618,13 @@ function () {
       numberPagination: mobx_1.observable,
       activePagination: mobx_1.observable,
       nameWallet: mobx_1.observable,
+      newUser: mobx_1.observable,
       startOneWalet: mobx_1.action,
       scopeOneWallet: mobx_1.action,
       addZero: mobx_1.action,
       addNewRow: mobx_1.action,
-      gradeUser: mobx_1.action
+      gradeUser: mobx_1.action,
+      addUser: mobx_1.action
     });
   }
 
@@ -9779,7 +9790,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-for-background {\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  background: #C4C4C4;\n  align-items: center;\n  justify-content: center;\n  display: flex;\n  z-index: 1;\n}\n.wrapper-for-background .wrapper-pop-up {\n  background: #F5F5F5;\n  display: flex;\n  flex-direction: column;\n  font-size: 1.5rem;\n  width: 40%;\n  height: 40%;\n  border-radius: 10px;\n  justify-content: space-between;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-header-create-new-name {\n  border-radius: 10px 10px 0 0;\n  display: flex;\n  justify-content: space-between;\n  background: #FE7BA7;\n  padding: 0 10px 0 20px;\n  color: #FFFFFF;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-header-create-new-name .close-img {\n  height: 50%;\n  padding: 10px 0;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-header-create-new-name .close-img:hover {\n  filter: brightness(0.1);\n  cursor: pointer;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-name {\n  padding: 0 20px;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-name input {\n  width: 90%;\n  border: 1px solid #FDB547;\n  align-self: center;\n  height: 36px;\n  font-size: 1.3rem;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-name input:active {\n  border: 1px solid #FDB547;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-name input:focus {\n  outline: none;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-button {\n  align-self: center;\n  padding-bottom: 20px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-for-background {\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  background: #C4C4C4;\n  align-items: center;\n  justify-content: center;\n  display: flex;\n  z-index: 1;\n}\n.wrapper-for-background .wrapper-pop-up {\n  background: #F5F5F5;\n  display: flex;\n  flex-direction: column;\n  font-size: 1.5rem;\n  width: 40%;\n  height: 40%;\n  border-radius: 10px;\n  justify-content: flex-start;\n  position: relative;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-header-create-new-name {\n  border-radius: 10px 10px 0 0;\n  display: flex;\n  justify-content: space-between;\n  background: #FE7BA7;\n  padding: 0 10px 0 20px;\n  color: #FFFFFF;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-header-create-new-name .close-img {\n  height: 50%;\n  padding: 10px 0;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-header-create-new-name .close-img:hover {\n  filter: brightness(0.1);\n  cursor: pointer;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-name {\n  padding: 0 20px;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-name input {\n  width: 90%;\n  border: 1px solid #FDB547;\n  align-self: center;\n  height: 36px;\n  font-size: 1.3rem;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-name input:active {\n  border: 1px solid #FDB547;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-name input:focus {\n  outline: none;\n}\n.wrapper-for-background .wrapper-pop-up .wrapper-for-button {\n  position: absolute;\n  bottom: 0px;\n  align-self: center;\n  padding-bottom: 20px;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

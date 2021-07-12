@@ -18,6 +18,7 @@ export default class Wallet {
     activePagination = 0;
     lengthRows = 0;
     lengthBurdenUser = 0;
+    newUser = "";
 
     constructor() {
       makeObservable(this, {
@@ -33,11 +34,13 @@ export default class Wallet {
         numberPagination: observable,
         activePagination: observable,
         nameWallet: observable,
+        newUser: observable,
         startOneWalet: action,
         scopeOneWallet: action,
         addZero: action, 
         addNewRow: action, 
         gradeUser:action,
+        addUser:action,
       })
     }
     addZero(number:number){
@@ -126,7 +129,10 @@ export default class Wallet {
   }
 
   userSearch = () =>{
-console.log("hello");
+  console.log("hello");
+
+  }
+  addUser=() =>{
 
   }
 }

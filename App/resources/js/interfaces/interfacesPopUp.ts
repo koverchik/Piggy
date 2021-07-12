@@ -3,6 +3,7 @@ import intefacesButton from "./intefacesButtonCreate";
 
 interface interfacesPopUp extends React.HTMLAttributes<HTMLDivElement>{
     name: string,
+    textMessage: string,
     kind: string,
     closeClick: () => void,
     button: intefacesButton,

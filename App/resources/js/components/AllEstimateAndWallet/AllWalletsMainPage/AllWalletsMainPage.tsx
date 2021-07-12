@@ -36,6 +36,7 @@ const paginationDataWallet: PaginationInterface = {
 const popUpData: interfacesPopUp = {
     name: store.СreationEditingWallets.newNameWallet,
     kind: "Создание кошелька",
+    textMessage: "Введите название",
     closeClick: () => setStatePopUp(false),
     button: {name: "Создать",
             type: "submit",
