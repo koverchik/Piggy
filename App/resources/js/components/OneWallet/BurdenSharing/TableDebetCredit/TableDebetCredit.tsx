@@ -9,9 +9,7 @@ const TableDebetCredit: React.FC = observer(() => {
         
         if(store.Wallet.allRows.length != 0 && store.Wallet.allUsers.length != 0 ){
              
-             store.Wallet.allRows.map((item: any) => {           
-        
-                   
+             store.Wallet.allRows.map((item: any) => {                        
                 for (let index = 0; index < store.Wallet.allUsers.length; index++) {                 
                     
                     if(store.Wallet.allUsers[index].userId == item.user_id){
@@ -24,6 +22,7 @@ const TableDebetCredit: React.FC = observer(() => {
                 }
         
             })     
+         
             createRowsDebitCredit(store.Wallet.allUsers);          
 
         }

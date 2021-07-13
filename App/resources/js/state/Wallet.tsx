@@ -104,12 +104,9 @@ export default class Wallet {
     async scopeOneWallet(){
       const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'scope-one-wallet', { id: this.idWallet  })
       .then(response => {
-        if(response.status === 200){
-          
-        }
-      
-        
-       return response.data;
+        if(response.status === 200){ 
+          return response.data;
+        }     
       },
       response => {
         console.log("error request " + response);
@@ -139,17 +136,16 @@ export default class Wallet {
   }
 
   requestUsersSystems (){
-    const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'all-users-system')
-    .then(response => {
-      if(response.status === 200){
-        return response.data;
-      }
-    },
-    response => {
-      console.log("error request " + response);
-      return "Error";
-
-        })
+     const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'all-users-system', { id: this.idWallet  })
+      .then(response => {
+        if(response.status === 200){
+          return response.data;
+        }
+      },
+      response => {
+        console.log("error request " + response);
+        return "Error";
+          })
     return  result;
   }
 }

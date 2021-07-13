@@ -4856,9 +4856,9 @@ function () {
         result = axios_1["default"].post("http://localhost:8000/" + 'scope-one-wallet', {
           id: this.idWallet
         }).then(function (response) {
-          if (response.status === 200) {}
-
-          return response.data;
+          if (response.status === 200) {
+            return response.data;
+          }
         }, function (response) {
           console.log("error request " + response);
           return "Error";
@@ -4885,7 +4885,9 @@ function () {
   };
 
   Wallet.prototype.requestUsersSystems = function () {
-    var result = axios_1["default"].post("http://localhost:8000/" + 'all-users-system').then(function (response) {
+    var result = axios_1["default"].post("http://localhost:8000/" + 'all-users-system', {
+      id: this.idWallet
+    }).then(function (response) {
       if (response.status === 200) {
         return response.data;
       }

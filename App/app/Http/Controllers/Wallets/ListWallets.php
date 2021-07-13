@@ -128,9 +128,16 @@ class ListWallets extends Controller
         //
     }
 
-    public function usersSearch()
+    public function usersSearch(Request $data)
     {
-        $users = User::get();
-        return $users;
+        $allUsers = collect(User::get());
+        $usersOneWallet = ScopeDiscription::with('User')->where('names_wallets_id',  $data["id"])->get();
+        $userWallet = array_flatten($usersOneWallet->map(function ($user) {
+            return collect($user->user->toArray())
+                ->only(["id"])
+                ->all();
+        }));
+        $filtered = array_flatten($allUsers->whereNotIn('id', $userWallet));
+        return $filtered;
     }
 }
