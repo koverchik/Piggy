@@ -29,7 +29,6 @@ const AllEstimateMainPage: React.FC = observer(() => {
         name: store.СreationEditingEstimates.newNameEstimate,
         kind: "Создание сметы",
         textMessage: "Введите название",
-        listUser: false,
         accessOptions: false,
         closeClick: () => setStatePopUp(false),
         button: {name: "Создать",

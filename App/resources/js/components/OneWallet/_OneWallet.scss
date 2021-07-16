@@ -37,6 +37,9 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
+            @media screen and (max-width: 1240px) {
+                flex-direction: column;
+            }
             .wrapper-tables-list-add, .wapper-user-table{
                 background-color: white;
                 border-radius: 10px;

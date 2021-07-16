@@ -6,7 +6,7 @@
     align-self: center;
     padding: 0;
     width: 90%; 
-    height: 200px;
+    max-height: 200px;
     overflow: auto;
     z-index: 1;
     .one-user-list-user-data{
@@ -32,3 +32,6 @@
         cursor: pointer;
     }
 } 
+.hide-list{
+    visibility: hidden;
+}

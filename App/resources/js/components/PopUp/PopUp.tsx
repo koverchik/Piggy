@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import './_PopUp.scss';
 import Button from "../ButtonCreate/ButtonCreate";
@@ -6,7 +6,7 @@ import ListForPoints from "./ListForPoint/ListForPoints";
 import AccessList from "./AccessList/AccessList";
 
 const PopUp: React.FC = observer((props: any) => { 
-                         
+   const [stateListUser, setStateListUser] = useState(props.listUser.availability);
     return (
       <div className="wrapper-for-background" onClick={props.closeClick}>
          <div className="wrapper-pop-up" onClick={(event)=> {event.stopPropagation()}}>
@@ -19,8 +19,10 @@ const PopUp: React.FC = observer((props: any) => {
                <input   type="text" 
                         value={ props.name } 
                         onChange={ props.onChangeFunction }
+                        onClick={()=> setStateListUser(!stateListUser)
+                        }
                         />
-               {props.listUser ? <ListForPoints /> : ""}
+               {props.listUser != undefined ? <ListForPoints {...stateListUser} /> : ""}
                {props.accessOptions ? <AccessList /> : ""}
             </div>
             <div className="wrapper-for-button">

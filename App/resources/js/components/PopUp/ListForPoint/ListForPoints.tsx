@@ -5,9 +5,10 @@ import store from "../../../state";
 
 const ListForPoints: React.FC = observer((props: any) => {  
    const [stateUsers, setStateUsers] = useState();     
+  console.log(props);
+  
    useEffect(() => {
       store.Wallet.requestUsersSystems().then((data: any)=>{     
-         
           const result = data.map((item: any, i: number) =>{
                return(
                <div className="one-user-list-user-data" key={"user" + i}>
@@ -20,7 +21,7 @@ const ListForPoints: React.FC = observer((props: any) => {
       });
    }, [])                     
     return (
-            <div className="list-users-data">
+            <div className={ props.availability ? "list-users-data": "list-users-data hide-list" }>
                { stateUsers }
             </div>
             )

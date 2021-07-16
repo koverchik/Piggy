@@ -7,6 +7,9 @@
         margin: 10px;
         font-size: 1.5rem;
         font-weight: bold;
+        @media screen and (max-width: 800px) {
+            font-size: 1.3rem !important;
+        } 
         &:hover{
             cursor: pointer;
             color: #FE7BA7;
@@ -15,6 +18,9 @@
     }
     .image-pagination{
         width: 2rem;
+        @media screen and (max-width: 800px) {
+            width: 1.5rem;
+        }
         &:hover{
             cursor: pointer;
             opacity: 0.5;

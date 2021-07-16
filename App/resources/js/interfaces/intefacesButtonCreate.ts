@@ -5,7 +5,7 @@ interface ButtonCreate extends React.HTMLAttributes<HTMLDivElement>{
     image: boolean,
     srcImage?: string,
     type: "button" | "submit",
-    callbackClick ? : () => void,
+    callbackClick?: () => void,
     redirectPage?: (idPage:number) => void,
 
 }

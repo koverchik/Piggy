@@ -4,9 +4,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media screen and (max-width: 800px) {
+        height: 100px;
+    }
     a{
         text-decoration: none;
         .logo-header{
+            @media screen and (max-width: 800px) {
+                font-size: 60px;
+            }
             color: #FE7BA7;
             font-size: 70px;
             margin: 0;

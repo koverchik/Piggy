@@ -13,6 +13,7 @@ const BurdenSharing: React.FC = observer(() => {
     const [listScopeOneWallet, setListScopeOneWallet] = useState([]);
     const [tableDebetCredit, setTableDebetCredit] = useState(false);
     const [statePopUp, setStatePopUp] = useState(false);
+    
 
     const buttonName: interfacesButtonCreate = { 
     name: "Добавить",
@@ -26,7 +27,9 @@ const BurdenSharing: React.FC = observer(() => {
         name: store.Wallet.newUser,
         kind: "Поиск пользователя",
         textMessage: "Добавьте имя и статус",
-        listUser: true,
+        listUser: {
+            availability: false,    
+        },
         accessOptions: true,
         closeClick: () => setStatePopUp(false),
         button: {name: "Добавить",
