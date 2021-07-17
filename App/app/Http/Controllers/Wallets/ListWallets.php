@@ -140,4 +140,33 @@ class ListWallets extends Controller
         $filtered = array_flatten($allUsers->whereNotIn('id', $userWallet));
         return $filtered;
     }
+
+    public function addNewUser(Request $data)
+    {
+        $ScopeDiscription = new ScopeDiscription;
+        $ScopeDiscription -> user_id = $data['newUser'];
+        $ScopeDiscription -> names_wallets_id = $data['id'];
+        $ScopeDiscription -> browsing = 1;
+        $ScopeDiscription -> add_row = 1;
+        if($data['AccessNewUser'] === "owner"){
+            $ScopeDiscription -> edit_permission = 1;
+            $ScopeDiscription -> edit_row = 1;
+            $ScopeDiscription -> delete_row = 1;
+            $ScopeDiscription -> delete_table = 1;
+        }
+        if($data['AccessNewUser'] === "editor"){
+            $ScopeDiscription -> edit_permission = 0;
+            $ScopeDiscription -> delete_table = 0;
+            $ScopeDiscription -> edit_row = 1;
+            $ScopeDiscription -> delete_row = 1;
+        }
+        if($data['AccessNewUser'] === "user"){
+            $ScopeDiscription -> edit_permission = 0;
+            $ScopeDiscription -> delete_table = 0;
+            $ScopeDiscription -> edit_row = 0;
+            $ScopeDiscription -> delete_row = 0;
+        }
+        $ScopeDiscription->save();
+    }
+
 }

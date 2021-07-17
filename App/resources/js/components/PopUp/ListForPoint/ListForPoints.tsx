@@ -6,9 +6,9 @@ import store from "../../../state";
 const ListForPoints: React.FC = observer((props: any) => {  
    const [stateUsers, setStateUsers] = useState();     
    type UserList = {
+      id: number,
       name: string, 
       email: string, 
-      id: number,
       created_at: string,
       updated_at: string,
       email_verified_at: string};
@@ -34,18 +34,21 @@ const ListForPoints: React.FC = observer((props: any) => {
  
    function createTags (data: UserList, i: number){
       return(
-         <div className="one-user-list-user-data" key={"user" + i}>
-            <div className="wrapper-one-user"><img src="../images/people.svg" alt="close"/>
-            <p>{data.name}</p></div>
-            <p>{ data.email }</p>
+         <div className="one-user-list-user-data" key={"user" + i} onClick={props.callbackClickList}>
+            <div className="wrapper-one-user">
+               <img src="../images/people.svg" alt="user-pic" className="image-one-user"/>
+               <p data-id={data.id} className="name-one-user">{data.name}</p>
+            </div>
+            <p className="email-one-user">{ data.email }</p>
          </div>
      )
    }        
    useEffect(() => {
       createListUser(store.Wallet.allDataUsersSystems);
-   }, [store.Wallet.newUser]) 
+   }, [store.Wallet.newUser])
+    
     return (
-            <div className={"list-users-data"} onClick={props.callbackClickList} >
+            <div className={"list-users-data"}  onClick={props.setList}>
                { stateUsers }
             </div>
             )

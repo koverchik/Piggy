@@ -2199,7 +2199,6 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
     name: state_1["default"].СreationEditingEstimates.newNameEstimate,
     kind: "Создание сметы",
     textMessage: "Введите название",
-    accessOptions: false,
     closeClick: function closeClick() {
       return setStatePopUp(false);
     },
@@ -2395,7 +2394,6 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
     name: state_1["default"].СreationEditingWallets.newNameWallet,
     kind: "Создание кошелька",
     textMessage: "Введите название",
-    accessOptions: false,
     closeClick: function closeClick() {
       return setStatePopUp(false);
     },
@@ -3205,7 +3203,12 @@ var BurdenSharing = mobx_react_lite_1.observer(function () {
       availability: false,
       callbackClickList: state_1["default"].Wallet.addUser
     },
-    accessOptions: true,
+    accessList: {
+      availability: true,
+      callbackClickAccess: function callbackClickAccess(event) {
+        state_1["default"].Wallet.AccessNewUser = event.target.value;
+      }
+    },
     closeClick: function closeClick() {
       return setStatePopUp(false);
     },
@@ -3894,7 +3897,8 @@ var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modul
 
 __webpack_require__(/*! ./_AccessList.scss */ "./resources/js/components/PopUp/AccessList/_AccessList.scss");
 
-var AccessList = mobx_react_lite_1.observer(function () {
+var AccessList = mobx_react_lite_1.observer(function (props) {
+  console.log(props);
   return react_1["default"].createElement("div", {
     className: "access-new-user"
   }, react_1["default"].createElement("div", {
@@ -3903,17 +3907,20 @@ var AccessList = mobx_react_lite_1.observer(function () {
     name: "access",
     type: "radio",
     value: "owner",
-    className: "radio-checkbox"
+    className: "radio-checkbox",
+    onClick: props.callbackClickAccess
   }), "\u0412\u043B\u0430\u0434\u0435\u043B\u0435\u0446"), react_1["default"].createElement("p", null, react_1["default"].createElement("input", {
     name: "access",
     type: "radio",
     value: "editor",
-    className: "radio-checkbox"
+    className: "radio-checkbox",
+    onClick: props.callbackClickAccess
   }), "\u0420\u0435\u0434\u0430\u043A\u0442\u043E\u0440"), react_1["default"].createElement("p", null, react_1["default"].createElement("input", {
     name: "access",
     type: "radio",
     value: "user",
-    className: "radio-checkbox"
+    className: "radio-checkbox",
+    onClick: props.callbackClickAccess
   }), "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C")));
 });
 exports.default = AccessList;
@@ -4013,13 +4020,20 @@ var ListForPoints = mobx_react_lite_1.observer(function (props) {
   function createTags(data, i) {
     return react_1["default"].createElement("div", {
       className: "one-user-list-user-data",
-      key: "user" + i
+      key: "user" + i,
+      onClick: props.callbackClickList
     }, react_1["default"].createElement("div", {
       className: "wrapper-one-user"
     }, react_1["default"].createElement("img", {
       src: "../images/people.svg",
-      alt: "close"
-    }), react_1["default"].createElement("p", null, data.name)), react_1["default"].createElement("p", null, data.email));
+      alt: "user-pic",
+      className: "image-one-user"
+    }), react_1["default"].createElement("p", {
+      "data-id": data.id,
+      className: "name-one-user"
+    }, data.name)), react_1["default"].createElement("p", {
+      className: "email-one-user"
+    }, data.email));
   }
 
   react_1.useEffect(function () {
@@ -4027,7 +4041,7 @@ var ListForPoints = mobx_react_lite_1.observer(function (props) {
   }, [state_1["default"].Wallet.newUser]);
   return react_1["default"].createElement("div", {
     className: "list-users-data",
-    onClick: props.callbackClickList
+    onClick: props.setList
   }, stateUsers);
 });
 exports.default = ListForPoints;
@@ -4144,7 +4158,11 @@ var PopUp = mobx_react_lite_1.observer(function (props) {
     onClick: function onClick() {
       return setStateListUser(!stateListUser);
     }
-  }), props.listUser != undefined && stateListUser ? react_1["default"].createElement(ListForPoints_1["default"], __assign({}, props.listUser)) : "", props.accessOptions ? react_1["default"].createElement(AccessList_1["default"], null) : ""), react_1["default"].createElement("div", {
+  }), props.listUser != undefined && stateListUser ? react_1["default"].createElement(ListForPoints_1["default"], __assign({}, props.listUser, {
+    setList: function setList() {
+      return setStateListUser(!stateListUser);
+    }
+  })) : "", props.accessList != undefined ? react_1["default"].createElement(AccessList_1["default"], __assign({}, props.accessList)) : ""), react_1["default"].createElement("div", {
     className: "wrapper-for-button"
   }, react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, props.button)))));
 });
@@ -4817,6 +4835,8 @@ function () {
     this.lengthRows = 0;
     this.lengthBurdenUser = 0;
     this.newUser = "";
+    this.newUserId = 0;
+    this.AccessNewUser = "";
     this.allDataUsersSystems = [];
 
     this.userSearch = function (event) {
@@ -4824,11 +4844,25 @@ function () {
     };
 
     this.addUser = function (event) {
-      console.log(event.target);
+      var newUserChanged = event.currentTarget.firstElementChild.lastElementChild;
+      _this.newUserId = newUserChanged.getAttribute('data-id');
+      _this.newUser = newUserChanged.textContent;
     };
 
     this.requestAddUser = function () {
-      console.log('event');
+      var result = axios_1["default"].post("http://localhost:8000/" + 'add-new-user-wallet', {
+        id: _this.idWallet,
+        newUser: _this.newUserId,
+        AccessNewUser: _this.AccessNewUser
+      }).then(function (response) {
+        if (response.status === 200) {
+          return response.data;
+        }
+      }, function (response) {
+        console.log("error request " + response);
+        return "Error";
+      });
+      return result;
     };
 
     mobx_1.makeObservable(this, {
@@ -4846,6 +4880,8 @@ function () {
       nameWallet: mobx_1.observable,
       newUser: mobx_1.observable,
       allDataUsersSystems: mobx_1.observable,
+      newUserId: mobx_1.observable,
+      AccessNewUser: mobx_1.observable,
       requestUsersSystems: mobx_1.action,
       startOneWalet: mobx_1.action,
       scopeOneWallet: mobx_1.action,

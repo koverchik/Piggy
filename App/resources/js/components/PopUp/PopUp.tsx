@@ -19,11 +19,10 @@ const PopUp: React.FC = observer((props: any) => {
                <input   type="text" 
                         value={ props.name } 
                         onChange={ props.onChangeFunction }
-                        onClick={()=> setStateListUser(!stateListUser)
-                        }
+                        onClick={ ()=> setStateListUser(!stateListUser) }
                         />
-               {props.listUser != undefined && stateListUser? <ListForPoints {...props.listUser} /> : ""}
-               {props.accessOptions ? <AccessList /> : ""}
+               {props.listUser != undefined && stateListUser? <ListForPoints { ...props.listUser } setList={ ()=> setStateListUser(!stateListUser) }/> : ""}
+               {props.accessList != undefined ? <AccessList { ...props.accessList }/> : ""}
             </div>
             <div className="wrapper-for-button">
                <Button {...props.button}/>

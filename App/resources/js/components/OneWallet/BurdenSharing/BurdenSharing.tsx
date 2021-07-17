@@ -31,7 +31,10 @@ const BurdenSharing: React.FC = observer(() => {
             availability: false, 
             callbackClickList: store.Wallet.addUser,   
         },
-        accessOptions: true,
+        accessList: {
+            availability: true,
+            callbackClickAccess: (event: Event) => {store.Wallet.AccessNewUser = (event.target as HTMLInputElement).value},
+        },
         closeClick: () => setStatePopUp(false),
         button: {name: "Добавить",
                 type: "button",

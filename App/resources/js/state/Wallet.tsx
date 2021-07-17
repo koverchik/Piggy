@@ -19,7 +19,10 @@ export default class Wallet {
     lengthRows = 0;
     lengthBurdenUser = 0;
     newUser = "";
-    allDataUsersSystems:never[] = [];
+    newUserId = 0;
+    AccessNewUser = "";
+    allDataUsersSystems: never[] = [];
+
 
     constructor() {
       makeObservable(this, {
@@ -37,6 +40,8 @@ export default class Wallet {
         nameWallet: observable,
         newUser: observable,
         allDataUsersSystems:observable,
+        newUserId: observable,
+        AccessNewUser: observable,
         requestUsersSystems: action,
         startOneWalet: action,
         scopeOneWallet: action,
@@ -116,7 +121,7 @@ export default class Wallet {
       return result;
     }
 
-    gradeUser(item:any) {
+    gradeUser(item: any) {
       let grade: string = "";
       if(item['edit_permission'] === 1 && item['delete_table'] === 1){
           grade = "Владелец";
@@ -131,12 +136,26 @@ export default class Wallet {
   userSearch = (event: any) => { 
     this.newUser = event.target.value;       
   }
-  addUser = (event : any) =>{
-    console.log(event.target);
+  addUser = (event : any) => { 
+    const newUserChanged = event.currentTarget.firstElementChild.lastElementChild;
+    this.newUserId = newUserChanged.getAttribute('data-id');
+    this.newUser = newUserChanged.textContent;
   }
 
   requestAddUser = () =>{
-    console.log('event');
+
+    const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'add-new-user-wallet', 
+    { id: this.idWallet, newUser: this.newUserId, AccessNewUser: this.AccessNewUser })
+    .then(response => {
+      if(response.status === 200){
+        return response.data;
+      }
+    },
+    response => {
+      console.log("error request " + response);
+      return "Error";
+        })
+  return  result;
   }
   requestUsersSystems (){
      const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'all-users-system', { id: this.idWallet  })
