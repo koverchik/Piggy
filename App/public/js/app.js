@@ -3202,7 +3202,8 @@ var BurdenSharing = mobx_react_lite_1.observer(function () {
     kind: "Поиск пользователя",
     textMessage: "Добавьте имя и статус",
     listUser: {
-      availability: false
+      availability: false,
+      callbackClickList: state_1["default"].Wallet.addUser
     },
     accessOptions: true,
     closeClick: function closeClick() {
@@ -3212,7 +3213,7 @@ var BurdenSharing = mobx_react_lite_1.observer(function () {
       name: "Добавить",
       type: "button",
       image: false,
-      callbackClick: state_1["default"].Wallet.addUser
+      callbackClick: state_1["default"].Wallet.requestAddUser
     },
     onChangeFunction: state_1["default"].Wallet.userSearch
   };
@@ -3985,25 +3986,48 @@ var ListForPoints = mobx_react_lite_1.observer(function (props) {
       stateUsers = _a[0],
       setStateUsers = _a[1];
 
-  console.log(props);
   react_1.useEffect(function () {
     state_1["default"].Wallet.requestUsersSystems().then(function (data) {
-      var result = data.map(function (item, i) {
-        return react_1["default"].createElement("div", {
-          className: "one-user-list-user-data",
-          key: "user" + i
-        }, react_1["default"].createElement("div", {
-          className: "wrapper-one-user"
-        }, react_1["default"].createElement("img", {
-          src: "../images/people.svg",
-          alt: "close"
-        }), react_1["default"].createElement("p", null, item.name)), react_1["default"].createElement("p", null, item.email));
-      });
-      setStateUsers(result);
+      state_1["default"].Wallet.allDataUsersSystems = data;
+      createListUser(state_1["default"].Wallet.allDataUsersSystems);
     });
   }, []);
+
+  function createListUser(data, serchData) {
+    if (serchData === void 0) {
+      serchData = state_1["default"].Wallet.newUser;
+    }
+
+    var result = data.map(function (item, i) {
+      if (serchData === "") {
+        return createTags(item, i);
+      } else {
+        if (item["email"].toUpperCase().indexOf(serchData.toUpperCase()) != -1 || item["name"].toUpperCase().indexOf(serchData.toUpperCase()) != -1) {
+          return createTags(item, i);
+        }
+      }
+    });
+    setStateUsers(result);
+  }
+
+  function createTags(data, i) {
+    return react_1["default"].createElement("div", {
+      className: "one-user-list-user-data",
+      key: "user" + i
+    }, react_1["default"].createElement("div", {
+      className: "wrapper-one-user"
+    }, react_1["default"].createElement("img", {
+      src: "../images/people.svg",
+      alt: "close"
+    }), react_1["default"].createElement("p", null, data.name)), react_1["default"].createElement("p", null, data.email));
+  }
+
+  react_1.useEffect(function () {
+    createListUser(state_1["default"].Wallet.allDataUsersSystems);
+  }, [state_1["default"].Wallet.newUser]);
   return react_1["default"].createElement("div", {
-    className: props.availability ? "list-users-data" : "list-users-data hide-list"
+    className: "list-users-data",
+    onClick: props.callbackClickList
   }, stateUsers);
 });
 exports.default = ListForPoints;
@@ -4120,7 +4144,7 @@ var PopUp = mobx_react_lite_1.observer(function (props) {
     onClick: function onClick() {
       return setStateListUser(!stateListUser);
     }
-  }), props.listUser != undefined ? react_1["default"].createElement(ListForPoints_1["default"], __assign({}, stateListUser)) : "", props.accessOptions ? react_1["default"].createElement(AccessList_1["default"], null) : ""), react_1["default"].createElement("div", {
+  }), props.listUser != undefined && stateListUser ? react_1["default"].createElement(ListForPoints_1["default"], __assign({}, props.listUser)) : "", props.accessOptions ? react_1["default"].createElement(AccessList_1["default"], null) : ""), react_1["default"].createElement("div", {
     className: "wrapper-for-button"
   }, react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, props.button)))));
 });
@@ -4793,13 +4817,19 @@ function () {
     this.lengthRows = 0;
     this.lengthBurdenUser = 0;
     this.newUser = "";
-    this.allUsersSystems = "";
+    this.allDataUsersSystems = [];
 
     this.userSearch = function (event) {
       _this.newUser = event.target.value;
     };
 
-    this.addUser = function () {};
+    this.addUser = function (event) {
+      console.log(event.target);
+    };
+
+    this.requestAddUser = function () {
+      console.log('event');
+    };
 
     mobx_1.makeObservable(this, {
       newDataRaw: mobx_1.observable,
@@ -4815,7 +4845,7 @@ function () {
       activePagination: mobx_1.observable,
       nameWallet: mobx_1.observable,
       newUser: mobx_1.observable,
-      allUsersSystems: mobx_1.observable,
+      allDataUsersSystems: mobx_1.observable,
       requestUsersSystems: mobx_1.action,
       startOneWalet: mobx_1.action,
       scopeOneWallet: mobx_1.action,
@@ -10026,7 +10056,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".list-users-data {\n  background: white;\n  border: 1px solid #FDB547;\n  margin: 0;\n  padding: 0;\n  align-self: center;\n  padding: 0;\n  width: 90%;\n  max-height: 200px;\n  overflow: auto;\n  z-index: 1;\n}\n.list-users-data .one-user-list-user-data {\n  margin: 0;\n  padding: 0;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  font-size: 1.1rem;\n  padding-left: 5px;\n  border-bottom: 1px solid #C4C4C4;\n}\n.list-users-data .one-user-list-user-data .wrapper-one-user {\n  display: flex;\n  align-items: center;\n}\n.list-users-data .one-user-list-user-data .wrapper-one-user img {\n  margin-right: 5px;\n}\n.list-users-data .one-user-list-user-data:hover {\n  opacity: 0.6;\n  filter: brightness(0.1);\n  cursor: pointer;\n}\n\n.hide-list {\n  visibility: hidden;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".list-users-data {\n  background: white;\n  border: 1px solid #FDB547;\n  margin: 0;\n  padding: 0;\n  align-self: center;\n  padding: 0;\n  width: 90%;\n  max-height: 200px;\n  overflow: auto;\n  z-index: 1;\n}\n.list-users-data .one-user-list-user-data {\n  margin: 0;\n  padding: 0;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  font-size: 1.1rem;\n  padding-left: 5px;\n  border-bottom: 1px solid #C4C4C4;\n}\n.list-users-data .one-user-list-user-data .wrapper-one-user {\n  display: flex;\n  align-items: center;\n}\n.list-users-data .one-user-list-user-data .wrapper-one-user img {\n  margin-right: 5px;\n}\n.list-users-data .one-user-list-user-data:hover {\n  opacity: 0.6;\n  filter: brightness(0.1);\n  cursor: pointer;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -22,7 +22,7 @@ const PopUp: React.FC = observer((props: any) => {
                         onClick={()=> setStateListUser(!stateListUser)
                         }
                         />
-               {props.listUser != undefined ? <ListForPoints {...stateListUser} /> : ""}
+               {props.listUser != undefined && stateListUser? <ListForPoints {...props.listUser} /> : ""}
                {props.accessOptions ? <AccessList /> : ""}
             </div>
             <div className="wrapper-for-button">

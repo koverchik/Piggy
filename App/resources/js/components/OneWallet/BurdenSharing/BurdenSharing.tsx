@@ -28,14 +28,15 @@ const BurdenSharing: React.FC = observer(() => {
         kind: "Поиск пользователя",
         textMessage: "Добавьте имя и статус",
         listUser: {
-            availability: false,    
+            availability: false, 
+            callbackClickList: store.Wallet.addUser,   
         },
         accessOptions: true,
         closeClick: () => setStatePopUp(false),
         button: {name: "Добавить",
                 type: "button",
                 image: false,
-                callbackClick: store.Wallet.addUser,
+                callbackClick: store.Wallet.requestAddUser,
                 },
         onChangeFunction: store.Wallet.userSearch,
     }  
