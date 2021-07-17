@@ -3009,7 +3009,9 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
         var list = react_1["default"].createElement("tr", {
           key: "RowEstimate",
           className: "error-table"
-        }, "\u0423\u043F\u0441... \u0427\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443");
+        }, react_1["default"].createElement("td", {
+          colSpan: 4
+        }, "\u0423\u043F\u0441... \u0427\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443"));
         setlistRowsEstimate(list);
       } else {
         index_1["default"].Estimate.dataRows = data;
@@ -3020,7 +3022,9 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
           var list = react_1["default"].createElement("tr", {
             key: "RowEstimate",
             className: "error-table"
-          }, "\u0417\u0434\u0435\u0441\u044C \u043F\u043E\u043A\u0430 \u043D\u0438\u0447\u0435\u0433\u043E \u043D\u0435\u0442, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0441\u0442\u0440\u043E\u043A");
+          }, react_1["default"].createElement("td", {
+            colSpan: 4
+          }, "\u0417\u0434\u0435\u0441\u044C \u043F\u043E\u043A\u0430 \u043D\u0438\u0447\u0435\u0433\u043E \u043D\u0435\u0442, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0441\u0442\u0440\u043E\u043A"));
           setlistRowsEstimate(list);
         } else {
           createList(data, lengthData);
@@ -4919,10 +4923,6 @@ Object.defineProperty(exports, "__esModule", ({
 var mobx_1 = __webpack_require__(/*! mobx */ "./node_modules/mobx/dist/mobx.esm.js");
 
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
-
-mobx_1.configure({
-  enforceActions: "never"
-});
 
 var Wallet =
 /** @class */

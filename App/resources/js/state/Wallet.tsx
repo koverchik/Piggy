@@ -1,9 +1,5 @@
 import { makeObservable, action, observable, configure } from "mobx";
 import axios from 'axios';
-
-configure({
-    enforceActions: "never",
-  })
   
 export default class Wallet {
     allUsers = new Array();
@@ -41,7 +37,7 @@ export default class Wallet {
       })
     }
     addZero(number:number){
-      return number<10 ? `0${number}` : number;   
+      return number <10 ? `0${number}` : number;   
     }
     
     async startOneWalet(){

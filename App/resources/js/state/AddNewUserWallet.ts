@@ -21,8 +21,8 @@ export default class AddNewUserWallet {
       })
     }
 
-  userSearch = (event: any) => { 
-    this.newUser = event.target.value;       
+  userSearch = (event: Event) => { 
+    this.newUser = (event.target as HTMLInputElement).value;      
   }
 
   addUser = (event : any) => { 

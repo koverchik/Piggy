@@ -38,7 +38,6 @@ useEffect(() => {
 
 useEffect(() => {
     createListRows(store.Wallet.allRows, store.Wallet.activePagination);
-
  }, [store.Wallet.activePagination, store.Wallet.allSumm])
 
 

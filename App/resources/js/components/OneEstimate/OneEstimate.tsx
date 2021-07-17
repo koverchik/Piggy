@@ -16,20 +16,20 @@ const OneEstimate: React.FC = observer((props : any) => {
         }, [store.Estimate.activePagination])
 
     const paginationData: PaginationInterface = {
-    arrayNumber: store.Estimate.pagination,
-    activeNumber: store.Estimate.activePagination,
-    callbackPaginationArray: store.Estimate.callbackPaginationArray,
-    callbackPaginationLeft: store.Estimate.callbackPaginationLeft,
-    callbackPaginationRight: store.Estimate.callbackPaginationRight,
-    }
+        arrayNumber: store.Estimate.pagination,
+        activeNumber: store.Estimate.activePagination,
+        callbackPaginationArray: store.Estimate.callbackPaginationArray,
+        callbackPaginationLeft: store.Estimate.callbackPaginationLeft,
+        callbackPaginationRight: store.Estimate.callbackPaginationRight,
+        }
 
     useEffect(() => {
-
         store.Estimate.requestOneEstimate().then((data: any) => {
-
             if(data === "Error"){
                 const list : any  =  ( <tr key={"RowEstimate"} className="error-table">
-                                           Упс... Что-то пошло не так, попробуйте перезагрузить страницу
+                                            <td colSpan={4}>
+                                                Упс... Что-то пошло не так, попробуйте перезагрузить страницу
+                                            </td>
                                         </tr>)
                  setlistRowsEstimate(list);
              }else{
@@ -38,8 +38,10 @@ const OneEstimate: React.FC = observer((props : any) => {
                 store.Estimate.activePagination = store.Estimate.pagination.length;
                 if(lengthData === 0){
                     const list : any  =  ( <tr key={"RowEstimate"} className="error-table">
-                    Здесь пока ничего нет, попробуйте добавить несколько строк
-                    </tr>)
+                                                <td colSpan={4}>
+                                                    Здесь пока ничего нет, попробуйте добавить несколько строк
+                                                </td>
+                                            </tr>)
                     setlistRowsEstimate(list);
                 }else{
                     createList(data, lengthData);
