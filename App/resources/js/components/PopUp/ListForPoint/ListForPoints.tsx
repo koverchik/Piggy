@@ -14,12 +14,12 @@ const ListForPoints: React.FC = observer((props: any) => {
       email_verified_at: string};
 
    useEffect(() => {
-      store.Wallet.requestUsersSystems().then((data: any)=>{
-         store.Wallet.allDataUsersSystems = data;
-         createListUser(store.Wallet.allDataUsersSystems);
+      store.AddNewUserWallet.requestUsersSystems().then((data: any)=>{
+         store.AddNewUserWallet.allDataUsersSystems = data;
+         createListUser(store.AddNewUserWallet.allDataUsersSystems);
       });
    }, [])    
-   function createListUser (data:any, serchData: string = store.Wallet.newUser){
+   function createListUser (data:any, serchData: string = store.AddNewUserWallet.newUser){
       const result = data.map((item: UserList, i: number) =>{         
          if(serchData === ""){
             return createTags(item, i);
@@ -44,8 +44,8 @@ const ListForPoints: React.FC = observer((props: any) => {
      )
    }        
    useEffect(() => {
-      createListUser(store.Wallet.allDataUsersSystems);
-   }, [store.Wallet.newUser])
+      createListUser(store.AddNewUserWallet.allDataUsersSystems);
+   }, [store.AddNewUserWallet.newUser])
     
     return (
             <div className={"list-users-data"}  onClick={props.setList}>

@@ -1,0 +1,63 @@
+import { makeObservable, action, observable, configure } from "mobx";
+import axios from 'axios';
+import store from "./index";
+
+export default class AddNewUserWallet {
+    newUser = "";
+    newUserId = 0;
+    AccessNewUser = "";
+    allDataUsersSystems: never[] = [];
+
+
+    constructor() {
+      makeObservable(this, {
+        newUser: observable,
+        allDataUsersSystems:observable,
+        newUserId: observable,
+        AccessNewUser: observable,
+        addUser:action,
+        userSearch: action,
+        requestAddUser: action,
+        requestUsersSystems: action,
+      })
+    }
+
+  userSearch = (event: any) => { 
+    this.newUser = event.target.value;       
+  }
+  addUser = (event : any) => { 
+    const newUserChanged = event.currentTarget.firstElementChild.lastElementChild;
+    this.newUserId = newUserChanged.getAttribute('data-id');
+    this.newUser = newUserChanged.textContent;
+  }
+
+  requestAddUser = () =>{
+
+    const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'add-new-user-wallet', 
+    { id: store.Wallet.idWallet, newUser: this.newUserId, AccessNewUser: this.AccessNewUser })
+    .then(response => {
+      if(response.status === 200){
+        return response.data;
+      }
+    },
+    response => {
+      console.log("error request " + response);
+      return "Error";
+        })
+  return  result;
+  }
+
+  requestUsersSystems (){
+     const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'all-users-system', { id: store.Wallet.idWallet })
+      .then(response => {
+        if(response.status === 200){
+          return response.data;
+        }
+      },
+      response => {
+        console.log("error request " + response);
+        return "Error";
+          })
+    return  result;
+  }
+}

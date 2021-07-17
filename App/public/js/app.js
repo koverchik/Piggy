@@ -3196,17 +3196,17 @@ var BurdenSharing = mobx_react_lite_1.observer(function () {
     }
   };
   var popUpData = {
-    name: state_1["default"].Wallet.newUser,
+    name: state_1["default"].AddNewUserWallet.newUser,
     kind: "Поиск пользователя",
     textMessage: "Добавьте имя и статус",
     listUser: {
       availability: false,
-      callbackClickList: state_1["default"].Wallet.addUser
+      callbackClickList: state_1["default"].AddNewUserWallet.addUser
     },
     accessList: {
       availability: true,
       callbackClickAccess: function callbackClickAccess(event) {
-        state_1["default"].Wallet.AccessNewUser = event.target.value;
+        state_1["default"].AddNewUserWallet.AccessNewUser = event.target.value;
       }
     },
     closeClick: function closeClick() {
@@ -3216,9 +3216,9 @@ var BurdenSharing = mobx_react_lite_1.observer(function () {
       name: "Добавить",
       type: "button",
       image: false,
-      callbackClick: state_1["default"].Wallet.requestAddUser
+      callbackClick: state_1["default"].AddNewUserWallet.requestAddUser
     },
-    onChangeFunction: state_1["default"].Wallet.userSearch
+    onChangeFunction: state_1["default"].AddNewUserWallet.userSearch
   };
   react_1.useEffect(function () {
     state_1["default"].Wallet.scopeOneWallet().then(function (data) {
@@ -3994,15 +3994,15 @@ var ListForPoints = mobx_react_lite_1.observer(function (props) {
       setStateUsers = _a[1];
 
   react_1.useEffect(function () {
-    state_1["default"].Wallet.requestUsersSystems().then(function (data) {
-      state_1["default"].Wallet.allDataUsersSystems = data;
-      createListUser(state_1["default"].Wallet.allDataUsersSystems);
+    state_1["default"].AddNewUserWallet.requestUsersSystems().then(function (data) {
+      state_1["default"].AddNewUserWallet.allDataUsersSystems = data;
+      createListUser(state_1["default"].AddNewUserWallet.allDataUsersSystems);
     });
   }, []);
 
   function createListUser(data, serchData) {
     if (serchData === void 0) {
-      serchData = state_1["default"].Wallet.newUser;
+      serchData = state_1["default"].AddNewUserWallet.newUser;
     }
 
     var result = data.map(function (item, i) {
@@ -4037,8 +4037,8 @@ var ListForPoints = mobx_react_lite_1.observer(function (props) {
   }
 
   react_1.useEffect(function () {
-    createListUser(state_1["default"].Wallet.allDataUsersSystems);
-  }, [state_1["default"].Wallet.newUser]);
+    createListUser(state_1["default"].AddNewUserWallet.allDataUsersSystems);
+  }, [state_1["default"].AddNewUserWallet.newUser]);
   return react_1["default"].createElement("div", {
     className: "list-users-data",
     onClick: props.setList
@@ -4167,6 +4167,101 @@ var PopUp = mobx_react_lite_1.observer(function (props) {
   }, react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, props.button)))));
 });
 exports.default = PopUp;
+
+/***/ }),
+
+/***/ "./resources/js/state/AddNewUserWallet.ts":
+/*!************************************************!*\
+  !*** ./resources/js/state/AddNewUserWallet.ts ***!
+  \************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var mobx_1 = __webpack_require__(/*! mobx */ "./node_modules/mobx/dist/mobx.esm.js");
+
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+
+var index_1 = __importDefault(__webpack_require__(/*! ./index */ "./resources/js/state/index.ts"));
+
+var AddNewUserWallet =
+/** @class */
+function () {
+  function AddNewUserWallet() {
+    var _this = this;
+
+    this.newUser = "";
+    this.newUserId = 0;
+    this.AccessNewUser = "";
+    this.allDataUsersSystems = [];
+
+    this.userSearch = function (event) {
+      _this.newUser = event.target.value;
+    };
+
+    this.addUser = function (event) {
+      var newUserChanged = event.currentTarget.firstElementChild.lastElementChild;
+      _this.newUserId = newUserChanged.getAttribute('data-id');
+      _this.newUser = newUserChanged.textContent;
+    };
+
+    this.requestAddUser = function () {
+      var result = axios_1["default"].post("http://localhost:8000/" + 'add-new-user-wallet', {
+        id: index_1["default"].Wallet.idWallet,
+        newUser: _this.newUserId,
+        AccessNewUser: _this.AccessNewUser
+      }).then(function (response) {
+        if (response.status === 200) {
+          return response.data;
+        }
+      }, function (response) {
+        console.log("error request " + response);
+        return "Error";
+      });
+      return result;
+    };
+
+    mobx_1.makeObservable(this, {
+      newUser: mobx_1.observable,
+      allDataUsersSystems: mobx_1.observable,
+      newUserId: mobx_1.observable,
+      AccessNewUser: mobx_1.observable,
+      addUser: mobx_1.action,
+      userSearch: mobx_1.action,
+      requestAddUser: mobx_1.action,
+      requestUsersSystems: mobx_1.action
+    });
+  }
+
+  AddNewUserWallet.prototype.requestUsersSystems = function () {
+    var result = axios_1["default"].post("http://localhost:8000/" + 'all-users-system', {
+      id: index_1["default"].Wallet.idWallet
+    }).then(function (response) {
+      if (response.status === 200) {
+        return response.data;
+      }
+    }, function (response) {
+      console.log("error request " + response);
+      return "Error";
+    });
+    return result;
+  };
+
+  return AddNewUserWallet;
+}();
+
+exports.default = AddNewUserWallet;
 
 /***/ }),
 
@@ -4820,8 +4915,7 @@ var Wallet =
 /** @class */
 function () {
   function Wallet() {
-    var _this = this;
-
+    this.allUsers = new Array();
     this.newDataRaw = "";
     this.idWallet = 0;
     this.nameWallet = "";
@@ -4830,41 +4924,9 @@ function () {
     this.newRowCost = "";
     this.allRows = new Array();
     this.numberPagination = new Array();
-    this.allUsers = new Array();
     this.activePagination = 0;
     this.lengthRows = 0;
     this.lengthBurdenUser = 0;
-    this.newUser = "";
-    this.newUserId = 0;
-    this.AccessNewUser = "";
-    this.allDataUsersSystems = [];
-
-    this.userSearch = function (event) {
-      _this.newUser = event.target.value;
-    };
-
-    this.addUser = function (event) {
-      var newUserChanged = event.currentTarget.firstElementChild.lastElementChild;
-      _this.newUserId = newUserChanged.getAttribute('data-id');
-      _this.newUser = newUserChanged.textContent;
-    };
-
-    this.requestAddUser = function () {
-      var result = axios_1["default"].post("http://localhost:8000/" + 'add-new-user-wallet', {
-        id: _this.idWallet,
-        newUser: _this.newUserId,
-        AccessNewUser: _this.AccessNewUser
-      }).then(function (response) {
-        if (response.status === 200) {
-          return response.data;
-        }
-      }, function (response) {
-        console.log("error request " + response);
-        return "Error";
-      });
-      return result;
-    };
-
     mobx_1.makeObservable(this, {
       newDataRaw: mobx_1.observable,
       idWallet: mobx_1.observable,
@@ -4873,22 +4935,15 @@ function () {
       newRowCost: mobx_1.observable,
       allRows: mobx_1.observable,
       lengthRows: mobx_1.observable,
-      allUsers: mobx_1.observable,
       lengthBurdenUser: mobx_1.observable,
       numberPagination: mobx_1.observable,
       activePagination: mobx_1.observable,
       nameWallet: mobx_1.observable,
-      newUser: mobx_1.observable,
-      allDataUsersSystems: mobx_1.observable,
-      newUserId: mobx_1.observable,
-      AccessNewUser: mobx_1.observable,
-      requestUsersSystems: mobx_1.action,
       startOneWalet: mobx_1.action,
       scopeOneWallet: mobx_1.action,
       addZero: mobx_1.action,
       addNewRow: mobx_1.action,
-      gradeUser: mobx_1.action,
-      addUser: mobx_1.action
+      gradeUser: mobx_1.action
     });
   }
 
@@ -4992,20 +5047,6 @@ function () {
     return grade;
   };
 
-  Wallet.prototype.requestUsersSystems = function () {
-    var result = axios_1["default"].post("http://localhost:8000/" + 'all-users-system', {
-      id: this.idWallet
-    }).then(function (response) {
-      if (response.status === 200) {
-        return response.data;
-      }
-    }, function (response) {
-      console.log("error request " + response);
-      return "Error";
-    });
-    return result;
-  };
-
   return Wallet;
 }();
 
@@ -5042,12 +5083,15 @@ var _reationEditingEstimates_1 = __importDefault(__webpack_require__(/*! ./Сrea
 
 var _reationEditingWallets_1 = __importDefault(__webpack_require__(/*! ./СreationEditingWallets */ "./resources/js/state/СreationEditingWallets.ts"));
 
+var AddNewUserWallet_1 = __importDefault(__webpack_require__(/*! ./AddNewUserWallet */ "./resources/js/state/AddNewUserWallet.ts"));
+
 var store = {
   GeneralData: new GeneralData_1["default"](),
   Estimate: new Estimate_1["default"](),
   Wallet: new Wallet_1["default"](),
   СreationEditingEstimates: new _reationEditingEstimates_1["default"](),
-  СreationEditingWallets: new _reationEditingWallets_1["default"]()
+  СreationEditingWallets: new _reationEditingWallets_1["default"](),
+  AddNewUserWallet: new AddNewUserWallet_1["default"]()
 };
 exports.default = store;
 

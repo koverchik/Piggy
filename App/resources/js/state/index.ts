@@ -3,6 +3,7 @@ import Estimate from "./Estimate";
 import Wallet from "./Wallet";
 import СreationEditingEstimates from "./СreationEditingEstimates";
 import СreationEditingWallets from "./СreationEditingWallets";
+import AddNewUserWallet from "./AddNewUserWallet";
 
 const store = {
     GeneralData: new GeneralData(),
@@ -10,6 +11,7 @@ const store = {
     Wallet: new Wallet(),
     СreationEditingEstimates: new СreationEditingEstimates(),
     СreationEditingWallets: new СreationEditingWallets(),
+    AddNewUserWallet: new AddNewUserWallet(),
 };
 
 export default store;

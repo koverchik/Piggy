@@ -24,24 +24,24 @@ const BurdenSharing: React.FC = observer(() => {
     }; 
 
     const popUpData: interfacesPopUp = {
-        name: store.Wallet.newUser,
+        name: store.AddNewUserWallet.newUser,
         kind: "Поиск пользователя",
         textMessage: "Добавьте имя и статус",
         listUser: {
             availability: false, 
-            callbackClickList: store.Wallet.addUser,   
+            callbackClickList: store.AddNewUserWallet.addUser,   
         },
         accessList: {
             availability: true,
-            callbackClickAccess: (event: Event) => {store.Wallet.AccessNewUser = (event.target as HTMLInputElement).value},
+            callbackClickAccess: (event: Event) => {store.AddNewUserWallet.AccessNewUser = (event.target as HTMLInputElement).value},
         },
         closeClick: () => setStatePopUp(false),
         button: {name: "Добавить",
                 type: "button",
                 image: false,
-                callbackClick: store.Wallet.requestAddUser,
+                callbackClick: store.AddNewUserWallet.requestAddUser,
                 },
-        onChangeFunction: store.Wallet.userSearch,
+        onChangeFunction: store.AddNewUserWallet.userSearch,
     }  
 
     useEffect(() => {       

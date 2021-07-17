@@ -6,6 +6,7 @@ configure({
   })
   
 export default class Wallet {
+    allUsers = new Array();
     newDataRaw = "";
     idWallet = 0;
     nameWallet = "";
@@ -14,15 +15,9 @@ export default class Wallet {
     newRowCost = "";
     allRows= new Array();
     numberPagination = new Array();
-    allUsers = new Array();
     activePagination = 0;
     lengthRows = 0;
     lengthBurdenUser = 0;
-    newUser = "";
-    newUserId = 0;
-    AccessNewUser = "";
-    allDataUsersSystems: never[] = [];
-
 
     constructor() {
       makeObservable(this, {
@@ -33,22 +28,16 @@ export default class Wallet {
         newRowCost:observable,
         allRows: observable,
         lengthRows: observable,
-        allUsers: observable,
         lengthBurdenUser: observable,
         numberPagination: observable,
         activePagination: observable,
         nameWallet: observable,
-        newUser: observable,
-        allDataUsersSystems:observable,
-        newUserId: observable,
-        AccessNewUser: observable,
-        requestUsersSystems: action,
         startOneWalet: action,
         scopeOneWallet: action,
         addZero: action, 
         addNewRow: action, 
         gradeUser:action,
-        addUser:action,
+  
       })
     }
     addZero(number:number){
@@ -131,43 +120,5 @@ export default class Wallet {
           grade = "Пользователь";
       }
    return grade;
-  }
-
-  userSearch = (event: any) => { 
-    this.newUser = event.target.value;       
-  }
-  addUser = (event : any) => { 
-    const newUserChanged = event.currentTarget.firstElementChild.lastElementChild;
-    this.newUserId = newUserChanged.getAttribute('data-id');
-    this.newUser = newUserChanged.textContent;
-  }
-
-  requestAddUser = () =>{
-
-    const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'add-new-user-wallet', 
-    { id: this.idWallet, newUser: this.newUserId, AccessNewUser: this.AccessNewUser })
-    .then(response => {
-      if(response.status === 200){
-        return response.data;
-      }
-    },
-    response => {
-      console.log("error request " + response);
-      return "Error";
-        })
-  return  result;
-  }
-  requestUsersSystems (){
-     const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'all-users-system', { id: this.idWallet  })
-      .then(response => {
-        if(response.status === 200){
-          return response.data;
-        }
-      },
-      response => {
-        console.log("error request " + response);
-        return "Error";
-          })
-    return  result;
   }
 }
