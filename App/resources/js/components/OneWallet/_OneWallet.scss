@@ -17,6 +17,9 @@
                 font-size: 3rem;
                 user-select: none; 
                 margin-left: 1rem;
+                @media screen and (max-width: 1240px) {
+                    font-size: 2rem;
+                }
             }
             img{
                 background-color: #C4C4C4;
@@ -37,6 +40,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
+            
             @media screen and (max-width: 1240px) {
                 flex-direction: column;
             }
@@ -45,6 +49,9 @@
                 border-radius: 10px;
                 margin: 1rem;
                 padding: 2rem;
+                @media screen and (max-width: 1240px) {
+                width: calc(100% - 6rem);
+                }
                 
             }
             .table-list-value, .table-user, .table-debit-credit{
@@ -56,6 +63,12 @@
                   
                 td{
                     padding: 0.5rem;
+                    @media screen and (max-width: 800px) {
+                        font-size: 16px;
+                    }
+                    @media screen and (max-width: 640px) {
+                        font-size: 14px;
+                    }
                  }
                  thead{
                     td{

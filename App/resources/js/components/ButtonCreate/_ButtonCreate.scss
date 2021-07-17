@@ -10,6 +10,18 @@
     justify-content: center;
     align-items: center;
     background-color: #5354D2;
+    @media screen and (max-width: 1240px) {
+        width: 140px;
+        height: 42px;
+        }
+    @media screen and (max-width: 800px) {
+        width: 130px;
+        height: 40px;
+    }
+    @media screen and (max-width: 640px) {
+        width: 100px;
+        height: 35px;
+    }
     input{
         font-family: 'Podkova', serif;
         background: none;
@@ -19,6 +31,28 @@
         width: 120px;
         color: white;
         text-decoration: none;
+        @media screen and (max-width: 1240px) {
+            font-size: 20px;
+            width: 110px;
+            }
+        @media screen and (max-width: 800px) {
+            font-size: 18px;
+            width: 100px;
+        }
+        @media screen and (max-width: 640px) {
+            font-size: 16px;
+            width: 80px;
+        }
+        &:active{
+            
+            background-color:  none;
+        }
+        &:focus{
+            background-color:  none;
+        }
+        &:disabled{
+            background-color: none;
+        }
     }
     &:hover{
         &:active{
@@ -31,7 +65,6 @@
         &:disabled{
             background-color: #C4C4C4;
         }
-
         opacity: 0.8;
         background-color: #FE7BA7;
     }

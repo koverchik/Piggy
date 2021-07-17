@@ -2497,8 +2497,6 @@ var OneEstimate_1 = __importDefault(__webpack_require__(/*! ./OneEstimate/OneEst
 
 var OneWallet_1 = __importDefault(__webpack_require__(/*! ./OneWallet/OneWallet */ "./resources/js/components/OneWallet/OneWallet.tsx"));
 
-var EditOneEstimate_1 = __importDefault(__webpack_require__(/*! ./OneEstimate/EditOneEstimate/EditOneEstimate */ "./resources/js/components/OneEstimate/EditOneEstimate/EditOneEstimate.tsx"));
-
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
 var App = mobx_react_lite_1.observer(function () {
@@ -2511,9 +2509,6 @@ var App = mobx_react_lite_1.observer(function () {
   }), react_1["default"].createElement(react_router_dom_1.Route, {
     path: "/estimate-:id",
     component: OneEstimate_1["default"]
-  }), react_1["default"].createElement(react_router_dom_1.Route, {
-    path: "/edit-estimate-:id",
-    component: EditOneEstimate_1["default"]
   }), react_1["default"].createElement(react_router_dom_1.Route, {
     path: "/one-estimate",
     component: AllEstimate_1["default"]
@@ -2894,141 +2889,6 @@ var BodyTableEstimate = mobx_react_lite_1.observer(function (props) {
   return react_1["default"].createElement("tbody", null, listRowsEstimate);
 });
 exports.default = BodyTableEstimate;
-
-/***/ }),
-
-/***/ "./resources/js/components/OneEstimate/EditOneEstimate/EditOneEstimate.tsx":
-/*!*********************************************************************************!*\
-  !*** ./resources/js/components/OneEstimate/EditOneEstimate/EditOneEstimate.tsx ***!
-  \*********************************************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
-} : function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  o[k2] = m[k];
-});
-
-var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
-  Object.defineProperty(o, "default", {
-    enumerable: true,
-    value: v
-  });
-} : function (o, v) {
-  o["default"] = v;
-});
-
-var __importStar = this && this.__importStar || function (mod) {
-  if (mod && mod.__esModule) return mod;
-  var result = {};
-  if (mod != null) for (var k in mod) {
-    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-  }
-
-  __setModuleDefault(result, mod);
-
-  return result;
-};
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-
-var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-__webpack_require__(/*! ./_EditOneEstimate.scss */ "./resources/js/components/OneEstimate/EditOneEstimate/_EditOneEstimate.scss");
-
-__webpack_require__(/*! ./../_OneEstimate.scss */ "./resources/js/components/OneEstimate/_OneEstimate.scss");
-
-var EditOneEstimate = function EditOneEstimate() {
-  var _a = react_1.useState(),
-      valueChange = _a[0],
-      setValueChange = _a[1];
-
-  var _b = react_1.useState(true),
-      activeRow = _b[0],
-      setActiveRow = _b[1];
-
-  function changeValue(e) {
-    setActiveRow(false);
-  }
-
-  function handleInputChange(e) {
-    setValueChange(e.target.value);
-  }
-
-  return react_1["default"].createElement("div", {
-    className: "wrapper-one-estimate"
-  }, react_1["default"].createElement("div", {
-    className: "one-estimate"
-  }, react_1["default"].createElement("div", {
-    className: "wrapper-header-one-estimate"
-  }, react_1["default"].createElement("h2", {
-    className: "header-one-estimate"
-  }, " \u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 ")), react_1["default"].createElement("table", {
-    className: "table-list-value"
-  }, react_1["default"].createElement("thead", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
-    className: "empty-head-item"
-  }, "  "), react_1["default"].createElement("td", {
-    className: "name-head-one-item"
-  }, "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435"), react_1["default"].createElement("td", {
-    className: "name-head-one-item"
-  }, " \u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C "), react_1["default"].createElement("td", {
-    className: "cost-head-one-item"
-  }))), react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
-    className: "namber-one-item"
-  }, " 1"), react_1["default"].createElement("td", {
-    className: "name-head-one-item"
-  }, react_1["default"].createElement("input", {
-    type: "text",
-    value: "\u0421\u043E\u043A",
-    onChange: function onChange(e) {
-      e.target.value;
-    }
-  })), react_1["default"].createElement("td", {
-    className: "cost-head-one-item"
-  }, "4"), react_1["default"].createElement("td", {
-    className: "namber-one-item trash-image"
-  }, react_1["default"].createElement("img", {
-    src: "../images/delete-one-peope.svg"
-  }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
-    className: "namber-one-item"
-  }, " 2"), react_1["default"].createElement("td", {
-    className: "name-head-one-item",
-    onClick: changeValue
-  }, react_1["default"].createElement("input", {
-    type: "text",
-    value: activeRow ? "Машина" : valueChange,
-    onChange: function onChange(e) {
-      return handleInputChange(e);
-    }
-  })), react_1["default"].createElement("td", {
-    className: "cost-head-one-item"
-  }, "3"), react_1["default"].createElement("td", {
-    className: "namber-one-item trash-image"
-  }, react_1["default"].createElement("img", {
-    src: "../images/delete-one-peope.svg"
-  })))), react_1["default"].createElement("tfoot", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", null), react_1["default"].createElement("td", {
-    className: "title-cost-all-item",
-    colSpan: 2
-  }, " \u0418\u0442\u043E\u0433\u043E: "), react_1["default"].createElement("td", {
-    className: "cost-all-item"
-  }, " 3 \u0440\u0443\u0431 "), react_1["default"].createElement("td", {
-    className: "empty-item"
-  }, "  "))))));
-};
-
-exports.default = EditOneEstimate;
 
 /***/ }),
 
@@ -9839,7 +9699,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".button-main {\n  display: flex;\n  justify-content: flex-end;\n  border-radius: 10px;\n  cursor: pointer;\n  border: none;\n  width: 200px;\n  height: 46px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: #5354D2;\n}\n.button-main input {\n  font-family: \"Podkova\", serif;\n  background: none;\n  font-size: 24px;\n  margin: 0;\n  padding: 0;\n  width: 120px;\n  color: white;\n  text-decoration: none;\n}\n.button-main:hover {\n  opacity: 0.8;\n  background-color: #FE7BA7;\n}\n.button-main:hover:active {\n  border: none;\n  background-color: #FDB547;\n}\n.button-main:hover:focus {\n  background-color: #FDB547;\n}\n.button-main:hover:disabled {\n  background-color: #C4C4C4;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".button-main {\n  display: flex;\n  justify-content: flex-end;\n  border-radius: 10px;\n  cursor: pointer;\n  border: none;\n  width: 200px;\n  height: 46px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: #5354D2;\n}\n@media screen and (max-width: 1240px) {\n  .button-main {\n    width: 140px;\n    height: 42px;\n  }\n}\n@media screen and (max-width: 800px) {\n  .button-main {\n    width: 130px;\n    height: 40px;\n  }\n}\n@media screen and (max-width: 640px) {\n  .button-main {\n    width: 100px;\n    height: 35px;\n  }\n}\n.button-main input {\n  font-family: \"Podkova\", serif;\n  background: none;\n  font-size: 24px;\n  margin: 0;\n  padding: 0;\n  width: 120px;\n  color: white;\n  text-decoration: none;\n}\n@media screen and (max-width: 1240px) {\n  .button-main input {\n    font-size: 20px;\n    width: 110px;\n  }\n}\n@media screen and (max-width: 800px) {\n  .button-main input {\n    font-size: 18px;\n    width: 100px;\n  }\n}\n@media screen and (max-width: 640px) {\n  .button-main input {\n    font-size: 16px;\n    width: 80px;\n  }\n}\n.button-main input:active {\n  background-color: none;\n}\n.button-main input:focus {\n  background-color: none;\n}\n.button-main input:disabled {\n  background-color: none;\n}\n.button-main:hover {\n  opacity: 0.8;\n  background-color: #FE7BA7;\n}\n.button-main:hover:active {\n  border: none;\n  background-color: #FDB547;\n}\n.button-main:hover:focus {\n  background-color: #FDB547;\n}\n.button-main:hover:disabled {\n  background-color: #C4C4C4;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9918,30 +9778,6 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".table-add-new-value .warning-add-one-
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneEstimate/EditOneEstimate/_EditOneEstimate.scss":
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneEstimate/EditOneEstimate/_EditOneEstimate.scss ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, ".table-list-value .name-head-one-item input, .table-list-value .cost-head-one-item input {\n  width: 100%;\n  font-family: \"Podkova\", serif;\n  font-size: 1.2rem;\n  border: none;\n  background-color: #F5F5F5;\n}\n.table-list-value .name-head-one-item input:active, .table-list-value .cost-head-one-item input:active {\n  border: none;\n}\n.table-list-value .name-head-one-item input:focus, .table-list-value .cost-head-one-item input:focus {\n  outline: none;\n}\n\n.name-head-one-item {\n  cursor: text;\n}", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneEstimate/PaginationRows/_PaginationRows.scss":
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneEstimate/PaginationRows/_PaginationRows.scss ***!
@@ -9983,7 +9819,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-one-estimate {\n  background-color: #C4C4C4;\n  padding: 3vw;\n}\n.wrapper-one-estimate .one-estimate {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  padding: 3vw;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate {\n  display: flex;\n  justify-content: space-between;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate h2 {\n  margin: 0;\n  padding-bottom: 1rem;\n  color: #5354D2;\n  font-size: 3rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img {\n  background-color: white;\n  border-radius: 5px;\n  padding: 0.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img:hover {\n  cursor: pointer;\n  opacity: 0.8;\n  filter: grayscale(54%);\n}\n.wrapper-one-estimate .one-estimate .table-list-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-list-value td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.empty-head-item {\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.name-head-one-item {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.cost-head-one-item {\n  border-left: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.name-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.error-table {\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.display-none {\n  display: none;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody .trash-image img:hover {\n  cursor: pointer;\n  opacity: 0.8;\n  filter: grayscale(54%);\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.title-cost-all-item {\n  float: right;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.cost-all-item {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  background-color: #F5F5F5;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:active {\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:focus {\n  outline: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item {\n  background-color: #5354D2;\n  border: none;\n  border-radius: 10px;\n  display: inline;\n  width: 10%;\n  float: right;\n  padding: 1rem;\n  display: flex;\n  margin: 0rem;\n  margin-top: 1rem;\n  padding: 0.4rem;\n  justify-content: center;\n  color: white;\n  font-size: 1.8rem;\n  outline: none;\n  font-weight: bold;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:hover {\n  background-color: #FE7BA7;\n  cursor: pointer;\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:active {\n  border: none;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:focus {\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:disabled {\n  background-color: #C4C4C4;\n}\n\n@media print {\n  body * {\n    visibility: hidden;\n  }\n\n  .section-to-print-table, .section-to-print-table *, .section-to-print, .section-to-print * {\n    visibility: visible;\n  }\n\n  .section-to-print {\n    position: absolute;\n    left: 0;\n    top: 0;\n  }\n\n  .section-to-print-table {\n    position: absolute;\n    left: 0;\n    top: 50px;\n  }\n  .section-to-print-table tr {\n    display: table-row !important;\n  }\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-one-estimate {\n  background-color: #C4C4C4;\n  padding: 3vw;\n}\n.wrapper-one-estimate .one-estimate {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  padding: 3vw;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate {\n  display: flex;\n  justify-content: space-between;\n  align-items: baseline;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate h2 {\n  margin: 0;\n  padding-bottom: 1rem;\n  color: #5354D2;\n  font-size: 3rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-one-estimate .one-estimate .wrapper-header-one-estimate h2 {\n    font-size: 2rem;\n    padding-bottom: 0.3rem;\n  }\n}\n@media screen and (max-width: 640px) {\n  .wrapper-one-estimate .one-estimate .wrapper-header-one-estimate h2 {\n    font-size: 24px;\n    padding-bottom: 0;\n  }\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img {\n  background-color: white;\n  border-radius: 5px;\n  padding: 0.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img:hover {\n  cursor: pointer;\n  opacity: 0.8;\n  filter: grayscale(54%);\n}\n.wrapper-one-estimate .one-estimate .table-list-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-list-value td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.empty-head-item {\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.name-head-one-item {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.cost-head-one-item {\n  border-left: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-one-estimate .one-estimate .table-list-value tbody td {\n    font-size: 16px;\n  }\n}\n@media screen and (max-width: 640px) {\n  .wrapper-one-estimate .one-estimate .table-list-value tbody td {\n    font-size: 14px;\n  }\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.name-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.error-table {\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.display-none {\n  display: none;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody .trash-image img:hover {\n  cursor: pointer;\n  opacity: 0.8;\n  filter: grayscale(54%);\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.title-cost-all-item {\n  float: right;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.cost-all-item {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  background-color: #F5F5F5;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:active {\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:focus {\n  outline: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item {\n  background-color: #5354D2;\n  border: none;\n  border-radius: 10px;\n  display: inline;\n  width: 10%;\n  float: right;\n  padding: 1rem;\n  display: flex;\n  margin: 0rem;\n  margin-top: 1rem;\n  padding: 0.4rem;\n  justify-content: center;\n  color: white;\n  font-size: 1.8rem;\n  outline: none;\n  font-weight: bold;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:hover {\n  background-color: #FE7BA7;\n  cursor: pointer;\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:active {\n  border: none;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:focus {\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:disabled {\n  background-color: #C4C4C4;\n}\n\n@media print {\n  body * {\n    visibility: hidden;\n  }\n\n  .section-to-print-table, .section-to-print-table *, .section-to-print, .section-to-print * {\n    visibility: visible;\n  }\n\n  .section-to-print {\n    position: absolute;\n    left: 0;\n    top: 0;\n  }\n\n  .section-to-print-table {\n    position: absolute;\n    left: 0;\n    top: 50px;\n  }\n  .section-to-print-table tr {\n    display: table-row !important;\n  }\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10103,7 +9939,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-one-wallet {\n  background-color: #C4C4C4;\n  padding: 3vw;\n}\n.wrapper-one-wallet .one-wallet {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  padding: 3vw;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-one-wallet .one-wallet .wrapper-header-one-wallet {\n  display: flex;\n  justify-content: space-between;\n}\n.wrapper-one-wallet .one-wallet .wrapper-header-one-wallet h2 {\n  margin: 0;\n  padding-bottom: 1rem;\n  color: #5354D2;\n  font-size: 3rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  margin-left: 1rem;\n}\n.wrapper-one-wallet .one-wallet .wrapper-header-one-wallet img {\n  background-color: #C4C4C4;\n  border: 1px solid #5354D2;\n  border-radius: 5px;\n  padding: 0.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-header-one-wallet img:hover {\n  cursor: pointer;\n  opacity: 0.6;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet {\n  display: flex;\n  justify-content: space-between;\n  align-items: flex-start;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-one-wallet .one-wallet .wrapper-table-wallet {\n    flex-direction: column;\n  }\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .wrapper-tables-list-add, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .wapper-user-table {\n  background-color: white;\n  border-radius: 10px;\n  margin: 1rem;\n  padding: 2rem;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit td {\n  padding: 0.5rem;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.empty-head-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.empty-name-user-head-debit-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.empty-head-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.empty-name-user-head-debit-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.empty-head-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.empty-name-user-head-debit-credit {\n  border-right: 1px solid white;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.name-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.column-head-debit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.name-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.column-head-debit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.name-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.column-head-debit {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.cost-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.column-head-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.cost-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.column-head-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.cost-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.column-head-credit {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.data-head-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.data-head-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.data-head-item {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.empty-head-item-user, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.second-side-user-head-debit-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.empty-head-item-user, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.second-side-user-head-debit-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.empty-head-item-user, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.second-side-user-head-debit-credit {\n  border-left: 1px solid white;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.namber-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.namber-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.data-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.data-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.data-item {\n  width: 25%;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.name-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.name-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.name-one-item {\n  width: 45%;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.cost-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.cost-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.cost-one-item {\n  width: 20%;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.user-write-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.user-write-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.user-write-item {\n  width: 5%;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.user-write-item img, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.user-write-item img, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.user-write-item img {\n  cursor: pointer;\n  text-align: center;\n  vertical-align: middle;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tfoot td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tfoot td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tfoot td {\n  padding: 0.5rem;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tfoot td.title-cost-all-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tfoot td.title-cost-all-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tfoot td.title-cost-all-item {\n  float: right;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tfoot td.cost-all-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tfoot td.cost-all-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tfoot td.cost-all-item {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-one-wallet {\n  background-color: #C4C4C4;\n  padding: 3vw;\n}\n.wrapper-one-wallet .one-wallet {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  padding: 3vw;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-one-wallet .one-wallet .wrapper-header-one-wallet {\n  display: flex;\n  justify-content: space-between;\n}\n.wrapper-one-wallet .one-wallet .wrapper-header-one-wallet h2 {\n  margin: 0;\n  padding-bottom: 1rem;\n  color: #5354D2;\n  font-size: 3rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  margin-left: 1rem;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-one-wallet .one-wallet .wrapper-header-one-wallet h2 {\n    font-size: 2rem;\n  }\n}\n.wrapper-one-wallet .one-wallet .wrapper-header-one-wallet img {\n  background-color: #C4C4C4;\n  border: 1px solid #5354D2;\n  border-radius: 5px;\n  padding: 0.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-header-one-wallet img:hover {\n  cursor: pointer;\n  opacity: 0.6;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet {\n  display: flex;\n  justify-content: space-between;\n  align-items: flex-start;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-one-wallet .one-wallet .wrapper-table-wallet {\n    flex-direction: column;\n  }\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .wrapper-tables-list-add, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .wapper-user-table {\n  background-color: white;\n  border-radius: 10px;\n  margin: 1rem;\n  padding: 2rem;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-one-wallet .one-wallet .wrapper-table-wallet .wrapper-tables-list-add, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .wapper-user-table {\n    width: calc(100% - 6rem);\n  }\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit td {\n  padding: 0.5rem;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit td {\n    font-size: 16px;\n  }\n}\n@media screen and (max-width: 640px) {\n  .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit td {\n    font-size: 14px;\n  }\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.empty-head-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.empty-name-user-head-debit-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.empty-head-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.empty-name-user-head-debit-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.empty-head-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.empty-name-user-head-debit-credit {\n  border-right: 1px solid white;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.name-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.column-head-debit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.name-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.column-head-debit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.name-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.column-head-debit {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.cost-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.column-head-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.cost-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.column-head-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.cost-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.column-head-credit {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.data-head-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.data-head-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.data-head-item {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.empty-head-item-user, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.second-side-user-head-debit-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.empty-head-item-user, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.second-side-user-head-debit-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.empty-head-item-user, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.second-side-user-head-debit-credit {\n  border-left: 1px solid white;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.namber-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.namber-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.data-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.data-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.data-item {\n  width: 25%;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.name-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.name-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.name-one-item {\n  width: 45%;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.cost-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.cost-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.cost-one-item {\n  width: 20%;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.user-write-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.user-write-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.user-write-item {\n  width: 5%;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.user-write-item img, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.user-write-item img, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.user-write-item img {\n  cursor: pointer;\n  text-align: center;\n  vertical-align: middle;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tfoot td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tfoot td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tfoot td {\n  padding: 0.5rem;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tfoot td.title-cost-all-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tfoot td.title-cost-all-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tfoot td.title-cost-all-item {\n  float: right;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tfoot td.cost-all-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tfoot td.cost-all-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tfoot td.cost-all-item {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10223,7 +10059,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 0;\n  padding: 0;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n  height: 100%;\n}\n\n#root {\n  height: 100%;\n}\n\n.wrapper-all-app {\n  height: 100%;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 0;\n  padding: 0;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n  height: 100%;\n}\n\n#root {\n  height: 100%;\n}\n\n.wrapper-all-app {\n  height: 100%;\n  width: 100%;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -80463,36 +80299,6 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AddRowEstimate_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
-
-/***/ }),
-
-/***/ "./resources/js/components/OneEstimate/EditOneEstimate/_EditOneEstimate.scss":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/components/OneEstimate/EditOneEstimate/_EditOneEstimate.scss ***!
-  \***********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_EditOneEstimate_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./_EditOneEstimate.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneEstimate/EditOneEstimate/_EditOneEstimate.scss");
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_EditOneEstimate_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_EditOneEstimate_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 

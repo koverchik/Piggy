@@ -19,7 +19,6 @@ const OneEstimate: React.FC = observer((props : any) => {
         callbackPaginationRight: store.Estimate.callbackPaginationRight,
         }
 
-
     return (
     <div className="wrapper-one-estimate">
         <div className="one-estimate">
