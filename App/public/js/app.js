@@ -2770,6 +2770,133 @@ exports.default = AddRowEstimate;
 
 /***/ }),
 
+/***/ "./resources/js/components/OneEstimate/BodyTableEstimate/BodyTableEstimate.tsx":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/OneEstimate/BodyTableEstimate/BodyTableEstimate.tsx ***!
+  \*************************************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var index_1 = __importDefault(__webpack_require__(/*! ../../../state/index */ "./resources/js/state/index.ts"));
+
+var BodyTableEstimate = mobx_react_lite_1.observer(function (props) {
+  var _a = react_1.useState([]),
+      listRowsEstimate = _a[0],
+      setlistRowsEstimate = _a[1];
+
+  react_1.useEffect(function () {
+    createList(index_1["default"].Estimate.dataRows, index_1["default"].Estimate.activePagination);
+  }, [index_1["default"].Estimate.activePagination]);
+  react_1.useEffect(function () {
+    index_1["default"].Estimate.requestOneEstimate().then(function (data) {
+      if (data === "Error") {
+        var list = react_1["default"].createElement("tr", {
+          key: "RowEstimate",
+          className: "error-table"
+        }, react_1["default"].createElement("td", {
+          colSpan: 4
+        }, "\u0423\u043F\u0441... \u0427\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443"));
+        setlistRowsEstimate(list);
+      } else {
+        index_1["default"].Estimate.dataRows = data;
+        var lengthData = index_1["default"].Estimate.pagination.length;
+        index_1["default"].Estimate.activePagination = index_1["default"].Estimate.pagination.length;
+
+        if (lengthData === 0) {
+          var list = react_1["default"].createElement("tr", {
+            key: "RowEstimate",
+            className: "error-table"
+          }, react_1["default"].createElement("td", {
+            colSpan: 4
+          }, "\u0417\u0434\u0435\u0441\u044C \u043F\u043E\u043A\u0430 \u043D\u0438\u0447\u0435\u0433\u043E \u043D\u0435\u0442, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0441\u0442\u0440\u043E\u043A"));
+          setlistRowsEstimate(list);
+        } else {
+          createList(data, lengthData);
+        }
+      }
+    });
+  }, [index_1["default"].Estimate.sumRows]);
+
+  function createList(data, pagination) {
+    var list = data.map(function (item, i) {
+      return react_1["default"].createElement("tr", {
+        key: "RowEstimate" + i,
+        className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? "display-none" : ""
+      }, react_1["default"].createElement("td", {
+        className: "namber-one-item"
+      }, " ", i + 1, " "), react_1["default"].createElement("td", {
+        className: "name-one-item"
+      }, " ", item['name'], " "), react_1["default"].createElement("td", {
+        className: "cost-one-item"
+      }, " ", item['amount'], " \u0440\u0443\u0431 "), react_1["default"].createElement("td", {
+        className: "namber-one-item trash-image"
+      }, react_1["default"].createElement("img", {
+        src: "../images/delete-one-peope.svg",
+        "id-data": item['id'],
+        onClick: function onClick(e) {
+          return index_1["default"].Estimate.deleteRow(e.target.getAttribute("id-data"));
+        }
+      })));
+    });
+    setlistRowsEstimate(list);
+  }
+
+  return react_1["default"].createElement("tbody", null, listRowsEstimate);
+});
+exports.default = BodyTableEstimate;
+
+/***/ }),
+
 /***/ "./resources/js/components/OneEstimate/EditOneEstimate/EditOneEstimate.tsx":
 /*!*********************************************************************************!*\
   !*** ./resources/js/components/OneEstimate/EditOneEstimate/EditOneEstimate.tsx ***!
@@ -2930,40 +3057,6 @@ var __assign = this && this.__assign || function () {
   return __assign.apply(this, arguments);
 };
 
-var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
-} : function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  o[k2] = m[k];
-});
-
-var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
-  Object.defineProperty(o, "default", {
-    enumerable: true,
-    value: v
-  });
-} : function (o, v) {
-  o["default"] = v;
-});
-
-var __importStar = this && this.__importStar || function (mod) {
-  if (mod && mod.__esModule) return mod;
-  var result = {};
-  if (mod != null) for (var k in mod) {
-    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-  }
-
-  __setModuleDefault(result, mod);
-
-  return result;
-};
-
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -2974,7 +3067,7 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 __webpack_require__(/*! ./_OneEstimate.scss */ "./resources/js/components/OneEstimate/_OneEstimate.scss");
 
@@ -2986,16 +3079,10 @@ var index_1 = __importDefault(__webpack_require__(/*! ../../state/index */ "./re
 
 var PaginationRows_1 = __importDefault(__webpack_require__(/*! ../PaginationRows/PaginationRows */ "./resources/js/components/PaginationRows/PaginationRows.tsx"));
 
+var BodyTableEstimate_1 = __importDefault(__webpack_require__(/*! ./BodyTableEstimate/BodyTableEstimate */ "./resources/js/components/OneEstimate/BodyTableEstimate/BodyTableEstimate.tsx"));
+
 var OneEstimate = mobx_react_lite_1.observer(function (props) {
   index_1["default"].Estimate.idEstimate = props.match.params.id;
-
-  var _a = react_1.useState([]),
-      listRowsEstimate = _a[0],
-      setlistRowsEstimate = _a[1];
-
-  react_1.useEffect(function () {
-    createList(index_1["default"].Estimate.dataRows, index_1["default"].Estimate.activePagination);
-  }, [index_1["default"].Estimate.activePagination]);
   var paginationData = {
     arrayNumber: index_1["default"].Estimate.pagination,
     activeNumber: index_1["default"].Estimate.activePagination,
@@ -3003,60 +3090,6 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
     callbackPaginationLeft: index_1["default"].Estimate.callbackPaginationLeft,
     callbackPaginationRight: index_1["default"].Estimate.callbackPaginationRight
   };
-  react_1.useEffect(function () {
-    index_1["default"].Estimate.requestOneEstimate().then(function (data) {
-      if (data === "Error") {
-        var list = react_1["default"].createElement("tr", {
-          key: "RowEstimate",
-          className: "error-table"
-        }, react_1["default"].createElement("td", {
-          colSpan: 4
-        }, "\u0423\u043F\u0441... \u0427\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443"));
-        setlistRowsEstimate(list);
-      } else {
-        index_1["default"].Estimate.dataRows = data;
-        var lengthData = index_1["default"].Estimate.pagination.length;
-        index_1["default"].Estimate.activePagination = index_1["default"].Estimate.pagination.length;
-
-        if (lengthData === 0) {
-          var list = react_1["default"].createElement("tr", {
-            key: "RowEstimate",
-            className: "error-table"
-          }, react_1["default"].createElement("td", {
-            colSpan: 4
-          }, "\u0417\u0434\u0435\u0441\u044C \u043F\u043E\u043A\u0430 \u043D\u0438\u0447\u0435\u0433\u043E \u043D\u0435\u0442, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0441\u0442\u0440\u043E\u043A"));
-          setlistRowsEstimate(list);
-        } else {
-          createList(data, lengthData);
-        }
-      }
-    });
-  }, [index_1["default"].Estimate.sumRows]);
-
-  function createList(data, pagination) {
-    var list = data.map(function (item, i) {
-      return react_1["default"].createElement("tr", {
-        key: "RowEstimate" + i,
-        className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? "display-none" : ""
-      }, react_1["default"].createElement("td", {
-        className: "namber-one-item"
-      }, " ", i + 1, " "), react_1["default"].createElement("td", {
-        className: "name-one-item"
-      }, " ", item['name'], " "), react_1["default"].createElement("td", {
-        className: "cost-one-item"
-      }, " ", item['amount'], " \u0440\u0443\u0431 "), react_1["default"].createElement("td", {
-        className: "namber-one-item trash-image"
-      }, react_1["default"].createElement("img", {
-        src: "../images/delete-one-peope.svg",
-        "id-data": item['id'],
-        onClick: function onClick(e) {
-          return index_1["default"].Estimate.deleteRow(e.target.getAttribute("id-data"));
-        }
-      })));
-    });
-    setlistRowsEstimate(list);
-  }
-
   return react_1["default"].createElement("div", {
     className: "wrapper-one-estimate"
   }, react_1["default"].createElement("div", {
@@ -3084,7 +3117,7 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
     className: "name-head-one-item"
   }, " \u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C "), react_1["default"].createElement("td", {
     className: "cost-head-one-item"
-  }))), react_1["default"].createElement("tbody", null, listRowsEstimate), react_1["default"].createElement("tfoot", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
+  }))), react_1["default"].createElement(BodyTableEstimate_1["default"], null), react_1["default"].createElement("tfoot", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: "empty-item"
   }, "  "), react_1["default"].createElement("td", {
     className: "title-cost-all-item"
