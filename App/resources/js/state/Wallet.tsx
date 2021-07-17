@@ -40,7 +40,7 @@ export default class Wallet {
       return number <10 ? `0${number}` : number;   
     }
     
-    async startOneWalet(){
+    startOneWalet(){
       const nowDay = new Date();
       this.newDataRaw = `${nowDay.getFullYear()}-${this.addZero(nowDay.getMonth()+1)}-${this.addZero(nowDay.getDate())}`;
       
@@ -79,7 +79,6 @@ export default class Wallet {
       axios.post(process.env.MIX_APP_URL_FOR_TEST +'add-new-row-wallet', { data: data })
       .then(response => {
         if(response.status === 200){
-          this.startOneWalet();
           this.newRowWallet = "";
           this.newRowCost = "";            
         }

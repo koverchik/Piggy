@@ -3425,6 +3425,132 @@ exports.default = AddNewRowWallet;
 
 /***/ }),
 
+/***/ "./resources/js/components/OneWallet/TableOneWallet/BodyOneWallet/BodyOneWallet.tsx":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/OneWallet/TableOneWallet/BodyOneWallet/BodyOneWallet.tsx ***!
+  \******************************************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var state_1 = __importDefault(__webpack_require__(/*! ../../../../state */ "./resources/js/state/index.ts"));
+
+var TableOneWallet = mobx_react_lite_1.observer(function () {
+  var _a = react_1.useState(),
+      listRowsWallet = _a[0],
+      setlistRowsWallet = _a[1];
+
+  react_1.useEffect(function () {
+    state_1["default"].Wallet.startOneWalet().then(function (data) {
+      if (data === "Error") {
+        var messageError = react_1["default"].createElement("tr", {
+          className: "error-one-walet"
+        }, react_1["default"].createElement("td", {
+          colSpan: 5
+        }, "\u0427\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443"));
+        setlistRowsWallet(messageError);
+      } else {
+        state_1["default"].Wallet.allRows = data.data.rows;
+        state_1["default"].Wallet.lengthRows = data.data.rows.length;
+
+        if (state_1["default"].Wallet.lengthRows === 0) {
+          var warning = react_1["default"].createElement("tr", {
+            key: "row-walet-0",
+            className: "error-one-walet"
+          }, react_1["default"].createElement("td", {
+            colSpan: 5
+          }, "\u0417\u0434\u0435\u0441\u044C \u043F\u043E\u043A\u0430 \u043D\u0438\u0447\u0435\u0433\u043E \u043D\u0435\u0442, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0441\u0442\u0440\u043E\u043A"));
+          setlistRowsWallet(warning);
+        } else {
+          createListRows(state_1["default"].Wallet.allRows, state_1["default"].Wallet.activePagination);
+        }
+      }
+    });
+  }, [state_1["default"].Wallet.allSumm, state_1["default"].Wallet.lengthBurdenUser]);
+  react_1.useEffect(function () {
+    createListRows(state_1["default"].Wallet.allRows, state_1["default"].Wallet.activePagination);
+  }, [state_1["default"].Wallet.activePagination]);
+
+  function createListRows(data, pagination) {
+    var result = data.map(function (item, i) {
+      var dataOneRow = new Date(item["created_at_time"]);
+      return react_1["default"].createElement("tr", {
+        key: "row-walet-" + i,
+        className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? "hide-row" : ""
+      }, react_1["default"].createElement("td", {
+        className: "namber-one-item"
+      }, " ", i + 1, " "), react_1["default"].createElement("td", {
+        className: "data-item"
+      }, state_1["default"].Wallet.addZero(dataOneRow.getDate()) + "." + state_1["default"].Wallet.addZero(dataOneRow.getMonth() + 1) + "." + dataOneRow.getFullYear()), react_1["default"].createElement("td", {
+        className: "name-one-item"
+      }, " ", item["name"], " "), react_1["default"].createElement("td", {
+        className: "cost-one-item"
+      }, " ", item["amount"], " \u0440\u0443\u0431 "), react_1["default"].createElement("td", {
+        className: "user-write-item"
+      }, react_1["default"].createElement("img", {
+        src: "../images/people.svg",
+        alt: "icon-user",
+        title: item.autor.name
+      })));
+    });
+    setlistRowsWallet(result);
+  }
+
+  return react_1["default"].createElement("tbody", null, listRowsWallet);
+});
+exports.default = TableOneWallet;
+
+/***/ }),
+
 /***/ "./resources/js/components/OneWallet/TableOneWallet/PaginationRows/PaginationRows.tsx":
 /*!********************************************************************************************!*\
   !*** ./resources/js/components/OneWallet/TableOneWallet/PaginationRows/PaginationRows.tsx ***!
@@ -3541,40 +3667,6 @@ exports.default = PaginationRows;
 "use strict";
 
 
-var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
-} : function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  o[k2] = m[k];
-});
-
-var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
-  Object.defineProperty(o, "default", {
-    enumerable: true,
-    value: v
-  });
-} : function (o, v) {
-  o["default"] = v;
-});
-
-var __importStar = this && this.__importStar || function (mod) {
-  if (mod && mod.__esModule) return mod;
-  var result = {};
-  if (mod != null) for (var k in mod) {
-    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-  }
-
-  __setModuleDefault(result, mod);
-
-  return result;
-};
-
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -3585,7 +3677,7 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 __webpack_require__(/*! ./_TableOneWallet.scss */ "./resources/js/components/OneWallet/TableOneWallet/_TableOneWallet.scss");
 
@@ -3599,67 +3691,9 @@ var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modul
 
 var state_1 = __importDefault(__webpack_require__(/*! ../../../state */ "./resources/js/state/index.ts"));
 
+var BodyOneWallet_1 = __importDefault(__webpack_require__(/*! ./BodyOneWallet/BodyOneWallet */ "./resources/js/components/OneWallet/TableOneWallet/BodyOneWallet/BodyOneWallet.tsx"));
+
 var TableOneWallet = mobx_react_lite_1.observer(function () {
-  var _a = react_1.useState([]),
-      listRowsWallet = _a[0],
-      setlistRowsWallet = _a[1];
-
-  react_1.useEffect(function () {
-    state_1["default"].Wallet.startOneWalet().then(function (data) {
-      if (data === "Error") {
-        var messageError = react_1["default"].createElement("tr", {
-          className: "error-one-walet"
-        }, react_1["default"].createElement("td", {
-          colSpan: 5
-        }, "\u0427\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443"));
-        setlistRowsWallet(messageError);
-      } else {
-        state_1["default"].Wallet.allRows = data.data.rows;
-        state_1["default"].Wallet.lengthRows = data.data.rows.length;
-
-        if (state_1["default"].Wallet.lengthRows === 0) {
-          var warning = react_1["default"].createElement("tr", {
-            key: "RowWallet",
-            className: "error-one-walet"
-          }, react_1["default"].createElement("td", {
-            colSpan: 5
-          }, "\u0417\u0434\u0435\u0441\u044C \u043F\u043E\u043A\u0430 \u043D\u0438\u0447\u0435\u0433\u043E \u043D\u0435\u0442, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0441\u0442\u0440\u043E\u043A"));
-          setlistRowsWallet(warning);
-        } else {
-          createListRows(data.data.rows, state_1["default"].Wallet.activePagination);
-        }
-      }
-    });
-  }, [state_1["default"].Wallet.allSumm, state_1["default"].Wallet.lengthBurdenUser]);
-  react_1.useEffect(function () {
-    createListRows(state_1["default"].Wallet.allRows, state_1["default"].Wallet.activePagination);
-  }, [state_1["default"].Wallet.activePagination, state_1["default"].Wallet.allSumm]);
-
-  function createListRows(data, pagination) {
-    var result = data.map(function (item, i) {
-      var dataOneRow = new Date(item["created_at_time"]);
-      return react_1["default"].createElement("tr", {
-        key: "row-walet-" + i,
-        className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? "hide-row" : ""
-      }, react_1["default"].createElement("td", {
-        className: "namber-one-item"
-      }, " ", i + 1, " "), react_1["default"].createElement("td", {
-        className: "data-item"
-      }, state_1["default"].Wallet.addZero(dataOneRow.getDate()) + "." + state_1["default"].Wallet.addZero(dataOneRow.getMonth() + 1) + "." + dataOneRow.getFullYear()), react_1["default"].createElement("td", {
-        className: "name-one-item"
-      }, " ", item["name"], " "), react_1["default"].createElement("td", {
-        className: "cost-one-item"
-      }, " ", item["amount"], " \u0440\u0443\u0431 "), react_1["default"].createElement("td", {
-        className: "user-write-item"
-      }, react_1["default"].createElement("img", {
-        src: "../images/people.svg",
-        alt: "icon-user",
-        title: item.autor.name
-      })));
-    });
-    setlistRowsWallet(result);
-  }
-
   return react_1["default"].createElement("div", {
     className: "wrapper-tables-list-add"
   }, react_1["default"].createElement("table", {
@@ -3674,7 +3708,7 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
     className: "cost-head-one-item"
   }, " \u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C "), react_1["default"].createElement("td", {
     className: "empty-head-item-user"
-  }, "  "))), react_1["default"].createElement("tbody", null, listRowsWallet), react_1["default"].createElement("tfoot", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
+  }, "  "))), react_1["default"].createElement(BodyOneWallet_1["default"], null), react_1["default"].createElement("tfoot", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: "empty-item",
     colSpan: 2
   }), react_1["default"].createElement("td", {
@@ -4660,149 +4694,6 @@ exports.default = GeneralData;
 "use strict";
 
 
-var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
-  function adopt(value) {
-    return value instanceof P ? value : new P(function (resolve) {
-      resolve(value);
-    });
-  }
-
-  return new (P || (P = Promise))(function (resolve, reject) {
-    function fulfilled(value) {
-      try {
-        step(generator.next(value));
-      } catch (e) {
-        reject(e);
-      }
-    }
-
-    function rejected(value) {
-      try {
-        step(generator["throw"](value));
-      } catch (e) {
-        reject(e);
-      }
-    }
-
-    function step(result) {
-      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
-    }
-
-    step((generator = generator.apply(thisArg, _arguments || [])).next());
-  });
-};
-
-var __generator = this && this.__generator || function (thisArg, body) {
-  var _ = {
-    label: 0,
-    sent: function sent() {
-      if (t[0] & 1) throw t[1];
-      return t[1];
-    },
-    trys: [],
-    ops: []
-  },
-      f,
-      y,
-      t,
-      g;
-  return g = {
-    next: verb(0),
-    "throw": verb(1),
-    "return": verb(2)
-  }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
-    return this;
-  }), g;
-
-  function verb(n) {
-    return function (v) {
-      return step([n, v]);
-    };
-  }
-
-  function step(op) {
-    if (f) throw new TypeError("Generator is already executing.");
-
-    while (_) {
-      try {
-        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-        if (y = 0, t) op = [op[0] & 2, t.value];
-
-        switch (op[0]) {
-          case 0:
-          case 1:
-            t = op;
-            break;
-
-          case 4:
-            _.label++;
-            return {
-              value: op[1],
-              done: false
-            };
-
-          case 5:
-            _.label++;
-            y = op[1];
-            op = [0];
-            continue;
-
-          case 7:
-            op = _.ops.pop();
-
-            _.trys.pop();
-
-            continue;
-
-          default:
-            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-              _ = 0;
-              continue;
-            }
-
-            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
-              _.label = op[1];
-              break;
-            }
-
-            if (op[0] === 6 && _.label < t[1]) {
-              _.label = t[1];
-              t = op;
-              break;
-            }
-
-            if (t && _.label < t[2]) {
-              _.label = t[2];
-
-              _.ops.push(op);
-
-              break;
-            }
-
-            if (t[2]) _.ops.pop();
-
-            _.trys.pop();
-
-            continue;
-        }
-
-        op = body.call(thisArg, _);
-      } catch (e) {
-        op = [6, e];
-        y = 0;
-      } finally {
-        f = t = 0;
-      }
-    }
-
-    if (op[0] & 5) throw op[1];
-    return {
-      value: op[0] ? op[1] : void 0,
-      done: true
-    };
-  }
-};
-
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -4858,40 +4749,32 @@ function () {
   };
 
   Wallet.prototype.startOneWalet = function () {
-    return __awaiter(this, void 0, void 0, function () {
-      var nowDay, result;
+    var _this = this;
 
-      var _this = this;
+    var nowDay = new Date();
+    this.newDataRaw = nowDay.getFullYear() + "-" + this.addZero(nowDay.getMonth() + 1) + "-" + this.addZero(nowDay.getDate());
+    var result = axios_1["default"].post("http://localhost:8000/" + 'one-wallets', {
+      id: this.idWallet
+    }).then(function (response) {
+      var summAllRows = response.data.rows.reduce(function (sum, elem) {
+        return sum + elem.amount;
+      }, 0);
+      var quantity = Math.ceil(_this.lengthRows / 10);
+      var arrayForPagination = new Array();
 
-      return __generator(this, function (_a) {
-        nowDay = new Date();
-        this.newDataRaw = nowDay.getFullYear() + "-" + this.addZero(nowDay.getMonth() + 1) + "-" + this.addZero(nowDay.getDate());
-        result = axios_1["default"].post("http://localhost:8000/" + 'one-wallets', {
-          id: this.idWallet
-        }).then(function (response) {
-          var summAllRows = response.data.rows.reduce(function (sum, elem) {
-            return sum + elem.amount;
-          }, 0);
-          var quantity = Math.ceil(_this.lengthRows / 10);
-          var arrayForPagination = new Array();
+      for (var i = 0; i < quantity; i++) {
+        arrayForPagination.push(i + 1);
+      }
 
-          for (var i = 0; i < quantity; i++) {
-            arrayForPagination.push(i + 1);
-          }
-
-          _this.numberPagination = arrayForPagination;
-          _this.activePagination = _this.numberPagination.length;
-          _this.allSumm = +summAllRows.toFixed(2);
-          return response;
-        }, function (response) {
-          console.log("error request " + response);
-          return "Error";
-        });
-        return [2
-        /*return*/
-        , result];
-      });
+      _this.numberPagination = arrayForPagination;
+      _this.activePagination = _this.numberPagination.length;
+      _this.allSumm = +summAllRows.toFixed(2);
+      return response;
+    }, function (response) {
+      console.log("error request " + response);
+      return "Error";
     });
+    return result;
   };
 
   Wallet.prototype.addNewRow = function () {
@@ -4907,8 +4790,6 @@ function () {
       data: data
     }).then(function (response) {
       if (response.status === 200) {
-        _this.startOneWalet();
-
         _this.newRowWallet = "";
         _this.newRowCost = "";
       }
