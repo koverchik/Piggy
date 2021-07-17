@@ -3,10 +3,14 @@ import './_ButtonCreate.scss';
 
 const ButtonCreate:React.FC = (props: any) => {    
     return (    
-    <div className="button-main" onClick={()=>{const idPage = props.callbackClick();
-        if(idPage != undefined) { 
-            idPage.then((data:any) => props.redirectPage(data));
-           }
+    <div className="button-main" onClick={()=>{
+            const idPage = props.callbackClick();
+            if(idPage != undefined) { 
+                idPage.then((data:any) => props.redirectPage(data));
+            }
+            if(props.closeClik != undefined) {
+                props.closeClik();
+            }
         }}> 
         {props.image ? <img src={props.srcImage}></img> : ""}
         <input

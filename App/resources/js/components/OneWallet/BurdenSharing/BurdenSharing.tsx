@@ -40,6 +40,7 @@ const BurdenSharing: React.FC = observer(() => {
                 type: "button",
                 image: false,
                 callbackClick: store.AddNewUserWallet.requestAddUser,
+                closeClik: () => setStatePopUp(false),
                 },
         onChangeFunction: store.AddNewUserWallet.userSearch,
     }  
@@ -50,20 +51,20 @@ const BurdenSharing: React.FC = observer(() => {
             if(store.Wallet.lengthBurdenUser > 1){setTableDebetCredit(true)}
             createListRows(data);
         });
-     }, [])
+     }, [store.Wallet.lengthBurdenUser])
 
-    function createListRows(data:any) {
-
+    function createListRows(data:any) {    
+        store.Wallet.allUsers = [];  
         const result:any = data.map((item: any, i: number) => {     
             store.Wallet.allUsers.push({
                 userName: item.user.name,
                 userId: item.user.id,
                 debitСredit: 0,
-            })
+            })            
             const grade: string = store.Wallet.gradeUser(item);
             
             return(
-                <tr key={"scope-one-wallet" + i}>
+            <tr key={"scope-one-wallet" + i}>
                 <td className="name-user-table"> {item['user']['name']} </td>
                 <td className="premission-user-table"> { grade } </td>
                 <td className="contribution-user-table" > {(100 / store.Wallet.lengthBurdenUser).toFixed(2)}%</td>

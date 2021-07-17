@@ -5,32 +5,25 @@ import { observer } from "mobx-react-lite";
 
 const TableDebetCredit: React.FC = observer(() => {
     const [listTableDebetCredit, setTableDebetCredit] = useState();
+   
     useEffect(() => {
-        
-        if(store.Wallet.allRows.length != 0 && store.Wallet.allUsers.length != 0 ){
-             
+         if(store.Wallet.allRows.length != 0 && store.Wallet.allUsers.length != 0 ){
              store.Wallet.allRows.map((item: any) => {                        
-                for (let index = 0; index < store.Wallet.allUsers.length; index++) {                 
-                    
+                for (let index = 0; index < store.Wallet.allUsers.length; index++) {                    
                     if(store.Wallet.allUsers[index].userId == item.user_id){
                        store.Wallet.allUsers[index].debitСredit = store.Wallet.allUsers[index].debitСredit + (item.amount-item.amount/store.Wallet.lengthBurdenUser);
                     }
                     else{
                             store.Wallet.allUsers[index].debitСredit = store.Wallet.allUsers[index].debitСredit - item.amount/store.Wallet.lengthBurdenUser;
                     }
-                    
                 }
-        
             })     
-         
-            createRowsDebitCredit(store.Wallet.allUsers);          
-
+            createRowsDebitCredit(store.Wallet.allUsers);  
         }
 
-     }, [store.Wallet.lengthRows, store.Wallet.lengthBurdenUser])
+     }, [store.Wallet.lengthRows, store.Wallet.lengthBurdenUser, store.Wallet.allUsers])
 
 function createRowsDebitCredit(data:any) {
-
        const resultListTableDebetCredit = data.map((itemDeditCredit: any, i: number) => {
         let debit:number = 0;
         let credit:number = 0;

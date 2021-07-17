@@ -80,7 +80,7 @@ export default class Wallet {
                   namesWalletsId: this.idWallet
                 }
 
-      const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'add-new-row-wallet', { data: data })
+      axios.post(process.env.MIX_APP_URL_FOR_TEST +'add-new-row-wallet', { data: data })
       .then(response => {
         if(response.status === 200){
           this.startOneWalet();
@@ -95,7 +95,7 @@ export default class Wallet {
           })
     }
 
-    async scopeOneWallet(){
+    scopeOneWallet(){
       const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'scope-one-wallet', { id: this.idWallet  })
       .then(response => {
         if(response.status === 200){ 

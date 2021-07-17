@@ -13,7 +13,6 @@ const [listRowsWallet, setlistRowsWallet] = useState([]);
 useEffect(() => {
 
     store.Wallet.startOneWalet().then((data: any) => {
-       
             if(data === "Error"){
                 const messageError: any =   
                 (<tr className="error-one-walet">    
@@ -23,9 +22,7 @@ useEffect(() => {
                 </tr>)
                 setlistRowsWallet(messageError);
             }else{
-                store.Wallet.allRows = data.data.rows;
-            
-                
+                store.Wallet.allRows = data.data.rows;       
                 store.Wallet.lengthRows = data.data.rows.length; 
                 if(store.Wallet.lengthRows === 0) {
                     const warning : any  =  ( <tr key={"RowWallet"} className="error-one-walet">
@@ -37,7 +34,7 @@ useEffect(() => {
                 }            
             }
         })
-}, [ store.Wallet.allSumm ])
+}, [ store.Wallet.allSumm, store.Wallet.lengthBurdenUser])
 
 useEffect(() => {
     createListRows(store.Wallet.allRows, store.Wallet.activePagination);

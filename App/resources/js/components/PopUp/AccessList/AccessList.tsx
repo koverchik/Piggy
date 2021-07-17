@@ -3,8 +3,6 @@ import { observer } from "mobx-react-lite";
 import './_AccessList.scss';
 
 const AccessList: React.FC = observer((props: any) => {    
-    console.log(props);
-    
     return (    
             <div className="access-new-user">
                 <div className="access-new-user-wrapper">

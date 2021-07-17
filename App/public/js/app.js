@@ -2595,6 +2595,10 @@ var ButtonCreate = function ButtonCreate(props) {
           return props.redirectPage(data);
         });
       }
+
+      if (props.closeClik != undefined) {
+        props.closeClik();
+      }
     }
   }, props.image ? react_1["default"].createElement("img", {
     src: props.srcImage
@@ -3216,7 +3220,10 @@ var BurdenSharing = mobx_react_lite_1.observer(function () {
       name: "Добавить",
       type: "button",
       image: false,
-      callbackClick: state_1["default"].AddNewUserWallet.requestAddUser
+      callbackClick: state_1["default"].AddNewUserWallet.requestAddUser,
+      closeClik: function closeClik() {
+        return setStatePopUp(false);
+      }
     },
     onChangeFunction: state_1["default"].AddNewUserWallet.userSearch
   };
@@ -3230,9 +3237,10 @@ var BurdenSharing = mobx_react_lite_1.observer(function () {
 
       createListRows(data);
     });
-  }, []);
+  }, [state_1["default"].Wallet.lengthBurdenUser]);
 
   function createListRows(data) {
+    state_1["default"].Wallet.allUsers = [];
     var result = data.map(function (item, i) {
       state_1["default"].Wallet.allUsers.push({
         userName: item.user.name,
@@ -3348,7 +3356,7 @@ var TableDebetCredit = mobx_react_lite_1.observer(function () {
       });
       createRowsDebitCredit(state_1["default"].Wallet.allUsers);
     }
-  }, [state_1["default"].Wallet.lengthRows, state_1["default"].Wallet.lengthBurdenUser]);
+  }, [state_1["default"].Wallet.lengthRows, state_1["default"].Wallet.lengthBurdenUser, state_1["default"].Wallet.allUsers]);
 
   function createRowsDebitCredit(data) {
     var resultListTableDebetCredit = data.map(function (itemDeditCredit, i) {
@@ -3725,7 +3733,7 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
         }
       }
     });
-  }, [state_1["default"].Wallet.allSumm]);
+  }, [state_1["default"].Wallet.allSumm, state_1["default"].Wallet.lengthBurdenUser]);
   react_1.useEffect(function () {
     createListRows(state_1["default"].Wallet.allRows, state_1["default"].Wallet.activePagination);
   }, [state_1["default"].Wallet.activePagination, state_1["default"].Wallet.allSumm]);
@@ -3898,7 +3906,6 @@ var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modul
 __webpack_require__(/*! ./_AccessList.scss */ "./resources/js/components/PopUp/AccessList/_AccessList.scss");
 
 var AccessList = mobx_react_lite_1.observer(function (props) {
-  console.log(props);
   return react_1["default"].createElement("div", {
     className: "access-new-user"
   }, react_1["default"].createElement("div", {
@@ -4130,7 +4137,7 @@ var ListForPoints_1 = __importDefault(__webpack_require__(/*! ./ListForPoint/Lis
 var AccessList_1 = __importDefault(__webpack_require__(/*! ./AccessList/AccessList */ "./resources/js/components/PopUp/AccessList/AccessList.tsx"));
 
 var PopUp = mobx_react_lite_1.observer(function (props) {
-  var _a = react_1.useState(props.listUser.availability),
+  var _a = react_1.useState(false),
       stateListUser = _a[0],
       setStateListUser = _a[1];
 
@@ -4217,19 +4224,25 @@ function () {
     };
 
     this.requestAddUser = function () {
-      var result = axios_1["default"].post("http://localhost:8000/" + 'add-new-user-wallet', {
+      axios_1["default"].post("http://localhost:8000/" + 'add-new-user-wallet', {
         id: index_1["default"].Wallet.idWallet,
         newUser: _this.newUserId,
         AccessNewUser: _this.AccessNewUser
       }).then(function (response) {
         if (response.status === 200) {
-          return response.data;
+          index_1["default"].Wallet.allUsers.push({
+            userName: _this.newUser,
+            userId: _this.newUserId,
+            debitСredit: 0
+          });
+          _this.newUserId = 0;
+          _this.newUser = "";
+          index_1["default"].Wallet.lengthBurdenUser = index_1["default"].Wallet.lengthBurdenUser + 1;
         }
       }, function (response) {
         console.log("error request " + response);
         return "Error";
       });
-      return result;
     };
 
     mobx_1.makeObservable(this, {
@@ -4997,7 +5010,7 @@ function () {
       cost: this.newRowCost,
       namesWalletsId: this.idWallet
     };
-    var result = axios_1["default"].post("http://localhost:8000/" + 'add-new-row-wallet', {
+    axios_1["default"].post("http://localhost:8000/" + 'add-new-row-wallet', {
       data: data
     }).then(function (response) {
       if (response.status === 200) {
@@ -5013,24 +5026,17 @@ function () {
   };
 
   Wallet.prototype.scopeOneWallet = function () {
-    return __awaiter(this, void 0, void 0, function () {
-      var result;
-      return __generator(this, function (_a) {
-        result = axios_1["default"].post("http://localhost:8000/" + 'scope-one-wallet', {
-          id: this.idWallet
-        }).then(function (response) {
-          if (response.status === 200) {
-            return response.data;
-          }
-        }, function (response) {
-          console.log("error request " + response);
-          return "Error";
-        });
-        return [2
-        /*return*/
-        , result];
-      });
+    var result = axios_1["default"].post("http://localhost:8000/" + 'scope-one-wallet', {
+      id: this.idWallet
+    }).then(function (response) {
+      if (response.status === 200) {
+        return response.data;
+      }
+    }, function (response) {
+      console.log("error request " + response);
+      return "Error";
     });
+    return result;
   };
 
   Wallet.prototype.gradeUser = function (item) {

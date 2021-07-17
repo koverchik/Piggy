@@ -7,6 +7,7 @@ interface ButtonCreate extends React.HTMLAttributes<HTMLDivElement>{
     type: "button" | "submit",
     callbackClick?: () => void,
     redirectPage?: (idPage:number) => void,
+    closeClik?:() => void,
 
 }
 export default ButtonCreate;

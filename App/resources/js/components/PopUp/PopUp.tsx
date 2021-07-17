@@ -6,7 +6,7 @@ import ListForPoints from "./ListForPoint/ListForPoints";
 import AccessList from "./AccessList/AccessList";
 
 const PopUp: React.FC = observer((props: any) => { 
-   const [stateListUser, setStateListUser] = useState(props.listUser.availability);
+   const [stateListUser, setStateListUser] = useState(false);
     return (
       <div className="wrapper-for-background" onClick={props.closeClick}>
          <div className="wrapper-pop-up" onClick={(event)=> {event.stopPropagation()}}>
