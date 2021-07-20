@@ -2847,7 +2847,7 @@ var BodyTableEstimate = mobx_react_lite_1.observer(function (props) {
         var lengthData = index_1["default"].Estimate.pagination.length;
         index_1["default"].Estimate.activePagination = index_1["default"].Estimate.pagination.length;
 
-        if (lengthData === 0) {
+        if (data.length === 0) {
           var list = react_1["default"].createElement("tr", {
             key: "RowEstimate",
             className: "error-table"
@@ -3501,8 +3501,9 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
       } else {
         state_1["default"].Wallet.allRows = data.data.rows;
         state_1["default"].Wallet.lengthRows = data.data.rows.length;
+        state_1["default"].Wallet.activePagination = state_1["default"].Wallet.numberPagination.length;
 
-        if (state_1["default"].Wallet.lengthRows === 0) {
+        if (data.data.rows.length === 0) {
           var warning = react_1["default"].createElement("tr", {
             key: "row-walet-0",
             className: "error-one-walet"
@@ -3511,7 +3512,7 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
           }, "\u0417\u0434\u0435\u0441\u044C \u043F\u043E\u043A\u0430 \u043D\u0438\u0447\u0435\u0433\u043E \u043D\u0435\u0442, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0441\u0442\u0440\u043E\u043A"));
           setlistRowsWallet(warning);
         } else {
-          createListRows(state_1["default"].Wallet.allRows, state_1["default"].Wallet.activePagination);
+          createListRows(data.data.rows, state_1["default"].Wallet.activePagination);
         }
       }
     });
@@ -4767,7 +4768,6 @@ function () {
       }
 
       _this.numberPagination = arrayForPagination;
-      _this.activePagination = _this.numberPagination.length;
       _this.allSumm = +summAllRows.toFixed(2);
       return response;
     }, function (response) {

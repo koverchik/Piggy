@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import './_TableOneWallet.scss';
 import './../_OneWallet.scss';
 import AddNewRowWallet from "./AddNewRowWallet/AddNewRowWallet";
@@ -6,7 +6,6 @@ import PaginationRows from "./PaginationRows/PaginationRows";
 import { observer } from "mobx-react-lite";
 import store from "../../../state";
 import BodyOneWallet from "./BodyOneWallet/BodyOneWallet";
-
 
 const TableOneWallet: React.FC = observer(() => {
     

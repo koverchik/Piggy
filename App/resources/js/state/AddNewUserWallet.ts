@@ -6,7 +6,7 @@ export default class AddNewUserWallet {
     newUser = "";
     newUserId = 0;
     AccessNewUser = "";
-    allDataUsersSystems: never[] = [];
+    allDataUsersSystems = [];
 
     constructor() {
       makeObservable(this, {

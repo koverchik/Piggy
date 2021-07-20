@@ -12,7 +12,6 @@ export default class СreationEditingWallets {
       onChangeFnWalletName: action,
     })
   }
-  
 
   createNewWallet = () => {   
 

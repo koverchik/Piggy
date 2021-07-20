@@ -13,17 +13,18 @@ const BodyTableEstimate: React.FC = observer((props : any) => {
     useEffect(() => {
         store.Estimate.requestOneEstimate().then((data: any) => {
             if(data === "Error"){
-                const list : any  =  ( <tr key={"RowEstimate"} className="error-table">
-                                            <td colSpan={4}>
-                                                Упс... Что-то пошло не так, попробуйте перезагрузить страницу
-                                            </td>
-                                        </tr>)
+                const list:any  = 
+                    ( <tr key={"RowEstimate"} className="error-table">
+                            <td colSpan={4}>
+                                Упс... Что-то пошло не так, попробуйте перезагрузить страницу
+                            </td>
+                        </tr>)
                  setlistRowsEstimate(list);
              }else{
-                store.Estimate.dataRows = data;
+                store.Estimate.dataRows = data; 
                 const lengthData : number = store.Estimate.pagination.length;
                 store.Estimate.activePagination = store.Estimate.pagination.length;
-                if(lengthData === 0){
+                if(data.length === 0){
                     const list : any  =  ( <tr key={"RowEstimate"} className="error-table">
                                                 <td colSpan={4}>
                                                     Здесь пока ничего нет, попробуйте добавить несколько строк

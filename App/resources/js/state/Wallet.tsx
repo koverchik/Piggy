@@ -1,4 +1,4 @@
-import { makeObservable, action, observable, configure } from "mobx";
+import { makeObservable, action, observable } from "mobx";
 import axios from 'axios';
   
 export default class Wallet {
@@ -55,7 +55,7 @@ export default class Wallet {
           arrayForPagination.push(i+1);
         }
         this.numberPagination = arrayForPagination;
-        this.activePagination = this.numberPagination.length;
+        
         this.allSumm = +summAllRows.toFixed(2);
         return response;
         },

@@ -18,14 +18,15 @@ useEffect(() => {
                 setlistRowsWallet(messageError);
             }else{
                 store.Wallet.allRows = data.data.rows;    
-                store.Wallet.lengthRows = data.data.rows.length;               
-                if(store.Wallet.lengthRows === 0) {
+                store.Wallet.lengthRows = data.data.rows.length; 
+                store.Wallet.activePagination = store.Wallet.numberPagination.length;              
+                if(data.data.rows.length === 0) {
                     const warning : any  = (<tr key="row-walet-0" className="error-one-walet">
                                                 <td colSpan={5} >Здесь пока ничего нет, попробуйте добавить несколько строк</td>
                                             </tr>)
                     setlistRowsWallet(warning);
                 }else {
-                    createListRows(store.Wallet.allRows, store.Wallet.activePagination);
+                    createListRows(data.data.rows, store.Wallet.activePagination);
                 }            
             }
         })
