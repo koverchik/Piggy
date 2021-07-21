@@ -11,6 +11,8 @@ import AllEstimateAndWallet from "./AllEstimateAndWallet/AllEstimateAndWallet";
 import AllEstimate from "./AllEstimate/AllEstimate";
 import OneEstimate from "./OneEstimate/OneEstimate";
 import OneWallet from "./OneWallet/OneWallet";
+import UserCheckInAndAuth from "./UserCheckInAndAuth/UserCheckInAndAuth";
+
 
 import { observer } from "mobx-react-lite";
 
@@ -21,7 +23,9 @@ const App: React.FC = observer(() => {
           <Header />
           <Router>
             <Switch>
-                <Route exact path="/" component={AllEstimateAndWallet} />
+                {/* <Route exact path="/" component={AllEstimateAndWallet} /> */}
+                <Route exact path="/" component={UserCheckInAndAuth} />
+
                 <Route path="/estimate-:id" component={OneEstimate} />
                 {/* <Route path="/edit-estimate-:id" component={EditOneEstimate} /> */}
                 <Route path="/one-estimate" component={AllEstimate} />
