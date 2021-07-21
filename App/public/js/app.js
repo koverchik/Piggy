@@ -2045,6 +2045,422 @@ exports.default = AllEstimate;
 
 /***/ }),
 
+/***/ "./resources/js/components/AllEstimateAndWallet/AllEstimateAndWallet.tsx":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/AllEstimateAndWallet/AllEstimateAndWallet.tsx ***!
+  \*******************************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+__webpack_require__(/*! ./_AllEstimateAndWallet.scss */ "./resources/js/components/AllEstimateAndWallet/_AllEstimateAndWallet.scss");
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var AllEstimateMainPage_1 = __importDefault(__webpack_require__(/*! ./AllEstimateMainPage/AllEstimateMainPage */ "./resources/js/components/AllEstimateAndWallet/AllEstimateMainPage/AllEstimateMainPage.tsx"));
+
+var AllWalletsMainPage_1 = __importDefault(__webpack_require__(/*! ./AllWalletsMainPage/AllWalletsMainPage */ "./resources/js/components/AllEstimateAndWallet/AllWalletsMainPage/AllWalletsMainPage.tsx"));
+
+var AllEstimateAndWallet = mobx_react_lite_1.observer(function () {
+  return react_1["default"].createElement("div", {
+    className: "wrapper-all-estimate-wallet"
+  }, react_1["default"].createElement(AllEstimateMainPage_1["default"], null), react_1["default"].createElement(AllWalletsMainPage_1["default"], null));
+});
+exports.default = AllEstimateAndWallet;
+
+/***/ }),
+
+/***/ "./resources/js/components/AllEstimateAndWallet/AllEstimateMainPage/AllEstimateMainPage.tsx":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/AllEstimateAndWallet/AllEstimateMainPage/AllEstimateMainPage.tsx ***!
+  \**************************************************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
+
+__webpack_require__(/*! ./../_AllEstimateAndWallet.scss */ "./resources/js/components/AllEstimateAndWallet/_AllEstimateAndWallet.scss");
+
+var state_1 = __importDefault(__webpack_require__(/*! ../../../state */ "./resources/js/state/index.ts"));
+
+var react_router_dom_2 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var PaginationRows_1 = __importDefault(__webpack_require__(/*! ../../PaginationRows/PaginationRows */ "./resources/js/components/PaginationRows/PaginationRows.tsx"));
+
+var PopUp_1 = __importDefault(__webpack_require__(/*! ../../PopUp/PopUp */ "./resources/js/components/PopUp/PopUp.tsx"));
+
+var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
+  var _a = react_1.useState([]),
+      listEstimate = _a[0],
+      setlistEstimate = _a[1];
+
+  var _b = react_1.useState([]),
+      listEstimateData = _b[0],
+      setlistEstimateData = _b[1];
+
+  var _c = react_1.useState(false),
+      statePopUp = _c[0],
+      setStatePopUp = _c[1];
+
+  var _d = react_1.useState(false),
+      renderRedirect = _d[0],
+      setRedirect = _d[1];
+
+  var buttonName = {
+    name: "Создать",
+    type: "button",
+    image: false,
+    callbackClick: function callbackClick() {
+      return setStatePopUp(true);
+    }
+  };
+  var popUpData = {
+    name: state_1["default"].СreationEditingEstimates.newNameEstimate,
+    kind: "Создание сметы",
+    textMessage: "Введите название",
+    closeClick: function closeClick() {
+      return setStatePopUp(false);
+    },
+    button: {
+      name: "Создать",
+      type: "submit",
+      image: false,
+      callbackClick: state_1["default"].СreationEditingEstimates.createNewEstimate,
+      redirectPage: redirectPage
+    },
+    onChangeFunction: state_1["default"].СreationEditingEstimates.onChangeFnEstimateName
+  };
+  var paginationDataEstimate = {
+    arrayNumber: state_1["default"].GeneralData.arrayNameAllEstimates,
+    activeNumber: state_1["default"].GeneralData.activePaginationAllEstimates,
+    callbackPaginationArray: state_1["default"].GeneralData.callbackPaginationArrayE,
+    callbackPaginationRight: state_1["default"].GeneralData.callbackPaginationRightE,
+    callbackPaginationLeft: state_1["default"].GeneralData.callbackPaginationLeftE
+  };
+  react_1.useEffect(function () {
+    state_1["default"].GeneralData.allEstimates().then(function (data) {
+      if (data === "Error") {
+        var notiseError = react_1["default"].createElement("li", {
+          key: "listEstimateEmpty"
+        }, "\u0423\u043F\u0441, \u0447\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0430\u0440\u0430\u043D\u0438\u0446\u0443.");
+        setlistEstimate(notiseError);
+      } else {
+        state_1["default"].GeneralData.allDataEstimate = data;
+        setlistEstimateData(data);
+        createRowsEstimate(data, state_1["default"].GeneralData.activePaginationAllEstimates);
+      }
+    });
+  }, []);
+
+  function createRowsEstimate(data, pagination) {
+    var list = data.map(function (item, i) {
+      return react_1["default"].createElement("li", {
+        key: "listEstimate" + i,
+        className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? "hide-row" : ""
+      }, react_1["default"].createElement(react_router_dom_2.Link, {
+        to: "/estimate-" + item['names_estimates_id']
+      }, item['full_name']));
+    });
+    setlistEstimate(list);
+  }
+
+  function redirectPage(idPage) {
+    state_1["default"].Estimate.idEstimate = idPage;
+    setRedirect(true);
+  }
+
+  react_1.useEffect(function () {
+    createRowsEstimate(listEstimateData, state_1["default"].GeneralData.activePaginationAllEstimates);
+  }, [state_1["default"].GeneralData.activePaginationAllEstimates]);
+  return react_1["default"].createElement("div", {
+    className: "wapper-estimate"
+  }, statePopUp ? react_1["default"].createElement(PopUp_1["default"], __assign({}, popUpData)) : null, react_1["default"].createElement("div", {
+    className: "wrapper-block-name-list"
+  }, react_1["default"].createElement("p", {
+    className: "header-blok-view"
+  }, "\u0421\u043C\u0435\u0442\u044B"), react_1["default"].createElement("ul", {
+    className: "list-estimate"
+  }, listEstimate)), react_1["default"].createElement("div", {
+    className: "wrapper-pagination-button-create"
+  }, state_1["default"].GeneralData.arrayNameAllEstimates.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], __assign({}, paginationDataEstimate)) : "", renderRedirect ? react_1["default"].createElement(react_router_dom_1.Redirect, {
+    to: 'estimate-' + state_1["default"].Estimate.idEstimate
+  }) : "", react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, buttonName))));
+});
+exports.default = AllEstimateMainPage;
+
+/***/ }),
+
+/***/ "./resources/js/components/AllEstimateAndWallet/AllWalletsMainPage/AllWalletsMainPage.tsx":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/AllEstimateAndWallet/AllWalletsMainPage/AllWalletsMainPage.tsx ***!
+  \************************************************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
+
+__webpack_require__(/*! ./../_AllEstimateAndWallet.scss */ "./resources/js/components/AllEstimateAndWallet/_AllEstimateAndWallet.scss");
+
+var state_1 = __importDefault(__webpack_require__(/*! ../../../state */ "./resources/js/state/index.ts"));
+
+var react_router_dom_2 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var PopUp_1 = __importDefault(__webpack_require__(/*! ../../PopUp/PopUp */ "./resources/js/components/PopUp/PopUp.tsx"));
+
+var PaginationRows_1 = __importDefault(__webpack_require__(/*! ../../PaginationRows/PaginationRows */ "./resources/js/components/PaginationRows/PaginationRows.tsx"));
+
+var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
+  var _a = react_1.useState([]),
+      listWallet = _a[0],
+      setlistWallet = _a[1];
+
+  var _b = react_1.useState([]),
+      listWalletData = _b[0],
+      settWalletData = _b[1];
+
+  var _c = react_1.useState(false),
+      statePopUp = _c[0],
+      setStatePopUp = _c[1];
+
+  var _d = react_1.useState(false),
+      renderRedirect = _d[0],
+      setRedirect = _d[1];
+
+  var buttonName = {
+    name: "Создать",
+    type: "button",
+    image: false,
+    callbackClick: function callbackClick() {
+      return setStatePopUp(true);
+    }
+  };
+  var paginationDataWallet = {
+    arrayNumber: state_1["default"].GeneralData.arrayNameAllWallets,
+    activeNumber: state_1["default"].GeneralData.activePaginationAllWallets,
+    callbackPaginationArray: state_1["default"].GeneralData.callbackPaginationArrayW,
+    callbackPaginationRight: state_1["default"].GeneralData.callbackPaginationRightW,
+    callbackPaginationLeft: state_1["default"].GeneralData.callbackPaginationLeftW
+  };
+  var popUpData = {
+    name: state_1["default"].СreationEditingWallets.newNameWallet,
+    kind: "Создание кошелька",
+    textMessage: "Введите название",
+    closeClick: function closeClick() {
+      return setStatePopUp(false);
+    },
+    button: {
+      name: "Создать",
+      type: "submit",
+      image: false,
+      callbackClick: state_1["default"].СreationEditingWallets.createNewWallet,
+      redirectPage: redirectPage
+    },
+    onChangeFunction: state_1["default"].СreationEditingWallets.onChangeFnWalletName
+  };
+
+  function redirectPage(idPage) {
+    state_1["default"].Wallet.idWallet = idPage["id"];
+    state_1["default"].Wallet.nameWallet = idPage["name"];
+    setRedirect(idPage);
+  }
+
+  react_1.useEffect(function () {
+    state_1["default"].GeneralData.allWallets().then(function (data) {
+      if (data === "Error") {
+        var notiseError = react_1["default"].createElement("li", {
+          key: "listEstimateEmpty"
+        }, "\u0423\u043F\u0441, \u0447\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0430\u0440\u0430\u043D\u0438\u0446\u0443.");
+        setlistWallet(notiseError);
+      } else {
+        state_1["default"].GeneralData.allDataWallets = data;
+        settWalletData(data);
+        createRowsWallets(data, state_1["default"].GeneralData.activePaginationAllWallets);
+      }
+    });
+  }, []);
+
+  function createRowsWallets(data, pagination) {
+    var list = data.map(function (item, i) {
+      return react_1["default"].createElement("li", {
+        key: "listWallet" + i,
+        className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? "hide-row" : ""
+      }, react_1["default"].createElement(react_router_dom_2.Link, {
+        to: "/wallet-" + item['names_wallets_id'] + '-' + item['names_wallet']['name']
+      }, item['names_wallet']['name']));
+    });
+    setlistWallet(list);
+  }
+
+  react_1.useEffect(function () {
+    createRowsWallets(listWalletData, state_1["default"].GeneralData.activePaginationAllWallets);
+  }, [state_1["default"].GeneralData.activePaginationAllWallets]);
+  return react_1["default"].createElement("div", {
+    className: "wapper-wallet"
+  }, statePopUp ? react_1["default"].createElement(PopUp_1["default"], __assign({}, popUpData)) : null, react_1["default"].createElement("div", {
+    className: "wrapper-block-name-list"
+  }, react_1["default"].createElement("p", {
+    className: "header-blok-view"
+  }, "\u041A\u043E\u0448\u0435\u043B\u0435\u043A\u0438"), react_1["default"].createElement("ul", {
+    className: "list-wallet"
+  }, listWallet)), react_1["default"].createElement("div", {
+    className: "wrapper-pagination-button-create"
+  }, state_1["default"].GeneralData.arrayNameAllWallets.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], __assign({}, paginationDataWallet)) : "", renderRedirect ? react_1["default"].createElement(react_router_dom_1.Redirect, {
+    to: 'wallet-' + state_1["default"].Wallet.idWallet + "-" + state_1["default"].Wallet.nameWallet
+  }) : "", react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, buttonName))));
+});
+exports.default = AllWalletsMainPage;
+
+/***/ }),
+
 /***/ "./resources/js/components/App.tsx":
 /*!*****************************************!*\
   !*** ./resources/js/components/App.tsx ***!
@@ -2070,7 +2486,10 @@ var Header_1 = __importDefault(__webpack_require__(/*! ./Header/Header */ "./res
 
 var Footer_1 = __importDefault(__webpack_require__(/*! ./Footer/Footer */ "./resources/js/components/Footer/Footer.tsx"));
 
-var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js"); // import MainSection from "./MainSection/MainSection";
+
+
+var AllEstimateAndWallet_1 = __importDefault(__webpack_require__(/*! ./AllEstimateAndWallet/AllEstimateAndWallet */ "./resources/js/components/AllEstimateAndWallet/AllEstimateAndWallet.tsx"));
 
 var AllEstimate_1 = __importDefault(__webpack_require__(/*! ./AllEstimate/AllEstimate */ "./resources/js/components/AllEstimate/AllEstimate.tsx"));
 
@@ -2078,7 +2497,9 @@ var OneEstimate_1 = __importDefault(__webpack_require__(/*! ./OneEstimate/OneEst
 
 var OneWallet_1 = __importDefault(__webpack_require__(/*! ./OneWallet/OneWallet */ "./resources/js/components/OneWallet/OneWallet.tsx"));
 
-var UserCheckInAndAuth_1 = __importDefault(__webpack_require__(/*! ./UserCheckInAndAuth/UserCheckInAndAuth */ "./resources/js/components/UserCheckInAndAuth/UserCheckInAndAuth.tsx"));
+var Registration_1 = __importDefault(__webpack_require__(/*! ./Registration/Registration */ "./resources/js/components/Registration/Registration.tsx"));
+
+var Authentication_1 = __importDefault(__webpack_require__(/*! ./Authentication/Authentication */ "./resources/js/components/Authentication/Authentication.tsx"));
 
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
@@ -2088,7 +2509,15 @@ var App = mobx_react_lite_1.observer(function () {
   }, react_1["default"].createElement(Header_1["default"], null), react_1["default"].createElement(react_router_dom_1.BrowserRouter, null, react_1["default"].createElement(react_router_dom_1.Switch, null, react_1["default"].createElement(react_router_dom_1.Route, {
     exact: true,
     path: "/",
-    component: UserCheckInAndAuth_1["default"]
+    component: AllEstimateAndWallet_1["default"]
+  }), react_1["default"].createElement(react_router_dom_1.Route, {
+    exact: true,
+    path: "/registration",
+    component: Registration_1["default"]
+  }), react_1["default"].createElement(react_router_dom_1.Route, {
+    exact: true,
+    path: "/\u0430uthentication",
+    component: Authentication_1["default"]
   }), react_1["default"].createElement(react_router_dom_1.Route, {
     path: "/estimate-:id",
     component: OneEstimate_1["default"]
@@ -2098,9 +2527,71 @@ var App = mobx_react_lite_1.observer(function () {
   }), react_1["default"].createElement(react_router_dom_1.Route, {
     path: "/wallet-:id-:name",
     component: OneWallet_1["default"]
-  }))), react_1["default"].createElement(Footer_1["default"], null));
+  })), react_1["default"].createElement(Footer_1["default"], null)));
 });
 exports.default = App;
+
+/***/ }),
+
+/***/ "./resources/js/components/Authentication/Authentication.tsx":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/Authentication/Authentication.tsx ***!
+  \*******************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var UserCheckInAndAuth_1 = __importDefault(__webpack_require__(/*! ../UserCheckInAndAuth/UserCheckInAndAuth */ "./resources/js/components/UserCheckInAndAuth/UserCheckInAndAuth.tsx"));
+
+var Authentication = mobx_react_lite_1.observer(function (props) {
+  var dataProps = {
+    nameForm: "Авторизация",
+    repeatPassword: false,
+    buttonSend: {
+      name: "Войти",
+      image: false,
+      type: "submit"
+    },
+    question: "Еще нет аккунта?",
+    adressLink: "registration",
+    callbackSend: function callbackSend() {
+      console.log("hello");
+    }
+  };
+  return react_1["default"].createElement(UserCheckInAndAuth_1["default"], __assign({}, dataProps));
+});
+exports.default = Authentication;
 
 /***/ }),
 
@@ -2214,11 +2705,13 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 
 __webpack_require__(/*! ./_Footer.scss */ "./resources/js/components/Footer/_Footer.scss");
 
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 var Footer = function Footer() {
   return react_1["default"].createElement("div", {
     className: "wrapper-footer"
-  }, react_1["default"].createElement("a", {
-    href: "/home",
+  }, react_1["default"].createElement(react_router_dom_1.Link, {
+    to: "/registration",
     className: "enter-in-system"
   }, react_1["default"].createElement("img", {
     src: "../images/unknown-user.svg",
@@ -3692,6 +4185,68 @@ exports.default = PopUp;
 
 /***/ }),
 
+/***/ "./resources/js/components/Registration/Registration.tsx":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/Registration/Registration.tsx ***!
+  \***************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var UserCheckInAndAuth_1 = __importDefault(__webpack_require__(/*! ../UserCheckInAndAuth/UserCheckInAndAuth */ "./resources/js/components/UserCheckInAndAuth/UserCheckInAndAuth.tsx"));
+
+var Registration = mobx_react_lite_1.observer(function (props) {
+  var dataProps = {
+    nameForm: "Регистрация",
+    repeatPassword: true,
+    buttonSend: {
+      name: "Регистрация",
+      image: false,
+      type: "submit"
+    },
+    question: "Уже есть аккунт?",
+    adressLink: "аuthentication",
+    callbackSend: function callbackSend() {
+      console.log("hello");
+    }
+  };
+  return react_1["default"].createElement(UserCheckInAndAuth_1["default"], __assign({}, dataProps));
+});
+exports.default = Registration;
+
+/***/ }),
+
 /***/ "./resources/js/components/UserCheckInAndAuth/UserCheckInAndAuth.tsx":
 /*!***************************************************************************!*\
   !*** ./resources/js/components/UserCheckInAndAuth/UserCheckInAndAuth.tsx ***!
@@ -3717,40 +4272,6 @@ var __assign = this && this.__assign || function () {
   return __assign.apply(this, arguments);
 };
 
-var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
-} : function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  o[k2] = m[k];
-});
-
-var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
-  Object.defineProperty(o, "default", {
-    enumerable: true,
-    value: v
-  });
-} : function (o, v) {
-  o["default"] = v;
-});
-
-var __importStar = this && this.__importStar || function (mod) {
-  if (mod && mod.__esModule) return mod;
-  var result = {};
-  if (mod != null) for (var k in mod) {
-    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-  }
-
-  __setModuleDefault(result, mod);
-
-  return result;
-};
-
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -3761,7 +4282,7 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
@@ -3772,36 +4293,29 @@ __webpack_require__(/*! ./_UserCheckInAndAuth.scss */ "./resources/js/components
 var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
 
 var UserCheckInAndAuth = mobx_react_lite_1.observer(function (props) {
-  var _a = react_1.useState(false),
-      stateUser = _a[0],
-      setStateUser = _a[1];
-
-  var buttonProps = {
-    name: "Регистрация",
-    image: false,
-    type: "submit"
-  };
   return react_1["default"].createElement("div", {
     className: "wrapper-form-user-reg-auth"
   }, react_1["default"].createElement("div", {
     className: "form-user-reg-auth"
-  }, react_1["default"].createElement("h2", null, "\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F"), react_1["default"].createElement("form", null, react_1["default"].createElement("div", {
+  }, react_1["default"].createElement("h2", null, props.nameForm), react_1["default"].createElement("form", null, react_1["default"].createElement("div", {
     className: "wrapper-input-text-user"
   }, react_1["default"].createElement("p", null, "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0438\u043C\u044F"), react_1["default"].createElement("input", {
     type: "text",
     className: "input-text-form-user"
-  }), react_1["default"].createElement("p", null, "\u041F\u0440\u0438\u0434\u0443\u043C\u0430\u0439\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C"), react_1["default"].createElement("input", {
+  }), react_1["default"].createElement("p", null, "\u0412\u0432\u0435\u0434\u0435\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C"), react_1["default"].createElement("input", {
     type: "text",
     className: "input-text-form-user"
-  }), react_1["default"].createElement("p", null, "\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0435 \u0435\u0449\u0451 \u0440\u0430\u0437 \u043F\u0430\u0440\u043E\u043B\u044C"), react_1["default"].createElement("input", {
+  }), props.repeatPassword ? react_1["default"].createElement("div", {
+    className: "wrapper-reset-pasvord"
+  }, react_1["default"].createElement("p", null, "\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0435 \u0435\u0449\u0451 \u0440\u0430\u0437 \u043F\u0430\u0440\u043E\u043B\u044C"), react_1["default"].createElement("input", {
     type: "text",
     className: "input-text-form-user"
-  })), react_1["default"].createElement("div", {
+  })) : ""), react_1["default"].createElement("div", {
     className: "wrapper-button-reg-auth"
-  }, react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, buttonProps)))), react_1["default"].createElement("p", {
+  }, react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, props.buttonSend)))), react_1["default"].createElement("p", {
     className: "redirect-link"
-  }, "\u0423\u0436\u0435 \u0435\u0441\u0442\u044C \u0430\u043A\u043A\u0430\u0443\u043D\u0442? ", react_1["default"].createElement(react_router_dom_1.Link, {
-    to: "/"
+  }, props.question, " ", react_1["default"].createElement(react_router_dom_1.Link, {
+    to: "/" + props.adressLink
   }, "\u041A\u043B\u0438\u043A\u043D\u0438\u0442\u0435 \u0441\u044E\u0434\u0430"), " ")));
 });
 exports.default = UserCheckInAndAuth;
@@ -9214,6 +9728,30 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-list-estimate {\n  background
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/AllEstimateAndWallet/_AllEstimateAndWallet.scss":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/AllEstimateAndWallet/_AllEstimateAndWallet.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-all-estimate-wallet {\n  display: flex;\n  justify-content: space-around;\n  background-color: #C4C4C4;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-all-estimate-wallet {\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n  }\n}\n.wrapper-all-estimate-wallet .wapper-estimate, .wrapper-all-estimate-wallet .wapper-wallet {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  align-items: center;\n  padding: 2rem;\n  margin: 1rem;\n  width: 30%;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-all-estimate-wallet .wapper-estimate, .wrapper-all-estimate-wallet .wapper-wallet {\n    width: 40%;\n  }\n}\n@media screen and (max-width: 800px) {\n  .wrapper-all-estimate-wallet .wapper-estimate, .wrapper-all-estimate-wallet .wapper-wallet {\n    width: 60%;\n  }\n}\n@media screen and (max-width: 640px) {\n  .wrapper-all-estimate-wallet .wapper-estimate, .wrapper-all-estimate-wallet .wapper-wallet {\n    width: 80%;\n  }\n}\n.wrapper-all-estimate-wallet .wapper-estimate .wrapper-block-name-list, .wrapper-all-estimate-wallet .wapper-estimate .wrapper-pagination-button-create, .wrapper-all-estimate-wallet .wapper-wallet .wrapper-block-name-list, .wrapper-all-estimate-wallet .wapper-wallet .wrapper-pagination-button-create {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .header-blok-view, .wrapper-all-estimate-wallet .wapper-wallet .header-blok-view {\n  color: #5354D2;\n  font-size: 48px;\n  margin: 1rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-all-estimate-wallet .wapper-estimate .header-blok-view, .wrapper-all-estimate-wallet .wapper-wallet .header-blok-view {\n    margin: 0.4rem;\n  }\n}\n.wrapper-all-estimate-wallet .wapper-estimate .list-estimate, .wrapper-all-estimate-wallet .wapper-estimate .list-wallet, .wrapper-all-estimate-wallet .wapper-wallet .list-estimate, .wrapper-all-estimate-wallet .wapper-wallet .list-wallet {\n  margin: 0;\n  padding: 10px;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .list-estimate li, .wrapper-all-estimate-wallet .wapper-estimate .list-wallet li, .wrapper-all-estimate-wallet .wapper-wallet .list-estimate li, .wrapper-all-estimate-wallet .wapper-wallet .list-wallet li {\n  list-style-type: none;\n  margin-bottom: 10px;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .list-estimate li a, .wrapper-all-estimate-wallet .wapper-estimate .list-wallet li a, .wrapper-all-estimate-wallet .wapper-wallet .list-estimate li a, .wrapper-all-estimate-wallet .wapper-wallet .list-wallet li a {\n  text-decoration: none;\n  color: black;\n  font-size: 1.25rem;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .list-estimate li a:hover, .wrapper-all-estimate-wallet .wapper-estimate .list-wallet li a:hover, .wrapper-all-estimate-wallet .wapper-wallet .list-estimate li a:hover, .wrapper-all-estimate-wallet .wapper-wallet .list-wallet li a:hover {\n  color: #5354D2;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .list-estimate li hide-row, .wrapper-all-estimate-wallet .wapper-estimate .list-wallet li hide-row, .wrapper-all-estimate-wallet .wapper-wallet .list-estimate li hide-row, .wrapper-all-estimate-wallet .wapper-wallet .list-wallet li hide-row {\n  display: none;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/ButtonAddNewRow/_ButtonAddNewRow.scss":
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/ButtonAddNewRow/_ButtonAddNewRow.scss ***!
@@ -9615,7 +10153,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-form-user-reg-auth {\n  background: #C4C4C4;\n  align-items: center;\n  justify-content: center;\n  display: flex;\n  font-size: 1.5rem;\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth {\n  width: 60%;\n  border-radius: 10px;\n  background: #F5F5F5;\n  margin: 1rem;\n  padding: 2rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth {\n    width: 70%;\n  }\n}\n@media screen and (max-width: 640px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth {\n    width: 80%;\n  }\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .redirect-link {\n  font-size: 1rem;\n  padding-left: 45px;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .redirect-link a {\n  text-decoration: none;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-button-reg-auth {\n  display: flex;\n  justify-content: center;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth h2 {\n  color: #5354D2;\n  font-size: 2.5rem;\n  margin: 0 0 10px 0;\n  text-align: center;\n  padding: 0;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth h2 {\n    font-size: 2.2rem;\n  }\n}\n@media screen and (max-width: 800px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth h2 {\n    font-size: 2rem;\n  }\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user p {\n  margin: 0;\n  padding-left: 45px;\n}\n@media screen and (max-width: 640px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user p {\n    font-size: 1.2rem;\n  }\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .input-text-form-user {\n  width: 90%;\n  margin: 10px 0 20px 0;\n  border: 1px solid #FDB547;\n  align-self: center;\n  height: 36px;\n  font-size: 1.3rem;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .input-text-form-user:active {\n  border: 1px solid #FDB547;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .input-text-form-user:focus {\n  outline: none;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-form-user-reg-auth {\n  background: #C4C4C4;\n  align-items: center;\n  justify-content: center;\n  display: flex;\n  font-size: 1.5rem;\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth {\n  width: 60%;\n  border-radius: 10px;\n  background: #F5F5F5;\n  margin: 1rem;\n  padding: 2rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth {\n    width: 70%;\n  }\n}\n@media screen and (max-width: 640px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth {\n    width: 80%;\n  }\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .redirect-link {\n  font-size: 1rem;\n  padding-left: 45px;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .redirect-link a {\n  text-decoration: none;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-button-reg-auth {\n  display: flex;\n  justify-content: center;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth h2 {\n  color: #5354D2;\n  font-size: 2.5rem;\n  margin: 0 0 10px 0;\n  text-align: center;\n  padding: 0;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth h2 {\n    font-size: 2.2rem;\n  }\n}\n@media screen and (max-width: 800px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth h2 {\n    font-size: 2rem;\n  }\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .wrapper-reset-pasvord {\n  text-align: center;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .wrapper-reset-pasvord p {\n  text-align: initial;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user p {\n  margin: 0;\n  padding-left: 45px;\n}\n@media screen and (max-width: 640px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user p {\n    font-size: 1.2rem;\n  }\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .input-text-form-user {\n  width: 90%;\n  margin: 10px 0 20px 0;\n  border: 1px solid #FDB547;\n  align-self: center;\n  height: 36px;\n  font-size: 1.3rem;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .input-text-form-user:active {\n  border: 1px solid #FDB547;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .input-text-form-user:focus {\n  outline: none;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -80730,6 +81268,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AllEstimate_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./resources/js/components/AllEstimateAndWallet/_AllEstimateAndWallet.scss":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/AllEstimateAndWallet/_AllEstimateAndWallet.scss ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AllEstimateAndWallet_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./_AllEstimateAndWallet.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/AllEstimateAndWallet/_AllEstimateAndWallet.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AllEstimateAndWallet_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AllEstimateAndWallet_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 
