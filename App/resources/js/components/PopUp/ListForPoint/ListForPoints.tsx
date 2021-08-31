@@ -22,15 +22,15 @@ const ListForPoints: React.FC = observer((props: any) => {
   }, []);
   function createListUser(
     data: any,
-    serchData: string = store.AddNewUserWallet.newUser
+    searchData: string = store.AddNewUserWallet.newUser
   ) {
     const result = data.map((item: UserList, i: number) => {
-      if (serchData === '') {
+      if (searchData === '') {
         return createTags(item, i);
       } else {
         if (
-          item['email'].toUpperCase().indexOf(serchData.toUpperCase()) != -1 ||
-          item['name'].toUpperCase().indexOf(serchData.toUpperCase()) != -1
+          item['email'].toUpperCase().indexOf(searchData.toUpperCase()) != -1 ||
+          item['name'].toUpperCase().indexOf(searchData.toUpperCase()) != -1
         ) {
           return createTags(item, i);
         }

@@ -17,7 +17,7 @@ const UserCheckInAndAuth: React.FC = observer((props: any) => {
             <input type="text" className="input-text-form-user" />
             {props.repeatPassword ? (
               <div className="wrapper-reset-pasvord">
-                <p>Повторие ещё раз пароль</p>
+                <p>Повторите ещё раз пароль</p>
                 <input type="text" className="input-text-form-user" />
               </div>
             ) : (
@@ -31,7 +31,7 @@ const UserCheckInAndAuth: React.FC = observer((props: any) => {
         <div className="wrapper-footer-link">
           <p className="redirect-link">
             {props.question}{' '}
-            <Link to={'/' + props.adressLink}>Кликните сюда</Link>{' '}
+            <Link to={'/' + props.addressLink}>Кликните сюда</Link>{' '}
           </p>
           <p className="redirect-link">
             <Link to="/">На главную</Link>{' '}

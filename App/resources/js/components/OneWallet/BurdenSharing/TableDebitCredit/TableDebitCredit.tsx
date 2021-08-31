@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import './_TableDebetCredit.scss';
 import store from '../../../../state';
 import { observer } from 'mobx-react-lite';
 
-const TableDebetCredit: React.FC = observer(() => {
-  const [listTableDebetCredit, setTableDebetCredit] = useState();
+const TableDebitCredit: React.FC = observer(() => {
+  const [listTableDebitCredit, setTableDebitCredit] = useState();
 
   useEffect(() => {
     if (store.Wallet.allRows.length != 0 && store.Wallet.allUsers.length != 0) {
       store.Wallet.allRows.map((item: any) => {
         for (let index = 0; index < store.Wallet.allUsers.length; index++) {
           if (store.Wallet.allUsers[index].userId == item.user_id) {
-            store.Wallet.allUsers[index].debitСredit =
-              store.Wallet.allUsers[index].debitСredit +
+            store.Wallet.allUsers[index].debitCredit =
+              store.Wallet.allUsers[index].debitCredit +
               (item.amount - item.amount / store.Wallet.lengthBurdenUser);
           } else {
-            store.Wallet.allUsers[index].debitСredit =
-              store.Wallet.allUsers[index].debitСredit -
+            store.Wallet.allUsers[index].debitCredit =
+              store.Wallet.allUsers[index].debitCredit -
               item.amount / store.Wallet.lengthBurdenUser;
           }
         }
@@ -30,15 +29,15 @@ const TableDebetCredit: React.FC = observer(() => {
   ]);
 
   function createRowsDebitCredit(data: any) {
-    const resultListTableDebetCredit = data.map(
-      (itemDeditCredit: any, i: number) => {
+    const resultListTableDebitCredit = data.map(
+      (itemDebitCredit: any, i: number) => {
         let debit: number = 0;
         let credit: number = 0;
-        if (itemDeditCredit.debitСredit < 0) {
+        if (itemDebitCredit.debitCredit < 0) {
           debit = 0;
-          credit = Math.abs(itemDeditCredit.debitСredit);
+          credit = Math.abs(itemDebitCredit.debitCredit);
         } else {
-          debit = itemDeditCredit.debitСredit;
+          debit = itemDebitCredit.debitCredit;
           credit = 0;
         }
 
@@ -46,7 +45,7 @@ const TableDebetCredit: React.FC = observer(() => {
           <tr key={'table-debit-credit' + i}>
             <td className="name-user-debit-credit">
               {' '}
-              {itemDeditCredit.userName}{' '}
+              {itemDebitCredit.userName}{' '}
             </td>
             <td className="column-debit"> {debit.toFixed(2)} руб </td>
             <td className="column-credit"> {credit.toFixed(2)} руб </td>
@@ -54,7 +53,7 @@ const TableDebetCredit: React.FC = observer(() => {
         );
       }
     );
-    setTableDebetCredit(resultListTableDebetCredit);
+    setTableDebitCredit(resultListTableDebitCredit);
   }
 
   return (
@@ -66,8 +65,8 @@ const TableDebetCredit: React.FC = observer(() => {
           <td className="second-side-user-head-debit-credit"> Кредит </td>
         </tr>
       </thead>
-      <tbody>{listTableDebetCredit}</tbody>
+      <tbody>{listTableDebitCredit}</tbody>
     </table>
   );
 });
-export default TableDebetCredit;
+export default TableDebitCredit;

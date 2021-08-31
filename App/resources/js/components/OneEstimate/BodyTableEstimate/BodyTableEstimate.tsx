@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 import store from '../../../state/index';
 
 const BodyTableEstimate: React.FC = observer((props: any) => {
-  const [listRowsEstimate, setlistRowsEstimate] = useState([]);
+  const [listRowsEstimate, setListRowsEstimate] = useState([]);
 
   useEffect(() => {
     createList(store.Estimate.dataRows, store.Estimate.activePagination);
@@ -19,7 +19,7 @@ const BodyTableEstimate: React.FC = observer((props: any) => {
             </td>
           </tr>
         );
-        setlistRowsEstimate(list);
+        setListRowsEstimate(list);
       } else {
         store.Estimate.dataRows = data;
         const lengthData: number = store.Estimate.pagination.length;
@@ -32,7 +32,7 @@ const BodyTableEstimate: React.FC = observer((props: any) => {
               </td>
             </tr>
           );
-          setlistRowsEstimate(list);
+          setListRowsEstimate(list);
         } else {
           createList(data, lengthData);
         }
@@ -69,7 +69,7 @@ const BodyTableEstimate: React.FC = observer((props: any) => {
         </tr>
       );
     });
-    setlistRowsEstimate(list);
+    setListRowsEstimate(list);
   }
 
   return <tbody>{listRowsEstimate}</tbody>;

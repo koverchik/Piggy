@@ -27,7 +27,7 @@ const TableOneWallet: React.FC = observer(() => {
             <td className="title-cost-all-item"> Итого: </td>
             <td className="cost-all-item">
               {' '}
-              {store.Wallet.allSumm.toFixed(2)} руб{' '}
+              {store.Wallet.allSum.toFixed(2)} руб{' '}
             </td>
           </tr>
         </tfoot>

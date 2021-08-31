@@ -12,8 +12,8 @@ import PopUp from '../../PopUp/PopUp';
 import interfacesPopUp from '../../../interfaces/interfacesPopUp';
 
 const AllEstimateMainPage: React.FC = observer(() => {
-  const [listEstimate, setlistEstimate] = useState([]);
-  const [listEstimateData, setlistEstimateData] = useState([]);
+  const [listEstimate, setListEstimate] = useState([]);
+  const [listEstimateData, setListEstimateData] = useState([]);
   const [statePopUp, setStatePopUp] = useState(false);
   const [renderRedirect, setRedirect] = useState(false);
 
@@ -24,7 +24,7 @@ const AllEstimateMainPage: React.FC = observer(() => {
     callbackClick: () => setStatePopUp(true)
   };
   const popUpData: interfacesPopUp = {
-    name: store.СreationEditingEstimates.newNameEstimate,
+    name: store.CreationEditingEstimates.newNameEstimate,
     kind: 'Создание сметы',
     textMessage: 'Введите название',
     closeClick: () => setStatePopUp(false),
@@ -32,10 +32,10 @@ const AllEstimateMainPage: React.FC = observer(() => {
       name: 'Создать',
       type: 'submit',
       image: false,
-      callbackClick: store.СreationEditingEstimates.createNewEstimate,
+      callbackClick: store.CreationEditingEstimates.createNewEstimate,
       redirectPage: redirectPage
     },
-    onChangeFunction: store.СreationEditingEstimates.onChangeFnEstimateName
+    onChangeFunction: store.CreationEditingEstimates.onChangeFnEstimateName
   };
 
   const paginationDataEstimate: PaginationInterface = {
@@ -49,15 +49,15 @@ const AllEstimateMainPage: React.FC = observer(() => {
   useEffect(() => {
     store.GeneralData.allEstimates().then((data: any) => {
       if (data === 'Error') {
-        const notiseError: any = (
+        const noticeError: any = (
           <li key={'listEstimateEmpty'}>
-            Упс, что-то пошло не так попробуйте перезагрузить стараницу.
+            Упс, что-то пошло не так попробуйте перезагрузить страницу.
           </li>
         );
-        setlistEstimate(notiseError);
+        setListEstimate(noticeError);
       } else {
         store.GeneralData.allDataEstimate = data;
-        setlistEstimateData(data);
+        setListEstimateData(data);
         createRowsEstimate(
           data,
           store.GeneralData.activePaginationAllEstimates
@@ -86,7 +86,7 @@ const AllEstimateMainPage: React.FC = observer(() => {
         </li>
       );
     });
-    setlistEstimate(list);
+    setListEstimate(list);
   }
   function redirectPage(idPage: number) {
     store.Estimate.idEstimate = idPage;

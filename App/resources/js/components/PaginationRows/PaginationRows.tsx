@@ -3,7 +3,7 @@ import './_PaginationRows.scss';
 import { observer } from 'mobx-react-lite';
 
 const PaginationRows: React.FC = observer((props: any) => {
-  const [listPaginationEstimate, setlistPaginationEstimate] = useState([]);
+  const [listPaginationEstimate, setListPaginationEstimate] = useState([]);
 
   function createNumberPagination() {
     const resultPagination: any = props.arrayNumber.map((item: number) => {
@@ -21,7 +21,7 @@ const PaginationRows: React.FC = observer((props: any) => {
         </div>
       );
     });
-    setlistPaginationEstimate(resultPagination);
+    setListPaginationEstimate(resultPagination);
   }
 
   useEffect(() => {

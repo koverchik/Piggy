@@ -1,12 +1,12 @@
 import * as React from 'react';
-import intefacesButton from './intefacesButtonCreate';
+import interfacesButton from './interfacesButtonCreate';
 
 interface CreateAuthUser extends React.HTMLAttributes<HTMLDivElement> {
   nameForm: string;
   repeatPassword: boolean;
-  buttonSend: intefacesButton;
+  buttonSend: interfacesButton;
   question: string;
-  adressLink: string;
+  addressLink: string;
   callbackSend(): void;
 }
 export default CreateAuthUser;

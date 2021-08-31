@@ -19,8 +19,8 @@ export default class Estimate {
   activePagination = 0;
   validationNewRow = true;
   validationNewRowCost = true;
-  messegeNewRow = '';
-  messegeNewRowCost = '';
+  messageNewRow = '';
+  messeneNewRowCost = '';
 
   constructor() {
     makeObservable(this, {
@@ -78,7 +78,7 @@ export default class Estimate {
           }
           this.pagination = arrayPagination;
 
-          const summAllRows: number = response.data.rows.reduce(function (
+          const sumAllRows: number = response.data.rows.reduce(function (
             sum: number,
             elem: any
           ) {
@@ -86,7 +86,7 @@ export default class Estimate {
           },
           0);
 
-          this.sumRows = summAllRows.toFixed(2);
+          this.sumRows = sumAllRows.toFixed(2);
 
           return response.data.rows;
         },
@@ -102,21 +102,21 @@ export default class Estimate {
   validationAdd() {
     if (this.newRow.length < 2) {
       this.validationNewRow = true;
-      this.messegeNewRow =
+      this.messageNewRow =
         'Обязательное поле для заполнение, необходимо использовать не менее двух символов.';
     } else if (this.newRow.length > 150) {
       this.validationNewRow = true;
-      this.messegeNewRow = 'Поле не может быть более 150 символов.';
+      this.messageNewRow = 'Поле не может быть более 150 символов.';
     } else {
       this.validationNewRow = false;
     }
 
     if (Number.isNaN(Number(this.newRowCost))) {
       this.validationNewRowCost = true;
-      this.messegeNewRowCost = 'Необходимо ввести число.';
+      this.messeneNewRowCost = 'Необходимо ввести число.';
     } else if (Number(this.newRowCost) <= 0) {
       this.validationNewRowCost = true;
-      this.messegeNewRowCost = 'Введите число больше 0';
+      this.messeneNewRowCost = 'Введите число больше 0';
     } else {
       this.validationNewRowCost = false;
     }

@@ -20,7 +20,7 @@ const App: React.FC = observer(() => {
         <Switch>
           <Route exact path="/" component={AllEstimateAndWallet} />
           <Route exact path="/registration" component={Registration} />
-          <Route exact path="/аuthentication" component={Authentication} />
+          <Route exact path="/authentication" component={Authentication} />
           <Route path="/estimate-:id" component={OneEstimate} />
           <Route path="/one-estimate" component={AllEstimate} />
           <Route path="/wallet-:id-:name" component={OneWallet} />

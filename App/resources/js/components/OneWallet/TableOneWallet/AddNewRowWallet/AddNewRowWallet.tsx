@@ -9,7 +9,7 @@ const AddNewRowWallet: React.FC = observer(() => {
     <form
       onSubmit={(event: React.FormEvent) => {
         store.Wallet.addNewRow();
-        store.Wallet.startOneWalet();
+        store.Wallet.startOneWallet();
         event.preventDefault();
       }}
     >

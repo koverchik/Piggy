@@ -3,15 +3,15 @@ import './_BurdenSharing.scss';
 import '../_OneWallet.scss';
 import store from '../../../state';
 import { observer } from 'mobx-react-lite';
-import TableDebetCredit from './TableDebetCredit/TableDebetCredit';
-import interfacesButtonCreate from '../../../interfaces/intefacesButtonCreate';
+import TableDebitCredit from './TableDebitCredit/TableDebitCredit';
+import interfacesButtonCreate from '../../../interfaces/interfacesButtonCreate';
 import Button from '../../ButtonCreate/ButtonCreate';
 import PopUp from '../../PopUp/PopUp';
 import interfacesPopUp from '../../../interfaces/interfacesPopUp';
 
 const BurdenSharing: React.FC = observer(() => {
   const [listScopeOneWallet, setListScopeOneWallet] = useState([]);
-  const [tableDebetCredit, setTableDebetCredit] = useState(false);
+  const [tableDebitCredit, setTableDebitCredit] = useState(false);
   const [statePopUp, setStatePopUp] = useState(false);
 
   const buttonName: interfacesButtonCreate = {
@@ -33,7 +33,9 @@ const BurdenSharing: React.FC = observer(() => {
     accessList: {
       availability: true,
       callbackClickAccess: (event: Event) => {
-        store.AddNewUserWallet.AccessNewUser = (event.target as HTMLInputElement).value;
+        store.AddNewUserWallet.AccessNewUser = (
+          event.target as HTMLInputElement
+        ).value;
       }
     },
     closeClick: () => setStatePopUp(false),
@@ -42,7 +44,7 @@ const BurdenSharing: React.FC = observer(() => {
       type: 'button',
       image: false,
       callbackClick: store.AddNewUserWallet.requestAddUser,
-      closeClik: () => setStatePopUp(false)
+      closeClick: () => setStatePopUp(false)
     },
     onChangeFunction: store.AddNewUserWallet.userSearch
   };
@@ -51,7 +53,7 @@ const BurdenSharing: React.FC = observer(() => {
     store.Wallet.scopeOneWallet().then((data: any) => {
       store.Wallet.lengthBurdenUser = data.length;
       if (store.Wallet.lengthBurdenUser > 1) {
-        setTableDebetCredit(true);
+        setTableDebitCredit(true);
       }
       createListRows(data);
     });
@@ -63,7 +65,7 @@ const BurdenSharing: React.FC = observer(() => {
       store.Wallet.allUsers.push({
         userName: item.user.name,
         userId: item.user.id,
-        debitСredit: 0
+        debitCredit: 0
       });
       const grade: string = store.Wallet.gradeUser(item);
 
@@ -95,7 +97,7 @@ const BurdenSharing: React.FC = observer(() => {
         <tbody>{listScopeOneWallet}</tbody>
       </table>
       <Button {...buttonName} />
-      {tableDebetCredit ? <TableDebetCredit /> : ''}
+      {tableDebitCredit ? <TableDebitCredit /> : ''}
     </div>
   );
 });

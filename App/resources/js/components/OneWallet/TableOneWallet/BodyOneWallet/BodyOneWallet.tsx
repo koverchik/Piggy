@@ -3,10 +3,10 @@ import { observer } from 'mobx-react-lite';
 import store from '../../../../state';
 
 const TableOneWallet: React.FC = observer(() => {
-  const [listRowsWallet, setlistRowsWallet] = useState();
+  const [listRowsWallet, setListRowsWallet] = useState();
 
   useEffect(() => {
-    store.Wallet.startOneWalet().then((data: any) => {
+    store.Wallet.startOneWallet().then((data: any) => {
       if (data === 'Error') {
         const messageError: any = (
           <tr className="error-one-walet">
@@ -15,26 +15,26 @@ const TableOneWallet: React.FC = observer(() => {
             </td>
           </tr>
         );
-        setlistRowsWallet(messageError);
+        setListRowsWallet(messageError);
       } else {
         store.Wallet.allRows = data.data.rows;
         store.Wallet.lengthRows = data.data.rows.length;
         store.Wallet.activePagination = store.Wallet.numberPagination.length;
         if (data.data.rows.length === 0) {
           const warning: any = (
-            <tr key="row-walet-0" className="error-one-walet">
+            <tr key="row-wallet-0" className="error-one-walet">
               <td colSpan={5}>
                 Здесь пока ничего нет, попробуйте добавить несколько строк
               </td>
             </tr>
           );
-          setlistRowsWallet(warning);
+          setListRowsWallet(warning);
         } else {
           createListRows(data.data.rows, store.Wallet.activePagination);
         }
       }
     });
-  }, [store.Wallet.allSumm, store.Wallet.lengthBurdenUser]);
+  }, [store.Wallet.allSum, store.Wallet.lengthBurdenUser]);
 
   useEffect(() => {
     createListRows(store.Wallet.allRows, store.Wallet.activePagination);
@@ -45,7 +45,7 @@ const TableOneWallet: React.FC = observer(() => {
       const dataOneRow = new Date(item['created_at_time']);
       return (
         <tr
-          key={'row-walet-' + i}
+          key={'row-wallet-' + i}
           className={
             !(
               (pagination - 1) * 10 < i + 1 &&
@@ -73,7 +73,7 @@ const TableOneWallet: React.FC = observer(() => {
         </tr>
       );
     });
-    setlistRowsWallet(result);
+    setListRowsWallet(result);
   }
   return <tbody>{listRowsWallet}</tbody>;
 });

@@ -6,7 +6,7 @@ export default class Wallet {
   newDataRaw = '';
   idWallet = 0;
   nameWallet = '';
-  allSumm = 0;
+  allSum = 0;
   newRowWallet = '';
   newRowCost = '';
   allRows = new Array();
@@ -19,7 +19,7 @@ export default class Wallet {
     makeObservable(this, {
       newDataRaw: observable,
       idWallet: observable,
-      allSumm: observable,
+      allSum: observable,
       newRowWallet: observable,
       newRowCost: observable,
       allRows: observable,
@@ -28,7 +28,7 @@ export default class Wallet {
       numberPagination: observable,
       activePagination: observable,
       nameWallet: observable,
-      startOneWalet: action,
+      startOneWallet: action,
       scopeOneWallet: action,
       addZero: action,
       addNewRow: action,
@@ -39,7 +39,7 @@ export default class Wallet {
     return number < 10 ? `0${number}` : number;
   }
 
-  startOneWalet() {
+  startOneWallet() {
     const nowDay = new Date();
     this.newDataRaw = `${nowDay.getFullYear()}-${this.addZero(
       nowDay.getMonth() + 1
@@ -51,7 +51,7 @@ export default class Wallet {
       })
       .then(
         (response) => {
-          const summAllRows: number = response.data.rows.reduce(function (
+          const sumAllRows: number = response.data.rows.reduce(function (
             sum: number,
             elem: any
           ) {
@@ -65,7 +65,7 @@ export default class Wallet {
           }
           this.numberPagination = arrayForPagination;
 
-          this.allSumm = +summAllRows.toFixed(2);
+          this.allSum = +sumAllRows.toFixed(2);
           return response;
         },
         (response) => {

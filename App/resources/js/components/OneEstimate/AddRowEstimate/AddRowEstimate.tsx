@@ -30,7 +30,7 @@ const AddRowEstimate: React.FC = observer(() => {
                 ></input>
                 <span>
                   {store.Estimate.validationNewRow
-                    ? store.Estimate.messegeNewRow
+                    ? store.Estimate.messageNewRow
                     : ''}
                 </span>
               </td>
@@ -45,7 +45,7 @@ const AddRowEstimate: React.FC = observer(() => {
                 ></input>
                 <span>
                   {store.Estimate.validationNewRowCost
-                    ? store.Estimate.messegeNewRowCost
+                    ? store.Estimate.messeneNewRowCost
                     : ''}
                 </span>
               </td>

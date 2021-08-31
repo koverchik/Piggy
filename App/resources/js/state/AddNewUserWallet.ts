@@ -1,4 +1,4 @@
-import { makeObservable, action, observable, configure } from 'mobx';
+import { makeObservable, action, observable } from 'mobx';
 import axios from 'axios';
 import store from './index';
 
@@ -45,7 +45,7 @@ export default class AddNewUserWallet {
             store.Wallet.allUsers.push({
               userName: this.newUser,
               userId: this.newUserId,
-              debitСredit: 0
+              debitCredit: 0
             });
             this.newUserId = 0;
             this.newUser = '';

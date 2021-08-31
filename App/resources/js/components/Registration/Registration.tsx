@@ -12,8 +12,8 @@ const Registration: React.FC = observer((props: any) => {
       image: false,
       type: 'submit'
     },
-    question: 'Уже есть аккунт?',
-    adressLink: 'аuthentication',
+    question: 'Уже есть аккаунт?',
+    addressLink: 'authentication',
     callbackSend: () => {
       console.log('hello');
     }

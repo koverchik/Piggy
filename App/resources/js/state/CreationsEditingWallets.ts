@@ -1,7 +1,7 @@
 import { makeObservable, action, observable, configure } from 'mobx';
 import axios from 'axios';
 
-export default class СreationEditingWallets {
+export default class CreationEditingWallets {
   newNameWallet = '';
 
   constructor() {

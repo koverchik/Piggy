@@ -11,7 +11,7 @@ import Pagination from '../../PaginationRows/PaginationRows';
 import interfacesPopUp from '../../../interfaces/interfacesPopUp';
 
 const AllWalletsMainPage: React.FC = observer(() => {
-  const [listWallet, setlistWallet] = useState([]);
+  const [listWallet, setListWallet] = useState([]);
   const [listWalletData, settWalletData] = useState([]);
   const [statePopUp, setStatePopUp] = useState(false);
   const [renderRedirect, setRedirect] = useState(false);
@@ -32,7 +32,7 @@ const AllWalletsMainPage: React.FC = observer(() => {
   };
 
   const popUpData: interfacesPopUp = {
-    name: store.СreationEditingWallets.newNameWallet,
+    name: store.CreationEditingWallets.newNameWallet,
     kind: 'Создание кошелька',
     textMessage: 'Введите название',
     closeClick: () => setStatePopUp(false),
@@ -40,10 +40,10 @@ const AllWalletsMainPage: React.FC = observer(() => {
       name: 'Создать',
       type: 'submit',
       image: false,
-      callbackClick: store.СreationEditingWallets.createNewWallet,
+      callbackClick: store.CreationEditingWallets.createNewWallet,
       redirectPage: redirectPage
     },
-    onChangeFunction: store.СreationEditingWallets.onChangeFnWalletName
+    onChangeFunction: store.CreationEditingWallets.onChangeFnWalletName
   };
 
   function redirectPage(idPage: any) {
@@ -55,12 +55,12 @@ const AllWalletsMainPage: React.FC = observer(() => {
   useEffect(() => {
     store.GeneralData.allWallets().then((data: any) => {
       if (data === 'Error') {
-        const notiseError: any = (
+        const noticeError: any = (
           <li key={'listEstimateEmpty'}>
-            Упс, что-то пошло не так попробуйте перезагрузить стараницу.
+            Упс, что-то пошло не так попробуйте перезагрузить страницу.
           </li>
         );
-        setlistWallet(notiseError);
+        setListWallet(noticeError);
       } else {
         store.GeneralData.allDataWallets = data;
         settWalletData(data);
@@ -96,7 +96,7 @@ const AllWalletsMainPage: React.FC = observer(() => {
         </li>
       );
     });
-    setlistWallet(list);
+    setListWallet(list);
   }
 
   useEffect(() => {
@@ -110,7 +110,7 @@ const AllWalletsMainPage: React.FC = observer(() => {
     <div className="wapper-wallet">
       {statePopUp ? <PopUp {...popUpData} /> : null}
       <div className="wrapper-block-name-list">
-        <p className="header-blok-view">Кошелеки</p>
+        <p className="header-blok-view">Кошельки</p>
         <ul className="list-wallet">{listWallet}</ul>
       </div>
       <div className="wrapper-pagination-button-create">
