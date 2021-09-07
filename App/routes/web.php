@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Estimates\ListController;
 use App\Http\Controllers\Wallets\ListWallets;
-
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +36,9 @@ Route::post('/all-users-system', [ListWallets::class, 'usersSearch']);
 Route::post('/add-new-user-wallet', [ListWallets::class, 'addNewUser']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/tokens/create', function (Request $request) {
+    $token = $request->user()->createToken($request->token_name);
+
+    return ['token' => $token->plainTextToken];
+});
