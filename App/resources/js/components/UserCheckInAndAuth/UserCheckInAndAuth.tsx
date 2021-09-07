@@ -3,8 +3,10 @@ import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
 import './_UserCheckInAndAuth.scss';
 import Button from '../ButtonCreate/ButtonCreate';
+import store from '../../state';
 
 const UserCheckInAndAuth: React.FC = observer((props: any) => {
+  store.UserState.requestUserAuth();
   return (
     <div className="wrapper-form-user-reg-auth">
       <div className="form-user-reg-auth">
@@ -16,7 +18,7 @@ const UserCheckInAndAuth: React.FC = observer((props: any) => {
             <p>Введете пароль</p>
             <input type="text" className="input-text-form-user" />
             {props.repeatPassword ? (
-              <div className="wrapper-reset-pasvord">
+              <div className="wrapper-reset-password">
                 <p>Повторите ещё раз пароль</p>
                 <input type="text" className="input-text-form-user" />
               </div>
@@ -30,11 +32,11 @@ const UserCheckInAndAuth: React.FC = observer((props: any) => {
         </form>
         <div className="wrapper-footer-link">
           <p className="redirect-link">
-            {props.question}{' '}
-            <Link to={'/' + props.addressLink}>Кликните сюда</Link>{' '}
+            {props.question}
+            <Link to={'/' + props.addressLink}> Кликните сюда</Link>
           </p>
           <p className="redirect-link">
-            <Link to="/">На главную</Link>{' '}
+            <Link to="/">На главную</Link>
           </p>
         </div>
       </div>

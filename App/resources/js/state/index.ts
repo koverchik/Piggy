@@ -4,8 +4,10 @@ import Wallet from './Wallet';
 import CreationEditingEstimates from './CreationEditingEstimates';
 import CreationEditingWallets from './CreationsEditingWallets';
 import AddNewUserWallet from './AddNewUserWallet';
+import UserState from './UserState';
 
 const store = {
+  UserState: new UserState(),
   GeneralData: new GeneralData(),
   Estimate: new Estimate(),
   Wallet: new Wallet(),

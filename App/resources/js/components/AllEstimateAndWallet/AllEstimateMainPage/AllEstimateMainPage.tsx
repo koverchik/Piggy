@@ -5,7 +5,7 @@ import './../_AllEstimateAndWallet.scss';
 import store from '../../../state';
 import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
-import interfacesButtonCreate from '../../../interfaces/intefacesButtonCreate';
+import interfacesButtonCreate from '../../../interfaces/interfacesButtonCreate';
 import PaginationInterface from '../../../interfaces/interfacesPagination';
 import Pagination from '../../PaginationRows/PaginationRows';
 import PopUp from '../../PopUp/PopUp';

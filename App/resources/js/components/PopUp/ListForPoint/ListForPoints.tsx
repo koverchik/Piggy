@@ -5,6 +5,7 @@ import store from '../../../state';
 
 const ListForPoints: React.FC = observer((props: any) => {
   const [stateUsers, setStateUsers] = useState();
+
   type UserList = {
     id: number;
     name: string;
