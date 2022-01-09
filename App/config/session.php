@@ -73,7 +73,7 @@ return [
     */
 
     'connection' => env('SESSION_CONNECTION', null),
-
+ 
     /*
     |--------------------------------------------------------------------------
     | Session Database Table

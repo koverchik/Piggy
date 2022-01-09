@@ -2186,8 +2186,8 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
       setRedirect = _d[1];
 
   var buttonName = {
-    name: "Создать",
-    type: "button",
+    name: 'Создать',
+    type: 'button',
     image: false,
     callbackClick: function callbackClick() {
       return setStatePopUp(true);
@@ -2195,14 +2195,14 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
   };
   var popUpData = {
     name: state_1["default"].CreationEditingEstimates.newNameEstimate,
-    kind: "Создание сметы",
-    textMessage: "Введите название",
+    kind: 'Создание сметы',
+    textMessage: 'Введите название',
     closeClick: function closeClick() {
       return setStatePopUp(false);
     },
     button: {
-      name: "Создать",
-      type: "submit",
+      name: 'Создать',
+      type: 'submit',
       image: false,
       callbackClick: state_1["default"].CreationEditingEstimates.createNewEstimate,
       redirectPage: redirectPage
@@ -2218,9 +2218,9 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
   };
   react_1.useEffect(function () {
     state_1["default"].GeneralData.allEstimates().then(function (data) {
-      if (data === "Error") {
+      if (data === 'Error') {
         var noticeError = react_1["default"].createElement("li", {
-          key: "listEstimateEmpty"
+          key: 'listEstimateEmpty'
         }, "\u0423\u043F\u0441, \u0447\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0430\u0440\u0430\u043D\u0438\u0446\u0443.");
         setlistEstimate(noticeError);
       } else {
@@ -2234,11 +2234,11 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
   function createRowsEstimate(data, pagination) {
     var list = data.map(function (item, i) {
       return react_1["default"].createElement("li", {
-        key: "listEstimate" + i,
-        className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? "hide-row" : ""
+        key: 'listEstimate' + i,
+        className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? 'hide-row' : ''
       }, react_1["default"].createElement(react_router_dom_1.Link, {
-        to: "/estimate-" + item["names_estimates_id"]
-      }, item["full_name"]));
+        to: '/estimate-' + item['names_estimates_id']
+      }, item['full_name']));
     });
     setlistEstimate(list);
   }
@@ -2261,9 +2261,9 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
     className: "list-estimate"
   }, listEstimate)), react_1["default"].createElement("div", {
     className: "wrapper-pagination-button-create"
-  }, state_1["default"].GeneralData.arrayNameAllEstimates.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], __assign({}, paginationDataEstimate)) : "", renderRedirect ? react_1["default"].createElement(react_router_dom_1.Redirect, {
-    to: "estimate-" + state_1["default"].Estimate.idEstimate
-  }) : "", react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, buttonName))));
+  }, state_1["default"].GeneralData.arrayNameAllEstimates.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], __assign({}, paginationDataEstimate)) : '', renderRedirect ? react_1["default"].createElement(react_router_dom_1.Redirect, {
+    to: 'estimate-' + state_1["default"].Estimate.idEstimate
+  }) : '', react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, buttonName))));
 });
 exports.default = AllEstimateMainPage;
 
@@ -2572,17 +2572,17 @@ var UserCheckInAndAuth_1 = __importDefault(__webpack_require__(/*! ../UserCheckI
 
 var Authentication = mobx_react_lite_1.observer(function (props) {
   var dataProps = {
-    nameForm: "Авторизация",
+    nameForm: 'Авторизация',
     repeatPassword: false,
     buttonSend: {
-      name: "Войти",
+      name: 'Войти',
       image: false,
-      type: "submit"
+      type: 'submit'
     },
-    question: "Еще нет аккаунта?",
-    addressLink: "registration",
+    question: 'Еще нет аккаунта?',
+    addressLink: 'registration',
     callbackSend: function callbackSend() {
-      console.log("hello");
+      console.log('hello');
     }
   };
   return react_1["default"].createElement(UserCheckInAndAuth_1["default"], __assign({}, dataProps));
@@ -2667,7 +2667,7 @@ var ButtonCreate = function ButtonCreate(props) {
     }
   }, props.image ? react_1["default"].createElement("img", {
     src: props.srcImage
-  }) : "", react_1["default"].createElement("input", {
+  }) : '', react_1["default"].createElement("input", {
     className: "button-add-new-item ",
     type: props.type,
     value: props.name
@@ -2806,7 +2806,7 @@ var AddRowEstimate = mobx_react_lite_1.observer(function () {
     className: "table-add-new-value"
   }, react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: "namber-one-item exciting-text"
-  }, " ", index_1["default"].Estimate.rowsLength, " "), react_1["default"].createElement("td", {
+  }, ' ', index_1["default"].Estimate.rowsLength, ' '), react_1["default"].createElement("td", {
     className: "new-one-item"
   }, react_1["default"].createElement("input", {
     type: "text",
@@ -2815,7 +2815,7 @@ var AddRowEstimate = mobx_react_lite_1.observer(function () {
       index_1["default"].Estimate.newRow = event.target.value;
       index_1["default"].Estimate.validationAdd();
     }
-  }), react_1["default"].createElement("span", null, index_1["default"].Estimate.validationNewRow ? index_1["default"].Estimate.messageNewRow : "")), react_1["default"].createElement("td", {
+  }), react_1["default"].createElement("span", null, index_1["default"].Estimate.validationNewRow ? index_1["default"].Estimate.messageNewRow : '')), react_1["default"].createElement("td", {
     className: "new-cost-one-item"
   }, react_1["default"].createElement("input", {
     type: "text",
@@ -2824,7 +2824,7 @@ var AddRowEstimate = mobx_react_lite_1.observer(function () {
       index_1["default"].Estimate.newRowCost = event.target.value;
       index_1["default"].Estimate.validationAdd();
     }
-  }), react_1["default"].createElement("span", null, index_1["default"].Estimate.validationNewRowCost ? index_1["default"].Estimate.messageNewRowCost : "")), react_1["default"].createElement("td", {
+  }), react_1["default"].createElement("span", null, index_1["default"].Estimate.validationNewRowCost ? index_1["default"].Estimate.messageNewRowCost : '')), react_1["default"].createElement("td", {
     className: "empty-item"
   }, " ")))), react_1["default"].createElement("div", null, react_1["default"].createElement("input", {
     className: "button-add-new-item ",
@@ -2906,9 +2906,9 @@ var BodyTableEstimate = mobx_react_lite_1.observer(function (props) {
   }, [index_1["default"].Estimate.activePagination]);
   react_1.useEffect(function () {
     index_1["default"].Estimate.requestOneEstimate().then(function (data) {
-      if (data === "Error") {
+      if (data === 'Error') {
         var list = react_1["default"].createElement("tr", {
-          key: "RowEstimate",
+          key: 'RowEstimate',
           className: "error-table"
         }, react_1["default"].createElement("td", {
           colSpan: 4
@@ -2921,7 +2921,7 @@ var BodyTableEstimate = mobx_react_lite_1.observer(function (props) {
 
         if (data.length === 0) {
           var list = react_1["default"].createElement("tr", {
-            key: "RowEstimate",
+            key: 'RowEstimate',
             className: "error-table"
           }, react_1["default"].createElement("td", {
             colSpan: 4
@@ -2937,21 +2937,21 @@ var BodyTableEstimate = mobx_react_lite_1.observer(function (props) {
   function createList(data, pagination) {
     var list = data.map(function (item, i) {
       return react_1["default"].createElement("tr", {
-        key: "RowEstimate" + i,
-        className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? "display-none" : ""
+        key: 'RowEstimate' + i,
+        className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? 'display-none' : ''
       }, react_1["default"].createElement("td", {
         className: "namber-one-item"
       }, " ", i + 1, " "), react_1["default"].createElement("td", {
         className: "name-one-item"
-      }, " ", item["name"], " "), react_1["default"].createElement("td", {
+      }, " ", item['name'], " "), react_1["default"].createElement("td", {
         className: "cost-one-item"
-      }, " ", item["amount"], " \u0440\u0443\u0431 "), react_1["default"].createElement("td", {
+      }, " ", item['amount'], " \u0440\u0443\u0431 "), react_1["default"].createElement("td", {
         className: "namber-one-item trash-image"
       }, react_1["default"].createElement("img", {
         src: "../images/delete-one-peope.svg",
-        "id-data": item["id"],
+        "id-data": item['id'],
         onClick: function onClick(e) {
-          return index_1["default"].Estimate.deleteRow(e.target.getAttribute("id-data"));
+          return index_1["default"].Estimate.deleteRow(e.target.getAttribute('id-data'));
         }
       })));
     });
@@ -3018,7 +3018,7 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
   var paginationData = {
     arrayNumber: index_1["default"].Estimate.pagination,
     activeNumber: index_1["default"].Estimate.activePagination,
-    callbackPaginationArray: index_1["default"].Estimate.callbackPaginationArray,
+    callbackPaginationArray: index_1["default"].Estimate.callbackPaginationLeft,
     callbackPaginationLeft: index_1["default"].Estimate.callbackPaginationLeft,
     callbackPaginationRight: index_1["default"].Estimate.callbackPaginationRight
   };
@@ -3055,7 +3055,7 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
     className: "title-cost-all-item"
   }, " \u0418\u0442\u043E\u0433\u043E: "), react_1["default"].createElement("td", {
     className: "cost-all-item"
-  }, " ", index_1["default"].Estimate.sumRows, " \u0440\u0443\u0431", " ")))), index_1["default"].Estimate.pagination.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], __assign({}, paginationData)) : "", react_1["default"].createElement(AddRowEstimate_1["default"], null)));
+  }, " ", index_1["default"].Estimate.sumRows, " \u0440\u0443\u0431 ")))), index_1["default"].Estimate.pagination.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], __assign({}, paginationData)) : '', react_1["default"].createElement(AddRowEstimate_1["default"], null)));
 });
 exports.default = OneEstimate;
 
@@ -3550,26 +3550,26 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
-
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
 var state_1 = __importDefault(__webpack_require__(/*! ../../../../state */ "./resources/js/state/index.ts"));
 
 var TableOneWallet = mobx_react_lite_1.observer(function () {
   var _a = react_1.useState(),
       listRowsWallet = _a[0],
-      setlistRowsWallet = _a[1];
+      setListRowsWallet = _a[1];
 
   react_1.useEffect(function () {
     state_1["default"].Wallet.startOneWallet().then(function (data) {
-      if (data === "Error") {
+      if (data === 'Error') {
         var messageError = react_1["default"].createElement("tr", {
-          className: "error-one-wallet"
+          className: "error-one-walet"
         }, react_1["default"].createElement("td", {
           colSpan: 5
         }, "\u0427\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443"));
-        setlistRowsWallet(messageError);
+        setListRowsWallet(messageError);
       } else {
         state_1["default"].Wallet.allRows = data.data.rows;
         state_1["default"].Wallet.lengthRows = data.data.rows.length;
@@ -3577,45 +3577,45 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
 
         if (data.data.rows.length === 0) {
           var warning = react_1["default"].createElement("tr", {
-            key: "row-walet-0",
+            key: "row-wallet-0",
             className: "error-one-walet"
           }, react_1["default"].createElement("td", {
             colSpan: 5
           }, "\u0417\u0434\u0435\u0441\u044C \u043F\u043E\u043A\u0430 \u043D\u0438\u0447\u0435\u0433\u043E \u043D\u0435\u0442, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0441\u0442\u0440\u043E\u043A"));
-          setlistRowsWallet(warning);
+          setListRowsWallet(warning);
         } else {
           createListRows(data.data.rows, state_1["default"].Wallet.activePagination);
         }
       }
     });
-  }, [state_1["default"].Wallet.allSumm, state_1["default"].Wallet.lengthBurdenUser]);
+  }, [state_1["default"].Wallet.allSum, state_1["default"].Wallet.lengthBurdenUser]);
   react_1.useEffect(function () {
     createListRows(state_1["default"].Wallet.allRows, state_1["default"].Wallet.activePagination);
   }, [state_1["default"].Wallet.activePagination]);
 
   function createListRows(data, pagination) {
     var result = data.map(function (item, i) {
-      var dataOneRow = new Date(item["created_at_time"]);
+      var dataOneRow = new Date(item['created_at_time']);
       return react_1["default"].createElement("tr", {
-        key: "row-wallet-" + i,
-        className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? "hide-row" : ""
+        key: 'row-wallet-' + i,
+        className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? 'hide-row' : ''
       }, react_1["default"].createElement("td", {
-        className: "number-one-item"
+        className: "namber-one-item"
       }, " ", i + 1, " "), react_1["default"].createElement("td", {
         className: "data-item"
       }, state_1["default"].Wallet.addZero(dataOneRow.getDate()) + "." + state_1["default"].Wallet.addZero(dataOneRow.getMonth() + 1) + "." + dataOneRow.getFullYear()), react_1["default"].createElement("td", {
         className: "name-one-item"
-      }, " ", item["name"], " "), react_1["default"].createElement("td", {
+      }, " ", item['name'], " "), react_1["default"].createElement("td", {
         className: "cost-one-item"
-      }, " ", item["amount"], " \u0440\u0443\u0431 "), react_1["default"].createElement("td", {
+      }, " ", item['amount'], " \u0440\u0443\u0431 "), react_1["default"].createElement("td", {
         className: "user-write-item"
       }, react_1["default"].createElement("img", {
         src: "../images/people.svg",
         alt: "icon-user",
-        title: item.autour.name
+        title: item.autor.name
       })));
     });
-    setlistRowsWallet(result);
+    setListRowsWallet(result);
   }
 
   return react_1["default"].createElement("tbody", null, listRowsWallet);
@@ -3677,13 +3677,13 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
-
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var state_1 = __importDefault(__webpack_require__(/*! ../../../../state */ "./resources/js/state/index.ts"));
 
 __webpack_require__(/*! ../../../OneEstimate/PaginationRows/_PaginationRows.scss */ "./resources/js/components/OneEstimate/PaginationRows/_PaginationRows.scss");
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
 var PaginationRows = mobx_react_lite_1.observer(function () {
   var _a = react_1.useState(),
@@ -3697,8 +3697,8 @@ var PaginationRows = mobx_react_lite_1.observer(function () {
   function createNumberPagination() {
     var resultPagination = state_1["default"].Wallet.numberPagination.map(function (item) {
       return react_1["default"].createElement("div", {
-        key: "pagination" + item,
-        className: state_1["default"].Wallet.activePagination == item ? "pagination-estimate active-number" : "pagination-estimate",
+        key: 'pagination' + item,
+        className: state_1["default"].Wallet.activePagination == item ? 'pagination-estimate active-number' : 'pagination-estimate',
         onClick: clickPagination
       }, item);
     });
@@ -3706,7 +3706,7 @@ var PaginationRows = mobx_react_lite_1.observer(function () {
   }
 
   function clickPagination(e) {
-    state_1["default"].Wallet.activePagination !== e.target.textContent ? state_1["default"].Wallet.activePagination = e.target.textContent : "";
+    state_1["default"].Wallet.activePagination !== e.target.textContent ? state_1["default"].Wallet.activePagination = e.target.textContent : '';
   }
 
   return react_1["default"].createElement("div", {
@@ -3714,17 +3714,17 @@ var PaginationRows = mobx_react_lite_1.observer(function () {
   }, react_1["default"].createElement("img", {
     src: "../images/arrow-left.svg",
     onClick: function onClick() {
-      state_1["default"].Wallet.activePagination > 1 ? state_1["default"].Wallet.activePagination = state_1["default"].Wallet.activePagination - 1 : "";
+      state_1["default"].Wallet.activePagination > 1 ? state_1["default"].Wallet.activePagination = state_1["default"].Wallet.activePagination - 1 : '';
     },
     alt: "arrow-left",
-    className: state_1["default"].Wallet.activePagination == 1 ? "disable-pagination image-pagination" : "image-pagination"
+    className: state_1["default"].Wallet.activePagination == 1 ? 'disable-pagination image-pagination' : 'image-pagination'
   }), listNumberPagination, react_1["default"].createElement("img", {
     src: "../images/arrow-right.svg",
     onClick: function onClick() {
-      state_1["default"].Wallet.activePagination < state_1["default"].Wallet.numberPagination.length ? state_1["default"].Wallet.activePagination = +state_1["default"].Wallet.activePagination + 1 : "";
+      state_1["default"].Wallet.activePagination < state_1["default"].Wallet.numberPagination.length ? state_1["default"].Wallet.activePagination = +state_1["default"].Wallet.activePagination + 1 : '';
     },
     alt: "arrow-right",
-    className: state_1["default"].Wallet.activePagination == state_1["default"].Wallet.numberPagination.length ? "disable-pagination image-pagination" : "image-pagination"
+    className: state_1["default"].Wallet.activePagination == state_1["default"].Wallet.numberPagination.length ? 'disable-pagination image-pagination' : 'image-pagination'
   }));
 });
 exports.default = PaginationRows;
@@ -3773,7 +3773,7 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
     className: "table-list-value"
   }, react_1["default"].createElement("thead", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: "empty-head-item"
-  }, "  "), react_1["default"].createElement("td", {
+  }, " "), react_1["default"].createElement("td", {
     className: "data-head-item"
   }, "\u0414\u0430\u0442\u0430"), react_1["default"].createElement("td", {
     className: "name-head-one-item"
@@ -3781,14 +3781,14 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
     className: "cost-head-one-item"
   }, " \u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C "), react_1["default"].createElement("td", {
     className: "empty-head-item-user"
-  }, "  "))), react_1["default"].createElement(BodyOneWallet_1["default"], null), react_1["default"].createElement("tfoot", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
+  }, " "))), react_1["default"].createElement(BodyOneWallet_1["default"], null), react_1["default"].createElement("tfoot", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: "empty-item",
     colSpan: 2
   }), react_1["default"].createElement("td", {
     className: "title-cost-all-item"
-  }, " \u0418\u0442\u043E\u0433\u043E:  "), react_1["default"].createElement("td", {
+  }, " \u0418\u0442\u043E\u0433\u043E: "), react_1["default"].createElement("td", {
     className: "cost-all-item"
-  }, " ", state_1["default"].Wallet.allSumm.toFixed(2), " \u0440\u0443\u0431 ")))), state_1["default"].Wallet.numberPagination.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], null) : "", react_1["default"].createElement(AddNewRowWallet_1["default"], null));
+  }, ' ', state_1["default"].Wallet.allSum.toFixed(2), " \u0440\u0443\u0431", ' ')))), state_1["default"].Wallet.numberPagination.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], null) : '', react_1["default"].createElement(AddNewRowWallet_1["default"], null));
 });
 exports.default = TableOneWallet;
 
@@ -3841,26 +3841,26 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
-
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 __webpack_require__(/*! ./_PaginationRows.scss */ "./resources/js/components/PaginationRows/_PaginationRows.scss");
 
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
 var PaginationRows = mobx_react_lite_1.observer(function (props) {
   var _a = react_1.useState([]),
       listPaginationEstimate = _a[0],
-      setlistPaginationEstimate = _a[1];
+      setListPaginationEstimate = _a[1];
 
   function createNumberPagination() {
     var resultPagination = props.arrayNumber.map(function (item) {
       return react_1["default"].createElement("div", {
-        key: "pagination" + item,
-        className: props.activeNumber == item ? "pagination-estimate active-number" : "pagination-estimate",
+        key: 'pagination' + item,
+        className: props.activeNumber == item ? 'pagination-estimate active-number' : 'pagination-estimate',
         onClick: props.callbackPaginationArray
       }, item);
     });
-    setlistPaginationEstimate(resultPagination);
+    setListPaginationEstimate(resultPagination);
   }
 
   react_1.useEffect(function () {
@@ -3872,12 +3872,12 @@ var PaginationRows = mobx_react_lite_1.observer(function (props) {
     src: "../images/arrow-left.svg",
     onClick: props.callbackPaginationLeft,
     alt: "arrow-left",
-    className: props.activeNumber == 1 ? "disable-pagination image-pagination" : "image-pagination"
+    className: props.activeNumber == 1 ? 'disable-pagination image-pagination' : 'image-pagination'
   }), listPaginationEstimate, react_1["default"].createElement("img", {
     src: "../images/arrow-right.svg",
     onClick: props.callbackPaginationRight,
     alt: "arrow-right",
-    className: props.activeNumber == props.arrayNumber.length ? "disable-pagination image-pagination" : "image-pagination"
+    className: props.activeNumber == props.arrayNumber.length ? 'disable-pagination image-pagination' : 'image-pagination'
   }));
 });
 exports.default = PaginationRows;
@@ -3903,9 +3903,9 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
-
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
 __webpack_require__(/*! ./_AccessList.scss */ "./resources/js/components/PopUp/AccessList/_AccessList.scss");
 
@@ -4011,16 +4011,16 @@ var ListForPoints = mobx_react_lite_1.observer(function (props) {
     });
   }, []);
 
-  function createListUser(data, serchData) {
-    if (serchData === void 0) {
-      serchData = state_1["default"].AddNewUserWallet.newUser;
+  function createListUser(data, searchData) {
+    if (searchData === void 0) {
+      searchData = state_1["default"].AddNewUserWallet.newUser;
     }
 
     var result = data.map(function (item, i) {
-      if (serchData === "") {
+      if (searchData === '') {
         return createTags(item, i);
       } else {
-        if (item["email"].toUpperCase().indexOf(serchData.toUpperCase()) != -1 || item["name"].toUpperCase().indexOf(serchData.toUpperCase()) != -1) {
+        if (item['email'].toUpperCase().indexOf(searchData.toUpperCase()) != -1 || item['name'].toUpperCase().indexOf(searchData.toUpperCase()) != -1) {
           return createTags(item, i);
         }
       }
@@ -4031,7 +4031,7 @@ var ListForPoints = mobx_react_lite_1.observer(function (props) {
   function createTags(data, i) {
     return react_1["default"].createElement("div", {
       className: "one-user-list-user-data",
-      key: "user" + i,
+      key: 'user' + i,
       onClick: props.callbackClickList
     }, react_1["default"].createElement("div", {
       className: "wrapper-one-user"
@@ -4051,7 +4051,7 @@ var ListForPoints = mobx_react_lite_1.observer(function (props) {
     createListUser(state_1["default"].AddNewUserWallet.allDataUsersSystems);
   }, [state_1["default"].AddNewUserWallet.newUser]);
   return react_1["default"].createElement("div", {
-    className: "list-users-data",
+    className: 'list-users-data',
     onClick: props.setList
   }, stateUsers);
 });
@@ -4173,7 +4173,7 @@ var PopUp = mobx_react_lite_1.observer(function (props) {
     setList: function setList() {
       return setStateListUser(!stateListUser);
     }
-  })) : "", props.accessList != undefined ? react_1["default"].createElement(AccessList_1["default"], __assign({}, props.accessList)) : ""), react_1["default"].createElement("div", {
+  })) : '', props.accessList != undefined ? react_1["default"].createElement(AccessList_1["default"], __assign({}, props.accessList)) : ''), react_1["default"].createElement("div", {
     className: "wrapper-for-button"
   }, react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, props.button)))));
 });
@@ -4216,25 +4216,25 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
-
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
 var UserCheckInAndAuth_1 = __importDefault(__webpack_require__(/*! ../UserCheckInAndAuth/UserCheckInAndAuth */ "./resources/js/components/UserCheckInAndAuth/UserCheckInAndAuth.tsx"));
 
 var Registration = mobx_react_lite_1.observer(function (props) {
   var dataProps = {
-    nameForm: "Регистрация",
+    nameForm: 'Регистрация',
     repeatPassword: true,
     buttonSend: {
-      name: "Регистрация",
+      name: 'Регистрация',
       image: false,
-      type: "submit"
+      type: 'submit'
     },
-    question: "Уже есть аккаунт?",
-    addressLink: "authentication",
+    question: 'Уже есть аккаунт?',
+    addressLink: 'authentication',
     callbackSend: function callbackSend() {
-      console.log("hello");
+      console.log('hello');
     }
   };
   return react_1["default"].createElement(UserCheckInAndAuth_1["default"], __assign({}, dataProps));
@@ -4278,15 +4278,15 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
-
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
 var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
-var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
-
 __webpack_require__(/*! ./_UserCheckInAndAuth.scss */ "./resources/js/components/UserCheckInAndAuth/_UserCheckInAndAuth.scss");
+
+var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
 
 var UserCheckInAndAuth = mobx_react_lite_1.observer(function (props) {
   return react_1["default"].createElement("div", {
@@ -4302,17 +4302,23 @@ var UserCheckInAndAuth = mobx_react_lite_1.observer(function (props) {
     type: "text",
     className: "input-text-form-user"
   }), props.repeatPassword ? react_1["default"].createElement("div", {
-    className: "wrapper-reset-password"
+    className: "wrapper-reset-pasvord"
   }, react_1["default"].createElement("p", null, "\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u0435 \u0435\u0449\u0451 \u0440\u0430\u0437 \u043F\u0430\u0440\u043E\u043B\u044C"), react_1["default"].createElement("input", {
     type: "text",
     className: "input-text-form-user"
-  })) : ""), react_1["default"].createElement("div", {
+  })) : ''), react_1["default"].createElement("div", {
     className: "wrapper-button-reg-auth"
-  }, react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, props.buttonSend)))), react_1["default"].createElement("p", {
+  }, react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, props.buttonSend)))), react_1["default"].createElement("div", {
+    className: "wrapper-footer-link"
+  }, react_1["default"].createElement("p", {
     className: "redirect-link"
-  }, props.question, " ", react_1["default"].createElement(react_router_dom_1.Link, {
-    to: "/" + props.addressLink
-  }, "\u041A\u043B\u0438\u043A\u043D\u0438\u0442\u0435 \u0441\u044E\u0434\u0430"), " ")));
+  }, props.question, ' ', react_1["default"].createElement(react_router_dom_1.Link, {
+    to: '/' + props.addressLink
+  }, "\u041A\u043B\u0438\u043A\u043D\u0438\u0442\u0435 \u0441\u044E\u0434\u0430"), ' '), react_1["default"].createElement("p", {
+    className: "redirect-link"
+  }, react_1["default"].createElement(react_router_dom_1.Link, {
+    to: "/"
+  }, "\u041D\u0430 \u0433\u043B\u0430\u0432\u043D\u0443\u044E"), ' '))));
 });
 exports.default = UserCheckInAndAuth;
 
@@ -4349,10 +4355,10 @@ function () {
   function AddNewUserWallet() {
     var _this = this;
 
-    this.newUser = "";
+    this.newUser = '';
     this.newUserId = 0;
-    this.AccessNewUser = "";
-    this.allDataUsersSystems = new Array();
+    this.AccessNewUser = '';
+    this.allDataUsersSystems = [];
 
     this.userSearch = function (event) {
       _this.newUser = event.target.value;
@@ -4360,12 +4366,12 @@ function () {
 
     this.addUser = function (event) {
       var newUserChanged = event.currentTarget.firstElementChild.lastElementChild;
-      _this.newUserId = newUserChanged.getAttribute("data-id");
+      _this.newUserId = newUserChanged.getAttribute('data-id');
       _this.newUser = newUserChanged.textContent;
     };
 
     this.requestAddUser = function () {
-      axios_1["default"].post("http://localhost:8000/" + "add-new-user-wallet", {
+      axios_1["default"].post("http://localhost:8000/" + 'add-new-user-wallet', {
         id: index_1["default"].Wallet.idWallet,
         newUser: _this.newUserId,
         AccessNewUser: _this.AccessNewUser
@@ -4377,12 +4383,12 @@ function () {
             debitCredit: 0
           });
           _this.newUserId = 0;
-          _this.newUser = "";
+          _this.newUser = '';
           index_1["default"].Wallet.lengthBurdenUser = index_1["default"].Wallet.lengthBurdenUser + 1;
         }
       }, function (response) {
-        console.log("error request " + response);
-        return "Error";
+        console.log('error request ' + response);
+        return 'Error';
       });
     };
 
@@ -4399,15 +4405,15 @@ function () {
   }
 
   AddNewUserWallet.prototype.requestUsersSystems = function () {
-    var result = axios_1["default"].post("http://localhost:8000/" + "all-users-system", {
+    var result = axios_1["default"].post("http://localhost:8000/" + 'all-users-system', {
       id: index_1["default"].Wallet.idWallet
     }).then(function (response) {
       if (response.status === 200) {
         return response.data;
       }
     }, function (response) {
-      console.log("error request " + response);
-      return "Error";
+      console.log('error request ' + response);
+      return 'Error';
     });
     return result;
   };
@@ -4438,9 +4444,9 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
-
 var mobx_1 = __webpack_require__(/*! mobx */ "./node_modules/mobx/dist/mobx.esm.js");
+
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 
 var CreationEditingEstimates =
 /** @class */
@@ -4448,20 +4454,20 @@ function () {
   function CreationEditingEstimates() {
     var _this = this;
 
-    this.newNameEstimate = "";
+    this.newNameEstimate = '';
 
     this.createNewEstimate = function () {
-      var result = axios_1["default"].post("http://localhost:8000/" + "new-estimate", {
+      var result = axios_1["default"].post("http://localhost:8000/" + 'new-estimate', {
         name: _this.newNameEstimate,
         idUser: 9
       }).then(function (response) {
         if (response.status === 200) {
-          _this.newNameEstimate = "";
+          _this.newNameEstimate = '';
           return response.data;
         }
       }, function (response) {
-        console.log("error request " + response);
-        return "Error";
+        console.log('error request ' + response);
+        return 'Error';
       });
       return result;
     };
@@ -4709,9 +4715,13 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
+var mobx_1 = __webpack_require__(/*! mobx */ "./node_modules/mobx/dist/mobx.esm.js");
+
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 
-var mobx_1 = __webpack_require__(/*! mobx */ "./node_modules/mobx/dist/mobx.esm.js");
+mobx_1.configure({
+  enforceActions: 'never'
+});
 
 var Estimate =
 /** @class */
@@ -4720,20 +4730,20 @@ function () {
     var _this = this;
 
     this.idEstimate = 0;
-    this.nameEstimate = "";
+    this.nameEstimate = '';
     this.reactElemRows = new Array();
     this.dataRows = new Array();
-    this.rowsLength = "";
-    this.sumRows = "";
-    this.newRow = "";
-    this.newRowCost = "";
+    this.rowsLength = '';
+    this.sumRows = '';
+    this.newRow = '';
+    this.newRowCost = '';
     this.pagination = new Array();
     this.reactElemPagination = new Array();
     this.activePagination = 0;
     this.validationNewRow = true;
     this.validationNewRowCost = true;
-    this.messageNewRow = "";
-    this.messageNewRowCost = "";
+    this.messageNewRow = '';
+    this.messageNewRowCost = '';
 
     this.callbackPaginationArray = function (event) {
       var textContent = event.target.textContent;
@@ -4744,11 +4754,11 @@ function () {
     };
 
     this.callbackPaginationLeft = function () {
-      _this.activePagination > 1 ? _this.activePagination = _this.activePagination - 1 : "";
+      _this.activePagination > 1 ? _this.activePagination = _this.activePagination - 1 : '';
     };
 
     this.callbackPaginationRight = function () {
-      _this.activePagination < _this.pagination.length ? _this.activePagination = +_this.activePagination + 1 : "";
+      _this.activePagination < _this.pagination.length ? _this.activePagination = +_this.activePagination + 1 : '';
     };
 
     mobx_1.makeObservable(this, {
@@ -4778,7 +4788,7 @@ function () {
       var _this = this;
 
       return __generator(this, function (_a) {
-        result = axios_1["default"].post("http://localhost:8000/" + "one-estimates", {
+        result = axios_1["default"].post("http://localhost:8000/" + 'one-estimates', {
           id: this.idEstimate
         }).then(function (response) {
           _this.nameEstimate = response.data[0].name;
@@ -4791,14 +4801,14 @@ function () {
           }
 
           _this.pagination = arrayPagination;
-          var summAllRows = response.data.rows.reduce(function (sum, elem) {
+          var sumAllRows = response.data.rows.reduce(function (sum, elem) {
             return sum + elem.amount;
           }, 0);
-          _this.sumRows = summAllRows.toFixed(2);
+          _this.sumRows = sumAllRows.toFixed(2);
           return response.data.rows;
         }, function (response) {
-          console.log("error request " + response);
-          return "Error";
+          console.log('error request ' + response);
+          return 'Error';
         });
         return [2
         /*return*/
@@ -4810,20 +4820,20 @@ function () {
   Estimate.prototype.validationAdd = function () {
     if (this.newRow.length < 2) {
       this.validationNewRow = true;
-      this.messageNewRow = "Обязательное поле для заполнение, необходимо использовать не менее двух символов.";
+      this.messageNewRow = 'Обязательное поле для заполнение, необходимо использовать не менее двух символов.';
     } else if (this.newRow.length > 150) {
       this.validationNewRow = true;
-      this.messageNewRow = "Поле не может быть более 150 символов.";
+      this.messageNewRow = 'Поле не может быть более 150 символов.';
     } else {
       this.validationNewRow = false;
     }
 
     if (Number.isNaN(Number(this.newRowCost))) {
       this.validationNewRowCost = true;
-      this.messageNewRowCost = "Необходимо ввести число.";
+      this.messageNewRowCost = 'Необходимо ввести число.';
     } else if (Number(this.newRowCost) <= 0) {
       this.validationNewRowCost = true;
-      this.messageNewRowCost = "Введите число больше 0";
+      this.messageNewRowCost = 'Введите число больше 0';
     } else {
       this.validationNewRowCost = false;
     }
@@ -4832,8 +4842,8 @@ function () {
   Estimate.prototype.requestNewRow = function () {
     var _this = this;
 
-    var id_user = "9";
-    axios_1["default"].post("http://localhost:8000/" + "write-one-estimates", {
+    var id_user = '9';
+    var result = axios_1["default"].post("http://localhost:8000/" + 'write-one-estimates', {
       id: this.idEstimate,
       name: this.newRow,
       cost: this.newRowCost,
@@ -4842,29 +4852,29 @@ function () {
       if (response.status === 200) {
         _this.requestOneEstimate();
 
-        _this.newRow = "";
-        _this.newRowCost = "";
+        _this.newRow = '';
+        _this.newRowCost = '';
         _this.validationNewRow = true;
         _this.validationNewRowCost = true;
       }
     }, function (response) {
-      console.log("error request " + response);
-      alert("Error" + response);
+      console.log('error request ' + response);
+      alert('Error' + response);
     });
   };
 
   Estimate.prototype.deleteRow = function (numberRow) {
     var _this = this;
 
-    axios_1["default"].post("http://localhost:8000/" + "delete-estimate", {
+    axios_1["default"].post("http://localhost:8000/" + 'delete-estimate', {
       id_row: numberRow
     }).then(function (response) {
       if (response.status === 200) {
         _this.requestOneEstimate();
       }
     }, function (response) {
-      console.log("error request " + response);
-      alert("Что-то пошло не так, попробуйте перезагрузить страницу...");
+      console.log('error request ' + response);
+      alert('Что-то пошло не так, попробуйте перезагрузить страницу...');
     });
   };
 
@@ -4899,7 +4909,7 @@ var mobx_1 = __webpack_require__(/*! mobx */ "./node_modules/mobx/dist/mobx.esm.
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 
 mobx_1.configure({
-  enforceActions: "never"
+  enforceActions: 'never'
 });
 
 var GeneralData =
@@ -4919,11 +4929,11 @@ function () {
     this.allDataWallets = {};
 
     this.callbackPaginationRightW = function () {
-      _this.activePaginationAllWallets < _this.arrayNameAllWallets.length ? _this.activePaginationAllWallets = +_this.activePaginationAllWallets + 1 : "";
+      _this.activePaginationAllWallets < _this.arrayNameAllWallets.length ? _this.activePaginationAllWallets = +_this.activePaginationAllWallets + 1 : '';
     };
 
     this.callbackPaginationLeftW = function () {
-      _this.activePaginationAllWallets > 1 ? _this.activePaginationAllWallets = _this.activePaginationAllWallets - 1 : "";
+      _this.activePaginationAllWallets > 1 ? _this.activePaginationAllWallets = _this.activePaginationAllWallets - 1 : '';
     };
 
     this.callbackPaginationArrayW = function (event) {
@@ -4935,11 +4945,11 @@ function () {
     };
 
     this.callbackPaginationRightE = function () {
-      _this.activePaginationAllEstimates < _this.arrayNameAllEstimates.length ? _this.activePaginationAllEstimates = +_this.activePaginationAllEstimates + 1 : "";
+      _this.activePaginationAllEstimates < _this.arrayNameAllEstimates.length ? _this.activePaginationAllEstimates = +_this.activePaginationAllEstimates + 1 : '';
     };
 
     this.callbackPaginationLeftE = function () {
-      _this.activePaginationAllEstimates > 1 ? _this.activePaginationAllEstimates = _this.activePaginationAllEstimates - 1 : "";
+      _this.activePaginationAllEstimates > 1 ? _this.activePaginationAllEstimates = _this.activePaginationAllEstimates - 1 : '';
     };
 
     this.callbackPaginationArrayE = function (event) {
@@ -4969,7 +4979,7 @@ function () {
   GeneralData.prototype.allEstimates = function () {
     var _this = this;
 
-    var result = axios_1["default"].post("http://localhost:8000/" + "all-estimates", {
+    var result = axios_1["default"].post("http://localhost:8000/" + 'all-estimates', {
       id: this.idUser
     }).then(function (response) {
       var countNameEstimates = Math.ceil(response.data.length / 10);
@@ -4983,8 +4993,8 @@ function () {
       _this.arrayNameAllEstimates = arrayPaginationEstimate;
       return response.data;
     }, function (response) {
-      console.log("error request " + response);
-      return "Error";
+      console.log('error request ' + response);
+      return 'Error';
     });
     return result;
   };
@@ -4992,7 +5002,7 @@ function () {
   GeneralData.prototype.allWallets = function () {
     var _this = this;
 
-    var result = axios_1["default"].post("http://localhost:8000/" + "all-wallets", {
+    var result = axios_1["default"].post("http://localhost:8000/" + 'all-wallets', {
       id: this.idUser
     }).then(function (response) {
       var countPaginationWallets = Math.ceil(response.data.length / 10);
@@ -5006,8 +5016,8 @@ function () {
       _this.activePaginationAllWallets = _this.arrayNameAllWallets.length;
       return response.data;
     }, function (response) {
-      console.log("error request " + response);
-      return "Error";
+      console.log('error request ' + response);
+      return 'Error';
     });
     return result;
   };
@@ -5047,12 +5057,12 @@ var Wallet =
 function () {
   function Wallet() {
     this.allUsers = new Array();
-    this.newDataRaw = "";
+    this.newDataRaw = '';
     this.idWallet = 0;
-    this.nameWallet = "";
-    this.allSumm = 0;
-    this.newRowWallet = "";
-    this.newRowCost = "";
+    this.nameWallet = '';
+    this.allSum = 0;
+    this.newRowWallet = '';
+    this.newRowCost = '';
     this.allRows = new Array();
     this.numberPagination = new Array();
     this.activePagination = 0;
@@ -5061,7 +5071,7 @@ function () {
     mobx_1.makeObservable(this, {
       newDataRaw: mobx_1.observable,
       idWallet: mobx_1.observable,
-      allSumm: mobx_1.observable,
+      allSum: mobx_1.observable,
       newRowWallet: mobx_1.observable,
       newRowCost: mobx_1.observable,
       allRows: mobx_1.observable,
@@ -5087,10 +5097,10 @@ function () {
 
     var nowDay = new Date();
     this.newDataRaw = nowDay.getFullYear() + "-" + this.addZero(nowDay.getMonth() + 1) + "-" + this.addZero(nowDay.getDate());
-    var result = axios_1["default"].post("http://localhost:8000/" + "one-wallets", {
+    var result = axios_1["default"].post("http://localhost:8000/" + 'one-wallets', {
       id: this.idWallet
     }).then(function (response) {
-      var summAllRows = response.data.rows.reduce(function (sum, elem) {
+      var sumAllRows = response.data.rows.reduce(function (sum, elem) {
         return sum + elem.amount;
       }, 0);
       var quantity = Math.ceil(_this.lengthRows / 10);
@@ -5101,11 +5111,11 @@ function () {
       }
 
       _this.numberPagination = arrayForPagination;
-      _this.allSumm = +summAllRows.toFixed(2);
+      _this.allSum = +sumAllRows.toFixed(2);
       return response;
     }, function (response) {
-      console.log("error request " + response);
-      return "Error";
+      console.log('error request ' + response);
+      return 'Error';
     });
     return result;
   };
@@ -5119,42 +5129,42 @@ function () {
       cost: this.newRowCost,
       namesWalletsId: this.idWallet
     };
-    axios_1["default"].post("http://localhost:8000/" + "add-new-row-wallet", {
+    axios_1["default"].post("http://localhost:8000/" + 'add-new-row-wallet', {
       data: data
     }).then(function (response) {
       if (response.status === 200) {
-        _this.newRowWallet = "";
-        _this.newRowCost = "";
+        _this.newRowWallet = '';
+        _this.newRowCost = '';
       }
     }, function (response) {
-      console.log("error request " + response);
-      return "Error";
+      console.log('error request ' + response);
+      return 'Error';
     });
   };
 
   Wallet.prototype.scopeOneWallet = function () {
-    var result = axios_1["default"].post("http://localhost:8000/" + "scope-one-wallet", {
+    var result = axios_1["default"].post("http://localhost:8000/" + 'scope-one-wallet', {
       id: this.idWallet
     }).then(function (response) {
       if (response.status === 200) {
         return response.data;
       }
     }, function (response) {
-      console.log("error request " + response);
-      return "Error";
+      console.log('error request ' + response);
+      return 'Error';
     });
     return result;
   };
 
   Wallet.prototype.gradeUser = function (item) {
-    var grade = "";
+    var grade = '';
 
-    if (item["edit_permission"] === 1 && item["delete_table"] === 1) {
-      grade = "Владелец";
-    } else if (item["edit_row"] === 1 && item["delete_row"] === 1) {
-      grade = "Редактор";
+    if (item['edit_permission'] === 1 && item['delete_table'] === 1) {
+      grade = 'Владелец';
+    } else if (item['edit_row'] === 1 && item['delete_row'] === 1) {
+      grade = 'Редактор';
     } else {
-      grade = "Пользователь";
+      grade = 'Пользователь';
     }
 
     return grade;
@@ -10145,7 +10155,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-form-user-reg-auth {\n  background: #c4c4c4;\n  align-items: center;\n  justify-content: center;\n  display: flex;\n  font-size: 1.5rem;\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth {\n  width: 60%;\n  border-radius: 10px;\n  background: #f5f5f5;\n  margin: 1rem;\n  padding: 2rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth {\n    width: 70%;\n  }\n}\n@media screen and (max-width: 640px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth {\n    width: 80%;\n  }\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .redirect-link {\n  font-size: 1rem;\n  padding-left: 45px;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .redirect-link a {\n  text-decoration: none;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-button-reg-auth {\n  display: flex;\n  justify-content: center;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth h2 {\n  color: #5354d2;\n  font-size: 2.5rem;\n  margin: 0 0 10px 0;\n  text-align: center;\n  padding: 0;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth h2 {\n    font-size: 2.2rem;\n  }\n}\n@media screen and (max-width: 800px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth h2 {\n    font-size: 2rem;\n  }\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .wrapper-reset-password {\n  text-align: center;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .wrapper-reset-password p {\n  text-align: initial;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user p {\n  margin: 0;\n  padding-left: 45px;\n}\n@media screen and (max-width: 640px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user p {\n    font-size: 1.2rem;\n  }\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .input-text-form-user {\n  width: 90%;\n  margin: 10px 0 20px 0;\n  border: 1px solid #fdb547;\n  align-self: center;\n  height: 36px;\n  font-size: 1.3rem;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .input-text-form-user:active {\n  border: 1px solid #fdb547;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .input-text-form-user:focus {\n  outline: none;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-form-user-reg-auth {\n  background: #c4c4c4;\n  align-items: center;\n  justify-content: center;\n  display: flex;\n  font-size: 1.5rem;\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n}\n.wrapper-form-user-reg-auth .wrapper-footer-link {\n  padding: 0 45px;\n  display: flex;\n  justify-content: space-between;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth {\n  width: 60%;\n  border-radius: 10px;\n  background: #f5f5f5;\n  margin: 1rem;\n  padding: 2rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth {\n    width: 70%;\n  }\n}\n@media screen and (max-width: 640px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth {\n    width: 80%;\n  }\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .redirect-link {\n  font-size: 1rem;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .redirect-link a {\n  text-decoration: none;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-button-reg-auth {\n  display: flex;\n  justify-content: center;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth h2 {\n  color: #5354d2;\n  font-size: 2.5rem;\n  margin: 0 0 10px 0;\n  text-align: center;\n  padding: 0;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth h2 {\n    font-size: 2.2rem;\n  }\n}\n@media screen and (max-width: 800px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth h2 {\n    font-size: 2rem;\n  }\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .wrapper-reset-password {\n  text-align: center;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .wrapper-reset-password p {\n  text-align: initial;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user p {\n  margin: 0;\n  padding-left: 45px;\n}\n@media screen and (max-width: 640px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user p {\n    font-size: 1.2rem;\n  }\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .input-text-form-user {\n  width: 90%;\n  margin: 10px 0 20px 0;\n  border: 1px solid #fdb547;\n  align-self: center;\n  height: 36px;\n  font-size: 1.3rem;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .input-text-form-user:active {\n  border: 1px solid #fdb547;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .input-text-form-user:focus {\n  outline: none;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
