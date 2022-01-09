@@ -1,16 +1,17 @@
 import React from "react";
-import './_Header.scss';
+import "./_Header.scss";
 
 const Header: React.FC = () => {
-  
-    return (    
+    return (
         <div className="wrapper-header">
             <a href="/">
-                <h1 className="logo-header">
-                    Piggy
-                </h1>
+                <h1 className="logo-header">Piggy</h1>
             </a>
-            <img src="../images/image-for-header.png" alt="piggy" className="image-header"/>
+            <img
+                src="../images/image-for-header.png"
+                alt="piggy"
+                className="image-header"
+            />
         </div>
     );
 };

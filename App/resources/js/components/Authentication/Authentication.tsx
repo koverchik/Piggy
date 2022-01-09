@@ -12,7 +12,7 @@ const Authentication: React.FC = observer((props: any) => {
             image: false,
             type: "submit",
         },
-        question: "Еще нет аккунта?",
+        question: "Еще нет аккаунта?",
         addressLink: "registration",
         callbackSend: () => {
             console.log("hello");

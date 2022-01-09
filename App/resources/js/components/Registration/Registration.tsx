@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
-import UserCheckInAndAuth from "../UserCheckInAndAuth/UserCheckInAndAuth";
+import React from "react";
 import createAuthUser from "../../interfaces/interfacesCreateAuthUser";
+import UserCheckInAndAuth from "../UserCheckInAndAuth/UserCheckInAndAuth";
 
 const Registration: React.FC = observer((props: any) => {
     const dataProps: createAuthUser = {
@@ -12,8 +12,8 @@ const Registration: React.FC = observer((props: any) => {
             image: false,
             type: "submit",
         },
-        question: "Уже есть аккунт?",
-        addressLink: "аuthentication",
+        question: "Уже есть аккаунт?",
+        addressLink: "authentication",
         callbackSend: () => {
             console.log("hello");
         },

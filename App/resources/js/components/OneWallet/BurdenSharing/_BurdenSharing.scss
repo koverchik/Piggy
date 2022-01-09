@@ -1,49 +1,48 @@
-.wapper-user-table{
+.wrapper-user-table {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     width: 40%;
-    .table-user{
-        .head-name-user-table{
-            border-right:1px solid white;
+    .table-user {
+        .head-name-user-table {
+            border-right: 1px solid white;
         }
-        .head-premission-user-table{
-            border-left:1px solid white;
-            border-right:1px solid white;
+        .head-premission-user-table {
+            border-left: 1px solid white;
+            border-right: 1px solid white;
         }
-       .head-contribution-user-table{
-            border-left:1px solid white;
-       }
-       .contribution-user-table{
-           text-align: center;
-           img{
-               margin-left: 5px;
-               &:hover{
-                   cursor: pointer;
-                   opacity: 0.6;
-               }
-           }
-       }
+        .head-contribution-user-table {
+            border-left: 1px solid white;
+        }
+        .contribution-user-table {
+            text-align: center;
+            img {
+                margin-left: 5px;
+                &:hover {
+                    cursor: pointer;
+                    opacity: 0.6;
+                }
+            }
+        }
     }
-    .button-add-new-user{
+    .button-add-new-user {
         display: flex;
         justify-content: center;
-        background-color: #5354D2;
+        background-color: #5354d2;
         width: 180px;
         border-radius: 10px;
-        
-        p{
+
+        p {
             color: white;
             margin: 10px 0;
             font-size: 1.3rem;
         }
-        img{
-            
+        img {
             margin: 0 10px;
         }
-     &:hover{
-         background-color:  #FE7BA7;
-         cursor: pointer;
-     }
+        &:hover {
+            background-color: #fe7ba7;
+            cursor: pointer;
+        }
     }
 }

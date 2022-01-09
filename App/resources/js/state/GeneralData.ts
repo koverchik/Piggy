@@ -1,27 +1,27 @@
 import { makeObservable, action, observable, configure } from "mobx";
-import axios from 'axios';
+import axios from "axios";
 
 configure({
     enforceActions: "never",
-  })
-  
+});
+
 export default class GeneralData {
     idUser = 9;
     nameAllEstimates = 0;
     nameAllWallets = 0;
     activePaginationAllWallets = 0;
     activePaginationAllEstimates = 0;
-    arrayNameAllEstimates = new Array;
-    arrayNameAllWallets = new Array;
+    arrayNameAllEstimates = new Array();
+    arrayNameAllWallets = new Array();
     allDataEstimate = {};
     allDataWallets = {};
 
     constructor() {
         makeObservable(this, {
-            idUser : observable,
-            nameAllEstimates : observable,
-            arrayNameAllEstimates:observable,
-            nameAllWallets : observable,
+            idUser: observable,
+            nameAllEstimates: observable,
+            arrayNameAllEstimates: observable,
+            nameAllWallets: observable,
             allDataEstimate: observable,
             allDataWallets: observable,
             activePaginationAllWallets: observable,
@@ -30,77 +30,103 @@ export default class GeneralData {
             allWallets: action,
             allEstimates: action,
             callbackPaginationRightW: action,
-          },
-        );
+        });
     }
 
-    allEstimates(){
+    allEstimates() {
+        const result = axios
+            .post(process.env.MIX_APP_URL_FOR_TEST + "all-estimates", {
+                id: this.idUser,
+            })
+            .then(
+                (response) => {
+                    const countNameEstimates: number = Math.ceil(
+                        response.data.length / 10
+                    );
+                    let arrayPaginationEstimate = [];
+                    for (let index = 0; index < countNameEstimates; index++) {
+                        arrayPaginationEstimate.push(index + 1);
+                    }
+                    this.activePaginationAllEstimates =
+                        arrayPaginationEstimate.length;
+                    this.arrayNameAllEstimates = arrayPaginationEstimate;
+                    return response.data;
+                },
 
-    const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'all-estimates', {id: this.idUser } )
-        .then(response => {
-        const countNameEstimates: number = Math.ceil(response.data.length / 10)
-        let arrayPaginationEstimate = [];
-        for (let index = 0; index < countNameEstimates; index++) {
-            arrayPaginationEstimate.push(index+1);
+                (response) => {
+                    console.log("error request " + response);
+                    return "Error";
+                }
+            );
+        return result;
+    }
+
+    allWallets() {
+        const result = axios
+            .post(process.env.MIX_APP_URL_FOR_TEST + "all-wallets", {
+                id: this.idUser,
+            })
+            .then(
+                (response) => {
+                    const countPaginationWallets: number = Math.ceil(
+                        response.data.length / 10
+                    );
+                    const arrayPaginationWallets = [];
+                    for (
+                        let index = 0;
+                        index < countPaginationWallets;
+                        index++
+                    ) {
+                        arrayPaginationWallets.push(index + 1);
+                    }
+                    this.arrayNameAllWallets = arrayPaginationWallets;
+                    this.activePaginationAllWallets = this.arrayNameAllWallets.length;
+                    return response.data;
+                },
+
+                (response) => {
+                    console.log("error request " + response);
+                    return "Error";
+                }
+            );
+        return result;
+    }
+
+    callbackPaginationRightW = () => {
+        this.activePaginationAllWallets < this.arrayNameAllWallets.length
+            ? (this.activePaginationAllWallets =
+                  +this.activePaginationAllWallets + 1)
+            : "";
+    };
+    callbackPaginationLeftW = () => {
+        this.activePaginationAllWallets > 1
+            ? (this.activePaginationAllWallets =
+                  this.activePaginationAllWallets - 1)
+            : "";
+    };
+    callbackPaginationArrayW = (event: Event) => {
+        const { textContent } = event.target as HTMLDivElement;
+        if (textContent != null) {
+            this.activePaginationAllWallets = +textContent;
         }
-        this.activePaginationAllEstimates = arrayPaginationEstimate.length;       
-        this.arrayNameAllEstimates = arrayPaginationEstimate;
-        return response.data;
-        },
-        
-        response => {
-            console.log("error request " + response);
-            return "Error";
-            
-            })
-    return result;
-    }
+    };
 
-    allWallets(){
-       const result = axios.post(process.env.MIX_APP_URL_FOR_TEST +'all-wallets', {id: this.idUser } )
-        .then(response => {
-        const countPaginationWallets: number = Math.ceil(response.data.length / 10);
-        let arrayPaginationWallets = [];
-        for (let index = 0; index < countPaginationWallets; index++) {
-            arrayPaginationWallets.push( index + 1 );
-          }
-        this.arrayNameAllWallets = arrayPaginationWallets;
-        this.activePaginationAllWallets = this.arrayNameAllWallets.length;         
-        return response.data;
-    
-        },
-        
-        response => {
-            console.log("error request " + response);
-            return "Error";
-            
-            })
-    return result;
-    }
-
-  callbackPaginationRightW = () => {
-    this.activePaginationAllWallets < this.arrayNameAllWallets.length ? 
-      this.activePaginationAllWallets = +this.activePaginationAllWallets + 1 : "";
-  }
-  callbackPaginationLeftW = () => {
-    this.activePaginationAllWallets > 1 ?
-    this.activePaginationAllWallets = this.activePaginationAllWallets - 1 : "";
-  }
-  callbackPaginationArrayW = (event: Event) => {
-    const { textContent } = event.target as HTMLDivElement;   
-    if(textContent != null){this.activePaginationAllWallets = +textContent;} 
-  }
-
-  callbackPaginationRightE = () => {
-    this.activePaginationAllEstimates < this.arrayNameAllEstimates.length ? 
-      this.activePaginationAllEstimates = +this.activePaginationAllEstimates + 1 : "";
-  }
-  callbackPaginationLeftE = () => {
-    this.activePaginationAllEstimates > 1 ?
-    this.activePaginationAllEstimates = this.activePaginationAllEstimates - 1 : "";
-  }
-  callbackPaginationArrayE = (event: Event) => {
-    const { textContent } = event.target as HTMLDivElement;   
-    if(textContent != null){this.activePaginationAllEstimates = +textContent;} 
-  }
-} 
+    callbackPaginationRightE = () => {
+        this.activePaginationAllEstimates < this.arrayNameAllEstimates.length
+            ? (this.activePaginationAllEstimates =
+                  +this.activePaginationAllEstimates + 1)
+            : "";
+    };
+    callbackPaginationLeftE = () => {
+        this.activePaginationAllEstimates > 1
+            ? (this.activePaginationAllEstimates =
+                  this.activePaginationAllEstimates - 1)
+            : "";
+    };
+    callbackPaginationArrayE = (event: Event) => {
+        const { textContent } = event.target as HTMLDivElement;
+        if (textContent != null) {
+            this.activePaginationAllEstimates = +textContent;
+        }
+    };
+}

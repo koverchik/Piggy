@@ -1967,7 +1967,7 @@ var AllEstimate = function AllEstimate() {
   }, react_1["default"].createElement("div", {
     className: "wrapper-page-list-estimate"
   }, react_1["default"].createElement("h2", null, "\u041A\u043E\u0448\u0435\u043B\u044C\u043A\u0438"), react_1["default"].createElement("div", {
-    className: "wrappter-one-estimate"
+    className: "wrapper-one-estimate"
   }, react_1["default"].createElement("div", {
     className: "wrapper-header-estimate"
   }, react_1["default"].createElement("div", {
@@ -1978,28 +1978,28 @@ var AllEstimate = function AllEstimate() {
     src: "../images/delete-estimate.svg"
   }))), react_1["default"].createElement("div", {
     className: "wrapper-one-table"
-  }, react_1["default"].createElement("table", null, react_1["default"].createElement("thead", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", null, "  "), react_1["default"].createElement("td", null, "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0438"), react_1["default"].createElement("td", null, " \u041F\u0440\u0430\u0432\u0430 "))), react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
+  }, react_1["default"].createElement("table", null, react_1["default"].createElement("thead", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", null, " "), react_1["default"].createElement("td", null, "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0438"), react_1["default"].createElement("td", null, " \u041F\u0440\u0430\u0432\u0430 "))), react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: "namber-one-item"
   }, " 1 "), react_1["default"].createElement("td", {
     className: "name-one-item"
-  }, " \u041E\u043B\u0435\u0433 ", react_1["default"].createElement("img", {
+  }, " ", "\u041E\u043B\u0435\u0433", " ", react_1["default"].createElement("img", {
     src: "../images/delete-one-peope.svg"
   })), react_1["default"].createElement("td", {
     className: "premission-one-item"
-  }, " \u0412\u043B\u0430\u0434\u0435\u043B\u0435\u0446 ", react_1["default"].createElement("img", {
+  }, " ", "\u0412\u043B\u0430\u0434\u0435\u043B\u0435\u0446", " ", react_1["default"].createElement("img", {
     src: "../images/list-premision.svg"
   }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: "namber-one-item"
   }, " 2 "), react_1["default"].createElement("td", {
     className: "name-one-item"
-  }, " \u041C\u0430\u0448\u0430 ", react_1["default"].createElement("img", {
+  }, " ", "\u041C\u0430\u0448\u0430", " ", react_1["default"].createElement("img", {
     src: "../images/delete-one-peope.svg"
   })), react_1["default"].createElement("td", {
     className: "premission-one-item"
-  }, " \u0420\u0435\u0434\u0430\u043A\u0442\u043E\u0440 ", react_1["default"].createElement("img", {
+  }, " ", "\u0420\u0435\u0434\u0430\u043A\u0442\u043E\u0440", " ", react_1["default"].createElement("img", {
     src: "../images/list-premision.svg"
   }))))), react_1["default"].createElement(ButtonCreate_1["default"], null))), react_1["default"].createElement("div", {
-    className: "wrappter-one-estimate"
+    className: "wrapper-one-estimate"
   }, react_1["default"].createElement("div", {
     className: "wrapper-header-estimate"
   }, react_1["default"].createElement("div", {
@@ -2010,25 +2010,25 @@ var AllEstimate = function AllEstimate() {
     src: "../images/delete-estimate.svg"
   }))), react_1["default"].createElement("div", {
     className: "wrapper-one-table"
-  }, react_1["default"].createElement("table", null, react_1["default"].createElement("thead", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", null, "  "), react_1["default"].createElement("td", null, "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0438"), react_1["default"].createElement("td", null, " \u041F\u0440\u0430\u0432\u0430 "))), react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
+  }, react_1["default"].createElement("table", null, react_1["default"].createElement("thead", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", null, " "), react_1["default"].createElement("td", null, "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0438"), react_1["default"].createElement("td", null, " \u041F\u0440\u0430\u0432\u0430 "))), react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: "namber-one-item"
   }, " 1 "), react_1["default"].createElement("td", {
     className: "name-one-item"
-  }, " \u041E\u043B\u0435\u0433 ", react_1["default"].createElement("img", {
+  }, " ", "\u041E\u043B\u0435\u0433", " ", react_1["default"].createElement("img", {
     src: "../images/delete-one-peope.svg"
   })), react_1["default"].createElement("td", {
     className: "premission-one-item"
-  }, " \u0412\u043B\u0430\u0434\u0435\u043B\u0435\u0446 ", react_1["default"].createElement("img", {
+  }, " ", "\u0412\u043B\u0430\u0434\u0435\u043B\u0435\u0446", " ", react_1["default"].createElement("img", {
     src: "../images/list-premision.svg"
   }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: "namber-one-item"
   }, " 2 "), react_1["default"].createElement("td", {
     className: "name-one-item"
-  }, " \u0421\u0430\u0448\u0430 ", react_1["default"].createElement("img", {
+  }, " ", "\u0421\u0430\u0448\u0430", " ", react_1["default"].createElement("img", {
     src: "../images/delete-one-peope.svg"
   })), react_1["default"].createElement("td", {
     className: "premission-one-item"
-  }, " \u041F\u0440\u043E\u0441\u043C\u043E\u0442\u0440    ", react_1["default"].createElement("img", {
+  }, " ", "\u041F\u0440\u043E\u0441\u043C\u043E\u0442\u0440", " ", react_1["default"].createElement("img", {
     src: "../images/list-premision.svg"
   }))))), react_1["default"].createElement(ButtonCreate_1["default"], null))), react_1["default"].createElement("div", {
     className: "pagination-list-estimate"
@@ -2064,15 +2064,15 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-__webpack_require__(/*! ./_AllEstimateAndWallet.scss */ "./resources/js/components/AllEstimateAndWallet/_AllEstimateAndWallet.scss");
-
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var AllEstimateMainPage_1 = __importDefault(__webpack_require__(/*! ./AllEstimateMainPage/AllEstimateMainPage */ "./resources/js/components/AllEstimateAndWallet/AllEstimateMainPage/AllEstimateMainPage.tsx"));
 
 var AllWalletsMainPage_1 = __importDefault(__webpack_require__(/*! ./AllWalletsMainPage/AllWalletsMainPage */ "./resources/js/components/AllEstimateAndWallet/AllWalletsMainPage/AllWalletsMainPage.tsx"));
+
+__webpack_require__(/*! ./_AllEstimateAndWallet.scss */ "./resources/js/components/AllEstimateAndWallet/_AllEstimateAndWallet.scss");
 
 var AllEstimateAndWallet = mobx_react_lite_1.observer(function () {
   return react_1["default"].createElement("div", {
@@ -2152,23 +2152,21 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
-var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
-
-__webpack_require__(/*! ./../_AllEstimateAndWallet.scss */ "./resources/js/components/AllEstimateAndWallet/_AllEstimateAndWallet.scss");
-
 var state_1 = __importDefault(__webpack_require__(/*! ../../../state */ "./resources/js/state/index.ts"));
 
-var react_router_dom_2 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-
-var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
 
 var PaginationRows_1 = __importDefault(__webpack_require__(/*! ../../PaginationRows/PaginationRows */ "./resources/js/components/PaginationRows/PaginationRows.tsx"));
 
 var PopUp_1 = __importDefault(__webpack_require__(/*! ../../PopUp/PopUp */ "./resources/js/components/PopUp/PopUp.tsx"));
+
+__webpack_require__(/*! ./../_AllEstimateAndWallet.scss */ "./resources/js/components/AllEstimateAndWallet/_AllEstimateAndWallet.scss");
 
 var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
   var _a = react_1.useState([]),
@@ -2196,7 +2194,7 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
     }
   };
   var popUpData = {
-    name: state_1["default"].СreationEditingEstimates.newNameEstimate,
+    name: state_1["default"].CreationEditingEstimates.newNameEstimate,
     kind: "Создание сметы",
     textMessage: "Введите название",
     closeClick: function closeClick() {
@@ -2206,10 +2204,10 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
       name: "Создать",
       type: "submit",
       image: false,
-      callbackClick: state_1["default"].СreationEditingEstimates.createNewEstimate,
+      callbackClick: state_1["default"].CreationEditingEstimates.createNewEstimate,
       redirectPage: redirectPage
     },
-    onChangeFunction: state_1["default"].СreationEditingEstimates.onChangeFnEstimateName
+    onChangeFunction: state_1["default"].CreationEditingEstimates.onChangeFnEstimateName
   };
   var paginationDataEstimate = {
     arrayNumber: state_1["default"].GeneralData.arrayNameAllEstimates,
@@ -2221,10 +2219,10 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
   react_1.useEffect(function () {
     state_1["default"].GeneralData.allEstimates().then(function (data) {
       if (data === "Error") {
-        var notiseError = react_1["default"].createElement("li", {
+        var noticeError = react_1["default"].createElement("li", {
           key: "listEstimateEmpty"
         }, "\u0423\u043F\u0441, \u0447\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0430\u0440\u0430\u043D\u0438\u0446\u0443.");
-        setlistEstimate(notiseError);
+        setlistEstimate(noticeError);
       } else {
         state_1["default"].GeneralData.allDataEstimate = data;
         setlistEstimateData(data);
@@ -2238,7 +2236,7 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
       return react_1["default"].createElement("li", {
         key: "listEstimate" + i,
         className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? "hide-row" : ""
-      }, react_1["default"].createElement(react_router_dom_2.Link, {
+      }, react_1["default"].createElement(react_router_dom_1.Link, {
         to: "/estimate-" + item["names_estimates_id"]
       }, item["full_name"]));
     });
@@ -2254,7 +2252,7 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
     createRowsEstimate(listEstimateData, state_1["default"].GeneralData.activePaginationAllEstimates);
   }, [state_1["default"].GeneralData.activePaginationAllEstimates]);
   return react_1["default"].createElement("div", {
-    className: "wapper-estimate"
+    className: "wrapper-estimate"
   }, statePopUp ? react_1["default"].createElement(PopUp_1["default"], __assign({}, popUpData)) : null, react_1["default"].createElement("div", {
     className: "wrapper-block-name-list"
   }, react_1["default"].createElement("p", {
@@ -2344,8 +2342,6 @@ var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/reac
 
 var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
-var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
-
 __webpack_require__(/*! ./../_AllEstimateAndWallet.scss */ "./resources/js/components/AllEstimateAndWallet/_AllEstimateAndWallet.scss");
 
 var state_1 = __importDefault(__webpack_require__(/*! ../../../state */ "./resources/js/state/index.ts"));
@@ -2391,7 +2387,7 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
     callbackPaginationLeft: state_1["default"].GeneralData.callbackPaginationLeftW
   };
   var popUpData = {
-    name: state_1["default"].СreationEditingWallets.newNameWallet,
+    name: state_1["default"].CreationEditingWallets.newNameWallet,
     kind: "Создание кошелька",
     textMessage: "Введите название",
     closeClick: function closeClick() {
@@ -2401,10 +2397,10 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
       name: "Создать",
       type: "submit",
       image: false,
-      callbackClick: state_1["default"].СreationEditingWallets.createNewWallet,
+      callbackClick: state_1["default"].CreationEditingWallets.createNewWallet,
       redirectPage: redirectPage
     },
-    onChangeFunction: state_1["default"].СreationEditingWallets.onChangeFnWalletName
+    onChangeFunction: state_1["default"].CreationEditingWallets.onChangeFnWalletName
   };
 
   function redirectPage(idPage) {
@@ -2416,10 +2412,10 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
   react_1.useEffect(function () {
     state_1["default"].GeneralData.allWallets().then(function (data) {
       if (data === "Error") {
-        var notiseError = react_1["default"].createElement("li", {
+        var noticeError = react_1["default"].createElement("li", {
           key: "listEstimateEmpty"
         }, "\u0423\u043F\u0441, \u0447\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0430\u0440\u0430\u043D\u0438\u0446\u0443.");
-        setlistWallet(notiseError);
+        setlistWallet(noticeError);
       } else {
         state_1["default"].GeneralData.allDataWallets = data;
         settWalletData(data);
@@ -2434,8 +2430,8 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
         key: "listWallet" + i,
         className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? "hide-row" : ""
       }, react_1["default"].createElement(react_router_dom_2.Link, {
-        to: "/wallet-" + item['names_wallets_id'] + '-' + item['names_wallet']['name']
-      }, item['names_wallet']['name']));
+        to: "/wallet-" + item["names_wallets_id"] + "-" + item["names_wallet"]["name"]
+      }, item["names_wallet"]["name"]));
     });
     setlistWallet(list);
   }
@@ -2444,7 +2440,7 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
     createRowsWallets(listWalletData, state_1["default"].GeneralData.activePaginationAllWallets);
   }, [state_1["default"].GeneralData.activePaginationAllWallets]);
   return react_1["default"].createElement("div", {
-    className: "wapper-wallet"
+    className: "wrapper-wallet"
   }, statePopUp ? react_1["default"].createElement(PopUp_1["default"], __assign({}, popUpData)) : null, react_1["default"].createElement("div", {
     className: "wrapper-block-name-list"
   }, react_1["default"].createElement("p", {
@@ -2454,8 +2450,8 @@ var AllWalletsMainPage = mobx_react_lite_1.observer(function () {
   }, listWallet)), react_1["default"].createElement("div", {
     className: "wrapper-pagination-button-create"
   }, state_1["default"].GeneralData.arrayNameAllWallets.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], __assign({}, paginationDataWallet)) : "", renderRedirect ? react_1["default"].createElement(react_router_dom_1.Redirect, {
-    to: 'wallet-' + state_1["default"].Wallet.idWallet + "-" + state_1["default"].Wallet.nameWallet
-  }) : "", react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, buttonName))));
+    to: "wallet-" + state_1["default"].Wallet.idWallet + "-" + state_1["default"].Wallet.nameWallet
+  }) : ""));
 });
 exports.default = AllWalletsMainPage;
 
@@ -2583,7 +2579,7 @@ var Authentication = mobx_react_lite_1.observer(function (props) {
       image: false,
       type: "submit"
     },
-    question: "Еще нет аккунта?",
+    question: "Еще нет аккаунта?",
     addressLink: "registration",
     callbackSend: function callbackSend() {
       console.log("hello");
@@ -2665,8 +2661,8 @@ var ButtonCreate = function ButtonCreate(props) {
         });
       }
 
-      if (props.closeClik != undefined) {
-        props.closeClik();
+      if (props.closeClick != undefined) {
+        props.closeClick();
       }
     }
   }, props.image ? react_1["default"].createElement("img", {
@@ -2716,7 +2712,7 @@ var Footer = function Footer() {
   }, react_1["default"].createElement("img", {
     src: "../images/unknown-user.svg",
     alt: "piggy",
-    className: "image-unknow-user"
+    className: "image-unknown-user"
   }), react_1["default"].createElement("p", null, "\u0412\u043E\u0439\u0442\u0438")), react_1["default"].createElement("div", {
     className: "links-info"
   }, react_1["default"].createElement("a", {
@@ -2819,7 +2815,7 @@ var AddRowEstimate = mobx_react_lite_1.observer(function () {
       index_1["default"].Estimate.newRow = event.target.value;
       index_1["default"].Estimate.validationAdd();
     }
-  }), react_1["default"].createElement("span", null, index_1["default"].Estimate.validationNewRow ? index_1["default"].Estimate.messegeNewRow : "")), react_1["default"].createElement("td", {
+  }), react_1["default"].createElement("span", null, index_1["default"].Estimate.validationNewRow ? index_1["default"].Estimate.messageNewRow : "")), react_1["default"].createElement("td", {
     className: "new-cost-one-item"
   }, react_1["default"].createElement("input", {
     type: "text",
@@ -2828,9 +2824,9 @@ var AddRowEstimate = mobx_react_lite_1.observer(function () {
       index_1["default"].Estimate.newRowCost = event.target.value;
       index_1["default"].Estimate.validationAdd();
     }
-  }), react_1["default"].createElement("span", null, index_1["default"].Estimate.validationNewRowCost ? index_1["default"].Estimate.messegeNewRowCost : "")), react_1["default"].createElement("td", {
+  }), react_1["default"].createElement("span", null, index_1["default"].Estimate.validationNewRowCost ? index_1["default"].Estimate.messageNewRowCost : "")), react_1["default"].createElement("td", {
     className: "empty-item"
-  }, "  ")))), react_1["default"].createElement("div", null, react_1["default"].createElement("input", {
+  }, " ")))), react_1["default"].createElement("div", null, react_1["default"].createElement("input", {
     className: "button-add-new-item ",
     type: "submit",
     value: "+",
@@ -2894,9 +2890,9 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var index_1 = __importDefault(__webpack_require__(/*! ../../../state/index */ "./resources/js/state/index.ts"));
 
@@ -2947,13 +2943,13 @@ var BodyTableEstimate = mobx_react_lite_1.observer(function (props) {
         className: "namber-one-item"
       }, " ", i + 1, " "), react_1["default"].createElement("td", {
         className: "name-one-item"
-      }, " ", item['name'], " "), react_1["default"].createElement("td", {
+      }, " ", item["name"], " "), react_1["default"].createElement("td", {
         className: "cost-one-item"
-      }, " ", item['amount'], " \u0440\u0443\u0431 "), react_1["default"].createElement("td", {
+      }, " ", item["amount"], " \u0440\u0443\u0431 "), react_1["default"].createElement("td", {
         className: "namber-one-item trash-image"
       }, react_1["default"].createElement("img", {
         src: "../images/delete-one-peope.svg",
-        "id-data": item['id'],
+        "id-data": item["id"],
         onClick: function onClick(e) {
           return index_1["default"].Estimate.deleteRow(e.target.getAttribute("id-data"));
         }
@@ -3003,19 +2999,19 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-__webpack_require__(/*! ./_OneEstimate.scss */ "./resources/js/components/OneEstimate/_OneEstimate.scss");
-
-var AddRowEstimate_1 = __importDefault(__webpack_require__(/*! ./AddRowEstimate/AddRowEstimate */ "./resources/js/components/OneEstimate/AddRowEstimate/AddRowEstimate.tsx"));
-
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var index_1 = __importDefault(__webpack_require__(/*! ../../state/index */ "./resources/js/state/index.ts"));
 
 var PaginationRows_1 = __importDefault(__webpack_require__(/*! ../PaginationRows/PaginationRows */ "./resources/js/components/PaginationRows/PaginationRows.tsx"));
 
+var AddRowEstimate_1 = __importDefault(__webpack_require__(/*! ./AddRowEstimate/AddRowEstimate */ "./resources/js/components/OneEstimate/AddRowEstimate/AddRowEstimate.tsx"));
+
 var BodyTableEstimate_1 = __importDefault(__webpack_require__(/*! ./BodyTableEstimate/BodyTableEstimate */ "./resources/js/components/OneEstimate/BodyTableEstimate/BodyTableEstimate.tsx"));
+
+__webpack_require__(/*! ./_OneEstimate.scss */ "./resources/js/components/OneEstimate/_OneEstimate.scss");
 
 var OneEstimate = mobx_react_lite_1.observer(function (props) {
   index_1["default"].Estimate.idEstimate = props.match.params.id;
@@ -3047,7 +3043,7 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
     className: "table-list-value section-to-print-table"
   }, react_1["default"].createElement("thead", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: "empty-head-item"
-  }, "  "), react_1["default"].createElement("td", {
+  }, " "), react_1["default"].createElement("td", {
     className: "name-head-one-item"
   }, "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435"), react_1["default"].createElement("td", {
     className: "name-head-one-item"
@@ -3055,11 +3051,11 @@ var OneEstimate = mobx_react_lite_1.observer(function (props) {
     className: "cost-head-one-item"
   }))), react_1["default"].createElement(BodyTableEstimate_1["default"], null), react_1["default"].createElement("tfoot", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: "empty-item"
-  }, "  "), react_1["default"].createElement("td", {
+  }, " "), react_1["default"].createElement("td", {
     className: "title-cost-all-item"
-  }, " \u0418\u0442\u043E\u0433\u043E:  "), react_1["default"].createElement("td", {
+  }, " \u0418\u0442\u043E\u0433\u043E: "), react_1["default"].createElement("td", {
     className: "cost-all-item"
-  }, " ", index_1["default"].Estimate.sumRows, " \u0440\u0443\u0431 ")))), index_1["default"].Estimate.pagination.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], __assign({}, paginationData)) : "", react_1["default"].createElement(AddRowEstimate_1["default"], null)));
+  }, " ", index_1["default"].Estimate.sumRows, " \u0440\u0443\u0431", " ")))), index_1["default"].Estimate.pagination.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], __assign({}, paginationData)) : "", react_1["default"].createElement(AddRowEstimate_1["default"], null)));
 });
 exports.default = OneEstimate;
 
@@ -3134,21 +3130,21 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-__webpack_require__(/*! ./_BurdenSharing.scss */ "./resources/js/components/OneWallet/BurdenSharing/_BurdenSharing.scss");
-
-__webpack_require__(/*! ../_OneWallet.scss */ "./resources/js/components/OneWallet/_OneWallet.scss");
-
-var state_1 = __importDefault(__webpack_require__(/*! ../../../state */ "./resources/js/state/index.ts"));
-
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
-var TableDebetCredit_1 = __importDefault(__webpack_require__(/*! ./TableDebetCredit/TableDebetCredit */ "./resources/js/components/OneWallet/BurdenSharing/TableDebetCredit/TableDebetCredit.tsx"));
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var state_1 = __importDefault(__webpack_require__(/*! ../../../state */ "./resources/js/state/index.ts"));
 
 var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
 
 var PopUp_1 = __importDefault(__webpack_require__(/*! ../../PopUp/PopUp */ "./resources/js/components/PopUp/PopUp.tsx"));
+
+__webpack_require__(/*! ../_OneWallet.scss */ "./resources/js/components/OneWallet/_OneWallet.scss");
+
+var TableDebitCredit_1 = __importDefault(__webpack_require__(/*! ./TableDebitCredit/TableDebitCredit */ "./resources/js/components/OneWallet/BurdenSharing/TableDebitCredit/TableDebitCredit.tsx"));
+
+__webpack_require__(/*! ./_BurdenSharing.scss */ "./resources/js/components/OneWallet/BurdenSharing/_BurdenSharing.scss");
 
 var BurdenSharing = mobx_react_lite_1.observer(function () {
   var _a = react_1.useState([]),
@@ -3156,7 +3152,7 @@ var BurdenSharing = mobx_react_lite_1.observer(function () {
       setListScopeOneWallet = _a[1];
 
   var _b = react_1.useState(false),
-      tableDebetCredit = _b[0],
+      tableDebitCredit = _b[0],
       setTableDebetCredit = _b[1];
 
   var _c = react_1.useState(false),
@@ -3218,7 +3214,7 @@ var BurdenSharing = mobx_react_lite_1.observer(function () {
       state_1["default"].Wallet.allUsers.push({
         userName: item.user.name,
         userId: item.user.id,
-        debitСredit: 0
+        debitCredit: 0
       });
       var grade = state_1["default"].Wallet.gradeUser(item);
       return react_1["default"].createElement("tr", {
@@ -3235,7 +3231,7 @@ var BurdenSharing = mobx_react_lite_1.observer(function () {
   }
 
   return react_1["default"].createElement("div", {
-    className: "wapper-user-table"
+    className: "wrapper-user-table"
   }, statePopUp ? react_1["default"].createElement(PopUp_1["default"], __assign({}, popUpData)) : "", react_1["default"].createElement("table", {
     className: "table-user"
   }, react_1["default"].createElement("thead", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
@@ -3244,15 +3240,15 @@ var BurdenSharing = mobx_react_lite_1.observer(function () {
     className: "head-premission-user-table"
   }, " \u041F\u0440\u0430\u0432\u0430 "), react_1["default"].createElement("td", {
     className: "head-contribution-user-table"
-  }, " ", "\u0412\u043A\u043B\u0430\u0434", " "))), react_1["default"].createElement("tbody", null, listScopeOneWallet)), react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, buttonName)), tableDebetCredit ? react_1["default"].createElement(TableDebetCredit_1["default"], null) : "");
+  }, " ", "\u0412\u043A\u043B\u0430\u0434", " "))), react_1["default"].createElement("tbody", null, listScopeOneWallet)), react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, buttonName)), tableDebitCredit ? react_1["default"].createElement(TableDebitCredit_1["default"], null) : "");
 });
 exports.default = BurdenSharing;
 
 /***/ }),
 
-/***/ "./resources/js/components/OneWallet/BurdenSharing/TableDebetCredit/TableDebetCredit.tsx":
+/***/ "./resources/js/components/OneWallet/BurdenSharing/TableDebitCredit/TableDebitCredit.tsx":
 /*!***********************************************************************************************!*\
-  !*** ./resources/js/components/OneWallet/BurdenSharing/TableDebetCredit/TableDebetCredit.tsx ***!
+  !*** ./resources/js/components/OneWallet/BurdenSharing/TableDebitCredit/TableDebitCredit.tsx ***!
   \***********************************************************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -3305,15 +3301,15 @@ Object.defineProperty(exports, "__esModule", ({
 
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
-__webpack_require__(/*! ./_TableDebetCredit.scss */ "./resources/js/components/OneWallet/BurdenSharing/TableDebetCredit/_TableDebetCredit.scss");
+__webpack_require__(/*! ./_TableDebitCredit.scss */ "./resources/js/components/OneWallet/BurdenSharing/TableDebitCredit/_TableDebitCredit.scss");
 
 var state_1 = __importDefault(__webpack_require__(/*! ../../../../state */ "./resources/js/state/index.ts"));
 
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
-var TableDebetCredit = mobx_react_lite_1.observer(function () {
+var TableDebitCredit = mobx_react_lite_1.observer(function () {
   var _a = react_1.useState(),
-      listTableDebetCredit = _a[0],
+      listTableDebitCredit = _a[0],
       setTableDebetCredit = _a[1];
 
   react_1.useEffect(function () {
@@ -3321,9 +3317,9 @@ var TableDebetCredit = mobx_react_lite_1.observer(function () {
       state_1["default"].Wallet.allRows.map(function (item) {
         for (var index = 0; index < state_1["default"].Wallet.allUsers.length; index++) {
           if (state_1["default"].Wallet.allUsers[index].userId == item.user_id) {
-            state_1["default"].Wallet.allUsers[index].debitСredit = state_1["default"].Wallet.allUsers[index].debitСredit + (item.amount - item.amount / state_1["default"].Wallet.lengthBurdenUser);
+            state_1["default"].Wallet.allUsers[index].debitCredit = state_1["default"].Wallet.allUsers[index].debitCredit + (item.amount - item.amount / state_1["default"].Wallet.lengthBurdenUser);
           } else {
-            state_1["default"].Wallet.allUsers[index].debitСredit = state_1["default"].Wallet.allUsers[index].debitСredit - item.amount / state_1["default"].Wallet.lengthBurdenUser;
+            state_1["default"].Wallet.allUsers[index].debitCredit = state_1["default"].Wallet.allUsers[index].debitCredit - item.amount / state_1["default"].Wallet.lengthBurdenUser;
           }
         }
       });
@@ -3332,15 +3328,15 @@ var TableDebetCredit = mobx_react_lite_1.observer(function () {
   }, [state_1["default"].Wallet.lengthRows, state_1["default"].Wallet.lengthBurdenUser, state_1["default"].Wallet.allUsers]);
 
   function createRowsDebitCredit(data) {
-    var resultListTableDebetCredit = data.map(function (itemDeditCredit, i) {
+    var resultListTableDebitCredit = data.map(function (itemDebitCredit, i) {
       var debit = 0;
       var credit = 0;
 
-      if (itemDeditCredit.debitСredit < 0) {
+      if (itemDebitCredit.debitCredit < 0) {
         debit = 0;
-        credit = Math.abs(itemDeditCredit.debitСredit);
+        credit = Math.abs(itemDebitCredit.debitCredit);
       } else {
-        debit = itemDeditCredit.debitСredit;
+        debit = itemDebitCredit.debitCredit;
         credit = 0;
       }
 
@@ -3348,26 +3344,26 @@ var TableDebetCredit = mobx_react_lite_1.observer(function () {
         key: "table-debit-credit" + i
       }, react_1["default"].createElement("td", {
         className: "name-user-debit-credit"
-      }, " ", itemDeditCredit.userName, " "), react_1["default"].createElement("td", {
+      }, " ", itemDebitCredit.userName, " "), react_1["default"].createElement("td", {
         className: "column-debit"
-      }, " ", debit.toFixed(2), " \u0440\u0443\u0431 "), react_1["default"].createElement("td", {
+      }, " ", debit.toFixed(2), " \u0440\u0443\u0431", " "), react_1["default"].createElement("td", {
         className: "column-credit"
-      }, " ", credit.toFixed(2), " \u0440\u0443\u0431 "));
+      }, " ", credit.toFixed(2), " \u0440\u0443\u0431", " "));
     });
-    setTableDebetCredit(resultListTableDebetCredit);
+    setTableDebetCredit(resultListTableDebitCredit);
   }
 
   return react_1["default"].createElement("table", {
     className: "table-debit-credit"
   }, react_1["default"].createElement("thead", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: "empty-name-user-head-debit-credit"
-  }, "  "), react_1["default"].createElement("td", {
+  }, " "), react_1["default"].createElement("td", {
     className: "column-head-debit"
   }, " \u0414\u0435\u0431\u0435\u0442 "), react_1["default"].createElement("td", {
     className: "second-side-user-head-debit-credit"
-  }, " \u041A\u0440\u0435\u0434\u0438\u0442 "))), react_1["default"].createElement("tbody", null, listTableDebetCredit));
+  }, " ", "\u041A\u0440\u0435\u0434\u0438\u0442", " "))), react_1["default"].createElement("tbody", null, listTableDebitCredit));
 });
-exports.default = TableDebetCredit;
+exports.default = TableDebitCredit;
 
 /***/ }),
 
@@ -3390,19 +3386,19 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-__webpack_require__(/*! ./_OneWallet.scss */ "./resources/js/components/OneWallet/_OneWallet.scss");
-
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
-var TableOneWallet_1 = __importDefault(__webpack_require__(/*! ./TableOneWallet/TableOneWallet */ "./resources/js/components/OneWallet/TableOneWallet/TableOneWallet.tsx"));
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
-var BurdenSharing_1 = __importDefault(__webpack_require__(/*! ./BurdenSharing/BurdenSharing */ "./resources/js/components/OneWallet/BurdenSharing/BurdenSharing.tsx"));
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 var state_1 = __importDefault(__webpack_require__(/*! ../../state */ "./resources/js/state/index.ts"));
 
-var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+var BurdenSharing_1 = __importDefault(__webpack_require__(/*! ./BurdenSharing/BurdenSharing */ "./resources/js/components/OneWallet/BurdenSharing/BurdenSharing.tsx"));
+
+var TableOneWallet_1 = __importDefault(__webpack_require__(/*! ./TableOneWallet/TableOneWallet */ "./resources/js/components/OneWallet/TableOneWallet/TableOneWallet.tsx"));
+
+__webpack_require__(/*! ./_OneWallet.scss */ "./resources/js/components/OneWallet/_OneWallet.scss");
 
 var OneWallet = mobx_react_lite_1.observer(function () {
   var params = react_router_dom_1.useParams();
@@ -3460,13 +3456,13 @@ var AddNewRowWallet = mobx_react_lite_1.observer(function () {
   return react_1["default"].createElement("form", {
     onSubmit: function onSubmit(event) {
       state_1["default"].Wallet.addNewRow();
-      state_1["default"].Wallet.startOneWalet();
+      state_1["default"].Wallet.startOneWallet();
       event.preventDefault();
     }
   }, react_1["default"].createElement("table", {
     className: "table-add-new-value"
   }, react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
-    className: "namber-one-item"
+    className: "number-one-item"
   }, " ", state_1["default"].Wallet.lengthRows + 1, " "), react_1["default"].createElement("td", {
     className: "data-new-one-item"
   }, react_1["default"].createElement("input", {
@@ -3554,9 +3550,9 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var state_1 = __importDefault(__webpack_require__(/*! ../../../../state */ "./resources/js/state/index.ts"));
 
@@ -3566,10 +3562,10 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
       setlistRowsWallet = _a[1];
 
   react_1.useEffect(function () {
-    state_1["default"].Wallet.startOneWalet().then(function (data) {
+    state_1["default"].Wallet.startOneWallet().then(function (data) {
       if (data === "Error") {
         var messageError = react_1["default"].createElement("tr", {
-          className: "error-one-walet"
+          className: "error-one-wallet"
         }, react_1["default"].createElement("td", {
           colSpan: 5
         }, "\u0427\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443"));
@@ -3601,10 +3597,10 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
     var result = data.map(function (item, i) {
       var dataOneRow = new Date(item["created_at_time"]);
       return react_1["default"].createElement("tr", {
-        key: "row-walet-" + i,
+        key: "row-wallet-" + i,
         className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? "hide-row" : ""
       }, react_1["default"].createElement("td", {
-        className: "namber-one-item"
+        className: "number-one-item"
       }, " ", i + 1, " "), react_1["default"].createElement("td", {
         className: "data-item"
       }, state_1["default"].Wallet.addZero(dataOneRow.getDate()) + "." + state_1["default"].Wallet.addZero(dataOneRow.getMonth() + 1) + "." + dataOneRow.getFullYear()), react_1["default"].createElement("td", {
@@ -3616,7 +3612,7 @@ var TableOneWallet = mobx_react_lite_1.observer(function () {
       }, react_1["default"].createElement("img", {
         src: "../images/people.svg",
         alt: "icon-user",
-        title: item.autor.name
+        title: item.autour.name
       })));
     });
     setlistRowsWallet(result);
@@ -3681,13 +3677,13 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var state_1 = __importDefault(__webpack_require__(/*! ../../../../state */ "./resources/js/state/index.ts"));
 
 __webpack_require__(/*! ../../../OneEstimate/PaginationRows/_PaginationRows.scss */ "./resources/js/components/OneEstimate/PaginationRows/_PaginationRows.scss");
-
-var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
 var PaginationRows = mobx_react_lite_1.observer(function () {
   var _a = react_1.useState(),
@@ -3845,11 +3841,11 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
+var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 __webpack_require__(/*! ./_PaginationRows.scss */ "./resources/js/components/PaginationRows/_PaginationRows.scss");
-
-var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
 
 var PaginationRows = mobx_react_lite_1.observer(function (props) {
   var _a = react_1.useState([]),
@@ -3907,9 +3903,9 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 __webpack_require__(/*! ./_AccessList.scss */ "./resources/js/components/PopUp/AccessList/_AccessList.scss");
 
@@ -4220,9 +4216,9 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var UserCheckInAndAuth_1 = __importDefault(__webpack_require__(/*! ../UserCheckInAndAuth/UserCheckInAndAuth */ "./resources/js/components/UserCheckInAndAuth/UserCheckInAndAuth.tsx"));
 
@@ -4235,8 +4231,8 @@ var Registration = mobx_react_lite_1.observer(function (props) {
       image: false,
       type: "submit"
     },
-    question: "Уже есть аккунт?",
-    addressLink: "аuthentication",
+    question: "Уже есть аккаунт?",
+    addressLink: "authentication",
     callbackSend: function callbackSend() {
       console.log("hello");
     }
@@ -4306,7 +4302,7 @@ var UserCheckInAndAuth = mobx_react_lite_1.observer(function (props) {
     type: "text",
     className: "input-text-form-user"
   }), props.repeatPassword ? react_1["default"].createElement("div", {
-    className: "wrapper-reset-pasvord"
+    className: "wrapper-reset-password"
   }, react_1["default"].createElement("p", null, "\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u0435 \u0435\u0449\u0451 \u0440\u0430\u0437 \u043F\u0430\u0440\u043E\u043B\u044C"), react_1["default"].createElement("input", {
     type: "text",
     className: "input-text-form-user"
@@ -4315,7 +4311,7 @@ var UserCheckInAndAuth = mobx_react_lite_1.observer(function (props) {
   }, react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, props.buttonSend)))), react_1["default"].createElement("p", {
     className: "redirect-link"
   }, props.question, " ", react_1["default"].createElement(react_router_dom_1.Link, {
-    to: "/" + props.adressLink
+    to: "/" + props.addressLink
   }, "\u041A\u043B\u0438\u043A\u043D\u0438\u0442\u0435 \u0441\u044E\u0434\u0430"), " ")));
 });
 exports.default = UserCheckInAndAuth;
@@ -4356,7 +4352,7 @@ function () {
     this.newUser = "";
     this.newUserId = 0;
     this.AccessNewUser = "";
-    this.allDataUsersSystems = [];
+    this.allDataUsersSystems = new Array();
 
     this.userSearch = function (event) {
       _this.newUser = event.target.value;
@@ -4364,12 +4360,12 @@ function () {
 
     this.addUser = function (event) {
       var newUserChanged = event.currentTarget.firstElementChild.lastElementChild;
-      _this.newUserId = newUserChanged.getAttribute('data-id');
+      _this.newUserId = newUserChanged.getAttribute("data-id");
       _this.newUser = newUserChanged.textContent;
     };
 
     this.requestAddUser = function () {
-      axios_1["default"].post("http://localhost:8000/" + 'add-new-user-wallet', {
+      axios_1["default"].post("http://localhost:8000/" + "add-new-user-wallet", {
         id: index_1["default"].Wallet.idWallet,
         newUser: _this.newUserId,
         AccessNewUser: _this.AccessNewUser
@@ -4378,7 +4374,7 @@ function () {
           index_1["default"].Wallet.allUsers.push({
             userName: _this.newUser,
             userId: _this.newUserId,
-            debitСredit: 0
+            debitCredit: 0
           });
           _this.newUserId = 0;
           _this.newUser = "";
@@ -4403,7 +4399,7 @@ function () {
   }
 
   AddNewUserWallet.prototype.requestUsersSystems = function () {
-    var result = axios_1["default"].post("http://localhost:8000/" + 'all-users-system', {
+    var result = axios_1["default"].post("http://localhost:8000/" + "all-users-system", {
       id: index_1["default"].Wallet.idWallet
     }).then(function (response) {
       if (response.status === 200) {
@@ -4420,6 +4416,134 @@ function () {
 }();
 
 exports.default = AddNewUserWallet;
+
+/***/ }),
+
+/***/ "./resources/js/state/CreationEditingEstimates.ts":
+/*!********************************************************!*\
+  !*** ./resources/js/state/CreationEditingEstimates.ts ***!
+  \********************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+
+var mobx_1 = __webpack_require__(/*! mobx */ "./node_modules/mobx/dist/mobx.esm.js");
+
+var CreationEditingEstimates =
+/** @class */
+function () {
+  function CreationEditingEstimates() {
+    var _this = this;
+
+    this.newNameEstimate = "";
+
+    this.createNewEstimate = function () {
+      var result = axios_1["default"].post("http://localhost:8000/" + "new-estimate", {
+        name: _this.newNameEstimate,
+        idUser: 9
+      }).then(function (response) {
+        if (response.status === 200) {
+          _this.newNameEstimate = "";
+          return response.data;
+        }
+      }, function (response) {
+        console.log("error request " + response);
+        return "Error";
+      });
+      return result;
+    };
+
+    this.onChangeFnEstimateName = function (event) {
+      _this.newNameEstimate = event.target.value;
+    };
+
+    mobx_1.makeObservable(this, {
+      newNameEstimate: mobx_1.observable,
+      createNewEstimate: mobx_1.action,
+      onChangeFnEstimateName: mobx_1.action
+    });
+  }
+
+  return CreationEditingEstimates;
+}();
+
+exports.default = CreationEditingEstimates;
+
+/***/ }),
+
+/***/ "./resources/js/state/CreationEditingWallets.ts":
+/*!******************************************************!*\
+  !*** ./resources/js/state/CreationEditingWallets.ts ***!
+  \******************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+
+var mobx_1 = __webpack_require__(/*! mobx */ "./node_modules/mobx/dist/mobx.esm.js");
+
+var CreationEditingWallets =
+/** @class */
+function () {
+  function CreationEditingWallets() {
+    var _this = this;
+
+    this.newNameWallet = "";
+
+    this.createNewWallet = function () {
+      var result = axios_1["default"].post("http://localhost:8000/" + "new-wallet", {
+        name: _this.newNameWallet,
+        idUser: 9
+      }).then(function (response) {
+        _this.newNameWallet = "";
+        return response.data;
+      }, function (response) {
+        console.log("error request " + response);
+        return "Error";
+      });
+      return result;
+    };
+
+    this.onChangeFnWalletName = function (event) {
+      _this.newNameWallet = event.target.value;
+    };
+
+    mobx_1.makeObservable(this, {
+      newNameWallet: mobx_1.observable,
+      createNewWallet: mobx_1.action,
+      onChangeFnWalletName: mobx_1.action
+    });
+  }
+
+  return CreationEditingWallets;
+}();
+
+exports.default = CreationEditingWallets;
 
 /***/ }),
 
@@ -4585,13 +4709,9 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var mobx_1 = __webpack_require__(/*! mobx */ "./node_modules/mobx/dist/mobx.esm.js");
-
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 
-mobx_1.configure({
-  enforceActions: "never"
-});
+var mobx_1 = __webpack_require__(/*! mobx */ "./node_modules/mobx/dist/mobx.esm.js");
 
 var Estimate =
 /** @class */
@@ -4612,8 +4732,8 @@ function () {
     this.activePagination = 0;
     this.validationNewRow = true;
     this.validationNewRowCost = true;
-    this.messegeNewRow = "";
-    this.messegeNewRowCost = "";
+    this.messageNewRow = "";
+    this.messageNewRowCost = "";
 
     this.callbackPaginationArray = function (event) {
       var textContent = event.target.textContent;
@@ -4658,7 +4778,7 @@ function () {
       var _this = this;
 
       return __generator(this, function (_a) {
-        result = axios_1["default"].post("http://localhost:8000/" + 'one-estimates', {
+        result = axios_1["default"].post("http://localhost:8000/" + "one-estimates", {
           id: this.idEstimate
         }).then(function (response) {
           _this.nameEstimate = response.data[0].name;
@@ -4690,20 +4810,20 @@ function () {
   Estimate.prototype.validationAdd = function () {
     if (this.newRow.length < 2) {
       this.validationNewRow = true;
-      this.messegeNewRow = "Обязательное поле для заполнение, необходимо использовать не менее двух символов.";
+      this.messageNewRow = "Обязательное поле для заполнение, необходимо использовать не менее двух символов.";
     } else if (this.newRow.length > 150) {
       this.validationNewRow = true;
-      this.messegeNewRow = "Поле не может быть более 150 символов.";
+      this.messageNewRow = "Поле не может быть более 150 символов.";
     } else {
       this.validationNewRow = false;
     }
 
     if (Number.isNaN(Number(this.newRowCost))) {
       this.validationNewRowCost = true;
-      this.messegeNewRowCost = "Необходимо ввести число.";
+      this.messageNewRowCost = "Необходимо ввести число.";
     } else if (Number(this.newRowCost) <= 0) {
       this.validationNewRowCost = true;
-      this.messegeNewRowCost = "Введите число больше 0";
+      this.messageNewRowCost = "Введите число больше 0";
     } else {
       this.validationNewRowCost = false;
     }
@@ -4713,7 +4833,7 @@ function () {
     var _this = this;
 
     var id_user = "9";
-    var result = axios_1["default"].post("http://localhost:8000/" + 'write-one-estimates', {
+    axios_1["default"].post("http://localhost:8000/" + "write-one-estimates", {
       id: this.idEstimate,
       name: this.newRow,
       cost: this.newRowCost,
@@ -4736,7 +4856,7 @@ function () {
   Estimate.prototype.deleteRow = function (numberRow) {
     var _this = this;
 
-    axios_1["default"].post("http://localhost:8000/" + 'delete-estimate', {
+    axios_1["default"].post("http://localhost:8000/" + "delete-estimate", {
       id_row: numberRow
     }).then(function (response) {
       if (response.status === 200) {
@@ -4849,7 +4969,7 @@ function () {
   GeneralData.prototype.allEstimates = function () {
     var _this = this;
 
-    var result = axios_1["default"].post("http://localhost:8000/" + 'all-estimates', {
+    var result = axios_1["default"].post("http://localhost:8000/" + "all-estimates", {
       id: this.idUser
     }).then(function (response) {
       var countNameEstimates = Math.ceil(response.data.length / 10);
@@ -4872,7 +4992,7 @@ function () {
   GeneralData.prototype.allWallets = function () {
     var _this = this;
 
-    var result = axios_1["default"].post("http://localhost:8000/" + 'all-wallets', {
+    var result = axios_1["default"].post("http://localhost:8000/" + "all-wallets", {
       id: this.idUser
     }).then(function (response) {
       var countPaginationWallets = Math.ceil(response.data.length / 10);
@@ -4950,7 +5070,7 @@ function () {
       numberPagination: mobx_1.observable,
       activePagination: mobx_1.observable,
       nameWallet: mobx_1.observable,
-      startOneWalet: mobx_1.action,
+      startOneWallet: mobx_1.action,
       scopeOneWallet: mobx_1.action,
       addZero: mobx_1.action,
       addNewRow: mobx_1.action,
@@ -4962,12 +5082,12 @@ function () {
     return number < 10 ? "0" + number : number;
   };
 
-  Wallet.prototype.startOneWalet = function () {
+  Wallet.prototype.startOneWallet = function () {
     var _this = this;
 
     var nowDay = new Date();
     this.newDataRaw = nowDay.getFullYear() + "-" + this.addZero(nowDay.getMonth() + 1) + "-" + this.addZero(nowDay.getDate());
-    var result = axios_1["default"].post("http://localhost:8000/" + 'one-wallets', {
+    var result = axios_1["default"].post("http://localhost:8000/" + "one-wallets", {
       id: this.idWallet
     }).then(function (response) {
       var summAllRows = response.data.rows.reduce(function (sum, elem) {
@@ -4999,7 +5119,7 @@ function () {
       cost: this.newRowCost,
       namesWalletsId: this.idWallet
     };
-    axios_1["default"].post("http://localhost:8000/" + 'add-new-row-wallet', {
+    axios_1["default"].post("http://localhost:8000/" + "add-new-row-wallet", {
       data: data
     }).then(function (response) {
       if (response.status === 200) {
@@ -5013,7 +5133,7 @@ function () {
   };
 
   Wallet.prototype.scopeOneWallet = function () {
-    var result = axios_1["default"].post("http://localhost:8000/" + 'scope-one-wallet', {
+    var result = axios_1["default"].post("http://localhost:8000/" + "scope-one-wallet", {
       id: this.idWallet
     }).then(function (response) {
       if (response.status === 200) {
@@ -5029,9 +5149,9 @@ function () {
   Wallet.prototype.gradeUser = function (item) {
     var grade = "";
 
-    if (item['edit_permission'] === 1 && item['delete_table'] === 1) {
+    if (item["edit_permission"] === 1 && item["delete_table"] === 1) {
       grade = "Владелец";
-    } else if (item['edit_row'] === 1 && item['delete_row'] === 1) {
+    } else if (item["edit_row"] === 1 && item["delete_row"] === 1) {
       grade = "Редактор";
     } else {
       grade = "Пользователь";
@@ -5072,9 +5192,9 @@ var Estimate_1 = __importDefault(__webpack_require__(/*! ./Estimate */ "./resour
 
 var Wallet_1 = __importDefault(__webpack_require__(/*! ./Wallet */ "./resources/js/state/Wallet.tsx"));
 
-var _reationEditingEstimates_1 = __importDefault(__webpack_require__(/*! ./СreationEditingEstimates */ "./resources/js/state/СreationEditingEstimates.ts"));
+var CreationEditingEstimates_1 = __importDefault(__webpack_require__(/*! ./CreationEditingEstimates */ "./resources/js/state/CreationEditingEstimates.ts"));
 
-var _reationEditingWallets_1 = __importDefault(__webpack_require__(/*! ./СreationEditingWallets */ "./resources/js/state/СreationEditingWallets.ts"));
+var CreationEditingWallets_1 = __importDefault(__webpack_require__(/*! ./CreationEditingWallets */ "./resources/js/state/CreationEditingWallets.ts"));
 
 var AddNewUserWallet_1 = __importDefault(__webpack_require__(/*! ./AddNewUserWallet */ "./resources/js/state/AddNewUserWallet.ts"));
 
@@ -5082,139 +5202,11 @@ var store = {
   GeneralData: new GeneralData_1["default"](),
   Estimate: new Estimate_1["default"](),
   Wallet: new Wallet_1["default"](),
-  СreationEditingEstimates: new _reationEditingEstimates_1["default"](),
-  СreationEditingWallets: new _reationEditingWallets_1["default"](),
+  CreationEditingEstimates: new CreationEditingEstimates_1["default"](),
+  CreationEditingWallets: new CreationEditingWallets_1["default"](),
   AddNewUserWallet: new AddNewUserWallet_1["default"]()
 };
 exports.default = store;
-
-/***/ }),
-
-/***/ "./resources/js/state/СreationEditingEstimates.ts":
-/*!********************************************************!*\
-  !*** ./resources/js/state/СreationEditingEstimates.ts ***!
-  \********************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-
-var mobx_1 = __webpack_require__(/*! mobx */ "./node_modules/mobx/dist/mobx.esm.js");
-
-var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
-
-var СreationEditingEstimates =
-/** @class */
-function () {
-  function СreationEditingEstimates() {
-    var _this = this;
-
-    this.newNameEstimate = "";
-
-    this.createNewEstimate = function () {
-      var result = axios_1["default"].post("http://localhost:8000/" + 'new-estimate', {
-        name: _this.newNameEstimate,
-        idUser: 9
-      }).then(function (response) {
-        if (response.status === 200) {
-          _this.newNameEstimate = "";
-          return response.data;
-        }
-      }, function (response) {
-        console.log("error request " + response);
-        return "Error";
-      });
-      return result;
-    };
-
-    this.onChangeFnEstimateName = function (event) {
-      _this.newNameEstimate = event.target.value;
-    };
-
-    mobx_1.makeObservable(this, {
-      newNameEstimate: mobx_1.observable,
-      createNewEstimate: mobx_1.action,
-      onChangeFnEstimateName: mobx_1.action
-    });
-  }
-
-  return СreationEditingEstimates;
-}();
-
-exports.default = СreationEditingEstimates;
-
-/***/ }),
-
-/***/ "./resources/js/state/СreationEditingWallets.ts":
-/*!******************************************************!*\
-  !*** ./resources/js/state/СreationEditingWallets.ts ***!
-  \******************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-
-var mobx_1 = __webpack_require__(/*! mobx */ "./node_modules/mobx/dist/mobx.esm.js");
-
-var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
-
-var СreationEditingWallets =
-/** @class */
-function () {
-  function СreationEditingWallets() {
-    var _this = this;
-
-    this.newNameWallet = "";
-
-    this.createNewWallet = function () {
-      var result = axios_1["default"].post("http://localhost:8000/" + 'new-wallet', {
-        name: _this.newNameWallet,
-        idUser: 9
-      }).then(function (response) {
-        _this.newNameWallet = "";
-        return response.data;
-      }, function (response) {
-        console.log("error request " + response);
-        return "Error";
-      });
-      return result;
-    };
-
-    this.onChangeFnWalletName = function (event) {
-      _this.newNameWallet = event.target.value;
-    };
-
-    mobx_1.makeObservable(this, {
-      newNameWallet: mobx_1.observable,
-      createNewWallet: mobx_1.action,
-      onChangeFnWalletName: mobx_1.action
-    });
-  }
-
-  return СreationEditingWallets;
-}();
-
-exports.default = СreationEditingWallets;
 
 /***/ }),
 
@@ -9721,7 +9713,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-list-estimate {\n  background-color: #C4C4C4;\n  padding: 3vw;\n}\n.wrapper-list-estimate .pagination-list-estimate {\n  color: #5354D2;\n  display: flex;\n  justify-content: center;\n}\n.wrapper-list-estimate .pagination-list-estimate div {\n  font-size: 1.5rem;\n  margin: 1rem;\n  align-items: center;\n}\n.wrapper-list-estimate .pagination-list-estimate div img {\n  width: 2rem;\n}\n.wrapper-list-estimate .pagination-list-estimate div:hover {\n  opacity: 0.7;\n  cursor: pointer;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  padding: 3vw;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate h2 {\n  margin: 0;\n  padding-bottom: 1rem;\n  color: #5354D2;\n  font-size: 3rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate {\n  background-color: white;\n  border-radius: 10px;\n  padding: 2vw;\n  margin: 1rem;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate .delete-one-estimate {\n  background-color: #F5F5F5;\n  border: 1px solid #5354D2;\n  border-radius: 5px;\n  width: 2rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate .delete-one-estimate:hover {\n  cursor: pointer;\n  opacity: 0.6;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate table {\n  margin: 1rem 0;\n  width: 100%;\n  border: 1px solid #FDB547;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate table td {\n  padding: 0.5rem;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate table thead td {\n  border-right: 1px solid white;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate table tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate table tbody .namber-one-item {\n  text-align: center;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate table tbody .name-one-item img {\n  margin-left: 1rem;\n  float: right;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate table tbody .name-one-item img:hover {\n  cursor: pointer;\n  opacity: 0.6;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate table tbody .premission-one-item {\n  text-align: center;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate table tbody .premission-one-item img {\n  margin-left: 1rem;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate table tbody .premission-one-item img:hover {\n  cursor: pointer;\n  opacity: 0.6;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate .wrapper-header-estimate {\n  display: flex;\n  justify-content: space-between;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  margin-bottom: 1rem;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate .wrapper-header-estimate .name-estimate {\n  font-size: 2rem;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrappter-one-estimate .wrapper-one-table thead {\n  background-color: #FDB547;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-list-estimate {\n  background-color: #c4c4c4;\n  padding: 3vw;\n}\n.wrapper-list-estimate .pagination-list-estimate {\n  color: #5354d2;\n  display: flex;\n  justify-content: center;\n}\n.wrapper-list-estimate .pagination-list-estimate div {\n  font-size: 1.5rem;\n  margin: 1rem;\n  align-items: center;\n}\n.wrapper-list-estimate .pagination-list-estimate div img {\n  width: 2rem;\n}\n.wrapper-list-estimate .pagination-list-estimate div:hover {\n  opacity: 0.7;\n  cursor: pointer;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate {\n  background-color: #f5f5f5;\n  border-radius: 10px;\n  padding: 3vw;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate h2 {\n  margin: 0;\n  padding-bottom: 1rem;\n  color: #5354d2;\n  font-size: 3rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrapper-one-estimate {\n  background-color: white;\n  border-radius: 10px;\n  padding: 2vw;\n  margin: 1rem;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrapper-one-estimate .delete-one-estimate {\n  background-color: #f5f5f5;\n  border: 1px solid #5354d2;\n  border-radius: 5px;\n  width: 2rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrapper-one-estimate .delete-one-estimate:hover {\n  cursor: pointer;\n  opacity: 0.6;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrapper-one-estimate table {\n  margin: 1rem 0;\n  width: 100%;\n  border: 1px solid #fdb547;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrapper-one-estimate table td {\n  padding: 0.5rem;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrapper-one-estimate table thead td {\n  border-right: 1px solid white;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrapper-one-estimate table tbody td {\n  border: 1px solid #fdb547;\n  padding: 0.5rem;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrapper-one-estimate table tbody .namber-one-item {\n  text-align: center;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrapper-one-estimate table tbody .name-one-item img {\n  margin-left: 1rem;\n  float: right;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrapper-one-estimate table tbody .name-one-item img:hover {\n  cursor: pointer;\n  opacity: 0.6;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrapper-one-estimate table tbody .premission-one-item {\n  text-align: center;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrapper-one-estimate table tbody .premission-one-item img {\n  margin-left: 1rem;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrapper-one-estimate table tbody .premission-one-item img:hover {\n  cursor: pointer;\n  opacity: 0.6;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrapper-one-estimate .wrapper-header-estimate {\n  display: flex;\n  justify-content: space-between;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  margin-bottom: 1rem;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrapper-one-estimate .wrapper-header-estimate .name-estimate {\n  font-size: 2rem;\n}\n.wrapper-list-estimate .wrapper-page-list-estimate .wrapper-one-estimate .wrapper-one-table thead {\n  background-color: #fdb547;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9745,7 +9737,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-all-estimate-wallet {\n  display: flex;\n  justify-content: space-around;\n  background-color: #C4C4C4;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-all-estimate-wallet {\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n  }\n}\n.wrapper-all-estimate-wallet .wapper-estimate, .wrapper-all-estimate-wallet .wapper-wallet {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  align-items: center;\n  padding: 2rem;\n  margin: 1rem;\n  width: 30%;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-all-estimate-wallet .wapper-estimate, .wrapper-all-estimate-wallet .wapper-wallet {\n    width: 40%;\n  }\n}\n@media screen and (max-width: 800px) {\n  .wrapper-all-estimate-wallet .wapper-estimate, .wrapper-all-estimate-wallet .wapper-wallet {\n    width: 60%;\n  }\n}\n@media screen and (max-width: 640px) {\n  .wrapper-all-estimate-wallet .wapper-estimate, .wrapper-all-estimate-wallet .wapper-wallet {\n    width: 80%;\n  }\n}\n.wrapper-all-estimate-wallet .wapper-estimate .wrapper-block-name-list, .wrapper-all-estimate-wallet .wapper-estimate .wrapper-pagination-button-create, .wrapper-all-estimate-wallet .wapper-wallet .wrapper-block-name-list, .wrapper-all-estimate-wallet .wapper-wallet .wrapper-pagination-button-create {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .header-blok-view, .wrapper-all-estimate-wallet .wapper-wallet .header-blok-view {\n  color: #5354D2;\n  font-size: 48px;\n  margin: 1rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-all-estimate-wallet .wapper-estimate .header-blok-view, .wrapper-all-estimate-wallet .wapper-wallet .header-blok-view {\n    margin: 0.4rem;\n  }\n}\n.wrapper-all-estimate-wallet .wapper-estimate .list-estimate, .wrapper-all-estimate-wallet .wapper-estimate .list-wallet, .wrapper-all-estimate-wallet .wapper-wallet .list-estimate, .wrapper-all-estimate-wallet .wapper-wallet .list-wallet {\n  margin: 0;\n  padding: 10px;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .list-estimate li, .wrapper-all-estimate-wallet .wapper-estimate .list-wallet li, .wrapper-all-estimate-wallet .wapper-wallet .list-estimate li, .wrapper-all-estimate-wallet .wapper-wallet .list-wallet li {\n  list-style-type: none;\n  margin-bottom: 10px;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .list-estimate li a, .wrapper-all-estimate-wallet .wapper-estimate .list-wallet li a, .wrapper-all-estimate-wallet .wapper-wallet .list-estimate li a, .wrapper-all-estimate-wallet .wapper-wallet .list-wallet li a {\n  text-decoration: none;\n  color: black;\n  font-size: 1.25rem;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .list-estimate li a:hover, .wrapper-all-estimate-wallet .wapper-estimate .list-wallet li a:hover, .wrapper-all-estimate-wallet .wapper-wallet .list-estimate li a:hover, .wrapper-all-estimate-wallet .wapper-wallet .list-wallet li a:hover {\n  color: #5354D2;\n}\n.wrapper-all-estimate-wallet .wapper-estimate .list-estimate li hide-row, .wrapper-all-estimate-wallet .wapper-estimate .list-wallet li hide-row, .wrapper-all-estimate-wallet .wapper-wallet .list-estimate li hide-row, .wrapper-all-estimate-wallet .wapper-wallet .list-wallet li hide-row {\n  display: none;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-all-estimate-wallet {\n  display: flex;\n  justify-content: space-around;\n  background-color: #c4c4c4;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-all-estimate-wallet {\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n  }\n}\n.wrapper-all-estimate-wallet .wrapper-estimate,\n.wrapper-all-estimate-wallet .wrapper-wallet {\n  background-color: #f5f5f5;\n  border-radius: 10px;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  align-items: center;\n  padding: 2rem;\n  margin: 1rem;\n  width: 30%;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-all-estimate-wallet .wrapper-estimate,\n.wrapper-all-estimate-wallet .wrapper-wallet {\n    width: 40%;\n  }\n}\n@media screen and (max-width: 800px) {\n  .wrapper-all-estimate-wallet .wrapper-estimate,\n.wrapper-all-estimate-wallet .wrapper-wallet {\n    width: 60%;\n  }\n}\n@media screen and (max-width: 640px) {\n  .wrapper-all-estimate-wallet .wrapper-estimate,\n.wrapper-all-estimate-wallet .wrapper-wallet {\n    width: 80%;\n  }\n}\n.wrapper-all-estimate-wallet .wrapper-estimate .wrapper-block-name-list,\n.wrapper-all-estimate-wallet .wrapper-estimate .wrapper-pagination-button-create,\n.wrapper-all-estimate-wallet .wrapper-wallet .wrapper-block-name-list,\n.wrapper-all-estimate-wallet .wrapper-wallet .wrapper-pagination-button-create {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.wrapper-all-estimate-wallet .wrapper-estimate .header-blok-view,\n.wrapper-all-estimate-wallet .wrapper-wallet .header-blok-view {\n  color: #5354d2;\n  font-size: 48px;\n  margin: 1rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-all-estimate-wallet .wrapper-estimate .header-blok-view,\n.wrapper-all-estimate-wallet .wrapper-wallet .header-blok-view {\n    margin: 0.4rem;\n  }\n}\n.wrapper-all-estimate-wallet .wrapper-estimate .list-estimate,\n.wrapper-all-estimate-wallet .wrapper-estimate .list-wallet,\n.wrapper-all-estimate-wallet .wrapper-wallet .list-estimate,\n.wrapper-all-estimate-wallet .wrapper-wallet .list-wallet {\n  margin: 0;\n  padding: 10px;\n}\n.wrapper-all-estimate-wallet .wrapper-estimate .list-estimate li,\n.wrapper-all-estimate-wallet .wrapper-estimate .list-wallet li,\n.wrapper-all-estimate-wallet .wrapper-wallet .list-estimate li,\n.wrapper-all-estimate-wallet .wrapper-wallet .list-wallet li {\n  list-style-type: none;\n  margin-bottom: 10px;\n}\n.wrapper-all-estimate-wallet .wrapper-estimate .list-estimate li a,\n.wrapper-all-estimate-wallet .wrapper-estimate .list-wallet li a,\n.wrapper-all-estimate-wallet .wrapper-wallet .list-estimate li a,\n.wrapper-all-estimate-wallet .wrapper-wallet .list-wallet li a {\n  text-decoration: none;\n  color: black;\n  font-size: 1.25rem;\n}\n.wrapper-all-estimate-wallet .wrapper-estimate .list-estimate li a:hover,\n.wrapper-all-estimate-wallet .wrapper-estimate .list-wallet li a:hover,\n.wrapper-all-estimate-wallet .wrapper-wallet .list-estimate li a:hover,\n.wrapper-all-estimate-wallet .wrapper-wallet .list-wallet li a:hover {\n  color: #5354d2;\n}\n.wrapper-all-estimate-wallet .wrapper-estimate .list-estimate li hide-row,\n.wrapper-all-estimate-wallet .wrapper-estimate .list-wallet li hide-row,\n.wrapper-all-estimate-wallet .wrapper-wallet .list-estimate li hide-row,\n.wrapper-all-estimate-wallet .wrapper-wallet .list-wallet li hide-row {\n  display: none;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9817,7 +9809,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-footer {\n  color: #5354D2;\n  background-color: #F5F5F5;\n  min-height: 120px;\n  margin: 0;\n  padding: 0;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.wrapper-footer .enter-in-system {\n  display: flex;\n  flex-direction: row;\n  align-items: flex-end;\n  text-decoration: none;\n  margin: 10px 10px;\n}\n.wrapper-footer .enter-in-system p {\n  padding: 0;\n  margin: 0 0 0 10px;\n}\n.wrapper-footer .enter-in-system p:hover {\n  color: #FE7BA7;\n}\n.wrapper-footer .links-info {\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-footer .links-info a {\n  text-decoration: none;\n  margin: 5px 10px;\n  color: #5354D2;\n}\n.wrapper-footer .links-info a:hover {\n  color: #FE7BA7;\n}\n.wrapper-footer .links-info:active {\n  color: white;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-footer {\n  color: #5354d2;\n  background-color: #f5f5f5;\n  min-height: 120px;\n  margin: 0;\n  padding: 0;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.wrapper-footer .enter-in-system {\n  display: flex;\n  flex-direction: row;\n  align-items: flex-end;\n  text-decoration: none;\n  margin: 10px 10px;\n}\n.wrapper-footer .enter-in-system p {\n  padding: 0;\n  margin: 0 0 0 10px;\n}\n.wrapper-footer .enter-in-system p:hover {\n  color: #fe7ba7;\n}\n.wrapper-footer .links-info {\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-footer .links-info a {\n  text-decoration: none;\n  margin: 5px 10px;\n  color: #5354d2;\n}\n.wrapper-footer .links-info a:hover {\n  color: #fe7ba7;\n}\n.wrapper-footer .links-info:active {\n  color: white;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9841,7 +9833,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-header {\n  height: 130px;\n  background-color: #F5F5F5;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-header {\n    height: 100px;\n  }\n}\n.wrapper-header a {\n  text-decoration: none;\n}\n.wrapper-header a .logo-header {\n  color: #FE7BA7;\n  font-size: 70px;\n  margin: 0;\n  padding: 0;\n  font-family: \"Podkova\", serif;\n  margin-left: 20px;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-header a .logo-header {\n    font-size: 60px;\n  }\n}\n.wrapper-header a .logo-header:hover {\n  cursor: pointer;\n}\n.wrapper-header .image-header {\n  height: 100%;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-header {\n  height: 130px;\n  background-color: #f5f5f5;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-header {\n    height: 100px;\n  }\n}\n.wrapper-header a {\n  text-decoration: none;\n}\n.wrapper-header a .logo-header {\n  color: #fe7ba7;\n  font-size: 70px;\n  margin: 0;\n  padding: 0;\n  font-family: \"Podkova\", serif;\n  margin-left: 20px;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-header a .logo-header {\n    font-size: 60px;\n  }\n}\n.wrapper-header a .logo-header:hover {\n  cursor: pointer;\n}\n.wrapper-header .image-header {\n  height: 100%;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9865,7 +9857,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".table-add-new-value .warning-add-one-item {\n  background-color: blueviolet;\n  color: cadetblue;\n}\n\n.new-one-item span, .new-cost-one-item span {\n  color: #FE7BA7;\n  margin-top: 15px;\n  height: 10px;\n  font-size: 0.8rem;\n  position: absolute;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".table-add-new-value .warning-add-one-item {\n  background-color: blueviolet;\n  color: cadetblue;\n}\n\n.new-one-item span,\n.new-cost-one-item span {\n  color: #fe7ba7;\n  margin-top: 15px;\n  height: 10px;\n  font-size: 0.8rem;\n  position: absolute;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9913,16 +9905,16 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-one-estimate {\n  background-color: #C4C4C4;\n  padding: 3vw;\n}\n.wrapper-one-estimate .one-estimate {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  padding: 3vw;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate {\n  display: flex;\n  justify-content: space-between;\n  align-items: baseline;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate h2 {\n  margin: 0;\n  padding-bottom: 1rem;\n  color: #5354D2;\n  font-size: 3rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-one-estimate .one-estimate .wrapper-header-one-estimate h2 {\n    font-size: 2rem;\n    padding-bottom: 0.3rem;\n  }\n}\n@media screen and (max-width: 640px) {\n  .wrapper-one-estimate .one-estimate .wrapper-header-one-estimate h2 {\n    font-size: 24px;\n    padding-bottom: 0;\n  }\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img {\n  background-color: white;\n  border-radius: 5px;\n  padding: 0.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img:hover {\n  cursor: pointer;\n  opacity: 0.8;\n  filter: grayscale(54%);\n}\n.wrapper-one-estimate .one-estimate .table-list-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-list-value td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.empty-head-item {\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.name-head-one-item {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.cost-head-one-item {\n  border-left: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-one-estimate .one-estimate .table-list-value tbody td {\n    font-size: 16px;\n  }\n}\n@media screen and (max-width: 640px) {\n  .wrapper-one-estimate .one-estimate .table-list-value tbody td {\n    font-size: 14px;\n  }\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.name-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.error-table {\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.display-none {\n  display: none;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody .trash-image img:hover {\n  cursor: pointer;\n  opacity: 0.8;\n  filter: grayscale(54%);\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.title-cost-all-item {\n  float: right;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.cost-all-item {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  background-color: #F5F5F5;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:active {\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:focus {\n  outline: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item {\n  background-color: #5354D2;\n  border: none;\n  border-radius: 10px;\n  display: inline;\n  width: 10%;\n  float: right;\n  padding: 1rem;\n  display: flex;\n  margin: 0rem;\n  margin-top: 1rem;\n  padding: 0.4rem;\n  justify-content: center;\n  color: white;\n  font-size: 1.8rem;\n  outline: none;\n  font-weight: bold;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:hover {\n  background-color: #FE7BA7;\n  cursor: pointer;\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:active {\n  border: none;\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:focus {\n  background-color: #FDB547;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:disabled {\n  background-color: #C4C4C4;\n}\n\n@media print {\n  body * {\n    visibility: hidden;\n  }\n\n  .section-to-print-table, .section-to-print-table *, .section-to-print, .section-to-print * {\n    visibility: visible;\n  }\n\n  .section-to-print {\n    position: absolute;\n    left: 0;\n    top: 0;\n  }\n\n  .section-to-print-table {\n    position: absolute;\n    left: 0;\n    top: 50px;\n  }\n  .section-to-print-table tr {\n    display: table-row !important;\n  }\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-one-estimate {\n  background-color: #c4c4c4;\n  padding: 3vw;\n}\n.wrapper-one-estimate .one-estimate {\n  background-color: #f5f5f5;\n  border-radius: 10px;\n  padding: 3vw;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate {\n  display: flex;\n  justify-content: space-between;\n  align-items: baseline;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate h2 {\n  margin: 0;\n  padding-bottom: 1rem;\n  color: #5354d2;\n  font-size: 3rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-one-estimate .one-estimate .wrapper-header-one-estimate h2 {\n    font-size: 2rem;\n    padding-bottom: 0.3rem;\n  }\n}\n@media screen and (max-width: 640px) {\n  .wrapper-one-estimate .one-estimate .wrapper-header-one-estimate h2 {\n    font-size: 24px;\n    padding-bottom: 0;\n  }\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img {\n  background-color: white;\n  border-radius: 5px;\n  padding: 0.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrapper-one-estimate .one-estimate .wrapper-header-one-estimate img:hover {\n  cursor: pointer;\n  opacity: 0.8;\n  filter: grayscale(54%);\n}\n.wrapper-one-estimate .one-estimate .table-list-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-list-value td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td {\n  border: 1px solid #fdb547;\n  background-color: #fdb547;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.empty-head-item {\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.name-head-one-item {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value thead td.cost-head-one-item {\n  border-left: 1px solid white;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td {\n  border: 1px solid #fdb547;\n  padding: 0.5rem;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-one-estimate .one-estimate .table-list-value tbody td {\n    font-size: 16px;\n  }\n}\n@media screen and (max-width: 640px) {\n  .wrapper-one-estimate .one-estimate .table-list-value tbody td {\n    font-size: 14px;\n  }\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.number-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.name-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody td.cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.error-table {\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody tr.display-none {\n  display: none;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tbody .trash-image img:hover {\n  cursor: pointer;\n  opacity: 0.8;\n  filter: grayscale(54%);\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td {\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.title-cost-all-item {\n  float: right;\n}\n.wrapper-one-estimate .one-estimate .table-list-value tfoot td.cost-all-item {\n  border: 1px solid #fdb547;\n  background-color: #fdb547;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td {\n  border: 1px solid #fdb547;\n  padding: 0.5rem;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-one-item {\n  width: 70%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td.new-cost-one-item {\n  width: 20%;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  background-color: #f5f5f5;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:active {\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .table-add-new-value tbody td input:focus {\n  outline: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item {\n  background-color: #5354d2;\n  border: none;\n  border-radius: 10px;\n  display: inline;\n  width: 10%;\n  float: right;\n  padding: 1rem;\n  display: flex;\n  margin: 0rem;\n  margin-top: 1rem;\n  padding: 0.4rem;\n  justify-content: center;\n  color: white;\n  font-size: 1.8rem;\n  outline: none;\n  font-weight: bold;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:hover {\n  background-color: #fe7ba7;\n  cursor: pointer;\n  border: none;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:active {\n  border: none;\n  background-color: #fdb547;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:focus {\n  background-color: #fdb547;\n}\n.wrapper-one-estimate .one-estimate .button-add-new-item:disabled {\n  background-color: #c4c4c4;\n}\n\n@media print {\n  body * {\n    visibility: hidden;\n  }\n\n  .section-to-print-table,\n.section-to-print-table *,\n.section-to-print,\n.section-to-print * {\n    visibility: visible;\n  }\n\n  .section-to-print {\n    position: absolute;\n    left: 0;\n    top: 0;\n  }\n\n  .section-to-print-table {\n    position: absolute;\n    left: 0;\n    top: 50px;\n  }\n  .section-to-print-table tr {\n    display: table-row !important;\n  }\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneWallet/BurdenSharing/TableDebetCredit/_TableDebetCredit.scss":
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneWallet/BurdenSharing/TableDebitCredit/_TableDebitCredit.scss":
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneWallet/BurdenSharing/TableDebetCredit/_TableDebetCredit.scss ***!
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneWallet/BurdenSharing/TableDebitCredit/_TableDebitCredit.scss ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
@@ -9961,7 +9953,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wapper-user-table {\n  display: flex;\n  flex-direction: column;\n  align-items: flex-end;\n  width: 40%;\n}\n.wapper-user-table .table-user .head-name-user-table {\n  border-right: 1px solid white;\n}\n.wapper-user-table .table-user .head-premission-user-table {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n}\n.wapper-user-table .table-user .head-contribution-user-table {\n  border-left: 1px solid white;\n}\n.wapper-user-table .table-user .contribution-user-table {\n  text-align: center;\n}\n.wapper-user-table .table-user .contribution-user-table img {\n  margin-left: 5px;\n}\n.wapper-user-table .table-user .contribution-user-table img:hover {\n  cursor: pointer;\n  opacity: 0.6;\n}\n.wapper-user-table .button-add-new-user {\n  display: flex;\n  justify-content: center;\n  background-color: #5354D2;\n  width: 180px;\n  border-radius: 10px;\n}\n.wapper-user-table .button-add-new-user p {\n  color: white;\n  margin: 10px 0;\n  font-size: 1.3rem;\n}\n.wapper-user-table .button-add-new-user img {\n  margin: 0 10px;\n}\n.wapper-user-table .button-add-new-user:hover {\n  background-color: #FE7BA7;\n  cursor: pointer;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-user-table {\n  display: flex;\n  flex-direction: column;\n  align-items: flex-end;\n  width: 40%;\n}\n.wrapper-user-table .table-user .head-name-user-table {\n  border-right: 1px solid white;\n}\n.wrapper-user-table .table-user .head-premission-user-table {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n}\n.wrapper-user-table .table-user .head-contribution-user-table {\n  border-left: 1px solid white;\n}\n.wrapper-user-table .table-user .contribution-user-table {\n  text-align: center;\n}\n.wrapper-user-table .table-user .contribution-user-table img {\n  margin-left: 5px;\n}\n.wrapper-user-table .table-user .contribution-user-table img:hover {\n  cursor: pointer;\n  opacity: 0.6;\n}\n.wrapper-user-table .button-add-new-user {\n  display: flex;\n  justify-content: center;\n  background-color: #5354d2;\n  width: 180px;\n  border-radius: 10px;\n}\n.wrapper-user-table .button-add-new-user p {\n  color: white;\n  margin: 10px 0;\n  font-size: 1.3rem;\n}\n.wrapper-user-table .button-add-new-user img {\n  margin: 0 10px;\n}\n.wrapper-user-table .button-add-new-user:hover {\n  background-color: #fe7ba7;\n  cursor: pointer;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9985,7 +9977,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".table-add-new-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.table-add-new-value tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.table-add-new-value tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.table-add-new-value tbody td.data-new-one-item {\n  width: 25%;\n}\n.table-add-new-value tbody td.data-new-one-item input {\n  width: 100%;\n  padding: 0;\n  margin: 0;\n}\n.table-add-new-value tbody td.data-new-one-item input::-webkit-calendar-picker-indicator {\n  padding: 0rem;\n  margin: 0rem;\n}\n.table-add-new-value tbody td.new-one-item {\n  width: 45%;\n}\n.table-add-new-value tbody td.new-cost-one-item {\n  width: 20%;\n}\n.table-add-new-value tbody td.user-write-item {\n  width: 5%;\n}\n.table-add-new-value tbody td input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n}\n.table-add-new-value tbody td input:active {\n  border: none;\n}\n.table-add-new-value tbody td input:focus {\n  outline: none;\n}\n\n.button-add-new-item {\n  background-color: #5354D2;\n  border-radius: 10px;\n  display: inline;\n  width: 10%;\n  float: right;\n  padding: 1rem;\n  display: flex;\n  justify-content: center;\n}\n.button-add-new-item:hover {\n  background-color: #FE7BA7;\n  cursor: pointer;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".table-add-new-value {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.table-add-new-value tbody td {\n  border: 1px solid #fdb547;\n  padding: 0.5rem;\n}\n.table-add-new-value tbody td.number-one-item {\n  width: 5%;\n  text-align: center;\n}\n.table-add-new-value tbody td.data-new-one-item {\n  width: 25%;\n}\n.table-add-new-value tbody td.data-new-one-item input {\n  width: 100%;\n  padding: 0;\n  margin: 0;\n}\n.table-add-new-value tbody td.data-new-one-item input::-webkit-calendar-picker-indicator {\n  padding: 0rem;\n  margin: 0rem;\n}\n.table-add-new-value tbody td.new-one-item {\n  width: 45%;\n}\n.table-add-new-value tbody td.new-cost-one-item {\n  width: 20%;\n}\n.table-add-new-value tbody td.user-write-item {\n  width: 5%;\n}\n.table-add-new-value tbody td input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  font-family: \"Podkova\", serif;\n  font-size: 18px;\n}\n.table-add-new-value tbody td input:active {\n  border: none;\n}\n.table-add-new-value tbody td input:focus {\n  outline: none;\n}\n\n.button-add-new-item {\n  background-color: #5354d2;\n  border-radius: 10px;\n  display: inline;\n  width: 10%;\n  float: right;\n  padding: 1rem;\n  display: flex;\n  justify-content: center;\n}\n.button-add-new-item:hover {\n  background-color: #fe7ba7;\n  cursor: pointer;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10009,7 +10001,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".error-one-walet {\n  text-align: center;\n}\n\n.hide-row {\n  display: none;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".error-one-wallet {\n  text-align: center;\n}\n\n.hide-row {\n  display: none;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10033,7 +10025,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-one-wallet {\n  background-color: #C4C4C4;\n  padding: 3vw;\n}\n.wrapper-one-wallet .one-wallet {\n  background-color: #F5F5F5;\n  border-radius: 10px;\n  padding: 3vw;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-one-wallet .one-wallet .wrapper-header-one-wallet {\n  display: flex;\n  justify-content: space-between;\n}\n.wrapper-one-wallet .one-wallet .wrapper-header-one-wallet h2 {\n  margin: 0;\n  padding-bottom: 1rem;\n  color: #5354D2;\n  font-size: 3rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  margin-left: 1rem;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-one-wallet .one-wallet .wrapper-header-one-wallet h2 {\n    font-size: 2rem;\n  }\n}\n.wrapper-one-wallet .one-wallet .wrapper-header-one-wallet img {\n  background-color: #C4C4C4;\n  border: 1px solid #5354D2;\n  border-radius: 5px;\n  padding: 0.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-header-one-wallet img:hover {\n  cursor: pointer;\n  opacity: 0.6;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet {\n  display: flex;\n  justify-content: space-between;\n  align-items: flex-start;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-one-wallet .one-wallet .wrapper-table-wallet {\n    flex-direction: column;\n  }\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .wrapper-tables-list-add, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .wapper-user-table {\n  background-color: white;\n  border-radius: 10px;\n  margin: 1rem;\n  padding: 2rem;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-one-wallet .one-wallet .wrapper-table-wallet .wrapper-tables-list-add, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .wapper-user-table {\n    width: calc(100% - 6rem);\n  }\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit td {\n  padding: 0.5rem;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit td {\n    font-size: 16px;\n  }\n}\n@media screen and (max-width: 640px) {\n  .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit td {\n    font-size: 14px;\n  }\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.empty-head-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.empty-name-user-head-debit-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.empty-head-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.empty-name-user-head-debit-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.empty-head-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.empty-name-user-head-debit-credit {\n  border-right: 1px solid white;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.name-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.column-head-debit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.name-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.column-head-debit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.name-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.column-head-debit {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.cost-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.column-head-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.cost-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.column-head-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.cost-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.column-head-credit {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.data-head-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.data-head-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.data-head-item {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.empty-head-item-user, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.second-side-user-head-debit-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.empty-head-item-user, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.second-side-user-head-debit-credit, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.empty-head-item-user, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.second-side-user-head-debit-credit {\n  border-left: 1px solid white;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td {\n  border: 1px solid #FDB547;\n  padding: 0.5rem;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.namber-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.namber-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.data-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.data-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.data-item {\n  width: 25%;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.name-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.name-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.name-one-item {\n  width: 45%;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.cost-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.cost-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.cost-one-item {\n  width: 20%;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.user-write-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.user-write-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.user-write-item {\n  width: 5%;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.user-write-item img, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.user-write-item img, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.user-write-item img {\n  cursor: pointer;\n  text-align: center;\n  vertical-align: middle;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tfoot td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tfoot td, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tfoot td {\n  padding: 0.5rem;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tfoot td.title-cost-all-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tfoot td.title-cost-all-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tfoot td.title-cost-all-item {\n  float: right;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tfoot td.cost-all-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tfoot td.cost-all-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tfoot td.cost-all-item {\n  border: 1px solid #FDB547;\n  background-color: #FDB547;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-one-wallet {\n  background-color: #c4c4c4;\n  padding: 3vw;\n}\n.wrapper-one-wallet .one-wallet {\n  background-color: #f5f5f5;\n  border-radius: 10px;\n  padding: 3vw;\n  display: flex;\n  flex-direction: column;\n}\n.wrapper-one-wallet .one-wallet .wrapper-header-one-wallet {\n  display: flex;\n  justify-content: space-between;\n}\n.wrapper-one-wallet .one-wallet .wrapper-header-one-wallet h2 {\n  margin: 0;\n  padding-bottom: 1rem;\n  color: #5354d2;\n  font-size: 3rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  margin-left: 1rem;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-one-wallet .one-wallet .wrapper-header-one-wallet h2 {\n    font-size: 2rem;\n  }\n}\n.wrapper-one-wallet .one-wallet .wrapper-header-one-wallet img {\n  background-color: #c4c4c4;\n  border: 1px solid #5354d2;\n  border-radius: 5px;\n  padding: 0.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-header-one-wallet img:hover {\n  cursor: pointer;\n  opacity: 0.6;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet {\n  display: flex;\n  justify-content: space-between;\n  align-items: flex-start;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-one-wallet .one-wallet .wrapper-table-wallet {\n    flex-direction: column;\n  }\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .wrapper-tables-list-add,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .wapper-user-table {\n  background-color: white;\n  border-radius: 10px;\n  margin: 1rem;\n  padding: 2rem;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-one-wallet .one-wallet .wrapper-table-wallet .wrapper-tables-list-add,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .wapper-user-table {\n    width: calc(100% - 6rem);\n  }\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit {\n  margin: 1rem 0;\n  width: 100%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  border-collapse: collapse;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value td,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user td,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit td {\n  padding: 0.5rem;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value td,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user td,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit td {\n    font-size: 16px;\n  }\n}\n@media screen and (max-width: 640px) {\n  .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value td,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user td,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit td {\n    font-size: 14px;\n  }\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td {\n  border: 1px solid #fdb547;\n  background-color: #fdb547;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.empty-head-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.empty-name-user-head-debit-credit,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.empty-head-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.empty-name-user-head-debit-credit,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.empty-head-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.empty-name-user-head-debit-credit {\n  border-right: 1px solid white;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.name-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.column-head-debit,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.name-head-one-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.column-head-debit,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.name-head-one-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.column-head-debit {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.cost-head-one-item, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.column-head-credit,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.cost-head-one-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.column-head-credit,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.cost-head-one-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.column-head-credit {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.data-head-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.data-head-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.data-head-item {\n  border-left: 1px solid white;\n  border-right: 1px solid white;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.empty-head-item-user, .wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value thead td.second-side-user-head-debit-credit,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.empty-head-item-user,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user thead td.second-side-user-head-debit-credit,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.empty-head-item-user,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit thead td.second-side-user-head-debit-credit {\n  border-left: 1px solid white;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td {\n  border: 1px solid #fdb547;\n  padding: 0.5rem;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.namber-one-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.namber-one-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.namber-one-item {\n  width: 5%;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.data-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.data-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.data-item {\n  width: 25%;\n  text-align: center;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.name-one-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.name-one-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.name-one-item {\n  width: 45%;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.cost-one-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.cost-one-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.cost-one-item {\n  width: 20%;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.user-write-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.user-write-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.user-write-item {\n  width: 5%;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tbody td.user-write-item img,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tbody td.user-write-item img,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tbody td.user-write-item img {\n  cursor: pointer;\n  text-align: center;\n  vertical-align: middle;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tfoot td,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tfoot td,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tfoot td {\n  padding: 0.5rem;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tfoot td.title-cost-all-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tfoot td.title-cost-all-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tfoot td.title-cost-all-item {\n  float: right;\n}\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-list-value tfoot td.cost-all-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-user tfoot td.cost-all-item,\n.wrapper-one-wallet .one-wallet .wrapper-table-wallet .table-debit-credit tfoot td.cost-all-item {\n  border: 1px solid #fdb547;\n  background-color: #fdb547;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10057,7 +10049,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-number-pagination {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.wrapper-number-pagination .pagination-estimate {\n  color: #5354D2;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-weight: bold;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-number-pagination .pagination-estimate {\n    font-size: 1.3rem !important;\n  }\n}\n.wrapper-number-pagination .pagination-estimate:hover {\n  cursor: pointer;\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .image-pagination {\n  width: 2rem;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-number-pagination .image-pagination {\n    width: 1.5rem;\n  }\n}\n.wrapper-number-pagination .image-pagination:hover {\n  cursor: pointer;\n  opacity: 0.5;\n}\n.wrapper-number-pagination .disable-pagination {\n  filter: grayscale(100%);\n}\n.wrapper-number-pagination .disable-pagination:hover {\n  cursor: default;\n  opacity: 1;\n}\n.wrapper-number-pagination .active-number {\n  color: #FE7BA7;\n}\n.wrapper-number-pagination .active-number:hover {\n  cursor: default;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-number-pagination {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.wrapper-number-pagination .pagination-estimate {\n  color: #5354d2;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-weight: bold;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-number-pagination .pagination-estimate {\n    font-size: 1.3rem !important;\n  }\n}\n.wrapper-number-pagination .pagination-estimate:hover {\n  cursor: pointer;\n  color: #fe7ba7;\n}\n.wrapper-number-pagination .image-pagination {\n  width: 2rem;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-number-pagination .image-pagination {\n    width: 1.5rem;\n  }\n}\n.wrapper-number-pagination .image-pagination:hover {\n  cursor: pointer;\n  opacity: 0.5;\n}\n.wrapper-number-pagination .disable-pagination {\n  filter: grayscale(100%);\n}\n.wrapper-number-pagination .disable-pagination:hover {\n  cursor: default;\n  opacity: 1;\n}\n.wrapper-number-pagination .active-number {\n  color: #fe7ba7;\n}\n.wrapper-number-pagination .active-number:hover {\n  cursor: default;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -81511,9 +81503,9 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ "./resources/js/components/OneWallet/BurdenSharing/TableDebetCredit/_TableDebetCredit.scss":
+/***/ "./resources/js/components/OneWallet/BurdenSharing/TableDebitCredit/_TableDebitCredit.scss":
 /*!*************************************************************************************************!*\
-  !*** ./resources/js/components/OneWallet/BurdenSharing/TableDebetCredit/_TableDebetCredit.scss ***!
+  !*** ./resources/js/components/OneWallet/BurdenSharing/TableDebitCredit/_TableDebitCredit.scss ***!
   \*************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -81524,7 +81516,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_TableDebetCredit_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./_TableDebetCredit.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneWallet/BurdenSharing/TableDebetCredit/_TableDebetCredit.scss");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_TableDebitCredit_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./_TableDebitCredit.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/OneWallet/BurdenSharing/TableDebitCredit/_TableDebitCredit.scss");
 
             
 
@@ -81533,11 +81525,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_TableDebetCredit_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_TableDebitCredit_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_TableDebetCredit_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_TableDebitCredit_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 

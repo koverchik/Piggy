@@ -1,67 +1,67 @@
-.wrapper-one-wallet{
-    background-color: #C4C4C4;
+.wrapper-one-wallet {
+    background-color: #c4c4c4;
     padding: 3vw;
-    .one-wallet{
-        background-color: #F5F5F5;
+    .one-wallet {
+        background-color: #f5f5f5;
         border-radius: 10px;
         padding: 3vw;
         display: flex;
         flex-direction: column;
-        .wrapper-header-one-wallet{
+        .wrapper-header-one-wallet {
             display: flex;
             justify-content: space-between;
-            h2{
+            h2 {
                 margin: 0;
                 padding-bottom: 1rem;
-                color: #5354D2;
+                color: #5354d2;
                 font-size: 3rem;
-                user-select: none; 
+                user-select: none;
                 margin-left: 1rem;
                 @media screen and (max-width: 1240px) {
                     font-size: 2rem;
                 }
             }
-            img{
-                background-color: #C4C4C4;
-                border: 1px solid #5354D2;
+            img {
+                background-color: #c4c4c4;
+                border: 1px solid #5354d2;
                 border-radius: 5px;
                 padding: 0.5rem;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                &:hover{
+                &:hover {
                     cursor: pointer;
                     opacity: 0.6;
                 }
             }
-
         }
-        .wrapper-table-wallet{
+        .wrapper-table-wallet {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            
+
             @media screen and (max-width: 1240px) {
                 flex-direction: column;
             }
-            .wrapper-tables-list-add, .wapper-user-table{
+            .wrapper-tables-list-add,
+            .wapper-user-table {
                 background-color: white;
                 border-radius: 10px;
                 margin: 1rem;
                 padding: 2rem;
                 @media screen and (max-width: 1240px) {
-                width: calc(100% - 6rem);
+                    width: calc(100% - 6rem);
                 }
-                
             }
-            .table-list-value, .table-user, .table-debit-credit{
-               
+            .table-list-value,
+            .table-user,
+            .table-debit-credit {
                 margin: 1rem 0;
                 width: 100%;
-                user-select: none; 
+                user-select: none;
                 border-collapse: collapse;
-                  
-                td{
+
+                td {
                     padding: 0.5rem;
                     @media screen and (max-width: 800px) {
                         font-size: 16px;
@@ -69,79 +69,80 @@
                     @media screen and (max-width: 640px) {
                         font-size: 14px;
                     }
-                 }
-                 thead{
-                    td{
-                        border:1px solid #FDB547;
-                        background-color: #FDB547;
-                        &.empty-head-item, &.empty-name-user-head-debit-credit{
-                            border-right:1px solid white;
+                }
+                thead {
+                    td {
+                        border: 1px solid #fdb547;
+                        background-color: #fdb547;
+                        &.empty-head-item,
+                        &.empty-name-user-head-debit-credit {
+                            border-right: 1px solid white;
                         }
-                        &.name-head-one-item, &.column-head-debit{
-                            border-left:1px solid white;
-                            border-right:1px solid white;
+                        &.name-head-one-item,
+                        &.column-head-debit {
+                            border-left: 1px solid white;
+                            border-right: 1px solid white;
                             text-align: center;
                         }
-                        &.cost-head-one-item, &.column-head-credit{
-                            border-left:1px solid white;
-                            border-right:1px solid white;   
+                        &.cost-head-one-item,
+                        &.column-head-credit {
+                            border-left: 1px solid white;
+                            border-right: 1px solid white;
                             text-align: center;
                         }
-                        &.data-head-item{
-                            border-left:1px solid white;
-                            border-right:1px solid white;
+                        &.data-head-item {
+                            border-left: 1px solid white;
+                            border-right: 1px solid white;
                             text-align: center;
                         }
-                        &.empty-head-item-user, &.second-side-user-head-debit-credit{
-                            border-left:1px solid white;
+                        &.empty-head-item-user,
+                        &.second-side-user-head-debit-credit {
+                            border-left: 1px solid white;
                         }
-                     }
-                 }
-                 tbody{
-                    td{
-                        border: 1px solid #FDB547;
+                    }
+                }
+                tbody {
+                    td {
+                        border: 1px solid #fdb547;
                         padding: 0.5rem;
-                        &.namber-one-item{
+                        &.namber-one-item {
                             width: 5%;
                             text-align: center;
                         }
-                        &.data-item{
+                        &.data-item {
                             width: 25%;
                             text-align: center;
                         }
-                        &.name-one-item{
+                        &.name-one-item {
                             width: 45%;
                         }
-                        &.cost-one-item{
+                        &.cost-one-item {
                             width: 20%;
                         }
-                        &.user-write-item{
+                        &.user-write-item {
                             width: 5%;
-                            
-                            img{
-                               cursor: pointer;
-                               text-align: center;
-                               vertical-align: middle;
+
+                            img {
+                                cursor: pointer;
+                                text-align: center;
+                                vertical-align: middle;
                             }
                         }
-                    
                     }
-                 }
-                 tfoot{
-    
-                     td{
+                }
+                tfoot {
+                    td {
                         padding: 0.5rem;
-                        &.title-cost-all-item{
+                        &.title-cost-all-item {
                             float: right;
                         }
-                        &.cost-all-item{
-                            border: 1px solid #FDB547;
-                            background-color:  #FDB547;
+                        &.cost-all-item {
+                            border: 1px solid #fdb547;
+                            background-color: #fdb547;
                         }
-                     }
-                 }
+                    }
+                }
             }
-
         }
     }
 }

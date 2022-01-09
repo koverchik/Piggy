@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import "./_BurdenSharing.scss";
-import "../_OneWallet.scss";
-import store from "../../../state";
 import { observer } from "mobx-react-lite";
-import TableDebetCredit from "./TableDebetCredit/TableDebetCredit";
+import React, { useEffect, useState } from "react";
 import interfacesButtonCreate from "../../../interfaces/interfacesButtonCreate";
+import interfacesPopUp from "../../../interfaces/interfacesPopUp";
+import store from "../../../state";
 import Button from "../../ButtonCreate/ButtonCreate";
 import PopUp from "../../PopUp/PopUp";
-import interfacesPopUp from "../../../interfaces/interfacesPopUp";
+import "../_OneWallet.scss";
+import TableDebitCredit from "./TableDebitCredit/TableDebitCredit";
+import "./_BurdenSharing.scss";
 
 const BurdenSharing: React.FC = observer(() => {
     const [listScopeOneWallet, setListScopeOneWallet] = useState([]);
-    const [tableDebetCredit, setTableDebetCredit] = useState(false);
+    const [tableDebitCredit, setTableDebetCredit] = useState(false);
     const [statePopUp, setStatePopUp] = useState(false);
 
     const buttonName: interfacesButtonCreate = {
@@ -63,7 +63,7 @@ const BurdenSharing: React.FC = observer(() => {
             store.Wallet.allUsers.push({
                 userName: item.user.name,
                 userId: item.user.id,
-                debitСredit: 0,
+                debitCredit: 0,
             });
             const grade: string = store.Wallet.gradeUser(item);
 
@@ -85,7 +85,7 @@ const BurdenSharing: React.FC = observer(() => {
     }
 
     return (
-        <div className="wapper-user-table">
+        <div className="wrapper-user-table">
             {statePopUp ? <PopUp {...popUpData} /> : ""}
             <table className="table-user">
                 <thead>
@@ -101,7 +101,7 @@ const BurdenSharing: React.FC = observer(() => {
                 <tbody>{listScopeOneWallet}</tbody>
             </table>
             <Button {...buttonName} />
-            {tableDebetCredit ? <TableDebetCredit /> : ""}
+            {tableDebitCredit ? <TableDebitCredit /> : ""}
         </div>
     );
 });

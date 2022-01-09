@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
-import Button from "../../ButtonCreate/ButtonCreate";
-import "./../_AllEstimateAndWallet.scss";
-import store from "../../../state";
-import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
+import React, { useEffect, useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 import interfacesButtonCreate from "../../../interfaces/interfacesButtonCreate";
 import PaginationInterface from "../../../interfaces/interfacesPagination";
+import interfacesPopUp from "../../../interfaces/interfacesPopUp";
+import store from "../../../state";
+import Button from "../../ButtonCreate/ButtonCreate";
 import Pagination from "../../PaginationRows/PaginationRows";
 import PopUp from "../../PopUp/PopUp";
-import interfacesPopUp from "../../../interfaces/interfacesPopUp";
+import "./../_AllEstimateAndWallet.scss";
 
 const AllEstimateMainPage: React.FC = observer(() => {
     const [listEstimate, setlistEstimate] = useState([]);
@@ -24,7 +23,7 @@ const AllEstimateMainPage: React.FC = observer(() => {
         callbackClick: () => setStatePopUp(true),
     };
     const popUpData: interfacesPopUp = {
-        name: store.СreationEditingEstimates.newNameEstimate,
+        name: store.CreationEditingEstimates.newNameEstimate,
         kind: "Создание сметы",
         textMessage: "Введите название",
         closeClick: () => setStatePopUp(false),
@@ -32,10 +31,10 @@ const AllEstimateMainPage: React.FC = observer(() => {
             name: "Создать",
             type: "submit",
             image: false,
-            callbackClick: store.СreationEditingEstimates.createNewEstimate,
+            callbackClick: store.CreationEditingEstimates.createNewEstimate,
             redirectPage: redirectPage,
         },
-        onChangeFunction: store.СreationEditingEstimates.onChangeFnEstimateName,
+        onChangeFunction: store.CreationEditingEstimates.onChangeFnEstimateName,
     };
 
     const paginationDataEstimate: PaginationInterface = {
@@ -49,13 +48,13 @@ const AllEstimateMainPage: React.FC = observer(() => {
     useEffect(() => {
         store.GeneralData.allEstimates().then((data: any) => {
             if (data === "Error") {
-                const notiseError: any = (
+                const noticeError: any = (
                     <li key={"listEstimateEmpty"}>
                         Упс, что-то пошло не так попробуйте перезагрузить
                         стараницу.
                     </li>
                 );
-                setlistEstimate(notiseError);
+                setlistEstimate(noticeError);
             } else {
                 store.GeneralData.allDataEstimate = data;
                 setlistEstimateData(data);
@@ -101,7 +100,7 @@ const AllEstimateMainPage: React.FC = observer(() => {
     }, [store.GeneralData.activePaginationAllEstimates]);
 
     return (
-        <div className="wapper-estimate">
+        <div className="wrapper-estimate">
             {statePopUp ? <PopUp {...popUpData} /> : null}
             <div className="wrapper-block-name-list">
                 <p className="header-blok-view">Сметы</p>
