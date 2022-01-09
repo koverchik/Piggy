@@ -11,6 +11,7 @@ import Registration from './Registration/Registration';
 import Authentication from './Authentication/Authentication';
 
 import { observer } from 'mobx-react-lite';
+import Authorization from './Authorization/Authorization';
 
 const App: React.FC = observer(() => {
   return (
@@ -19,8 +20,9 @@ const App: React.FC = observer(() => {
       <Router>
         <Switch>
           <Route exact path="/" component={AllEstimateAndWallet} />
-          <Route exact path="/registration" component={Registration} />
-          <Route exact path="/authentication" component={Authentication} />
+          {/* <Route exact path="/registration" component={Registration} />
+          <Route exact path="/authentication" component={Authentication} /> */}
+          <Route exact path="/authorization" component={Authorization} />
           <Route path="/estimate-:id" component={OneEstimate} />
           <Route path="/one-estimate" component={AllEstimate} />
           <Route path="/wallet-:id-:name" component={OneWallet} />

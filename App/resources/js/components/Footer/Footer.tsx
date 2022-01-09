@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Footer: React.FC = () => {
   return (
     <div className="wrapper-footer">
-      <Link to="/registration" className="enter-in-system">
+      <Link to="/authorization" className="enter-in-system">
         <img
           src="../images/unknown-user.svg"
           alt="piggy"
