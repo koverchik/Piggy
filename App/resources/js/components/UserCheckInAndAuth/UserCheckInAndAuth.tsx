@@ -1,32 +1,14 @@
-import React from 'react';
 import { observer } from 'mobx-react-lite';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import './_UserCheckInAndAuth.scss';
 import Button from '../ButtonCreate/ButtonCreate';
-import {
-  GoogleLogin,
-  GoogleLoginResponse,
-  GoogleLoginResponseOffline
-} from 'react-google-login';
+import './_UserCheckInAndAuth.scss';
 
 const UserCheckInAndAuth: React.FC = observer((props: any) => {
-  const responseGoogle = (
-    response: GoogleLoginResponse | GoogleLoginResponseOffline
-  ) => {
-    console.log(response);
-  };
-
   return (
     <div className="wrapper-form-user-reg-auth">
       <div className="form-user-reg-auth">
         <h2>{props.nameForm}</h2>
-        <GoogleLogin
-          clientId="420712854303-99d07k7jiqrsq58c7iv3mugs85oensd2.apps.googleusercontent.com"
-          buttonText="Login"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
-          cookiePolicy={'single_host_origin'}
-        />
         <form>
           <div className="wrapper-input-text-user">
             <p>Введите имя</p>
