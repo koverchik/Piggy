@@ -1,18 +1,11 @@
 import React from 'react';
+import User from './User/User';
 import './_Footer.scss';
-import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   return (
     <div className="wrapper-footer">
-      <Link to="/authorization" className="enter-in-system">
-        <img
-          src="../images/unknown-user.svg"
-          alt="piggy"
-          className="image-unknown-user"
-        />
-        <p>Войти</p>
-      </Link>
+      <User />
       <div className="links-info">
         <a href="#">Правила</a>
         <a href="#">О правах</a>
