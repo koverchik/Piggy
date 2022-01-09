@@ -5,6 +5,7 @@ import {
 } from 'react-google-login';
 
 export default class UserInfo {
+  isSingIn = false;
   familyName = '';
   givenName = '';
   email = '';
@@ -32,6 +33,7 @@ export default class UserInfo {
       this.googleId = response.profileObj.googleId;
       this.imageUrl = response.profileObj.imageUrl;
       this.accessToken = response.accessToken;
+      this.isSingIn = true;
     } else {
       console.log('offline');
     }
