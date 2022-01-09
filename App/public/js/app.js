@@ -2239,8 +2239,8 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
         key: "listEstimate" + i,
         className: !((pagination - 1) * 10 < i + 1 && i + 1 <= (pagination - 1) * 10 + 10) ? "hide-row" : ""
       }, react_1["default"].createElement(react_router_dom_2.Link, {
-        to: "/estimate-" + item['names_estimates_id']
-      }, item['full_name']));
+        to: "/estimate-" + item["names_estimates_id"]
+      }, item["full_name"]));
     });
     setlistEstimate(list);
   }
@@ -2264,7 +2264,7 @@ var AllEstimateMainPage = mobx_react_lite_1.observer(function () {
   }, listEstimate)), react_1["default"].createElement("div", {
     className: "wrapper-pagination-button-create"
   }, state_1["default"].GeneralData.arrayNameAllEstimates.length > 1 ? react_1["default"].createElement(PaginationRows_1["default"], __assign({}, paginationDataEstimate)) : "", renderRedirect ? react_1["default"].createElement(react_router_dom_1.Redirect, {
-    to: 'estimate-' + state_1["default"].Estimate.idEstimate
+    to: "estimate-" + state_1["default"].Estimate.idEstimate
   }) : "", react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, buttonName))));
 });
 exports.default = AllEstimateMainPage;
@@ -2516,7 +2516,7 @@ var App = mobx_react_lite_1.observer(function () {
     component: Registration_1["default"]
   }), react_1["default"].createElement(react_router_dom_1.Route, {
     exact: true,
-    path: "/\u0430uthentication",
+    path: "/authentication",
     component: Authentication_1["default"]
   }), react_1["default"].createElement(react_router_dom_1.Route, {
     path: "/estimate-:id",
@@ -2584,7 +2584,7 @@ var Authentication = mobx_react_lite_1.observer(function (props) {
       type: "submit"
     },
     question: "Еще нет аккунта?",
-    adressLink: "registration",
+    addressLink: "registration",
     callbackSend: function callbackSend() {
       console.log("hello");
     }
@@ -3194,7 +3194,7 @@ var BurdenSharing = mobx_react_lite_1.observer(function () {
       type: "button",
       image: false,
       callbackClick: state_1["default"].AddNewUserWallet.requestAddUser,
-      closeClik: function closeClik() {
+      closeClick: function closeClick() {
         return setStatePopUp(false);
       }
     },
@@ -3225,7 +3225,7 @@ var BurdenSharing = mobx_react_lite_1.observer(function () {
         key: "scope-one-wallet" + i
       }, react_1["default"].createElement("td", {
         className: "name-user-table"
-      }, " ", item['user']['name'], " "), react_1["default"].createElement("td", {
+      }, " ", item["user"]["name"], " "), react_1["default"].createElement("td", {
         className: "premission-user-table"
       }, " ", grade, " "), react_1["default"].createElement("td", {
         className: "contribution-user-table"
@@ -3244,7 +3244,7 @@ var BurdenSharing = mobx_react_lite_1.observer(function () {
     className: "head-premission-user-table"
   }, " \u041F\u0440\u0430\u0432\u0430 "), react_1["default"].createElement("td", {
     className: "head-contribution-user-table"
-  }, " \u0412\u043A\u043B\u0430\u0434 "))), react_1["default"].createElement("tbody", null, listScopeOneWallet)), react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, buttonName)), tableDebetCredit ? react_1["default"].createElement(TableDebetCredit_1["default"], null) : '');
+  }, " ", "\u0412\u043A\u043B\u0430\u0434", " "))), react_1["default"].createElement("tbody", null, listScopeOneWallet)), react_1["default"].createElement(ButtonCreate_1["default"], __assign({}, buttonName)), tableDebetCredit ? react_1["default"].createElement(TableDebetCredit_1["default"], null) : "");
 });
 exports.default = BurdenSharing;
 
@@ -4236,7 +4236,7 @@ var Registration = mobx_react_lite_1.observer(function (props) {
       type: "submit"
     },
     question: "Уже есть аккунт?",
-    adressLink: "аuthentication",
+    addressLink: "аuthentication",
     callbackSend: function callbackSend() {
       console.log("hello");
     }
@@ -4282,15 +4282,15 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
 var mobx_react_lite_1 = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
-__webpack_require__(/*! ./_UserCheckInAndAuth.scss */ "./resources/js/components/UserCheckInAndAuth/_UserCheckInAndAuth.scss");
-
 var ButtonCreate_1 = __importDefault(__webpack_require__(/*! ../ButtonCreate/ButtonCreate */ "./resources/js/components/ButtonCreate/ButtonCreate.tsx"));
+
+__webpack_require__(/*! ./_UserCheckInAndAuth.scss */ "./resources/js/components/UserCheckInAndAuth/_UserCheckInAndAuth.scss");
 
 var UserCheckInAndAuth = mobx_react_lite_1.observer(function (props) {
   return react_1["default"].createElement("div", {
@@ -4307,7 +4307,7 @@ var UserCheckInAndAuth = mobx_react_lite_1.observer(function (props) {
     className: "input-text-form-user"
   }), props.repeatPassword ? react_1["default"].createElement("div", {
     className: "wrapper-reset-pasvord"
-  }, react_1["default"].createElement("p", null, "\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0435 \u0435\u0449\u0451 \u0440\u0430\u0437 \u043F\u0430\u0440\u043E\u043B\u044C"), react_1["default"].createElement("input", {
+  }, react_1["default"].createElement("p", null, "\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u0435 \u0435\u0449\u0451 \u0440\u0430\u0437 \u043F\u0430\u0440\u043E\u043B\u044C"), react_1["default"].createElement("input", {
     type: "text",
     className: "input-text-form-user"
   })) : ""), react_1["default"].createElement("div", {
@@ -10153,7 +10153,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-form-user-reg-auth {\n  background: #C4C4C4;\n  align-items: center;\n  justify-content: center;\n  display: flex;\n  font-size: 1.5rem;\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth {\n  width: 60%;\n  border-radius: 10px;\n  background: #F5F5F5;\n  margin: 1rem;\n  padding: 2rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth {\n    width: 70%;\n  }\n}\n@media screen and (max-width: 640px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth {\n    width: 80%;\n  }\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .redirect-link {\n  font-size: 1rem;\n  padding-left: 45px;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .redirect-link a {\n  text-decoration: none;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-button-reg-auth {\n  display: flex;\n  justify-content: center;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth h2 {\n  color: #5354D2;\n  font-size: 2.5rem;\n  margin: 0 0 10px 0;\n  text-align: center;\n  padding: 0;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth h2 {\n    font-size: 2.2rem;\n  }\n}\n@media screen and (max-width: 800px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth h2 {\n    font-size: 2rem;\n  }\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .wrapper-reset-pasvord {\n  text-align: center;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .wrapper-reset-pasvord p {\n  text-align: initial;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user p {\n  margin: 0;\n  padding-left: 45px;\n}\n@media screen and (max-width: 640px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user p {\n    font-size: 1.2rem;\n  }\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .input-text-form-user {\n  width: 90%;\n  margin: 10px 0 20px 0;\n  border: 1px solid #FDB547;\n  align-self: center;\n  height: 36px;\n  font-size: 1.3rem;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .input-text-form-user:active {\n  border: 1px solid #FDB547;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .input-text-form-user:focus {\n  outline: none;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper-form-user-reg-auth {\n  background: #c4c4c4;\n  align-items: center;\n  justify-content: center;\n  display: flex;\n  font-size: 1.5rem;\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth {\n  width: 60%;\n  border-radius: 10px;\n  background: #f5f5f5;\n  margin: 1rem;\n  padding: 2rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n@media screen and (max-width: 800px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth {\n    width: 70%;\n  }\n}\n@media screen and (max-width: 640px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth {\n    width: 80%;\n  }\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .redirect-link {\n  font-size: 1rem;\n  padding-left: 45px;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .redirect-link a {\n  text-decoration: none;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-button-reg-auth {\n  display: flex;\n  justify-content: center;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth h2 {\n  color: #5354d2;\n  font-size: 2.5rem;\n  margin: 0 0 10px 0;\n  text-align: center;\n  padding: 0;\n}\n@media screen and (max-width: 1240px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth h2 {\n    font-size: 2.2rem;\n  }\n}\n@media screen and (max-width: 800px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth h2 {\n    font-size: 2rem;\n  }\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .wrapper-reset-password {\n  text-align: center;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .wrapper-reset-password p {\n  text-align: initial;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user p {\n  margin: 0;\n  padding-left: 45px;\n}\n@media screen and (max-width: 640px) {\n  .wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user p {\n    font-size: 1.2rem;\n  }\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .input-text-form-user {\n  width: 90%;\n  margin: 10px 0 20px 0;\n  border: 1px solid #fdb547;\n  align-self: center;\n  height: 36px;\n  font-size: 1.3rem;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .input-text-form-user:active {\n  border: 1px solid #fdb547;\n}\n.wrapper-form-user-reg-auth .form-user-reg-auth .wrapper-input-text-user .input-text-form-user:focus {\n  outline: none;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
