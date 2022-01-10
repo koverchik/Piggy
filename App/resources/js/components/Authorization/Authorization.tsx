@@ -13,7 +13,7 @@ const Authorization: React.FC = observer(() => {
           <GoogleLogin
             clientId="420712854303-99d07k7jiqrsq58c7iv3mugs85oensd2.apps.googleusercontent.com"
             buttonText="Login"
-            onSuccess={store.UserInfo.getUserInfo}
+            onSuccess={(response) => store.UserInfo.getUserInfo(response)}
             onFailure={store.UserInfo.getUserInfo}
             cookiePolicy={'single_host_origin'}
           />

@@ -1,8 +1,12 @@
-import { action, makeObservable, observable } from 'mobx';
+import { action, configure, makeObservable, observable } from 'mobx';
 import {
   GoogleLoginResponse,
   GoogleLoginResponseOffline
 } from 'react-google-login';
+
+configure({
+  enforceActions: 'observed'
+});
 
 export default class UserInfo {
   isSingIn = false;
@@ -16,6 +20,7 @@ export default class UserInfo {
   constructor() {
     makeObservable(this, {
       familyName: observable,
+      isSingIn: observable,
       givenName: observable,
       email: observable,
       googleId: observable,
@@ -25,17 +30,19 @@ export default class UserInfo {
     });
   }
 
-  getUserInfo(response: GoogleLoginResponse | GoogleLoginResponseOffline) {
+  getUserInfo = (
+    response: GoogleLoginResponse | GoogleLoginResponseOffline
+  ): void => {
     if ('accessToken' in response) {
+      this.accessToken = response.accessToken;
       this.familyName = response.profileObj.familyName;
       this.givenName = response.profileObj.givenName;
       this.email = response.profileObj.email;
       this.googleId = response.profileObj.googleId;
       this.imageUrl = response.profileObj.imageUrl;
-      this.accessToken = response.accessToken;
       this.isSingIn = true;
     } else {
       console.log('offline');
     }
-  }
+  };
 }

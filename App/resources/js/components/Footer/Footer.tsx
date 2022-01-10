@@ -1,8 +1,9 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 import User from './User/User';
 import './_Footer.scss';
 
-const Footer: React.FC = () => {
+const Footer: React.FC = observer(() => {
   return (
     <div className="wrapper-footer">
       <User />
@@ -15,6 +16,6 @@ const Footer: React.FC = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Footer;

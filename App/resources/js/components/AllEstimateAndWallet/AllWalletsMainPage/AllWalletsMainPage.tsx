@@ -128,7 +128,7 @@ const AllWalletsMainPage: React.FC = observer(() => {
         ) : (
           ''
         )}
-        <ButtonCreate {...buttonName} />
+        {/* <ButtonCreate {...buttonName} /> */}
       </div>
     </div>
   );
