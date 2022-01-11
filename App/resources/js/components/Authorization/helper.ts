@@ -1,5 +1,6 @@
 import { localStored } from 'mobx-stored';
 import { GoogleLoginResponse } from 'react-google-login';
+
 const defaultUser = {
   isSingIn: false,
   familyName: '',
@@ -20,8 +21,9 @@ type observableUserProfileType = {
   accessToken: string;
   reset: () => void;
   destroy: () => void;
-  extend: (obj: Object) => void;
+  extend: (obj: any) => void;
 };
+
 export const observableUserProfile: observableUserProfileType = localStored(
   'userProfile',
   defaultUser,
