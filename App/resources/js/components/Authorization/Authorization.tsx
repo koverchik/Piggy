@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite';
-import { localStored } from 'mobx-stored';
 import React from 'react';
 import { GoogleLogin } from 'react-google-login';
 import { useHistory } from 'react-router-dom';
@@ -9,6 +8,7 @@ import './_Authorization.scss';
 const Authorization: React.FC = observer(() => {
   const history = useHistory();
   const navigateTo = () => history.push('/');
+
   return (
     <div className="wrapper-form-user-reg-auth">
       <div className="user-authorization">
