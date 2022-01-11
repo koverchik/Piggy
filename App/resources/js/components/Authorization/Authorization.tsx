@@ -1,8 +1,9 @@
 import { observer } from 'mobx-react-lite';
+import { localStored } from 'mobx-stored';
 import React from 'react';
 import { GoogleLogin } from 'react-google-login';
 import { useHistory } from 'react-router-dom';
-import store from './../../state';
+import { saveUserInfo } from './helper';
 import './_Authorization.scss';
 
 const Authorization: React.FC = observer(() => {
@@ -17,10 +18,11 @@ const Authorization: React.FC = observer(() => {
             clientId="420712854303-99d07k7jiqrsq58c7iv3mugs85oensd2.apps.googleusercontent.com"
             buttonText="Login"
             onSuccess={(response) => {
-              store.UserInfo.getUserInfo(response);
+              if ('accessToken' in response) {
+                saveUserInfo(response);
+              }
               navigateTo();
             }}
-            onFailure={store.UserInfo.getUserInfo}
             cookiePolicy={'single_host_origin'}
           />
         </div>

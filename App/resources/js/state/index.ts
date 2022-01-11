@@ -4,7 +4,6 @@ import Wallet from './Wallet';
 import CreationEditingEstimates from './CreationEditingEstimates';
 import CreationEditingWallets from './CreationEditingWallets';
 import AddNewUserWallet from './AddNewUserWallet';
-import UserInfo from './UserInfo';
 
 const store = {
   GeneralData: new GeneralData(),
@@ -12,8 +11,7 @@ const store = {
   Wallet: new Wallet(),
   CreationEditingEstimates: new CreationEditingEstimates(),
   CreationEditingWallets: new CreationEditingWallets(),
-  AddNewUserWallet: new AddNewUserWallet(),
-  UserInfo: new UserInfo()
+  AddNewUserWallet: new AddNewUserWallet()
 };
 
 export default store;

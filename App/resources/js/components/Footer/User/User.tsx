@@ -3,18 +3,19 @@ import './_User.scss';
 import { Link } from 'react-router-dom';
 import store from '../../../state';
 import { observer } from 'mobx-react-lite';
+import { observableUserProfile } from '../../Authorization/helper';
 
 const Footer: React.FC = observer(() => {
-  console.log('isSingIn', store.UserInfo.isSingIn);
-
-  return store.UserInfo.isSingIn ? (
+  return observableUserProfile.isSingIn ? (
     <Link to="/" className="enter-in-system">
       <img
-        src={store.UserInfo.imageUrl}
+        src={observableUserProfile.imageUrl}
         alt="piggy"
-        className="image-unknown-user"
+        className="image-user"
+        width={50}
+        height={50}
       />
-      <p>{store.UserInfo.givenName}</p>
+      <p>{observableUserProfile.givenName}</p>
     </Link>
   ) : (
     <Link to="/authorization" className="enter-in-system">
