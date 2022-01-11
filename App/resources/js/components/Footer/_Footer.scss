@@ -7,20 +7,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .enter-in-system {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-end;
-        text-decoration: none;
-        margin: 10px 10px;
-        p {
-            padding: 0;
-            margin: 0 0 0 10px;
-            &:hover {
-                color: #fe7ba7;
-            }
-        }
-    }
+
     .links-info {
         display: flex;
         flex-direction: column;

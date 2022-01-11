@@ -1,6 +1,11 @@
-import { makeObservable, action, observable } from 'mobx';
+import { makeObservable, action, observable, configure } from 'mobx';
 import axios from 'axios';
 import store from './index';
+
+
+configure({
+  enforceActions: 'observed'
+});
 
 export default class AddNewUserWallet {
   newUser = '';
