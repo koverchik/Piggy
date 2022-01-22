@@ -5,9 +5,9 @@ import { ListEstimateWallet } from '../../components/ListEstimateWallet/ListEsti
 import MainSection from '../../components/MainSection/MainSection';
 import store from '../../state';
 import { ResponseListNamesEstimateWallet } from '../../state/StateTypes';
-import './_AllEstimateAndWallet.scss';
+import './_style.scss';
 
-const AllEstimateAndWallet: React.FC = observer(() => {
+export const MainPage: React.FC = observer(() => {
   const [error, setError] = useState(true);
   const [listEstimateData, setlistEstimateData] = useState<
     ResponseListNamesEstimateWallet[]
@@ -58,4 +58,3 @@ const AllEstimateAndWallet: React.FC = observer(() => {
     <MainSection />
   );
 });
-export default AllEstimateAndWallet;
