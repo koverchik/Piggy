@@ -2,21 +2,17 @@ import { makeObservable, action, observable, configure } from 'mobx';
 import axios from 'axios';
 import { ResponseListNamesEstimateWallet } from './StateTypes';
 
-configure({
-  enforceActions: 'observed'
-});
-
 export default class Estimate {
   idEstimate = 0;
   nameEstimate = '';
-  reactElemRows = new Array();
-  dataRows = new Array();
+  reactElemRows = [];
+  dataRows = [];
   rowsLength = '';
   sumRows = '';
   newRow = '';
   newRowCost = '';
-  pagination = new Array();
-  reactElemPagination = new Array();
+  pagination = [];
+  reactElemPagination = [];
   activePagination = 0;
   validationNewRow = true;
   validationNewRowCost = true;
@@ -73,11 +69,11 @@ export default class Estimate {
           this.nameEstimate = response.data[0].name;
           this.rowsLength = response.data.rows.length + 1;
           const countPagination = Math.ceil(response.data.rows.length / 10);
-          let arrayPagination = [];
+          const arrayPagination = [];
           for (let index = 0; index < countPagination; index++) {
             arrayPagination.push(index + 1);
           }
-          this.pagination = arrayPagination;
+          // this.pagination = arrayPagination;
 
           const sumAllRows: number = response.data.rows.reduce(function (
             sum: number,

@@ -1,36 +1,15 @@
-import { makeObservable, action, observable, configure } from 'mobx';
 import axios from 'axios';
+import { action, makeObservable, observable } from 'mobx';
 import { ResponseListNamesEstimateWallet } from './StateTypes';
-
-configure({
-  enforceActions: 'observed'
-});
 
 export default class GeneralData {
   idUser = 9;
-  nameAllEstimates = 0;
-  nameAllWallets = 0;
-  activePaginationAllWallets = 0;
-  activePaginationAllEstimates = 0;
-  arrayNameAllEstimates = new Array();
-  arrayNameAllWallets = new Array();
-  allDataEstimate = {};
-  allDataWallets = {};
 
   constructor() {
     makeObservable(this, {
       idUser: observable,
-      nameAllEstimates: observable,
-      arrayNameAllEstimates: observable,
-      nameAllWallets: observable,
-      allDataEstimate: observable,
-      allDataWallets: observable,
-      activePaginationAllWallets: observable,
-      activePaginationAllEstimates: observable,
-      arrayNameAllWallets: observable,
       allWallets: action,
-      allEstimates: action,
-      callbackPaginationRightW: action
+      allEstimates: action
     });
   }
 
@@ -68,40 +47,4 @@ export default class GeneralData {
       );
     return result;
   }
-
-  callbackPaginationRightW = () => {
-    this.activePaginationAllWallets < this.arrayNameAllWallets.length
-      ? (this.activePaginationAllWallets = +this.activePaginationAllWallets + 1)
-      : '';
-  };
-  callbackPaginationLeftW = () => {
-    this.activePaginationAllWallets > 1
-      ? (this.activePaginationAllWallets = this.activePaginationAllWallets - 1)
-      : '';
-  };
-  callbackPaginationArrayW = (event: Event) => {
-    const { textContent } = event.target as HTMLDivElement;
-    if (textContent != null) {
-      this.activePaginationAllWallets = +textContent;
-    }
-  };
-
-  callbackPaginationRightE = () => {
-    this.activePaginationAllEstimates < this.arrayNameAllEstimates.length
-      ? (this.activePaginationAllEstimates =
-          +this.activePaginationAllEstimates + 1)
-      : '';
-  };
-  callbackPaginationLeftE = () => {
-    this.activePaginationAllEstimates > 1
-      ? (this.activePaginationAllEstimates =
-          this.activePaginationAllEstimates - 1)
-      : '';
-  };
-  callbackPaginationArrayE = (event: Event) => {
-    const { textContent } = event.target as HTMLDivElement;
-    if (textContent != null) {
-      this.activePaginationAllEstimates = +textContent;
-    }
-  };
 }

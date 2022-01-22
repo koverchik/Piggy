@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React from 'react';
 import PaginationInterface from '../../interfaces/interfacesPagination';
 import store from '../../state/index';
-import Pagination from '../PaginationRows/PaginationRows';
+import PaginationRow from '../PaginationRows/PaginationRows';
 import AddRow from './AddRowEstimate/AddRowEstimate';
 import BodyTableEstimate from './BodyTableEstimate/BodyTableEstimate';
 import './_OneEstimate.scss';
@@ -48,7 +48,7 @@ const OneEstimate: React.FC = observer((props: any) => {
           </tfoot>
         </table>
         {store.Estimate.pagination.length > 1 ? (
-          <Pagination {...paginationData} />
+          <PaginationRow {...paginationData} />
         ) : (
           ''
         )}
