@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import './_PopUp.scss';
+import React, { useState } from 'react';
 import Button from '../ButtonCreate/ButtonCreate';
-import ListForPoints from './ListForPoint/ListForPoints';
 import AccessList from './AccessList/AccessList';
+import ListForPoints from './ListForPoint/ListForPoints';
+import './_PopUp.scss';
 
 const PopUp: React.FC = observer((props: any) => {
   const [stateListUser, setStateListUser] = useState(false);

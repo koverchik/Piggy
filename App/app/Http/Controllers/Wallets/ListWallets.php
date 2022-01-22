@@ -34,16 +34,16 @@ class ListWallets extends Controller
         $NamesWallet -> user_id = $data['idUser'];
         $NamesWallet->save();
         $idNewWallet = $NamesWallet->id;
-        $ScopeDiscription = new ScopeDiscription;
-        $ScopeDiscription -> delete_table = 1;
-        $ScopeDiscription -> edit_permission = 1;
-        $ScopeDiscription -> edit_row = 1;
-        $ScopeDiscription -> browsing = 1;
-        $ScopeDiscription -> add_row = 1;
-        $ScopeDiscription -> delete_row = 1;
-        $ScopeDiscription -> names_wallets_id = $idNewWallet;
-        $ScopeDiscription -> user_id = $data['idUser'];
-        $ScopeDiscription->save();
+        $ScopeDescription = new ScopeDiscription;
+        $ScopeDescription -> delete_table = 1;
+        $ScopeDescription -> edit_permission = 1;
+        $ScopeDescription -> edit_row = 1;
+        $ScopeDescription -> browsing = 1;
+        $ScopeDescription -> add_row = 1;
+        $ScopeDescription -> delete_row = 1;
+        $ScopeDescription -> names_wallets_id = $idNewWallet;
+        $ScopeDescription -> user_id = $data['idUser'];
+        $ScopeDescription->save();
         $dataNewWallet = array(
             "id" => $idNewWallet,
             "name"  => $data['name'],

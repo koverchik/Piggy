@@ -16,10 +16,10 @@ export default class CreationEditingWallets {
     });
   }
 
-  createNewWallet = () => {
+  createNewWallet = (name: string) => {
     const result = axios
       .post(process.env.MIX_APP_URL_FOR_TEST + 'new-wallet', {
-        name: this.newNameWallet,
+        name: name,
         idUser: 9
       })
       .then(
