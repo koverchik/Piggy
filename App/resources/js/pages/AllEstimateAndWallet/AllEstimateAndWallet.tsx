@@ -3,28 +3,28 @@ import React, { useEffect, useState } from 'react';
 import { observableUserProfile } from '../../components/Authorization/helper';
 import { ListEstimateWallet } from '../../components/ListEstimateWallet/ListEstimateWallet';
 import MainSection from '../../components/MainSection/MainSection';
-import PopUp from '../../components/PopUp/PopUp';
 import store from '../../state';
-import AllEstimateMainPage from './AllEstimateMainPage/AllEstimateMainPage';
-import AllWalletsMainPage from './AllWalletsMainPage/AllWalletsMainPage';
+import { ResponseListNamesEstimateWallet } from '../../state/StateTypes';
 import './_AllEstimateAndWallet.scss';
 
 const AllEstimateAndWallet: React.FC = observer(() => {
   const [error, setError] = useState(true);
-  const [listEstimateData, setlistEstimateData] = useState();
-  const [listWalletData, settWalletData] = useState();
+  const [listEstimateData, setlistEstimateData] = useState<
+    ResponseListNamesEstimateWallet[]
+  >();
+  const [listWalletData, settWalletData] = useState<
+    ResponseListNamesEstimateWallet[]
+  >();
 
   useEffect(() => {
-    store.GeneralData.allEstimates().then((data: any) => {
-      if (data !== 'Error') {
-        store.GeneralData.allDataEstimate = data;
+    store.GeneralData.allEstimates().then((data) => {
+      if (typeof data !== 'string') {
         setlistEstimateData(data);
       } else {
         setError(false);
       }
-      store.GeneralData.allWallets().then((data: any) => {
-        if (data !== 'Error') {
-          store.GeneralData.allDataWallets = data;
+      store.GeneralData.allWallets().then((data) => {
+        if (typeof data !== 'string') {
           settWalletData(data);
         } else {
           setError(false);
@@ -49,7 +49,6 @@ const AllEstimateAndWallet: React.FC = observer(() => {
             nameSection={'кошельки'}
             fnAddNewItem={store.CreationEditingWallets.createNewWallet}
           />
-          <AllWalletsMainPage />
         </>
       ) : (
         <div> Упс, что-то пошло не так попробуйте перезагрузить стараницу.</div>

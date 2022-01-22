@@ -1,13 +1,14 @@
 import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ResponseListNamesEstimateWallet } from '../../state/StateTypes';
 import { ModalWindow } from '../ModalWindow/ModalWindow';
 import './_AllEstimateAndWallet.scss';
 
 interface ListEstimateWalletType {
   nameSection: string;
   patch: string;
-  listData?: [];
+  listData?: ResponseListNamesEstimateWallet[];
   fnAddNewItem: (newName: string) => Promise<number>;
 }
 
@@ -22,10 +23,11 @@ export const ListEstimateWallet: React.FC<ListEstimateWalletType> = observer(
           <ul className="list">
             {listData &&
               listData.map((item) => {
+                console.log(item['name']);
                 return (
-                  <li key={item['id']}>
-                    <Link to={'/' + patch + '-' + item['names_estimates_id']}>
-                      {item['full_name']}
+                  <li key={item['name'] + item['id']}>
+                    <Link to={'/' + patch + '-' + item['id']}>
+                      {item['name']}
                     </Link>
                   </li>
                 );

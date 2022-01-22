@@ -15,7 +15,6 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
 
 Route::get('/{path?}', function () {
     return view('app');
@@ -35,10 +34,3 @@ Route::post('/new-wallet', [ListWallets::class, 'create']);
 Route::post('/all-users-system', [ListWallets::class, 'usersSearch']);
 Route::post('/add-new-user-wallet', [ListWallets::class, 'addNewUser']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::post('/tokens/create', function (Request $request) {
-    $token = $request->user()->createToken($request->token_name);
-
-    return ['token' => $token->plainTextToken];
-});

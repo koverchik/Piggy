@@ -60,10 +60,12 @@ class ListWallets extends Controller
     public function store(Request $id)
     {
         //Показать все кошельки доступные пользователю
-
-        $names = ScopeDiscription::with('NamesWallet')->where('user_id', $id["id"])->get();
-            
-        return $names;
+        $response = [];
+        $names = ScopeDiscription::where('user_id', $id["id"])->get();
+        foreach ($names as $name) {
+            array_push($response, array("name" => $name->NamesWallet->name, "id" => $name->names_wallets_id));   
+        }
+        return $response;
     }
 
 
@@ -143,30 +145,30 @@ class ListWallets extends Controller
 
     public function addNewUser(Request $data)
     {
-        $ScopeDiscription = new ScopeDiscription;
-        $ScopeDiscription -> user_id = $data['newUser'];
-        $ScopeDiscription -> names_wallets_id = $data['id'];
-        $ScopeDiscription -> browsing = 1;
-        $ScopeDiscription -> add_row = 1;
+        $ScopeDescription = new ScopeDiscription;
+        $ScopeDescription -> user_id = $data['newUser'];
+        $ScopeDescription -> names_wallets_id = $data['id'];
+        $ScopeDescription -> browsing = 1;
+        $ScopeDescription -> add_row = 1;
         if($data['AccessNewUser'] === "owner"){
-            $ScopeDiscription -> edit_permission = 1;
-            $ScopeDiscription -> edit_row = 1;
-            $ScopeDiscription -> delete_row = 1;
-            $ScopeDiscription -> delete_table = 1;
+            $ScopeDescription -> edit_permission = 1;
+            $ScopeDescription -> edit_row = 1;
+            $ScopeDescription -> delete_row = 1;
+            $ScopeDescription -> delete_table = 1;
         }
         if($data['AccessNewUser'] === "editor"){
-            $ScopeDiscription -> edit_permission = 0;
-            $ScopeDiscription -> delete_table = 0;
-            $ScopeDiscription -> edit_row = 1;
-            $ScopeDiscription -> delete_row = 1;
+            $ScopeDescription -> edit_permission = 0;
+            $ScopeDescription -> delete_table = 0;
+            $ScopeDescription -> edit_row = 1;
+            $ScopeDescription -> delete_row = 1;
         }
         if($data['AccessNewUser'] === "user"){
-            $ScopeDiscription -> edit_permission = 0;
-            $ScopeDiscription -> delete_table = 0;
-            $ScopeDiscription -> edit_row = 0;
-            $ScopeDiscription -> delete_row = 0;
+            $ScopeDescription -> edit_permission = 0;
+            $ScopeDescription -> delete_table = 0;
+            $ScopeDescription -> edit_row = 0;
+            $ScopeDescription -> delete_row = 0;
         }
-        $ScopeDiscription->save();
+        $ScopeDescription->save();
     }
 
 }
