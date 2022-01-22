@@ -52,14 +52,12 @@ class ListController extends BaseController
     public function store(Request $id)
     {
         //Показать все сметы пользователя
-   
+        $response = [];
         $names = ScopeEstimates::where('user_id', $id["id"])->get();
         foreach ($names as $name) {
-            $name->full_name = $name->NamesEstimates->name;
-            $name->ouner_id = $name->NamesEstimates->user_id;
+            array_push($response, array("name" => $name->NamesEstimates->name, "id" => $name->names_estimates_id));   
         }
-     
-         return $names->toJson();
+        return $response;
       
     }
 

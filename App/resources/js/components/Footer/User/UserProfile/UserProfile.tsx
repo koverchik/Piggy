@@ -12,13 +12,14 @@ const UserProfile: React.FC = observer(() => {
       <Link to="/" className="enter-in-system">
         <img
           src={observableUserProfile.imageUrl}
-          alt="piggy"
+          alt="user"
           className="image-user"
           width={35}
           height={35}
         />
         <p>{observableUserProfile.givenName}</p>
       </Link>
+
       <GoogleLogout
         clientId="420712854303-99d07k7jiqrsq58c7iv3mugs85oensd2.apps.googleusercontent.com"
         icon={false}

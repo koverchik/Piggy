@@ -1,5 +1,6 @@
 import { makeObservable, action, observable, configure } from 'mobx';
 import axios from 'axios';
+import { ResponseListNamesEstimateWallet } from './StateTypes';
 
 configure({
   enforceActions: 'observed'
@@ -33,25 +34,15 @@ export default class GeneralData {
     });
   }
 
-  allEstimates() {
+  allEstimates(): Promise<ResponseListNamesEstimateWallet[] | string> {
     const result = axios
       .post(process.env.MIX_APP_URL_FOR_TEST + 'all-estimates', {
         id: this.idUser
       })
       .then(
         (response) => {
-          const countNameEstimates: number = Math.ceil(
-            response.data.length / 10
-          );
-          let arrayPaginationEstimate = [];
-          for (let index = 0; index < countNameEstimates; index++) {
-            arrayPaginationEstimate.push(index + 1);
-          }
-          this.activePaginationAllEstimates = arrayPaginationEstimate.length;
-          this.arrayNameAllEstimates = arrayPaginationEstimate;
           return response.data;
         },
-
         (response) => {
           console.log('error request ' + response);
           return 'Error';
@@ -60,22 +51,13 @@ export default class GeneralData {
     return result;
   }
 
-  allWallets() {
+  allWallets(): Promise<ResponseListNamesEstimateWallet[] | string> {
     const result = axios
       .post(process.env.MIX_APP_URL_FOR_TEST + 'all-wallets', {
         id: this.idUser
       })
       .then(
         (response) => {
-          const countPaginationWallets: number = Math.ceil(
-            response.data.length / 10
-          );
-          let arrayPaginationWallets = [];
-          for (let index = 0; index < countPaginationWallets; index++) {
-            arrayPaginationWallets.push(index + 1);
-          }
-          this.arrayNameAllWallets = arrayPaginationWallets;
-          this.activePaginationAllWallets = this.arrayNameAllWallets.length;
           return response.data;
         },
 

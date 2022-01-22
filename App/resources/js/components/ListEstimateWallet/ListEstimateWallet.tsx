@@ -1,0 +1,58 @@
+import { observer } from 'mobx-react-lite';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ResponseListNamesEstimateWallet } from '../../state/StateTypes';
+import { ModalWindow } from '../ModalWindow/ModalWindow';
+import './_AllEstimateAndWallet.scss';
+
+interface ListEstimateWalletType {
+  nameSection: string;
+  patch: string;
+  listData?: ResponseListNamesEstimateWallet[];
+  fnAddNewItem: (newName: string) => Promise<number>;
+}
+
+export const ListEstimateWallet: React.FC<ListEstimateWalletType> = observer(
+  ({ listData, nameSection, patch, fnAddNewItem }) => {
+    const [statePopUp, setStatePopUp] = useState(false);
+
+    return (
+      <div className="wrapper">
+        <div className="wrapper-block-name-list">
+          <p className="header-blok-view">{nameSection}</p>
+          <ul className="list">
+            {listData &&
+              listData.map((item) => {
+                console.log(item['name']);
+                return (
+                  <li key={item['name'] + item['id']}>
+                    <Link to={'/' + patch + '-' + item['id']}>
+                      {item['name']}
+                    </Link>
+                  </li>
+                );
+              })}
+          </ul>
+        </div>
+        <div className="wrapper-pagination-button-create">
+          <div
+            className="button-create"
+            onClick={() => {
+              setStatePopUp(true);
+            }}
+          >
+            Создать
+          </div>
+        </div>
+        {statePopUp && (
+          <ModalWindow
+            statePopUp={setStatePopUp}
+            nameModal={nameSection}
+            fnAddNewItem={fnAddNewItem}
+            pathName={patch}
+          />
+        )}
+      </div>
+    );
+  }
+);

@@ -1,5 +1,6 @@
 import { makeObservable, action, observable, configure } from 'mobx';
 import axios from 'axios';
+import { ResponseListNamesEstimateWallet } from './StateTypes';
 
 configure({
   enforceActions: 'observed'

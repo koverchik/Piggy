@@ -15,10 +15,10 @@ export default class CreationEditingEstimates {
     });
   }
 
-  createNewEstimate = () => {
+  createNewEstimate = (newName: string) => {
     const result = axios
       .post(process.env.MIX_APP_URL_FOR_TEST + 'new-estimate', {
-        name: this.newNameEstimate,
+        name: newName,
         idUser: 9
       })
       .then(
