@@ -29,8 +29,6 @@ const BodyTableEstimate: React.FC<BodyTableEstimateType> = observer(
           <ErrorEstimate />
         ) : (
           listRowsEstimate.map((item: RowEstimate, i: number) => {
-            console.log(item);
-
             return (
               <tr
                 key={'RowEstimate' + i}

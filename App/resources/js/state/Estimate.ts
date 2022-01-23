@@ -68,9 +68,9 @@ export default class Estimate {
       })
       .then(
         (response) => {
-          console.log(response);
+          console.log(response.data);
 
-          this.nameEstimate = response.data[0].name;
+          this.nameEstimate = response.data.name;
           this.rowsLength = response.data.rows.length + 1;
           const countPagination = Math.ceil(response.data.rows.length / 10);
           const arrayPagination = [];
