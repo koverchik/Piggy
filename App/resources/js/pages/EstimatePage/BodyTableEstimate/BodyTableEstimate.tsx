@@ -5,10 +5,13 @@ import { ErrorEstimate } from '../../../components/ErrorEstimate';
 import store from '../../../state/index';
 import { RowEstimate } from '../../../state/StateTypes';
 
-type BodyTableEstimateType = { listRowsEstimate: string | RowEstimate[] };
+type BodyTableEstimateType = {
+  listRowsEstimate: string | RowEstimate[];
+  pagination: number;
+};
 
 const BodyTableEstimate: React.FC<BodyTableEstimateType> = observer(
-  ({ listRowsEstimate }) => {
+  ({ listRowsEstimate, pagination }) => {
     return (
       <tbody>
         {listRowsEstimate.length === 0 ? (
@@ -20,14 +23,14 @@ const BodyTableEstimate: React.FC<BodyTableEstimateType> = observer(
             return (
               <tr
                 key={'RowEstimate' + i}
-                // className={
-                //   !(
-                //     (pagination - 1) * 10 < i + 1 &&
-                //     i + 1 <= (pagination - 1) * 10 + 10
-                //   )
-                //     ? 'display-none'
-                //     : ''
-                // }
+                className={
+                  !(
+                    (pagination - 1) * 10 < i + 1 &&
+                    i + 1 <= (pagination - 1) * 10 + 10
+                  )
+                    ? 'display-none'
+                    : ''
+                }
               >
                 <td className="namber-one-item"> {i + 1} </td>
                 <td className="name-one-item"> {item['name']} </td>

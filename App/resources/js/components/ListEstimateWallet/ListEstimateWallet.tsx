@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ResponseListNamesEstimateWallet } from '../../state/StateTypes';
 import { createArrayPagination } from '../Helpers/ArrayPagination';
 import { ModalWindow } from '../ModalWindow/ModalWindow';
-import { Pagination } from '../PaginationRows/Pagination';
+import { Pagination } from '../Pagination';
 import './_AllEstimateAndWallet.scss';
 
 interface ListEstimateWalletType {

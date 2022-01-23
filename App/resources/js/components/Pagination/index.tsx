@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import './_PaginationRows.scss';
+import './_style.scss';
 
 type PaginationType = {
   arrayPaginationNumber: number[];

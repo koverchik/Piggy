@@ -1,20 +1,20 @@
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
-
 import store from '../../state/index';
-
 import AddRow from './AddRowEstimate/AddRowEstimate';
 import BodyTableEstimate from './BodyTableEstimate/BodyTableEstimate';
 import './_style.scss';
 import { HeaderTableEstimate } from './HeaderTableEstimate';
 import { FooterTableEstimate } from './FooterTableEstimate';
 import { RowEstimate } from '../../state/StateTypes';
-import { Pagination } from '../../components/PaginationRows/Pagination';
+import { Pagination } from '../../components/Pagination';
+import { createArrayPagination } from '../../components/Helpers/ArrayPagination';
 
 export const Estimate: React.FC = observer((props: any) => {
   const [listRowsEstimate, setlistRowsEstimate] = useState<
     RowEstimate[] | string
   >([]);
+  const [arrayPagination, setArrayPagination] = useState<number[]>([]);
 
   const [activePart, setActivePart] = useState(1);
 
@@ -22,6 +22,9 @@ export const Estimate: React.FC = observer((props: any) => {
     store.Estimate.requestOneEstimate(props.match.params.id).then(
       (data: RowEstimate[] | string) => {
         setlistRowsEstimate(data);
+        if (typeof data !== 'string') {
+          setArrayPagination(createArrayPagination(data));
+        }
       }
     );
   }, []);
@@ -39,12 +42,19 @@ export const Estimate: React.FC = observer((props: any) => {
         </div>
         <table className="table-list-value section-to-print-table">
           <HeaderTableEstimate />
-          <BodyTableEstimate listRowsEstimate={listRowsEstimate} />
+          <BodyTableEstimate
+            listRowsEstimate={listRowsEstimate}
+            pagination={activePart}
+          />
           <FooterTableEstimate />
         </table>
-        {/* {listRowsEstimate.length > 10 && (
-          <Pagination activePart={activePart} setActivePart={setActivePart} />
-        )} */}
+        {listRowsEstimate.length > 10 && (
+          <Pagination
+            activePart={activePart}
+            setActivePart={setActivePart}
+            arrayPaginationNumber={arrayPagination}
+          />
+        )}
         <AddRow />
       </div>
     </div>
