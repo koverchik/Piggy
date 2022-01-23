@@ -1,26 +1,14 @@
 import { observer } from 'mobx-react-lite';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { EmptyEstimate } from '../../../components/EmptyEstimate';
 import { ErrorEstimate } from '../../../components/ErrorEstimate';
 import store from '../../../state/index';
 import { RowEstimate } from '../../../state/StateTypes';
 
-type BodyTableEstimateType = { idEstimate: number };
+type BodyTableEstimateType = { listRowsEstimate: string | RowEstimate[] };
 
 const BodyTableEstimate: React.FC<BodyTableEstimateType> = observer(
-  ({ idEstimate }) => {
-    const [listRowsEstimate, setlistRowsEstimate] = useState<
-      RowEstimate[] | string
-    >([]);
-
-    useEffect(() => {
-      store.Estimate.requestOneEstimate(idEstimate).then(
-        (data: RowEstimate[] | string) => {
-          setlistRowsEstimate(data);
-        }
-      );
-    }, [store.Estimate.sumRows]);
-
+  ({ listRowsEstimate }) => {
     return (
       <tbody>
         {listRowsEstimate.length === 0 ? (

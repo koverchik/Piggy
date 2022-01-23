@@ -1,24 +1,30 @@
 import { observer } from 'mobx-react-lite';
-import React from 'react';
-import PaginationInterface from '../../interfaces/interfacesPagination';
+import React, { useEffect, useState } from 'react';
+
 import store from '../../state/index';
-import PaginationRow from '../../components/PaginationRows/PaginationRows';
+
 import AddRow from './AddRowEstimate/AddRowEstimate';
 import BodyTableEstimate from './BodyTableEstimate/BodyTableEstimate';
 import './_style.scss';
 import { HeaderTableEstimate } from './HeaderTableEstimate';
 import { FooterTableEstimate } from './FooterTableEstimate';
+import { RowEstimate } from '../../state/StateTypes';
+import { Pagination } from '../../components/PaginationRows/Pagination';
 
 export const Estimate: React.FC = observer((props: any) => {
-  store.Estimate.idEstimate = props.match.params.id;
+  const [listRowsEstimate, setlistRowsEstimate] = useState<
+    RowEstimate[] | string
+  >([]);
 
-  const paginationData: PaginationInterface = {
-    arrayNumber: store.Estimate.pagination,
-    activeNumber: store.Estimate.activePagination,
-    callbackPaginationArray: store.Estimate.callbackPaginationLeft,
-    callbackPaginationLeft: store.Estimate.callbackPaginationLeft,
-    callbackPaginationRight: store.Estimate.callbackPaginationRight
-  };
+  const [activePart, setActivePart] = useState(1);
+
+  useEffect(() => {
+    store.Estimate.requestOneEstimate(props.match.params.id).then(
+      (data: RowEstimate[] | string) => {
+        setlistRowsEstimate(data);
+      }
+    );
+  }, []);
 
   return (
     <div className="wrapper-one-estimate">
@@ -33,13 +39,11 @@ export const Estimate: React.FC = observer((props: any) => {
         </div>
         <table className="table-list-value section-to-print-table">
           <HeaderTableEstimate />
-          <BodyTableEstimate idEstimate={props.match.params.id} />
+          <BodyTableEstimate listRowsEstimate={listRowsEstimate} />
           <FooterTableEstimate />
         </table>
-        {/* {store.Estimate.pagination.length > 1 ? (
-          <PaginationRow {...paginationData} />
-        ) : (
-          ''
+        {/* {listRowsEstimate.length > 10 && (
+          <Pagination activePart={activePart} setActivePart={setActivePart} />
         )} */}
         <AddRow />
       </div>

@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ResponseListNamesEstimateWallet } from '../../state/StateTypes';
+import { createArrayPagination } from '../Helpers/ArrayPagination';
 import { ModalWindow } from '../ModalWindow/ModalWindow';
 import { Pagination } from '../PaginationRows/Pagination';
 import './_AllEstimateAndWallet.scss';
@@ -22,13 +23,9 @@ export const ListEstimateWallet: React.FC<ListEstimateWalletType> = observer(
     const [activePart, setActivePart] = useState<number>(1);
 
     useEffect(() => {
-      const arrayPagination = [];
       if (listData?.length) {
-        for (let i = 1; i <= listData?.length / 10; i++) {
-          arrayPagination.push(i);
-        }
+        setArrayPaginationNumber(createArrayPagination(listData));
       }
-      setArrayPaginationNumber(arrayPagination);
     }, [listData]);
 
     return (
