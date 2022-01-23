@@ -1,6 +1,6 @@
 import { makeObservable, action, observable, configure } from 'mobx';
 import axios from 'axios';
-import { ResponseListNamesEstimateWallet } from './StateTypes';
+import { ResponseListNamesEstimateWallet, RowEstimate } from './StateTypes';
 
 export default class Estimate {
   idEstimate = 0;
@@ -59,13 +59,17 @@ export default class Estimate {
       : '';
   };
 
-  async requestOneEstimate() {
+  async requestOneEstimate(
+    idEstimate: number
+  ): Promise<RowEstimate[] | string> {
     const result = axios
       .post(process.env.MIX_APP_URL_FOR_TEST + 'one-estimates', {
-        id: this.idEstimate
+        id: idEstimate
       })
       .then(
         (response) => {
+          console.log(response);
+
           this.nameEstimate = response.data[0].name;
           this.rowsLength = response.data.rows.length + 1;
           const countPagination = Math.ceil(response.data.rows.length / 10);
@@ -132,7 +136,7 @@ export default class Estimate {
       .then(
         (response) => {
           if (response.status === 200) {
-            this.requestOneEstimate();
+            // this.requestOneEstimate();
             this.newRow = '';
             this.newRowCost = '';
             this.validationNewRow = true;
@@ -154,7 +158,7 @@ export default class Estimate {
       .then(
         (response) => {
           if (response.status === 200) {
-            this.requestOneEstimate();
+            // this.requestOneEstimate();
           }
         },
         (response) => {

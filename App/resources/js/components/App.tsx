@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // import MainSection from "./MainSection/MainSection";
 import { MainPage } from '../pages/MainPage';
 import AllEstimate from './AllEstimate/AllEstimate';
-import OneEstimate from '../pages/EstimatePage/OneEstimate';
+import { Estimate } from '../pages/EstimatePage';
 import OneWallet from './OneWallet/OneWallet';
 import Registration from './Registration/Registration';
 import Authentication from './Authentication/Authentication';
@@ -25,7 +25,7 @@ const App: React.FC = observer(() => {
           {/* <Route exact path="/registration" component={Registration} />
           <Route exact path="/authentication" component={Authentication} /> */}
           <Route exact path="/authorization" component={Authorization} />
-          <Route path="/estimate-:id" component={OneEstimate} />
+          <Route path="/estimate-:id" component={Estimate} />
           <Route path="/one-estimate" component={AllEstimate} />
           <Route path="/wallet-:id" component={OneWallet} />
         </Switch>
