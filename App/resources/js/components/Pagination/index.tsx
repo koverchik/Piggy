@@ -10,8 +10,6 @@ type PaginationType = {
 
 export const Pagination: React.FC<PaginationType> = observer(
   ({ arrayPaginationNumber, activePart, setActivePart }) => {
-    console.log(arrayPaginationNumber);
-
     return (
       <div className="wrapper-number-pagination">
         <img

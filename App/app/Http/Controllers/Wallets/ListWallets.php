@@ -79,7 +79,7 @@ class ListWallets extends Controller
     {
         
         $wallet = NamesWallet::where('id', $id["id"])->get();
-        $walletRows = RowWallets::with('Autor')->where('names_wallets_id', $id["id"])->get(['id','name', 'amount', 'user_id']);
+        $walletRows = RowWallets::with('Autor')->where('names_wallets_id', $id["id"])->get(['id','name', 'amount', 'user_id', 'created_at_time']);
   
       return array("name" => $wallet[0]-> name, "rows" => $walletRows);
     }

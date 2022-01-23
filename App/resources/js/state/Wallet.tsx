@@ -1,6 +1,6 @@
 import { makeObservable, action, observable, configure } from 'mobx';
 import axios from 'axios';
-import { WalletRowType } from '../pages/WalletPage/Types';
+import { AllDataWalletType, WalletRowType } from '../pages/WalletPage/Types';
 
 configure({
   enforceActions: 'observed'
@@ -44,7 +44,7 @@ export default class Wallet {
     return number < 10 ? `0${number}` : number;
   }
 
-  startOneWallet(id: string): Promise<WalletRowType[] | string> {
+  startOneWallet(id: string): Promise<AllDataWalletType | string> {
     const nowDay = new Date();
     this.newDataRaw = `${nowDay.getFullYear()}-${this.addZero(
       nowDay.getMonth() + 1

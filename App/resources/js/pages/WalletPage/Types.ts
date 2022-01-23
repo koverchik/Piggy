@@ -18,4 +18,5 @@ export type WalletRowType = {
 };
 export type AllDataWalletType = {
   rows: WalletRowType[];
+  name: string;
 };

@@ -5,7 +5,7 @@ import interfacesPopUp from '../../../interfaces/interfacesPopUp';
 import store from '../../../state';
 import Button from '../../../components/ButtonCreate/ButtonCreate';
 import PopUp from '../../../components/PopUp/PopUp';
-import '../_OneWallet.scss';
+import '../_styles.scss';
 import TableDebitCredit from './TableDebitCredit/TableDebitCredit';
 import './_BurdenSharing.scss';
 

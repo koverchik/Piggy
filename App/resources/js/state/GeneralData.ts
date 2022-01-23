@@ -14,6 +14,8 @@ export default class GeneralData {
   }
 
   allEstimates(): Promise<ResponseListNamesEstimateWallet[] | string> {
+    console.log(this.idUser);
+
     const result = axios
       .post(process.env.MIX_APP_URL_FOR_TEST + 'all-estimates', {
         id: this.idUser
