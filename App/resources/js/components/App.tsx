@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // import MainSection from "./MainSection/MainSection";
 import { MainPage } from '../pages/MainPage';
 import AllEstimate from './AllEstimate/AllEstimate';
-import OneEstimate from './OneEstimate/OneEstimate';
+import OneEstimate from '../pages/EstimatePage/OneEstimate';
 import OneWallet from './OneWallet/OneWallet';
 import Registration from './Registration/Registration';
 import Authentication from './Authentication/Authentication';
