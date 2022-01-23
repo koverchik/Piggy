@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
 import store from '../../state/index';
 import AddRow from './AddRowEstimate/AddRowEstimate';
-import BodyTableEstimate from './BodyTableEstimate/BodyTableEstimate';
+import BodyTableEstimate from './BodyTableEstimate';
 import './_style.scss';
 import { HeaderTableEstimate } from './HeaderTableEstimate';
 import { FooterTableEstimate } from './FooterTableEstimate';
