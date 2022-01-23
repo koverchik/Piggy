@@ -1,6 +1,6 @@
-import { makeObservable, action, observable, configure } from 'mobx';
 import axios from 'axios';
-import { ResponseListNamesEstimateWallet, RowEstimate } from './StateTypes';
+import { action, makeObservable, observable } from 'mobx';
+import { RowEstimate } from './StateTypes';
 
 export default class Estimate {
   idEstimate = 0;
