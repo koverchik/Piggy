@@ -70,10 +70,9 @@ class ListController extends BaseController
     public function show(Request $id)
     {
         // Получить информацию об одной смете
-        $estimate = DB::table('names_estimates')->where("id", $id["id"])->get();
-        $estimateRows = DB::table('row_estimates')->where("names_estimates_id", $id["id"])->get();
-        array_add($estimate, 'rows', $estimateRows);
-        return $estimate->toJson();
+        $estimate = DB::table('names_estimates')->where("id", $id["id"])->get("name");
+        $estimateRows = DB::table('row_estimates')->where("names_estimates_id",$id["id"])->get(['name', 'amount', 'id']);
+        return array("name" => $estimate[0]-> name, "rows" => $estimateRows);
     }
 
 

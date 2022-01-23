@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import store from '../../../../state';
-import '../../../OneEstimate/PaginationRows/_PaginationRows.scss';
 import { observer } from 'mobx-react-lite';
 
 const PaginationRows: React.FC = observer(() => {

@@ -23,7 +23,7 @@ export const ModalWindow: React.FC<ModalWindow> = observer(
           }}
         >
           <div className="wrapper-header-create-new-name">
-            <p>{'Создание ' + nameModal} </p>
+            <p>{'Создание ' + nameModal.toLowerCase()} </p>
             <img
               src="../images/cancel_white.svg"
               alt="close"
@@ -32,7 +32,7 @@ export const ModalWindow: React.FC<ModalWindow> = observer(
             />
           </div>
           <div className="wrapper-for-name">
-            <p>{'Придумайте название ' + nameModal}</p>
+            <p>{'Придумайте название ' + nameModal.toLowerCase()}</p>
             <input
               type="text"
               value={newName}

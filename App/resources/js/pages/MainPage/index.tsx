@@ -40,13 +40,13 @@ export const MainPage: React.FC = observer(() => {
           <ListEstimateWallet
             listData={listEstimateData}
             patch={'estimate'}
-            nameSection={'сметы'}
+            nameSection={'Сметы'}
             fnAddNewItem={store.CreationEditingEstimates.createNewEstimate}
           />
           <ListEstimateWallet
             listData={listWalletData}
             patch={'wallet'}
-            nameSection={'кошельки'}
+            nameSection={'Кошельки'}
             fnAddNewItem={store.CreationEditingWallets.createNewWallet}
           />
         </>
