@@ -77,10 +77,11 @@ class ListWallets extends Controller
      */
     public function show(Request $id)
     {
+        
         $wallet = NamesWallet::where('id', $id["id"])->get();
-        $walletRows = RowWallets::with('Autor')->where('names_wallets_id', $id["id"])->get();
-        array_add($wallet, 'rows', $walletRows);   
-        return $wallet->toJson();
+        $walletRows = RowWallets::with('Autor')->where('names_wallets_id', $id["id"])->get(['id','name', 'amount', 'user_id']);
+  
+      return array("name" => $wallet[0]-> name, "rows" => $walletRows);
     }
 
     public function scopeOneWallet(Request $id)

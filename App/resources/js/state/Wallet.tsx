@@ -1,20 +1,21 @@
 import { makeObservable, action, observable, configure } from 'mobx';
 import axios from 'axios';
+import { WalletRowType } from '../pages/WalletPage/Types';
 
 configure({
   enforceActions: 'observed'
 });
 
 export default class Wallet {
-  allUsers = new Array();
+  allUsers = [];
   newDataRaw = '';
   idWallet = 0;
   nameWallet = '';
   allSum = 0;
   newRowWallet = '';
   newRowCost = '';
-  allRows = new Array();
-  numberPagination = new Array();
+  allRows = [];
+  numberPagination = [];
   activePagination = 0;
   lengthRows = 0;
   lengthBurdenUser = 0;
@@ -43,7 +44,7 @@ export default class Wallet {
     return number < 10 ? `0${number}` : number;
   }
 
-  startOneWallet() {
+  startOneWallet(id: string): Promise<WalletRowType[] | string> {
     const nowDay = new Date();
     this.newDataRaw = `${nowDay.getFullYear()}-${this.addZero(
       nowDay.getMonth() + 1
@@ -51,7 +52,7 @@ export default class Wallet {
 
     const result = axios
       .post(process.env.MIX_APP_URL_FOR_TEST + 'one-wallets', {
-        id: this.idWallet
+        id: id
       })
       .then(
         (response) => {
@@ -62,15 +63,8 @@ export default class Wallet {
             return sum + elem.amount;
           },
           0);
-          const quantity: number = Math.ceil(this.lengthRows / 10);
-          const arrayForPagination = new Array();
-          for (let i = 0; i < quantity; i++) {
-            arrayForPagination.push(i + 1);
-          }
-          this.numberPagination = arrayForPagination;
-
           this.allSum = +sumAllRows.toFixed(2);
-          return response;
+          return response.data;
         },
         (response) => {
           console.log('error request ' + response);

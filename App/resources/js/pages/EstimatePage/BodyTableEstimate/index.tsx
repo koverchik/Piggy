@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { EmptyEstimate } from '../../../components/EmptyEstimate';
-import { ErrorEstimate } from '../../../components/ErrorEstimate';
+import { ErrorTableLoading } from '../../../components/ErrorTableLoading';
 import store from '../../../state/index';
 import { RowEstimate } from '../../../state/StateTypes';
 
@@ -17,7 +17,7 @@ const BodyTableEstimate: React.FC<BodyTableEstimateType> = observer(
         {listRowsEstimate.length === 0 ? (
           <EmptyEstimate />
         ) : typeof listRowsEstimate === 'string' ? (
-          <ErrorEstimate />
+          <ErrorTableLoading colSpan={4} />
         ) : (
           listRowsEstimate.map((item: RowEstimate, i: number) => {
             return (
