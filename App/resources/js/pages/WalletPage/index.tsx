@@ -18,7 +18,8 @@ export const OneWallet: React.FC = observer(() => {
   const [activePart, setActivePart] = useState(1);
   const [arrayPaginationNumber, setArrayPaginationNumber] = useState<
     number[]
-  >();
+    >();
+  
   const { id } = useParams<useParamsIdType>();
 
   useEffect(() => {
