@@ -2,7 +2,8 @@ import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { ErrorTableLoading } from '../../../../components/ErrorTableLoading';
 import store from '../../../../state';
-import { WalletRowType } from '../../Types';
+import { WalletRowType } from '../../types';
+import { useEffect } from 'react';
 
 type TableOneWallet = {
   listRowsWallet: WalletRowType[] | string;

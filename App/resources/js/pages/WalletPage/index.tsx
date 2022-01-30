@@ -5,7 +5,7 @@ import { createArrayPagination } from '../../components/Helpers/ArrayPagination'
 import store from '../../state';
 import BurdenSharing from './BurdenSharing/BurdenSharing';
 import { TableOneWallet } from './TableOneWallet';
-import { AllDataWalletType, WalletRowType } from './Types';
+import { AllDataWalletType, WalletRowType } from './types';
 import './_styles.scss';
 
 export type useParamsIdType = {
@@ -34,7 +34,8 @@ export const OneWallet: React.FC = observer(() => {
 
   useEffect(() => {
     setListRowsWallet(store.Wallet.allRows);
-  }, [store.Wallet.allRows]);
+    setArrayPaginationNumber(createArrayPagination(store.Wallet.allRows));
+  }, [store.Wallet.allRows, store.Wallet.allSum]);
 
   return (
     <div className="wrapper-one-wallet">

@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
-import React from 'react';
+import React, { useEffect } from 'react';
+import store from '../../state';
 import './_style.scss';
 
 type PaginationType = {
@@ -10,6 +11,9 @@ type PaginationType = {
 
 export const Pagination: React.FC<PaginationType> = observer(
   ({ arrayPaginationNumber, activePart, setActivePart }) => {
+    useEffect(() => {
+      setActivePart(arrayPaginationNumber.length);
+    }, [arrayPaginationNumber]);
     return (
       <div className="wrapper-number-pagination">
         <img

@@ -1,11 +1,11 @@
 import React from 'react';
 import './_styles.scss';
 import '../_styles.scss';
-import { AddNewRowWallet } from './AddNewRowWallet/AddNewRowWallet';
+import { AddNewRowWallet } from './AddNewRowWallet';
 import { observer } from 'mobx-react-lite';
 import store from '../../../state';
 import { BodyOneWallet } from './BodyOneWallet';
-import { WalletRowType } from '../Types';
+import { WalletRowType } from '../types';
 import { Pagination } from '../../../components/Pagination';
 
 type TableOneWalletType = {
@@ -43,7 +43,7 @@ export const TableOneWallet: React.FC<TableOneWalletType> = observer(
             </tr>
           </tfoot>
         </table>
-        {arrayPaginationNumber && (
+        {arrayPaginationNumber && arrayPaginationNumber.length > 1 && (
           <Pagination
             activePart={activePart}
             setActivePart={setActivePart}

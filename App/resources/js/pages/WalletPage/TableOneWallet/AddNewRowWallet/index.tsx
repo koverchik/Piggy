@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useParamsIdType } from '../..';
 import AddNewButton from '../../../../components/ButtonAddNewRow/ButtonAddNewRow';
 import store from '../../../../state';
-import './_AddNewRowWallet.scss';
+import './_styles.scss';
 import { useState } from 'react';
 
 export const AddNewRowWallet: React.FC = observer(() => {

@@ -4,7 +4,7 @@ import {
   AllDataWalletType,
   SubmitDataNewRowWallet,
   WalletRowType
-} from '../pages/WalletPage/Types';
+} from '../pages/WalletPage/types';
 
 export default class Wallet {
   allUsers = [];
