@@ -32,6 +32,10 @@ export const OneWallet: React.FC = observer(() => {
     });
   }, []);
 
+  useEffect(() => {
+    setListRowsWallet(store.Wallet.allRows);
+  }, [store.Wallet.allRows]);
+
   return (
     <div className="wrapper-one-wallet">
       <div className="one-wallet">

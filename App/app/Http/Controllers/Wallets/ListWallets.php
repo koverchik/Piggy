@@ -117,7 +117,8 @@ class ListWallets extends Controller
         $RowWallets -> user_id = $id;
         $RowWallets -> names_wallets_id = $data->data["namesWalletsId"];
         $RowWallets->save();
-        
+        $walletRow = RowWallets::with('Autor')->where('names_wallets_id', $RowWallets -> names_wallets_id)->where('id', $RowWallets -> id)->get(['id','name', 'amount', 'user_id', 'created_at_time']);
+        return $walletRow[0];
     }
 
     /**

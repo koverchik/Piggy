@@ -1,14 +1,10 @@
-import { makeObservable, action, observable, configure } from 'mobx';
 import axios from 'axios';
+import { action, makeObservable, observable } from 'mobx';
 import {
   AllDataWalletType,
   SubmitDataNewRowWallet,
   WalletRowType
 } from '../pages/WalletPage/Types';
-
-configure({
-  enforceActions: 'observed'
-});
 
 export default class Wallet {
   allUsers = [];
@@ -18,7 +14,7 @@ export default class Wallet {
   allSum = 0;
   newRowWallet = '';
   newRowCost = '';
-  allRows = [];
+  allRows: WalletRowType[] = [];
   numberPagination = [];
   activePagination = 0;
   lengthRows = 0;
@@ -68,6 +64,7 @@ export default class Wallet {
           },
           0);
           this.allSum = +sumAllRows.toFixed(2);
+          this.allRows = response.data.rows;
           return response.data;
         },
         (response) => {
@@ -79,18 +76,13 @@ export default class Wallet {
   }
 
   addNewRow(data: SubmitDataNewRowWallet): void | string {
-    console.log(data);
-
     axios
       .post(process.env.MIX_APP_URL_FOR_TEST + 'add-new-row-wallet', {
         data
       })
       .then(
         (response) => {
-          if (response.status === 200) {
-            this.newRowWallet = '';
-            this.newRowCost = '';
-          }
+          this.allRows.push(response.data);
         },
         (response) => {
           console.log('error request ' + response);
