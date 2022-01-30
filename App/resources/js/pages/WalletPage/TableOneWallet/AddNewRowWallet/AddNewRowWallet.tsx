@@ -1,37 +1,30 @@
-import React, { useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
+import { useParamsIdType } from '../..';
+import AddNewButton from '../../../../components/ButtonAddNewRow/ButtonAddNewRow';
 import store from '../../../../state';
 import './_AddNewRowWallet.scss';
-import { observer } from 'mobx-react-lite';
-import AddNewButton from '../../../../components/ButtonAddNewRow/ButtonAddNewRow';
-import { useForm } from 'react-hook-form';
 
-const AddNewRowWallet: React.FC = observer(() => {
+export const AddNewRowWallet: React.FC = observer(() => {
+  const { id } = useParams<useParamsIdType>();
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors }
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
-  useEffect(() => {
-    console.log(errors?.message);
-  }, [errors]);
-
   return (
     <form
-      onSubmit={
-        handleSubmit(onSubmit)
-
-        // (event: React.FormEvent) => {
-        // store.Wallet.addNewRow();
-        // store.Wallet.startOneWallet();
-        // event.preventDefault();
-        // }
-      }
+      onSubmit={handleSubmit((data) =>
+        store.Wallet.addNewRow({
+          date: data.date,
+          name: data.name,
+          cost: data.cost,
+          namesWalletsId: id
+        })
+      )}
     >
       <table className="table-add-new-value">
         <tbody>
@@ -94,4 +87,3 @@ const AddNewRowWallet: React.FC = observer(() => {
     </form>
   );
 });
-export default AddNewRowWallet;

@@ -1,6 +1,10 @@
 import { makeObservable, action, observable, configure } from 'mobx';
 import axios from 'axios';
-import { AllDataWalletType, WalletRowType } from '../pages/WalletPage/Types';
+import {
+  AllDataWalletType,
+  SubmitDataNewRowWallet,
+  WalletRowType
+} from '../pages/WalletPage/Types';
 
 configure({
   enforceActions: 'observed'
@@ -74,17 +78,12 @@ export default class Wallet {
     return result;
   }
 
-  addNewRow() {
-    const data = {
-      date: this.newDataRaw,
-      name: this.newRowWallet,
-      cost: this.newRowCost,
-      namesWalletsId: this.idWallet
-    };
+  addNewRow(data: SubmitDataNewRowWallet): void | string {
+    console.log(data);
 
     axios
       .post(process.env.MIX_APP_URL_FOR_TEST + 'add-new-row-wallet', {
-        data: data
+        data
       })
       .then(
         (response) => {

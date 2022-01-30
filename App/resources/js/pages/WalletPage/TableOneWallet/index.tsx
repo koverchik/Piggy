@@ -1,7 +1,7 @@
 import React from 'react';
 import './_styles.scss';
 import '../_styles.scss';
-import AddNewRowWallet from './AddNewRowWallet/AddNewRowWallet';
+import { AddNewRowWallet } from './AddNewRowWallet/AddNewRowWallet';
 import { observer } from 'mobx-react-lite';
 import store from '../../../state';
 import { BodyOneWallet } from './BodyOneWallet';

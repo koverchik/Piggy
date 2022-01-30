@@ -20,3 +20,10 @@ export type AllDataWalletType = {
   rows: WalletRowType[];
   name: string;
 };
+
+export type SubmitDataNewRowWallet = {
+  date: string;
+  name: string;
+  cost: number;
+  namesWalletsId: string;
+};

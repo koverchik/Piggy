@@ -11,8 +11,6 @@ type TableOneWallet = {
 
 export const BodyOneWallet: React.FC<TableOneWallet> = observer(
   ({ listRowsWallet, pagination }) => {
-    console.log(listRowsWallet);
-
     return (
       <tbody>
         {typeof listRowsWallet === 'string' ? (
