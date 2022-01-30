@@ -24,16 +24,12 @@ export const ListForPoints: React.FC<ListForPointsType> = observer(
 
     useEffect(() => {
       store.AddNewUserWallet.requestUsersSystems(id).then((data) => {
-        if (typeof data !== 'string') setStateUsers(data);
-
-        // store.AddNewUserWallet.allDataUsersSystems = data;
-        // createListUser(store.AddNewUserWallet.allDataUsersSystems);
+        if (typeof data !== 'string') {
+          setStateUsers(data);
+          store.AddNewUserWallet.allDataUsersSystems = data;
+        }
       });
     }, []);
-
-    // useEffect(() => {
-    //   createListUser(store.AddNewUserWallet.allDataUsersSystems);
-    // }, [store.AddNewUserWallet.newUser]);
 
     return (
       <div className={'list-users-data'}>

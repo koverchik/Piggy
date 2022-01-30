@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
-import { AccessList } from '../../../../components/PopUp/AccessList/AccessList';
+import { AccessList } from '../../../../components/AccessList/AccessList';
 import { ListForPoints } from '../../../../components/ListForPoint';
 import './_styles.scss';
 import state from '../../../../state';
@@ -61,17 +61,16 @@ export const ModalAddNewUser: React.FC<ModalAddNewUser> = observer(
             <div
               className="button-main"
               onClick={() => {
-                console.log('click');
                 state.AddNewUserWallet.requestAddUser(
                   id,
                   newUserId,
                   accessList
                 );
-
-                console.log(id, newUserId, accessList);
+                setStatePopUp(false);
               }}
             >
-              <img src={'../images/add-user.svg'}></img> Добавить
+              <img src={'../images/add-user.svg'}></img>
+              {' Добавить'}
             </div>
           </div>
         </div>

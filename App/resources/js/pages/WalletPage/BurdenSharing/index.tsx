@@ -2,7 +2,6 @@ import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
 import Button from '../../../components/ButtonCreate/ButtonCreate';
 import interfacesButtonCreate from '../../../interfaces/interfacesButtonCreate';
-import interfacesPopUp from '../../../interfaces/interfacesPopUp';
 import store from '../../../state';
 import { SharingUserListType } from '../types';
 import '../_styles.scss';
@@ -29,38 +28,19 @@ export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
     callbackClick: () => setStatePopUp(true)
   };
 
-  const popUpData: interfacesPopUp = {
-    name: store.AddNewUserWallet.newUser,
-    kind: 'Поиск пользователя',
-    textMessage: 'Добавьте имя и статус',
-    listUser: {
-      availability: false,
-      callbackClickList: store.AddNewUserWallet.addUser
-    },
-    accessList: {
-      availability: true,
-      callbackClickAccess: (event: Event) => {
-        store.AddNewUserWallet.AccessNewUser = (event.target as HTMLInputElement).value;
-      }
-    },
-    closeClick: () => setStatePopUp(false),
-    onChangeFunction: store.AddNewUserWallet.userSearch
-  };
-
   useEffect(() => {
     store.Wallet.scopeOneWallet(id).then((data) => {
       if (typeof data !== 'string') {
         setListScopeOneWallet(data);
         if (data.length > 1) setTableDebetCredit(true);
+        store.Wallet.allUsers = data;
       }
     });
   }, []);
 
   return (
     <div className="wrapper-user-table">
-      {statePopUp && (
-        <ModalAddNewUser {...popUpData} setStatePopUp={setStatePopUp} id={id} />
-      )}
+      {statePopUp && <ModalAddNewUser setStatePopUp={setStatePopUp} id={id} />}
       <table className="table-user">
         <thead>
           <tr>

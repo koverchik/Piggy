@@ -9,7 +9,7 @@ import {
 import { DebitCreditTableType } from './StateTypes';
 
 export default class Wallet {
-  allUsers = [];
+  allUsers: SharingUserListType[] = [];
   newDataRaw = '';
   idWallet = 0;
   nameWallet = '';

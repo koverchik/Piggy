@@ -196,6 +196,8 @@ class ListWallets extends Controller
             $ScopeDescription -> delete_row = 0;
         }
         $ScopeDescription->save();
+        $newUser = ScopeDiscription::with('User')->where('user_id', $data['newUser'])->get(['user_id',  'id', 'edit_row', 'edit_permission', 'delete_table', 'delete_row', 'browsing'])->unique('user_id');
+        return $newUser[0];
     }
 
 }
