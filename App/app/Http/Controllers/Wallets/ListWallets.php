@@ -134,8 +134,10 @@ class ListWallets extends Controller
             foreach ($userTable  as &$user) {
                 if($row['user_id'] === $user['user_id']){
                 $user['debit'] = $user['debit'] + ($row['amount'] - $row['amount']/($lengthUsersArray));
+                $user['credit'] = $user['credit'] - ($row['amount'] - $row['amount']/($lengthUsersArray));
                     }
                     else{
+                        $user['debit'] = $user['debit'] - $row['amount']/($lengthUsersArray);
                         $user['credit'] = $user['credit'] + $row['amount']/($lengthUsersArray);
                     }
                 }

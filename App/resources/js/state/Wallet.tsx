@@ -6,6 +6,7 @@ import {
   SubmitDataNewRowWallet,
   WalletRowType
 } from '../pages/WalletPage/types';
+import { DebitCreditTableType } from './StateTypes';
 
 export default class Wallet {
   allUsers = [];
@@ -36,12 +37,13 @@ export default class Wallet {
       nameWallet: observable,
       startOneWallet: action,
       scopeOneWallet: action,
+      debitCreditTable: action,
       addZero: action,
       addNewRow: action,
       gradeUser: action
     });
   }
-  addZero(number: number) {
+  addZero(number: number): string | number {
     return number < 10 ? `0${number}` : number;
   }
 
@@ -112,8 +114,27 @@ export default class Wallet {
     return result;
   }
 
-  gradeUser(item: any) {
-    let grade: string = '';
+  debitCreditTable(id: string): Promise<string | DebitCreditTableType[]> {
+    const result = axios
+      .post(process.env.MIX_APP_URL_FOR_TEST + 'debit-credit-wallet', {
+        id: id
+      })
+      .then(
+        (response) => {
+          if (response.status === 200) {
+            return response.data;
+          }
+        },
+        (response) => {
+          console.log('error request ' + response);
+          return 'Error';
+        }
+      );
+    return result;
+  }
+
+  gradeUser(item: SharingUserListType): string {
+    let grade = '';
     if (item['edit_permission'] === 1 && item['delete_table'] === 1) {
       grade = 'Владелец';
     } else if (item['edit_row'] === 1 && item['delete_row'] === 1) {

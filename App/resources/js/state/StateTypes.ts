@@ -8,3 +8,10 @@ export type RowEstimate = {
   id: number;
   name: string;
 };
+
+export type DebitCreditTableType = {
+  user_id: number;
+  name: string;
+  debit: number;
+  credit: number;
+};

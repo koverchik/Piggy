@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { createArrayPagination } from '../../components/Helpers/ArrayPagination';
 import store from '../../state';
-import BurdenSharing from './BurdenSharing/BurdenSharing';
+import { BurdenSharing } from './BurdenSharing';
 import { TableOneWallet } from './TableOneWallet';
 import { AllDataWalletType, WalletRowType } from './types';
 import './_styles.scss';
@@ -55,7 +55,7 @@ export const OneWallet: React.FC = observer(() => {
               arrayPaginationNumber={arrayPaginationNumber}
             />
           )}
-          <BurdenSharing id={id} listRowsWallet={listRowsWallet} />
+          <BurdenSharing id={id} />
         </div>
       </div>
     </div>
