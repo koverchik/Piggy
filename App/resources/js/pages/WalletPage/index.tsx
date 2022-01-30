@@ -42,7 +42,7 @@ export const OneWallet: React.FC = observer(() => {
         <div className="wrapper-header-one-wallet">
           <h2 className="header-one-wallet">{nameWallet}</h2>
           <div className="wrapper-button-edit-one-wallet">
-            <img src="../images/pensil.svg"></img>
+            <img src="../images/pencil.svg"></img>
           </div>
         </div>
         <div className="wrapper-table-wallet">
