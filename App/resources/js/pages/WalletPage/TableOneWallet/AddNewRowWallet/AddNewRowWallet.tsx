@@ -6,9 +6,12 @@ import { useParamsIdType } from '../..';
 import AddNewButton from '../../../../components/ButtonAddNewRow/ButtonAddNewRow';
 import store from '../../../../state';
 import './_AddNewRowWallet.scss';
+import { useState } from 'react';
 
 export const AddNewRowWallet: React.FC = observer(() => {
   const { id } = useParams<useParamsIdType>();
+  const [newName, setNewName] = useState<string>('');
+  const [newCost, setNewCost] = useState<string>('');
   const {
     register,
     handleSubmit,
@@ -17,19 +20,23 @@ export const AddNewRowWallet: React.FC = observer(() => {
 
   return (
     <form
-      onSubmit={handleSubmit((data) =>
+      onSubmit={handleSubmit((data) => {
         store.Wallet.addNewRow({
           date: data.date,
           name: data.name,
           cost: data.cost,
           namesWalletsId: id
-        })
-      )}
+        });
+        setNewName('');
+        setNewCost('');
+      })}
     >
       <table className="table-add-new-value">
         <tbody>
           <tr>
-            <td className="number-one-item"> {store.Wallet.lengthRows + 1} </td>
+            <td className="number-one-item">
+              {store.Wallet.allRows.length + 1}
+            </td>
             <td className="data-new-one-item">
               <input
                 type="date"
@@ -43,23 +50,23 @@ export const AddNewRowWallet: React.FC = observer(() => {
             <td className="new-one-item">
               <input
                 type="text"
-                value={store.Wallet.newRowWallet}
+                value={newName}
                 {...register('name', { required: true, maxLength: 100 })}
                 onChange={(event) => {
-                  store.Wallet.newRowWallet = event.target.value;
+                  setNewName(event.target.value);
                 }}
               />
             </td>
             <td className="new-cost-one-item">
               <input
                 type="text"
-                value={store.Wallet.newRowCost}
+                value={newCost}
                 {...register('cost', {
                   required: true,
                   pattern: /^[0-9]*[.,]?[0-9]+$/
                 })}
                 onChange={(event) => {
-                  store.Wallet.newRowCost = event.target.value;
+                  setNewCost(event.target.value);
                 }}
               ></input>
             </td>
