@@ -58,7 +58,7 @@ export default class Wallet {
         (response) => {
           const sumAllRows: number = response.data.rows.reduce(function (
             sum: number,
-            elem: any
+            elem: WalletRowType
           ) {
             return sum + elem.amount;
           },
@@ -82,6 +82,7 @@ export default class Wallet {
       })
       .then(
         (response) => {
+          this.allSum = this.allSum + response.data.amount;
           this.allRows.push(response.data);
         },
         (response) => {
