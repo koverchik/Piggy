@@ -121,6 +121,29 @@ class ListWallets extends Controller
         return $walletRow[0];
     }
 
+    public function debitCredit(Request $data)
+    {  
+        $usersWallet = RowWallets::with('Autor')->where('names_wallets_id', $data['id'])->get(['user_id'])->unique('user_id');
+        $userTable = [];
+        foreach ($usersWallet as &$value) {
+            array_push($userTable, ["user_id" => $value-> user_id, "name" => $value-> autor ->name, "debit"=>  0,  "credit" =>  0]);
+        }
+        $lengthUsersArray = count($userTable);
+        $rowWallet = RowWallets::where('names_wallets_id', $data['id'])->get(['amount', 'user_id']);
+        foreach ($rowWallet as &$row) {
+            foreach ($userTable  as &$user) {
+                if($row['user_id'] === $user['user_id']){
+                $user['debit'] = $user['debit'] + ($row['amount'] - $row['amount']/($lengthUsersArray));
+                    }
+                    else{
+                        $user['credit'] = $user['credit'] + $row['amount']/($lengthUsersArray);
+                    }
+                }
+        }
+
+        return $userTable;
+    }
+
     /**
      * Remove the specified resource from storage.
      *

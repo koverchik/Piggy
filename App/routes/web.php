@@ -16,9 +16,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/{path?}', function () {
-    return view('app');
-});
+// Route::get('/{path?}', function () {
+//     return view('app');
+// });
 
 Route::post('/all-estimates', [ListController::class, 'store']);
 Route::post('/one-estimates', [ListController::class, 'show']);
@@ -28,6 +28,7 @@ Route::post('/new-estimate', [ListController::class, 'create']);
 
 Route::post('/all-wallets', [ListWallets::class, 'store']);
 Route::post('/add-new-row-wallet', [ListWallets::class, 'AddNewRow']);
+Route::get('/debit-credit-wallet', [ListWallets::class, 'debitCredit']);
 Route::post('/one-wallets', [ListWallets::class, 'show']);
 Route::post('/scope-one-wallet', [ListWallets::class, 'scopeOneWallet']);
 Route::post('/new-wallet', [ListWallets::class, 'create']);
