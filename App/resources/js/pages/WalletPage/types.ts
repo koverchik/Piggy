@@ -9,6 +9,17 @@ export type AuthorType = {
   updated_at: string;
 };
 
+export type SharingUserListType = {
+  browsing: number;
+  delete_row: number;
+  delete_table: number;
+  edit_permission: number;
+  edit_row: number;
+  id: number;
+  user: AuthorType;
+  user_id: number;
+};
+
 export type WalletRowType = {
   amount: number;
   autor: AuthorType;

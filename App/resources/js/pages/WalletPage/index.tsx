@@ -55,7 +55,7 @@ export const OneWallet: React.FC = observer(() => {
               arrayPaginationNumber={arrayPaginationNumber}
             />
           )}
-          <BurdenSharing />
+          <BurdenSharing id={id} />
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { action, makeObservable, observable } from 'mobx';
 import {
   AllDataWalletType,
+  SharingUserListType,
   SubmitDataNewRowWallet,
   WalletRowType
 } from '../pages/WalletPage/types';
@@ -92,10 +93,10 @@ export default class Wallet {
       );
   }
 
-  scopeOneWallet() {
+  scopeOneWallet(id: string): Promise<string | SharingUserListType[]> {
     const result = axios
       .post(process.env.MIX_APP_URL_FOR_TEST + 'scope-one-wallet', {
-        id: this.idWallet
+        id: id
       })
       .then(
         (response) => {

@@ -86,7 +86,7 @@ class ListWallets extends Controller
 
     public function scopeOneWallet(Request $id)
     {
-        $names = ScopeDiscription::with('User')->where('names_wallets_id', $id["id"])->get();
+        $names = ScopeDiscription::with('User')->where('names_wallets_id', $id["id"])->get(['user_id',  'id', 'edit_row', 'edit_permission', 'delete_table', 'delete_row', 'browsing']);
         return $names;
     }
     /**

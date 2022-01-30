@@ -8,9 +8,14 @@ import PopUp from '../../../components/PopUp/PopUp';
 import '../_styles.scss';
 import TableDebitCredit from './TableDebitCredit/TableDebitCredit';
 import './_BurdenSharing.scss';
-
-const BurdenSharing: React.FC = observer(() => {
-  const [listScopeOneWallet, setListScopeOneWallet] = useState([]);
+import { SharingUserListType } from '../types';
+type TypeBurdenSharing = {
+  id: string;
+};
+const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
+  const [listScopeOneWallet, setListScopeOneWallet] = useState<
+    SharingUserListType[]
+  >([]);
   const [tableDebitCredit, setTableDebetCredit] = useState(false);
   const [statePopUp, setStatePopUp] = useState(false);
 
@@ -48,38 +53,17 @@ const BurdenSharing: React.FC = observer(() => {
   };
 
   useEffect(() => {
-    store.Wallet.scopeOneWallet().then((data: any) => {
+    store.Wallet.scopeOneWallet(id).then((data) => {
+      if (typeof data !== 'string') {
+        setListScopeOneWallet(data);
+      }
+
       store.Wallet.lengthBurdenUser = data.length;
       if (store.Wallet.lengthBurdenUser > 1) {
         setTableDebetCredit(true);
       }
-      createListRows(data);
     });
   }, [store.Wallet.lengthBurdenUser]);
-
-  function createListRows(data: any) {
-    store.Wallet.allUsers = [];
-    const result: any = data.map((item: any, i: number) => {
-      store.Wallet.allUsers.push({
-        userName: item.user.name,
-        userId: item.user.id,
-        debitCredit: 0
-      });
-      const grade: string = store.Wallet.gradeUser(item);
-
-      return (
-        <tr key={'scope-one-wallet' + i}>
-          <td className="name-user-table"> {item['user']['name']} </td>
-          <td className="premission-user-table"> {grade} </td>
-          <td className="contribution-user-table">
-            {' '}
-            {(100 / store.Wallet.lengthBurdenUser).toFixed(2)}%
-          </td>
-        </tr>
-      );
-    });
-    setListScopeOneWallet(result);
-  }
 
   return (
     <div className="wrapper-user-table">
@@ -92,7 +76,21 @@ const BurdenSharing: React.FC = observer(() => {
             <td className="head-contribution-user-table"> Вклад </td>
           </tr>
         </thead>
-        <tbody>{listScopeOneWallet}</tbody>
+        <tbody>
+          {listScopeOneWallet.map((item, i) => {
+            return (
+              <tr key={'scope-one-wallet' + i}>
+                <td className="name-user-table"> {item['user']['name']} </td>
+                <td className="premission-user-table">
+                  {store.Wallet.gradeUser(item)}
+                </td>
+                <td className="contribution-user-table">
+                  {(100 / store.Wallet.lengthBurdenUser).toFixed(2)}%
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
       <Button {...buttonName} />
       {tableDebitCredit ? <TableDebitCredit /> : ''}
