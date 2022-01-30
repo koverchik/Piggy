@@ -2,42 +2,47 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 import './_AccessList.scss';
 
-const AccessList: React.FC = observer((props: any) => {
-  return (
-    <div className="access-new-user">
-      <div className="access-new-user-wrapper">
-        <p>
+export type AccessListType = {
+  setAccessList: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export const AccessList: React.FC<AccessListType> = observer(
+  ({ setAccessList }) => {
+    return (
+      <div className="access-new-user">
+        <div className="access-new-user-wrapper">
           <input
-            name="access"
+            name="owner"
             type="radio"
             value="owner"
             className="radio-checkbox"
-            onClick={props.callbackClickAccess}
+            onClick={(event) => {
+              setAccessList(event.currentTarget.value);
+            }}
           />
           Владелец
-        </p>
-        <p>
           <input
             name="access"
             type="radio"
             value="editor"
             className="radio-checkbox"
-            onClick={props.callbackClickAccess}
+            onClick={(event) => {
+              setAccessList(event.currentTarget.value);
+            }}
           />
           Редактор
-        </p>
-        <p>
           <input
             name="access"
             type="radio"
             value="user"
             className="radio-checkbox"
-            onClick={props.callbackClickAccess}
+            onClick={(event) => {
+              setAccessList(event.currentTarget.value);
+            }}
           />
           Пользователь
-        </p>
+        </div>
       </div>
-    </div>
-  );
-});
-export default AccessList;
+    );
+  }
+);

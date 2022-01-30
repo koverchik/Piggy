@@ -1,12 +1,12 @@
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
 import Button from '../../../components/ButtonCreate/ButtonCreate';
-import PopUp from '../../../components/PopUp/PopUp';
 import interfacesButtonCreate from '../../../interfaces/interfacesButtonCreate';
 import interfacesPopUp from '../../../interfaces/interfacesPopUp';
 import store from '../../../state';
 import { SharingUserListType } from '../types';
 import '../_styles.scss';
+import { ModalAddNewUser } from './ModalAddNewUser';
 import { TableDebitCredit } from './TableDebitCredit';
 import './_styles.scss';
 
@@ -44,13 +44,6 @@ export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
       }
     },
     closeClick: () => setStatePopUp(false),
-    button: {
-      name: 'Добавить',
-      type: 'button',
-      image: false,
-      callbackClick: store.AddNewUserWallet.requestAddUser,
-      closeClick: () => setStatePopUp(false)
-    },
     onChangeFunction: store.AddNewUserWallet.userSearch
   };
 
@@ -65,7 +58,9 @@ export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
 
   return (
     <div className="wrapper-user-table">
-      {statePopUp ? <PopUp {...popUpData} /> : ''}
+      {statePopUp && (
+        <ModalAddNewUser {...popUpData} setStatePopUp={setStatePopUp} id={id} />
+      )}
       <table className="table-user">
         <thead>
           <tr>

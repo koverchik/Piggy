@@ -15,3 +15,9 @@ export type DebitCreditTableType = {
   debit: number;
   credit: number;
 };
+
+export type RequestUsersSystemsType = {
+  id: number;
+  name: string;
+  email: string;
+};

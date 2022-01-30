@@ -16,7 +16,6 @@ export const TableDebitCredit: React.FC<TableDebitCreditType> = observer(
 
     useEffect(() => {
       store.Wallet.debitCreditTable(id).then((data) => {
-        console.log(data);
         if (typeof data !== 'string') {
           setTableDebetCredit(data);
         }
@@ -34,7 +33,6 @@ export const TableDebitCredit: React.FC<TableDebitCreditType> = observer(
         </thead>
         <tbody>
           {listTableDebitCredit.map((data, i) => {
-            console.log(data);
             return (
               <tr key={'table-debit-credit' + i}>
                 <td className="name-user-debit-credit">{data.name}</td>

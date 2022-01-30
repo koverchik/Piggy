@@ -159,7 +159,7 @@ class ListWallets extends Controller
 
     public function usersSearch(Request $data)
     {
-        $allUsers = collect(User::get());
+        $allUsers = collect(User::get(['id', 'name', 'email']));
         $usersOneWallet = ScopeDiscription::with('User')->where('names_wallets_id',  $data["id"])->get();
         $userWallet = array_flatten($usersOneWallet->map(function ($user) {
             return collect($user->user->toArray())
