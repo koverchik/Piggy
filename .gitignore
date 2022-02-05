@@ -1,3 +1,4 @@
 node_modules
 /App/.env
 App/public/js/app.js
+.gitignore

@@ -1,5 +1,5 @@
-import { makeObservable, action, observable, configure } from 'mobx';
 import axios from 'axios';
+import { action, makeObservable, observable } from 'mobx';
 import store from './index';
 import { RequestUsersSystemsType } from './StateTypes';
 
