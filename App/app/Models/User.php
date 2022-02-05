@@ -51,8 +51,8 @@ class User extends Authenticatable
       return $this->belongsTo(NamesWallet::class, "user_id", "id");
     }
 
-    public function ScopeDiscription()
+    public function ScopeDescription()
     {
-      return $this->belongsTo(ScopeDiscription::class, "id", "user_id");
+      return $this->belongsTo(ScopeDescription::class, "id", "user_id");
     }
 }

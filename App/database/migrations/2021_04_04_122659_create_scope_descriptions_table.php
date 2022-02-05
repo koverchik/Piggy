@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateScopeDiscriptionsTable extends Migration
+class CreateScopeDescriptionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateScopeDiscriptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('scope_discriptions', function (Blueprint $table) {
+        Schema::create('scope_descriptions', function (Blueprint $table) {
             $table->id();
             $table->boolean('delete_table');
             $table->boolean('edit_permission');
@@ -34,6 +34,6 @@ class CreateScopeDiscriptionsTable extends Migration
      */
     public function down()
     {
-     Schema::dropIfExists('scope_discriptions');
+     Schema::dropIfExists('scope_descriptions');
     }
 }

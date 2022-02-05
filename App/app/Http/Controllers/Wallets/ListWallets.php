@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Wallets;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\ScopeDiscription;
+use App\Models\ScopeDescription;
 use App\Models\NamesWallet;
 use App\Models\RowWallets;
 use App\Models\User;
@@ -34,7 +34,7 @@ class ListWallets extends Controller
         $NamesWallet -> user_id = $data['idUser'];
         $NamesWallet->save();
         $idNewWallet = $NamesWallet->id;
-        $ScopeDescription = new ScopeDiscription;
+        $ScopeDescription = new ScopeDescription;
         $ScopeDescription -> delete_table = 1;
         $ScopeDescription -> edit_permission = 1;
         $ScopeDescription -> edit_row = 1;
@@ -61,7 +61,7 @@ class ListWallets extends Controller
     {
         //Показать все кошельки доступные пользователю
         $response = [];
-        $names = ScopeDiscription::where('user_id', $id["id"])->get();
+        $names = ScopeDescription::where('user_id', $id["id"])->get();
         foreach ($names as $name) {
             array_push($response, array("name" => $name->NamesWallet->name, "id" => $name->names_wallets_id));   
         }
@@ -86,7 +86,7 @@ class ListWallets extends Controller
 
     public function scopeOneWallet(Request $id)
     {
-        $names = ScopeDiscription::with('User')->where('names_wallets_id', $id["id"])->get(['user_id',  'id', 'edit_row', 'edit_permission', 'delete_table', 'delete_row', 'browsing']);
+        $names = ScopeDescription::with('User')->where('names_wallets_id', $id["id"])->get(['user_id',  'id', 'edit_row', 'edit_permission', 'delete_table', 'delete_row', 'browsing']);
         return $names;
     }
     /**
@@ -160,7 +160,7 @@ class ListWallets extends Controller
     public function usersSearch(Request $data)
     {
         $allUsers = collect(User::get(['id', 'name', 'email']));
-        $usersOneWallet = ScopeDiscription::with('User')->where('names_wallets_id',  $data["id"])->get();
+        $usersOneWallet = ScopeDescription::with('User')->where('names_wallets_id',  $data["id"])->get();
         $userWallet = array_flatten($usersOneWallet->map(function ($user) {
             return collect($user->user->toArray())
                 ->only(["id"])
@@ -172,7 +172,7 @@ class ListWallets extends Controller
 
     public function addNewUser(Request $data)
     {
-        $ScopeDescription = new ScopeDiscription;
+        $ScopeDescription = new ScopeDescription;
         $ScopeDescription -> user_id = $data['newUser'];
         $ScopeDescription -> names_wallets_id = $data['id'];
         $ScopeDescription -> browsing = 1;
@@ -196,7 +196,7 @@ class ListWallets extends Controller
             $ScopeDescription -> delete_row = 0;
         }
         $ScopeDescription->save();
-        $newUser = ScopeDiscription::with('User')->where('user_id', $data['newUser'])->get(['user_id',  'id', 'edit_row', 'edit_permission', 'delete_table', 'delete_row', 'browsing'])->unique('user_id');
+        $newUser = ScopeDescription::with('User')->where('user_id', $data['newUser'])->get(['user_id',  'id', 'edit_row', 'edit_permission', 'delete_table', 'delete_row', 'browsing'])->unique('user_id');
         return $newUser[0];
     }
 

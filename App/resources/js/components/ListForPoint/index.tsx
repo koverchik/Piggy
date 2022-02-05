@@ -20,18 +20,18 @@ export type UserList = {
 
 export const ListForPoints: React.FC<ListForPointsType> = observer(
   ({ id, setNewUser, setList, searchData, setNewUserId }) => {
-    const [stateUsers, setStateUsers] = useState<UserList[]>([]);
+    const [stateUsers, setStateUsers] = useState<UserList[]>();
 
     useEffect(() => {
       store.AddNewUserWallet.requestUsersSystems(id).then((data) => {
-        if (typeof data !== 'string') {
+        if (typeof data !== 'string' && data.length > 0) {
           setStateUsers(data);
           store.AddNewUserWallet.allDataUsersSystems = data;
         }
       });
     }, []);
 
-    return (
+    return stateUsers ? (
       <div className={'list-users-data'}>
         {stateUsers.map((data, i) => {
           return (
@@ -60,6 +60,10 @@ export const ListForPoints: React.FC<ListForPointsType> = observer(
             )
           );
         })}
+      </div>
+    ) : (
+      <div className={'list-users-data'}>
+        <p>Доступных пользоватей нет</p>
       </div>
     );
   }

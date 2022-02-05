@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class NamesWallet extends Model
 {
-  public function ScopeDiscription()
+  public function ScopeDescription()
   {
-    return $this->hasMany(ScopeDiscription::class);
+    return $this->hasMany(ScopeDescription::class);
   }
 
   public function RowWallets()
