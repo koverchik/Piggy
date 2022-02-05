@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
-import { AccessList } from '../../../../components/AccessList/AccessList';
+import { AccessList } from '../../../../components/AccessList';
 import { ListForPoints } from '../../../../components/ListForPoint';
 import './_styles.scss';
 import state from '../../../../state';
