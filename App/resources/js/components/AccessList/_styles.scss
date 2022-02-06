@@ -1,26 +1,39 @@
-.access-new-user {
+.access-new-user-wrapper {
   position: absolute;
-  bottom: 75px;
-  display: flex;
-  font-size: 1rem;
-  width: 90%;
   align-items: center;
-  justify-content: center;
-  .access-new-user-wrapper {
-    display: flex;
-    width: 90%;
-    align-items: center;
-    justify-content: space-between;
-    p {
-      display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+  display: flex;
+  bottom: 80px;
+  font-size: 1rem;
+  .radio-checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    & + label {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      padding: 0;
-      margin: 0;
-      .radio-checkbox {
-        width: 20px;
-        margin-right: 5px;
-      }
+      user-select: none;
+    }
+    & + label::before {
+      content: '';
+      display: inline-block;
+      width: 1.2em;
+      height: 1.2em;
+      flex-shrink: 0;
+      flex-grow: 0;
+      border: 1px solid #adb5bd;
+      border-radius: 50%;
+      margin-right: 0.5em;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 50% 50%;
+    }
+    &:checked + label::before {
+      border-color: #fe7ba7;
+      background-color: #fe7ba7;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
     }
   }
 }

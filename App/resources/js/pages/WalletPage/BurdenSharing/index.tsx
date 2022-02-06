@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
 import Button from '../../../components/ButtonCreate/ButtonCreate';
+import { UserList } from '../../../components/ListForPoint';
 import interfacesButtonCreate from '../../../interfaces/interfacesButtonCreate';
 import store from '../../../state';
 import { SharingUserListType } from '../types';
@@ -19,6 +20,7 @@ export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
   >([]);
   const [tableDebitCredit, setTableDebetCredit] = useState(false);
   const [statePopUp, setStatePopUp] = useState(false);
+  const [stateUsers, setStateUsers] = useState<UserList[]>();
 
   const buttonName: interfacesButtonCreate = {
     name: 'Добавить',
@@ -38,9 +40,25 @@ export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
     });
   }, []);
 
+  useEffect(() => {
+    store.AddNewUserWallet.requestUsersSystems(id).then((data) => {
+      if (typeof data !== 'string' && data.length > 0) {
+        setStateUsers(data);
+        store.AddNewUserWallet.allDataUsersSystems = data;
+        console.log(data);
+      }
+    });
+  }, []);
+
   return (
     <div className="wrapper-user-table">
-      {statePopUp && <ModalAddNewUser setStatePopUp={setStatePopUp} id={id} />}
+      {statePopUp && (
+        <ModalAddNewUser
+          setStatePopUp={setStatePopUp}
+          id={id}
+          stateUsers={stateUsers}
+        />
+      )}
       <table className="table-user">
         <thead>
           <tr>

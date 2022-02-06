@@ -1,24 +1,23 @@
 import { observer } from 'mobx-react-lite';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { AccessList } from '../../../../components/AccessList';
 import { ListForPoints, UserList } from '../../../../components/ListForPoint';
-import './_styles.scss';
 import state from '../../../../state';
-import { useForm } from 'react-hook-form';
-import store from '../../../../state';
+import './_styles.scss';
 
 type ModalAddNewUser = {
   setStatePopUp: React.Dispatch<React.SetStateAction<boolean>>;
   id: string;
+  stateUsers: UserList[] | undefined;
 };
 
 export const ModalAddNewUser: React.FC<ModalAddNewUser> = observer(
-  ({ setStatePopUp, id }) => {
+  ({ setStatePopUp, id, stateUsers }) => {
     const [stateListUser, setStateListUser] = useState(false);
     const [newUser, setNewUser] = useState('');
     const [newUserId, setNewUserId] = useState<number>(0);
     const [accessList, setAccessList] = useState<string>('');
-    const [stateUsers, setStateUsers] = useState<UserList[]>();
 
     const {
       register,
@@ -29,17 +28,8 @@ export const ModalAddNewUser: React.FC<ModalAddNewUser> = observer(
     const onSumbit = () => {
       state.AddNewUserWallet.requestAddUser(id, newUserId, accessList);
       setStatePopUp(false);
+      console.log(id, newUserId, accessList);
     };
-
-    useEffect(() => {
-      store.AddNewUserWallet.requestUsersSystems(id).then((data) => {
-        if (typeof data !== 'string' && data.length > 0) {
-          setStateUsers(data);
-          store.AddNewUserWallet.allDataUsersSystems = data;
-        }
-      });
-    }, []);
-
     return (
       <div
         className="wrapper-for-background"
@@ -48,7 +38,7 @@ export const ModalAddNewUser: React.FC<ModalAddNewUser> = observer(
           // event.stopPropagation();
         }}
       >
-        <form className="wrapper-pop-up" onClick={handleSubmit(onSumbit)}>
+        <form className="wrapper-pop-up" onSubmit={handleSubmit(onSumbit)}>
           <div className="wrapper-header-create-new-name">
             <p>{'Поиск пользователя'} </p>
             <img
