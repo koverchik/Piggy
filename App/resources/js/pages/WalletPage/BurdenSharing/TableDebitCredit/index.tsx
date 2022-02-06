@@ -20,7 +20,7 @@ export const TableDebitCredit: React.FC<TableDebitCreditType> = observer(
           setTableDebetCredit(data);
         }
       });
-    }, [store.Wallet.allSum]);
+    }, [store.Wallet.allSum, store.Wallet.allUsers]);
 
     return (
       <table className="table-debit-credit">

@@ -27,8 +27,9 @@ export const ModalAddNewUser: React.FC<ModalAddNewUser> = observer(
 
     const onSumbit = () => {
       state.AddNewUserWallet.requestAddUser(id, newUserId, accessList);
-      setStatePopUp(false);
       console.log(id, newUserId, accessList);
+
+      setStatePopUp(false);
     };
     return (
       <div

@@ -25,8 +25,10 @@ export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
     store.Wallet.scopeOneWallet(id).then((data) => {
       if (typeof data !== 'string') {
         setListScopeOneWallet(data);
+
         if (data.length > 1) setTableDebetCredit(true);
         store.Wallet.allUsers = data;
+        console.log(data);
       }
     });
   }, []);
@@ -36,10 +38,9 @@ export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
       if (typeof data !== 'string' && data.length > 0) {
         setStateUsers(data);
         store.AddNewUserWallet.allDataUsersSystems = data;
-        console.log(data);
       }
     });
-  }, []);
+  }, [store.Wallet.allUsers]);
 
   return (
     <div className="wrapper-user-table">

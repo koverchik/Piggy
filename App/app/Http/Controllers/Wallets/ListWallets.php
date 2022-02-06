@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Wallets;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\ScopeDescription;
+use App\Models\ObligationsWallets;
 use App\Models\NamesWallet;
 use App\Models\RowWallets;
 use App\Models\User;
@@ -123,12 +125,13 @@ class ListWallets extends Controller
 
     public function debitCredit(Request $data)
     {  
-        $usersWallet = RowWallets::with('Autor')->where('names_wallets_id', $data['id'])->get(['user_id'])->unique('user_id');
+        $usersWallet = ObligationsWallets::with(['Author'])->where('names_wallets_id', $data['id'])->get();
         $userTable = [];
+   
         foreach ($usersWallet as &$value) {
-            array_push($userTable, ["user_id" => $value-> user_id, "name" => $value-> autor ->name, "debit"=>  0,  "credit" =>  0]);
+            array_push($userTable, ["user_id" => $value-> user_id, "name" => $value->Author->name, "debit"=>  0,  "credit" =>  0]);    
         }
-        $lengthUsersArray = count($userTable);
+         $lengthUsersArray = count($userTable);
         $rowWallet = RowWallets::where('names_wallets_id', $data['id'])->get(['amount', 'user_id']);
         foreach ($rowWallet as &$row) {
             foreach ($userTable  as &$user) {
@@ -172,32 +175,39 @@ class ListWallets extends Controller
 
     public function addNewUser(Request $data)
     {
-        $ScopeDescription = new ScopeDescription;
-        $ScopeDescription -> user_id = $data['newUser'];
-        $ScopeDescription -> names_wallets_id = $data['id'];
-        $ScopeDescription -> browsing = 1;
-        $ScopeDescription -> add_row = 1;
-        if($data['AccessNewUser'] === "owner"){
-            $ScopeDescription -> edit_permission = 1;
-            $ScopeDescription -> edit_row = 1;
-            $ScopeDescription -> delete_row = 1;
-            $ScopeDescription -> delete_table = 1;
-        }
-        if($data['AccessNewUser'] === "editor"){
-            $ScopeDescription -> edit_permission = 0;
-            $ScopeDescription -> delete_table = 0;
-            $ScopeDescription -> edit_row = 1;
-            $ScopeDescription -> delete_row = 1;
-        }
-        if($data['AccessNewUser'] === "user"){
-            $ScopeDescription -> edit_permission = 0;
-            $ScopeDescription -> delete_table = 0;
-            $ScopeDescription -> edit_row = 0;
-            $ScopeDescription -> delete_row = 0;
-        }
-        $ScopeDescription->save();
-        $newUser = ScopeDescription::with('User')->where('user_id', $data['newUser'])->get(['user_id',  'id', 'edit_row', 'edit_permission', 'delete_table', 'delete_row', 'browsing'])->unique('user_id');
-        return $newUser[0];
+        DB::transaction(function() use ($data) {
+                    $ScopeDescription = new ScopeDescription;
+                    $ScopeDescription -> user_id = $data['newUser'];
+                    $ScopeDescription -> names_wallets_id = $data['id'];
+                    $ScopeDescription -> browsing = 1;
+                    $ScopeDescription -> add_row = 1;
+                    if($data['AccessNewUser'] === "owner"){
+                        $ScopeDescription -> edit_permission = 1;
+                        $ScopeDescription -> edit_row = 1;
+                        $ScopeDescription -> delete_row = 1;
+                        $ScopeDescription -> delete_table = 1;
+                    }
+                    if($data['AccessNewUser'] === "editor"){
+                        $ScopeDescription -> edit_permission = 0;
+                        $ScopeDescription -> delete_table = 0;
+                        $ScopeDescription -> edit_row = 1;
+                        $ScopeDescription -> delete_row = 1;
+                    }
+                    if($data['AccessNewUser'] === "user"){
+                        $ScopeDescription -> edit_permission = 0;
+                        $ScopeDescription -> delete_table = 0;
+                        $ScopeDescription -> edit_row = 0;
+                        $ScopeDescription -> delete_row = 0;
+                    }
+                  
+                    $ScopeDescription->save();
+                    $ObligationsWallets = new ObligationsWallets;
+                    $ObligationsWallets -> user_id = $data['newUser'];
+                    $ObligationsWallets -> names_wallets_id = $data['id'];
+                    $ObligationsWallets->save();
+                    $newUser = ScopeDescription::with('User')->where('user_id', $data['newUser'])->get(['user_id',  'id', 'edit_row', 'edit_permission', 'delete_table', 'delete_row', 'browsing'])->unique('user_id');
+                    return $newUser[0];
+    }, 3);
     }
 
 }

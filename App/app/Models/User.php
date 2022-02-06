@@ -55,4 +55,8 @@ class User extends Authenticatable
     {
       return $this->belongsTo(ScopeDescription::class, "id", "user_id");
     }
+    public function ObligationsWallets()
+    {
+      return $this->belongsTo(NamesWallet::class);
+    }
 }
