@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import './_styles.scss';
-import store from '../../state';
+import React from 'react';
 import { filterUsers } from './helper';
+import './_styles.scss';
 
 type ListForPointsType = {
-  id: string;
   setNewUser: React.Dispatch<React.SetStateAction<string>>;
   setList: React.Dispatch<React.SetStateAction<boolean>>;
   searchData: string;
   setNewUserId: React.Dispatch<React.SetStateAction<number>>;
+  stateUsers: UserList[] | undefined;
 };
 
 export type UserList = {
@@ -19,18 +18,7 @@ export type UserList = {
 };
 
 export const ListForPoints: React.FC<ListForPointsType> = observer(
-  ({ id, setNewUser, setList, searchData, setNewUserId }) => {
-    const [stateUsers, setStateUsers] = useState<UserList[]>();
-
-    useEffect(() => {
-      store.AddNewUserWallet.requestUsersSystems(id).then((data) => {
-        if (typeof data !== 'string' && data.length > 0) {
-          setStateUsers(data);
-          store.AddNewUserWallet.allDataUsersSystems = data;
-        }
-      });
-    }, []);
-
+  ({ setNewUser, setList, searchData, setNewUserId, stateUsers }) => {
     return stateUsers ? (
       <div className={'list-users-data'}>
         {stateUsers.map((data, i) => {

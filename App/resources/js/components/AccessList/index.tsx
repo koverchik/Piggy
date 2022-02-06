@@ -12,39 +12,41 @@ export const AccessList: React.FC<AccessListType> = observer(
       <div className="access-new-user">
         <div className="access-new-user-wrapper">
           <input
-            name="owner"
+            name="access"
             type="radio"
             value="owner"
+            id="owner-access"
             className="radio-checkbox"
             onClick={(event) => {
               console.log(event.currentTarget.value);
-
               setAccessList(event.currentTarget.value);
             }}
           />
-          Владелец
+          <label htmlFor="owner-access">Владелец</label>
           <input
-            name="editor"
+            name="access"
             type="radio"
             value="editor"
+            id="editor-access"
             className="radio-checkbox"
             onClick={(event) => {
               console.log(event.currentTarget.value);
               setAccessList(event.currentTarget.value);
             }}
           />
-          Редактор
+          <label htmlFor="editor-access">Редактор</label>
           <input
-            name="user"
+            name="access"
             type="radio"
             value="user"
+            id="user-access"
             className="radio-checkbox"
             onClick={(event) => {
               console.log(event.currentTarget.value);
               setAccessList(event.currentTarget.value);
             }}
           />
-          Пользователь
+          <label htmlFor="user-access">Пользователь</label>
         </div>
       </div>
     );

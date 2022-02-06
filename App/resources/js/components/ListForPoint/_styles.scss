@@ -1,21 +1,23 @@
 .list-users-data {
   background: white;
+  position: absolute;
   border: 1px solid #fdb547;
   margin: 0;
   padding: 0;
   align-self: center;
   padding: 0;
-  width: 100%;
+  width: 90%;
   max-height: 200px;
   overflow: auto;
   z-index: 1;
   .one-user-list-user-data {
+    display: flex;
+    flex-direction: row;
     margin: 0;
     padding: 0;
-    display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     padding-left: 5px;
     border-bottom: 1px solid#C4C4C4;
     .wrapper-one-user {
