@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AccessList } from '../../../../components/AccessList';
 import { ListForPoints, UserList } from '../../../../components/ListForPoint';
-import state from '../../../../state';
+import store from '../../../../state';
 import './_styles.scss';
 
 type ModalAddNewUser = {
@@ -26,10 +26,12 @@ export const ModalAddNewUser: React.FC<ModalAddNewUser> = observer(
     } = useForm();
 
     const onSumbit = () => {
-      state.AddNewUserWallet.requestAddUser(id, newUserId, accessList);
-      console.log(id, newUserId, accessList);
-
-      setStatePopUp(false);
+      store.AddNewUserWallet.requestAddUser(id, newUserId, accessList).then(
+        (data) => {
+          if (typeof data !== 'string') store.Wallet.allUsers.push(data);
+          setStatePopUp(false);
+        }
+      );
     };
     return (
       <div

@@ -175,7 +175,7 @@ class ListWallets extends Controller
 
     public function addNewUser(Request $data)
     {
-        DB::transaction(function() use ($data) {
+    $result = DB::transaction(function() use ($data) {
                     $ScopeDescription = new ScopeDescription;
                     $ScopeDescription -> user_id = $data['newUser'];
                     $ScopeDescription -> names_wallets_id = $data['id'];
@@ -208,6 +208,7 @@ class ListWallets extends Controller
                     $newUser = ScopeDescription::with('User')->where('user_id', $data['newUser'])->get(['user_id',  'id', 'edit_row', 'edit_permission', 'delete_table', 'delete_row', 'browsing'])->unique('user_id');
                     return $newUser[0];
     }, 3);
+    return $result;
     }
 
 }

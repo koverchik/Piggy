@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { action, makeObservable, observable } from 'mobx';
-import store from './index';
+import { SharingUserListType } from '../pages/WalletPage/types';
 import { RequestUsersSystemsType } from './StateTypes';
 
 export default class AddNewUserWallet {
@@ -13,12 +13,12 @@ export default class AddNewUserWallet {
       requestUsersSystems: action
     });
   }
-  requestAddUser = (
+  requestAddUser(
     id: string,
     newUser: number,
     AccessNewUser: string
-  ): Promise<string> | void => {
-    axios
+  ): Promise<string> | Promise<SharingUserListType> {
+    const response = axios
       .post(process.env.MIX_APP_URL_FOR_TEST + 'add-new-user-wallet', {
         id: id,
         newUser: newUser,
@@ -26,14 +26,15 @@ export default class AddNewUserWallet {
       })
       .then(
         (response) => {
-          store.Wallet.allUsers.push(response.data);
+          return response.data;
         },
         (response) => {
           console.log('error request ' + response);
           return 'Error';
         }
       );
-  };
+    return response;
+  }
 
   requestUsersSystems(id: string): Promise<string | RequestUsersSystemsType[]> {
     const result = axios

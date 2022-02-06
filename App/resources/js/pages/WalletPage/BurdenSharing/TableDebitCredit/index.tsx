@@ -37,12 +37,10 @@ export const TableDebitCredit: React.FC<TableDebitCreditType> = observer(
               <tr key={'table-debit-credit' + i}>
                 <td className="name-user-debit-credit">{data.name}</td>
                 <td className="column-debit">
-                  {data.debit > 0 ? data.debit.toFixed(2) + ' руб' : 0 + ' руб'}
+                  {data.debit > 0 ? data.debit.toFixed(2) + ' руб' : ''}
                 </td>
                 <td className="column-credit">
-                  {data.credit > 0
-                    ? data.credit.toFixed(2) + ' руб'
-                    : 0 + ' руб'}
+                  {data.credit > 0 ? data.credit.toFixed(2) + ' руб' : ''}
                 </td>
               </tr>
             );

@@ -1,48 +1,51 @@
 .wrapper-user-table {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    width: 40%;
-    .table-user {
-        .head-name-user-table {
-            border-right: 1px solid white;
-        }
-        .head-premission-user-table {
-            border-left: 1px solid white;
-            border-right: 1px solid white;
-        }
-        .head-contribution-user-table {
-            border-left: 1px solid white;
-        }
-        .contribution-user-table {
-            text-align: center;
-            img {
-                margin-left: 5px;
-                &:hover {
-                    cursor: pointer;
-                    opacity: 0.6;
-                }
-            }
-        }
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 40%;
+  @media screen and (max-width: 1240px) {
+    width: 100%;
+  }
+  .table-user {
+    .head-name-user-table {
+      border-right: 1px solid white;
     }
-    .button-add-new-user {
-        display: flex;
-        justify-content: center;
-        background-color: #5354d2;
-        width: 180px;
-        border-radius: 10px;
-
-        p {
-            color: white;
-            margin: 10px 0;
-            font-size: 1.3rem;
-        }
-        img {
-            margin: 0 10px;
-        }
+    .head-premission-user-table {
+      border-left: 1px solid white;
+      border-right: 1px solid white;
+    }
+    .head-contribution-user-table {
+      border-left: 1px solid white;
+    }
+    .contribution-user-table {
+      text-align: center;
+      img {
+        margin-left: 5px;
         &:hover {
-            background-color: #fe7ba7;
-            cursor: pointer;
+          cursor: pointer;
+          opacity: 0.6;
         }
+      }
     }
+  }
+  .button-add-new-user {
+    display: flex;
+    justify-content: center;
+    background-color: #5354d2;
+    width: 180px;
+    border-radius: 10px;
+
+    p {
+      color: white;
+      margin: 10px 0;
+      font-size: 1.3rem;
+    }
+    img {
+      margin: 0 10px;
+    }
+    &:hover {
+      background-color: #fe7ba7;
+      cursor: pointer;
+    }
+  }
 }
