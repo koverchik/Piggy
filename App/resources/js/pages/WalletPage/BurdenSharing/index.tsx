@@ -1,8 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
-import Button from '../../../components/ButtonCreate/ButtonCreate';
+import { ButtonAdd } from '../../../components/ButtonAdd';
 import { UserList } from '../../../components/ListForPoint';
-import interfacesButtonCreate from '../../../interfaces/interfacesButtonCreate';
 import store from '../../../state';
 import { SharingUserListType } from '../types';
 import '../_styles.scss';
@@ -21,14 +20,6 @@ export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
   const [tableDebitCredit, setTableDebetCredit] = useState(false);
   const [statePopUp, setStatePopUp] = useState(false);
   const [stateUsers, setStateUsers] = useState<UserList[]>();
-
-  const buttonName: interfacesButtonCreate = {
-    name: 'Добавить',
-    type: 'button',
-    image: true,
-    srcImage: '../images/add-user.svg',
-    callbackClick: () => setStatePopUp(true)
-  };
 
   useEffect(() => {
     store.Wallet.scopeOneWallet(id).then((data) => {
@@ -83,7 +74,11 @@ export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
           })}
         </tbody>
       </table>
-      <Button {...buttonName} />
+      <ButtonAdd
+        name={'Добавить'}
+        srcImage={'../images/add-user.svg'}
+        callbackClick={setStatePopUp}
+      />
       {tableDebitCredit && <TableDebitCredit id={id} />}
     </div>
   );

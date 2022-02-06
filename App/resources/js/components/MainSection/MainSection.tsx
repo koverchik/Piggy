@@ -1,6 +1,6 @@
 import React from 'react';
 import './_MainSection.scss';
-import Button from '../ButtonCreate/ButtonCreate';
+import { ButtonAdd } from '../ButtonAdd';
 
 const MainSection: React.FC = () => {
   return (
@@ -9,13 +9,13 @@ const MainSection: React.FC = () => {
         <p className="header-blok-view">Смета</p>
         <p>Спланируй свои расходы</p>
         <img src="../images/estimate.svg" />
-        <Button />
+        {/* <ButtonAdd name={'Создать'} /> */}
       </div>
       <div className="wrapper-wallet">
         <p className="header-blok-view">Кошелек</p>
         <p>Посчитай свои траты</p>
         <img src="../images/wallet.svg" />
-        <Button />
+        {/* <ButtonAdd name={'Создать'} /> */}
       </div>
     </div>
   );
