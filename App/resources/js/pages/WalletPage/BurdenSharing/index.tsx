@@ -28,7 +28,6 @@ export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
 
         if (data.length > 1) setTableDebetCredit(true);
         store.Wallet.allUsers = data;
-        console.log(data);
       }
     });
   }, []);
@@ -38,6 +37,7 @@ export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
       if (typeof data !== 'string' && data.length > 0) {
         setStateUsers(data);
         store.AddNewUserWallet.allDataUsersSystems = data;
+        console.log('allDataUsersSystems', data);
       }
     });
   }, [store.Wallet.allUsers]);
@@ -75,11 +75,13 @@ export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
           })}
         </tbody>
       </table>
-      <ButtonAdd
-        name={'Добавить'}
-        srcImage={'../images/add-user.svg'}
-        callbackClick={setStatePopUp}
-      />
+      {stateUsers && (
+        <ButtonAdd
+          name={'Добавить'}
+          srcImage={'../images/add-user.svg'}
+          callbackClick={setStatePopUp}
+        />
+      )}
       {tableDebitCredit && <TableDebitCredit id={id} />}
     </div>
   );

@@ -51,7 +51,9 @@ export const ListForPoints: React.FC<ListForPointsType> = observer(
       </div>
     ) : (
       <div className={'list-users-data'}>
-        <p>Доступных пользоватей нет</p>
+        <div className="one-user-list-user-data">
+          <p>Доступных пользоватей нет</p>
+        </div>
       </div>
     );
   }
