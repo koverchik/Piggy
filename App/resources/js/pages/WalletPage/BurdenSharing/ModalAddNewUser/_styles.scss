@@ -19,6 +19,15 @@
     border-radius: 10px;
     justify-content: flex-start;
     position: relative;
+    @media screen and (max-width: 1240px) {
+      width: 40%;
+    }
+    @media screen and (max-width: 800px) {
+      width: 60%;
+    }
+    @media screen and (max-width: 640px) {
+      width: 80%;
+    }
     .wrapper-header-create-new-name {
       border-radius: 10px 10px 0 0;
       display: flex;
@@ -40,25 +49,11 @@
       padding: 0 20px;
       display: flex;
       flex-direction: column;
-
       .error-input-add-new-user {
         color: #fe7ba7;
         font-size: 0.8rem;
         position: absolute;
-        bottom: 95px;
-      }
-      input {
-        width: 100%;
-        border: 1px solid #fdb547;
-        align-self: center;
-        height: 36px;
-        font-size: 1.3rem;
-        &:active {
-          border: 1px solid #fdb547;
-        }
-        &:focus {
-          outline: none;
-        }
+        bottom: 90px;
       }
     }
     .wrapper-for-button {

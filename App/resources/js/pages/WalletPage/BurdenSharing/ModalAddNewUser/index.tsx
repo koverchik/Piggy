@@ -1,46 +1,38 @@
+import { FormControlLabel, Radio, RadioGroup } from '@material-ui/core';
 import { observer } from 'mobx-react-lite';
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { AccessList } from '../../../../components/AccessList';
-import { ListForPoints, UserList } from '../../../../components/ListForPoint';
+import React from 'react';
+import { Controller, FieldValues, useForm } from 'react-hook-form';
+import Select from 'react-select';
+import { OptionsList } from '..';
 import store from '../../../../state';
 import './_styles.scss';
 
 type ModalAddNewUser = {
   setStatePopUp: React.Dispatch<React.SetStateAction<boolean>>;
   id: string;
-  stateUsers: UserList[] | undefined;
+  stateUsers: OptionsList[] | undefined;
 };
 
 export const ModalAddNewUser: React.FC<ModalAddNewUser> = observer(
   ({ setStatePopUp, id, stateUsers }) => {
-    const [stateListUser, setStateListUser] = useState(false);
-    const [newUser, setNewUser] = useState('');
-    const [newUserId, setNewUserId] = useState<number>(0);
-    const [accessList, setAccessList] = useState<string>('');
+    const { register, control, handleSubmit, formState } = useForm({
+      defaultValues: {
+        access: 'user',
+        name: ''
+      }
+    });
 
-    const {
-      register,
-      handleSubmit,
-      formState: { errors }
-    } = useForm();
-
-    const onSumbit = () => {
-      store.AddNewUserWallet.requestAddUser(id, newUserId, accessList).then(
+    const onSumbit = ({ name, access }: FieldValues): void => {
+      store.AddNewUserWallet.requestAddUser(id, name.value, access).then(
         (data) => {
           if (typeof data !== 'string') store.Wallet.allUsers.push(data);
           setStatePopUp(false);
         }
       );
     };
+
     return (
-      <div
-        className="wrapper-for-background"
-        onClick={(event) => {
-          // setStatePopUp(false);
-          // event.stopPropagation();
-        }}
-      >
+      <div className="wrapper-for-background">
         <form className="wrapper-pop-up" onSubmit={handleSubmit(onSumbit)}>
           <div className="wrapper-header-create-new-name">
             <p>{'Поиск пользователя'} </p>
@@ -54,31 +46,61 @@ export const ModalAddNewUser: React.FC<ModalAddNewUser> = observer(
           <div className="wrapper-for-name">
             <p>Добавьте имя и статус</p>
             <div>
-              <input
-                type="text"
-                value={newUser}
-                {...register('text', { required: true })}
-                onChange={(event) => setNewUser(event.target.value)}
-                onClick={() => setStateListUser(!stateListUser)}
+              <Controller
+                name="name"
+                rules={{ required: true }}
+                control={control}
+                render={({ field: { onChange, onBlur } }) => {
+                  return (
+                    <Select
+                      options={stateUsers}
+                      onChange={onChange}
+                      onBlur={onBlur}
+                    />
+                  );
+                }}
               />
               <p className="error-input-add-new-user">
-                {errors.text?.type === 'required' &&
-                  'Веберите пользователя из списка'}
+                {formState.isSubmitted &&
+                  'Мы не смогли добавить пользователя попробуйте еще раз'}
               </p>
-              {stateListUser && (
-                <ListForPoints
-                  setNewUser={setNewUser}
-                  setList={setStateListUser}
-                  searchData={newUser}
-                  setNewUserId={setNewUserId}
-                  stateUsers={stateUsers}
-                />
-              )}
             </div>
-            <AccessList setAccessList={setAccessList} />
+            <div>
+              <Controller
+                name="access"
+                control={control}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <RadioGroup aria-label="access" {...field} row>
+                    <FormControlLabel
+                      value="editor"
+                      control={<Radio />}
+                      label="Редактор"
+                    />
+                    <FormControlLabel
+                      value="user"
+                      control={<Radio />}
+                      label="Пользователь"
+                    />
+                    <FormControlLabel
+                      value="owner"
+                      control={<Radio />}
+                      label="Владелец"
+                    />
+                  </RadioGroup>
+                )}
+              />
+            </div>
           </div>
           <div className="wrapper-for-button">
-            <input type="submit" value="Добавить" className="button-main" />
+            <input
+              type="submit"
+              value="Добавить"
+              className="button-main"
+              onClick={() => {
+                console.log('formState', formState);
+              }}
+            />
           </div>
         </form>
       </div>

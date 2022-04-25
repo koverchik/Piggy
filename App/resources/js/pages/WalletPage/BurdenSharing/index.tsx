@@ -12,6 +12,10 @@ import './_styles.scss';
 type TypeBurdenSharing = {
   id: string;
 };
+export type OptionsList = {
+  value: number;
+  label: string;
+};
 
 export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
   const [listScopeOneWallet, setListScopeOneWallet] = useState<
@@ -19,7 +23,7 @@ export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
   >([]);
   const [tableDebitCredit, setTableDebetCredit] = useState(false);
   const [statePopUp, setStatePopUp] = useState(false);
-  const [stateUsers, setStateUsers] = useState<UserList[]>();
+  const [stateUsers, setStateUsers] = useState<OptionsList[]>();
 
   useEffect(() => {
     store.Wallet.scopeOneWallet(id).then((data) => {
@@ -35,9 +39,11 @@ export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
   useEffect(() => {
     store.AddNewUserWallet.requestUsersSystems(id).then((data) => {
       if (typeof data !== 'string' && data.length > 0) {
-        setStateUsers(data);
+        const options = data.map((data) => {
+          return { value: data.id, label: data.name };
+        });
+        setStateUsers(options);
         store.AddNewUserWallet.allDataUsersSystems = data;
-        console.log('allDataUsersSystems', data);
       }
     });
   }, [store.Wallet.allUsers]);
