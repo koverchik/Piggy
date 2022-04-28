@@ -1,26 +1,27 @@
+import dictionaryBy from './languages/by.json';
+import dictionaryEn from './languages/en.json';
+import dictionaryRu from './languages/ru.json';
+import dictionaryUa from './languages/ua.json';
+
 export const resources = {
   en: {
     translation: {
-      'button-add': 'Add',
-      'sing-in': 'Sing in'
+      ...dictionaryEn
     }
   },
   by: {
     translation: {
-      'button-add': 'Дадаць',
-      'sing-in': 'Увайсці'
+      ...dictionaryBy
     }
   },
   ua: {
     translation: {
-      'button-add': 'Додати',
-      'sing-in': 'Увійти'
+      ...dictionaryUa
     }
   },
   ru: {
     translation: {
-      'button-add': 'Добавить',
-      'sing-in': 'Войти'
+      ...dictionaryRu
     }
   }
 };

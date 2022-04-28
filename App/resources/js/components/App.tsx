@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './Header/Header';
+import { Header } from './Header/Header';
 import Footer from './Footer/Footer';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // import MainSection from "./MainSection/MainSection";

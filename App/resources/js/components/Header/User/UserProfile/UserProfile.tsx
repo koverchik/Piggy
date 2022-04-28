@@ -5,8 +5,10 @@ import { Link } from 'react-router-dom';
 import { observableUserProfile } from '../../../Authorization/helper';
 import { logout } from '../helper';
 import '../_User.scss';
+import { useTranslation } from 'react-i18next';
 
 const UserProfile: React.FC = observer(() => {
+  const { t } = useTranslation();
   return (
     <div className="wrapper-user-profile">
       <Link to="/" className="enter-in-system">
@@ -25,7 +27,7 @@ const UserProfile: React.FC = observer(() => {
         icon={false}
         render={() => (
           <button className="button-log-out" onClick={logout}>
-            {'Выйти'}
+            {t('authorization.log-out')}
           </button>
         )}
       ></GoogleLogout>

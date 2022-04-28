@@ -2,7 +2,7 @@ import React from 'react';
 import { User } from './User/User';
 import './_Header.scss';
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
   return (
     <div className="wrapper-header">
       <a href="/">
@@ -12,5 +12,3 @@ const Header: React.FC = () => {
     </div>
   );
 };
-
-export default Header;

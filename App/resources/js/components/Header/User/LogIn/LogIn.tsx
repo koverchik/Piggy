@@ -13,7 +13,7 @@ export const LogIn: React.FC = () => {
           alt="piggy"
           className="image-unknown-user"
         />
-        <p>{t('sing-in')}</p>
+        <p>{t('authorization.sing-in')}</p>
       </Link>
     </div>
   );

@@ -4,6 +4,7 @@ import React from 'react';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 import Select from 'react-select';
 import { OptionsList } from '..';
+import { Button } from '../../../../components/Button';
 import store from '../../../../state';
 import './_styles.scss';
 
@@ -98,9 +99,7 @@ export const ModalAddNewUser: React.FC<ModalAddNewUser> = observer(
                 </RadioGroup>
               )}
             />
-            <div className="wrapper-for-button">
-              <input type="submit" value="Добавить" className="button-main" />
-            </div>
+            <Button />
           </div>
         </form>
       </div>

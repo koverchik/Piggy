@@ -1,0 +1,10 @@
+{
+  "button": {
+    "add": "Дадаць"
+  },
+  "authorization": {
+    "sing-in": "Увайсці",
+    "login-with": "Увайсці праз",
+    "log-out": "Выйсці"
+  }
+}
