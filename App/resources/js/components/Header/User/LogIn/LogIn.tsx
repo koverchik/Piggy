@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './../_User.scss';
+import '../_User.scss';
+import { useTranslation } from 'react-i18next';
 
-const LogIn: React.FC = () => {
+export const LogIn: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <div className="wrapper-user-profile">
       <Link to="/authorization" className="enter-in-system">
@@ -11,10 +13,8 @@ const LogIn: React.FC = () => {
           alt="piggy"
           className="image-unknown-user"
         />
-        <p>Войти</p>
+        <p>{t('sing-in')}</p>
       </Link>
     </div>
   );
 };
-
-export default LogIn;

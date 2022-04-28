@@ -26,14 +26,23 @@ export const ModalAddNewUser: React.FC<ModalAddNewUser> = observer(
       store.AddNewUserWallet.requestAddUser(id, name.value, access).then(
         (data) => {
           if (typeof data !== 'string') store.Wallet.allUsers.push(data);
-          setStatePopUp(false);
+          setStatePopUp((prev) => !prev);
         }
       );
     };
 
     return (
-      <div className="wrapper-for-background">
-        <form className="wrapper-pop-up" onSubmit={handleSubmit(onSumbit)}>
+      <div
+        className="wrapper-for-background"
+        onClick={() => setStatePopUp((prev) => !prev)}
+      >
+        <form
+          className="wrapper-pop-up"
+          onSubmit={handleSubmit(onSumbit)}
+          onClick={(event) => {
+            event.stopPropagation();
+          }}
+        >
           <div className="wrapper-header-create-new-name">
             <p>{'Поиск пользователя'} </p>
             <img
@@ -45,7 +54,7 @@ export const ModalAddNewUser: React.FC<ModalAddNewUser> = observer(
           </div>
           <div className="wrapper-for-name">
             <p>Добавьте имя и статус</p>
-            <div>
+            <div className="wrapper-for-controller-name">
               <Controller
                 name="name"
                 rules={{ required: true }}
@@ -65,42 +74,33 @@ export const ModalAddNewUser: React.FC<ModalAddNewUser> = observer(
                   'Мы не смогли добавить пользователя попробуйте еще раз'}
               </p>
             </div>
-            <div>
-              <Controller
-                name="access"
-                control={control}
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <RadioGroup aria-label="access" {...field} row>
-                    <FormControlLabel
-                      value="editor"
-                      control={<Radio />}
-                      label="Редактор"
-                    />
-                    <FormControlLabel
-                      value="user"
-                      control={<Radio />}
-                      label="Пользователь"
-                    />
-                    <FormControlLabel
-                      value="owner"
-                      control={<Radio />}
-                      label="Владелец"
-                    />
-                  </RadioGroup>
-                )}
-              />
-            </div>
-          </div>
-          <div className="wrapper-for-button">
-            <input
-              type="submit"
-              value="Добавить"
-              className="button-main"
-              onClick={() => {
-                console.log('formState', formState);
-              }}
+            <Controller
+              name="access"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <RadioGroup aria-label="access" {...field} row>
+                  <FormControlLabel
+                    value="editor"
+                    control={<Radio />}
+                    label="Редактор"
+                  />
+                  <FormControlLabel
+                    value="user"
+                    control={<Radio />}
+                    label="Пользователь"
+                  />
+                  <FormControlLabel
+                    value="owner"
+                    control={<Radio />}
+                    label="Владелец"
+                  />
+                </RadioGroup>
+              )}
             />
+            <div className="wrapper-for-button">
+              <input type="submit" value="Добавить" className="button-main" />
+            </div>
           </div>
         </form>
       </div>

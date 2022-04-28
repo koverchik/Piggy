@@ -4,7 +4,7 @@ import { GoogleLogout } from 'react-google-login';
 import { Link } from 'react-router-dom';
 import { observableUserProfile } from '../../../Authorization/helper';
 import { logout } from '../helper';
-import './../_User.scss';
+import '../_User.scss';
 
 const UserProfile: React.FC = observer(() => {
   return (
