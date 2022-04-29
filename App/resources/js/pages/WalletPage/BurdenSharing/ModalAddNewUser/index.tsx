@@ -7,7 +7,7 @@ import { OptionsList } from '..';
 import { Button } from '../../../../components/Button';
 import store from '../../../../state';
 import './_styles.scss';
-
+import { useTranslation } from 'react-i18next';
 type ModalAddNewUser = {
   setStatePopUp: React.Dispatch<React.SetStateAction<boolean>>;
   id: string;
@@ -22,7 +22,7 @@ export const ModalAddNewUser: React.FC<ModalAddNewUser> = observer(
         name: ''
       }
     });
-
+    const { t } = useTranslation();
     const onSumbit = ({ name, access }: FieldValues): void => {
       store.AddNewUserWallet.requestAddUser(id, name.value, access).then(
         (data) => {
@@ -45,7 +45,7 @@ export const ModalAddNewUser: React.FC<ModalAddNewUser> = observer(
           }}
         >
           <div className="wrapper-header-create-new-name">
-            <p>{'Поиск пользователя'} </p>
+            <p>{t('user.find-user')}</p>
             <img
               src="../images/cancel_white.svg"
               alt="close"
@@ -54,7 +54,7 @@ export const ModalAddNewUser: React.FC<ModalAddNewUser> = observer(
             />
           </div>
           <div className="wrapper-for-name">
-            <p>Добавьте имя и статус</p>
+            <p>{t('user.add-name-and-status')}</p>
             <div className="wrapper-for-controller-name">
               <Controller
                 name="name"
@@ -84,17 +84,17 @@ export const ModalAddNewUser: React.FC<ModalAddNewUser> = observer(
                   <FormControlLabel
                     value="editor"
                     control={<Radio />}
-                    label="Редактор"
+                    label={t('user.editor')}
                   />
                   <FormControlLabel
                     value="user"
                     control={<Radio />}
-                    label="Пользователь"
+                    label={t('user.user')}
                   />
                   <FormControlLabel
                     value="owner"
                     control={<Radio />}
-                    label="Владелец"
+                    label={t('user.owner')}
                   />
                 </RadioGroup>
               )}

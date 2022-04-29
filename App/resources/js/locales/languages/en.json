@@ -6,5 +6,12 @@
     "sing-in": "Sing In",
     "login-with": "Login with",
     "log-out": "Log out"
+  },
+  "user": {
+    "find-user": "User search",
+    "add-name-and-status": "Add name and status",
+    "editor": "Editor",
+    "user": "User",
+    "owner": "Owner"
   }
 }
