@@ -29,5 +29,9 @@
     "cost": "Ціна",
     "result": "Загальна",
     "rubles": "руб"
+  },
+  "error": {
+    "requeued-field": "Обов'язкове поле",
+    "incorrect-format": "Введіть вартість у форматі"
   }
 }

@@ -29,5 +29,9 @@
     "cost": "Стоимость",
     "result": "Итого",
     "rubles": "руб"
+  },
+  "error": {
+    "requeued-field": "Обязательное поле",
+    "incorrect-format": "Введите стоимость в формате"
   }
 }

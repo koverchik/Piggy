@@ -7,6 +7,7 @@ import AddNewButton from '../../../../components/ButtonAddNewRow/ButtonAddNewRow
 import store from '../../../../state';
 import './_styles.scss';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const AddNewRowWallet: React.FC = observer(() => {
   const { id } = useParams<useParamsIdType>();
@@ -17,7 +18,7 @@ export const AddNewRowWallet: React.FC = observer(() => {
     handleSubmit,
     formState: { errors }
   } = useForm();
-
+  const { t } = useTranslation();
   return (
     <form
       onSubmit={handleSubmit((data) => {
@@ -78,12 +79,12 @@ export const AddNewRowWallet: React.FC = observer(() => {
             <td className="error-row"></td>
             <td className="error-row"></td>
             <td className="error-row">
-              {errors.name?.type === 'required' && 'Обязательное поле'}
+              {errors.name?.type === 'required' && t('error.requeued-field')}
             </td>
             <td className="error-row" colSpan={2}>
-              {errors.cost?.type === 'required' && 'Обязательное поле'}
+              {errors.cost?.type === 'required' && t('error.requeued-field')}
               {errors.cost?.type === 'pattern' &&
-                'Введите стоимость в формате 10.00'}
+                t('error.incorrect-format') + ' 10.00'}
             </td>
           </tr>
         </tbody>

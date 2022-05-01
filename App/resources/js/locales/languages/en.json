@@ -29,5 +29,9 @@
     "cost": "Price",
     "result": "Total",
     "rubles": "rub"
+  },
+  "error": {
+    "requeued-field": "Required field",
+    "incorrect-format": "Enter the cost in the format"
   }
 }

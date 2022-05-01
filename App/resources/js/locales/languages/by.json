@@ -29,5 +29,9 @@
     "cost": "Кошт",
     "result": "Вынік",
     "rubles": "руб"
+  },
+  "error": {
+    "requeued-field": "Абавязковае поле",
+    "incorrect-format": "Увядзіце кошт у фармаце"
   }
 }
