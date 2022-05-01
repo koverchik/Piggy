@@ -13,5 +13,13 @@
     "editor": "Editor",
     "user": "User",
     "owner": "Owner"
+  },
+  "wallet": {
+    "name": "Wallets",
+    "description": "Calculate your spending"
+  },
+  "estimate": {
+    "name": "Estimates",
+    "description": "Plan your expenses"
   }
 }
