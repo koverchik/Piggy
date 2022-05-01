@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { ResponseListNamesEstimateWallet } from '../../state/StateTypes';
 import { createArrayPagination } from '../Helpers/ArrayPagination';
@@ -16,6 +17,7 @@ interface ListEstimateWalletType {
 
 export const ListEstimateWallet: React.FC<ListEstimateWalletType> = observer(
   ({ listData, nameSection, patch, fnAddNewItem }) => {
+    const { t } = useTranslation();
     const [statePopUp, setStatePopUp] = useState(false);
     const [arrayPaginationNumber, setArrayPaginationNumber] = useState<
       number[]
@@ -69,7 +71,7 @@ export const ListEstimateWallet: React.FC<ListEstimateWalletType> = observer(
               setStatePopUp(true);
             }}
           >
-            Создать
+            {t('button.create')}
           </div>
         </div>
         {statePopUp && (

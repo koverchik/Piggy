@@ -1,6 +1,7 @@
 {
   "button": {
-    "add": "Дадаць"
+    "add": "Дадаць",
+    "create": "Стварыць"
   },
   "authorization": {
     "sing-in": "Увайсці",

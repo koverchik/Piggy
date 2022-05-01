@@ -1,7 +1,7 @@
 import dictionaryBy from './languages/by.json';
 import dictionaryEn from './languages/en.json';
 import dictionaryRu from './languages/ru.json';
-import dictionaryUa from './languages/ua.json';
+import dictionaryUk from './languages/uk.json';
 
 export const resources = {
   en: {
@@ -14,9 +14,9 @@ export const resources = {
       ...dictionaryBy
     }
   },
-  ua: {
+  uk: {
     translation: {
-      ...dictionaryUa
+      ...dictionaryUk
     }
   },
   ru: {

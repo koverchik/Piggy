@@ -1,6 +1,7 @@
 {
   "button": {
-    "add": "Добавить"
+    "add": "Добавить",
+    "create": "Создать"
   },
   "authorization": {
     "sing-in": "Войти",
