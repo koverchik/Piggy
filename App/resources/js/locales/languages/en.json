@@ -22,5 +22,12 @@
   "estimate": {
     "name": "Estimates",
     "description": "Plan your expenses"
+  },
+  "table": {
+    "date": "Date",
+    "name": "Name",
+    "cost": "Price",
+    "result": "Total",
+    "rubles": "rub"
   }
 }
