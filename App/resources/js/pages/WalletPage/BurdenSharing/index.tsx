@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ButtonAdd } from '../../../components/ButtonAdd';
-import { UserList } from '../../../components/ListForPoint';
 import store from '../../../state';
 import { SharingUserListType } from '../types';
 import '../_styles.scss';
@@ -24,6 +24,7 @@ export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
   const [tableDebitCredit, setTableDebetCredit] = useState(false);
   const [statePopUp, setStatePopUp] = useState(false);
   const [stateUsers, setStateUsers] = useState<OptionsList[]>();
+  const { t } = useTranslation();
 
   useEffect(() => {
     store.Wallet.scopeOneWallet(id).then((data) => {
@@ -48,6 +49,18 @@ export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
     });
   }, [store.Wallet.allUsers]);
 
+  const gradeUser = (item: SharingUserListType) => {
+    let grade = '';
+    if (item['edit_permission'] === 1 && item['delete_table'] === 1) {
+      grade = t('user.owner');
+    } else if (item['edit_row'] === 1 && item['delete_row'] === 1) {
+      grade = t('user.editor');
+    } else {
+      grade = t('user.editor');
+    }
+    return grade;
+  };
+
   return (
     <div className="wrapper-user-table">
       {statePopUp && (
@@ -60,9 +73,11 @@ export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
       <table className="table-user">
         <thead>
           <tr>
-            <td className="head-name-user-table"> Имя </td>
-            <td className="head-premission-user-table"> Права </td>
-            <td className="head-contribution-user-table"> Вклад </td>
+            <td className="head-name-user-table">{t('table.user-name')}</td>
+            <td className="head-premission-user-table">{t('table.rank')}</td>
+            <td className="head-contribution-user-table">
+              {t('table.contribution')}
+            </td>
           </tr>
         </thead>
         <tbody>
@@ -70,9 +85,7 @@ export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
             return (
               <tr key={'scope-one-wallet' + i}>
                 <td className="name-user-table"> {item['user']['name']} </td>
-                <td className="premission-user-table">
-                  {store.Wallet.gradeUser(item)}
-                </td>
+                <td className="premission-user-table">{gradeUser(item)}</td>
                 <td className="contribution-user-table">
                   {(100 / listScopeOneWallet.length).toFixed(2)}%
                 </td>
@@ -83,7 +96,7 @@ export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
       </table>
       {stateUsers && (
         <ButtonAdd
-          name={'Добавить'}
+          name={t('button.add')}
           srcImage={'../images/add-user.svg'}
           callbackClick={setStatePopUp}
         />

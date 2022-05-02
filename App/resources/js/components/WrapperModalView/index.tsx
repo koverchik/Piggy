@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { FieldValues, UseFormHandleSubmit } from 'react-hook-form';
+import { UseFormHandleSubmit } from 'react-hook-form';
+import { FieldValuesType } from '../../pages/WalletPage/BurdenSharing/ModalAddNewUser/types';
 
 import './styles.scss';
 
@@ -8,9 +9,9 @@ type WrapperModalViewType = {
   setStatePopUp: React.Dispatch<React.SetStateAction<boolean>>;
   handleSubmit: UseFormHandleSubmit<{
     access: string;
-    name: string;
+    name: { value: number; label: string };
   }>;
-  onSumbit: ({ name, access }: FieldValues) => void;
+  onSumbit: ({ name, access }: FieldValuesType) => void;
   title: string;
   bodyContent: JSX.Element;
 };

@@ -24,11 +24,16 @@
     "description": "Сплануй свае выдаткі"
   },
   "table": {
+    "user-name": "Імя",
+    "rank": "Правы",
+    "contribution": "Уклад",
     "date": "Дата",
     "name": "Назва",
     "cost": "Кошт",
     "result": "Вынік",
-    "rubles": "руб"
+    "rubles": "руб",
+    "debit": "Дэбет",
+    "credit": "Крэдыт"
   },
   "error": {
     "requeued-field": "Абавязковае поле",

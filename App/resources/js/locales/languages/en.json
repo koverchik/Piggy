@@ -24,11 +24,16 @@
     "description": "Plan your expenses"
   },
   "table": {
+    "user-name": "Name",
+    "rank": "Title",
+    "contribution": "Contribution",
     "date": "Date",
     "name": "Name",
     "cost": "Price",
     "result": "Total",
-    "rubles": "rub"
+    "rubles": "rub",
+    "debit": "Debit",
+    "credit": "Credit"
   },
   "error": {
     "requeued-field": "Required field",

@@ -1,30 +1,28 @@
 import { FormControlLabel, Radio, RadioGroup } from '@material-ui/core';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { Controller, FieldValues, useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import Select from 'react-select';
-import { OptionsList } from '..';
+
 import { ButtonInput } from '../../../../components/ButtonInput';
 import store from '../../../../state';
 
 import { useTranslation } from 'react-i18next';
 import { WrapperModalView } from '../../../../components/WrapperModalView';
-type ModalAddNewUser = {
-  setStatePopUp: React.Dispatch<React.SetStateAction<boolean>>;
-  id: string;
-  stateUsers: OptionsList[] | undefined;
-};
+import { FieldValuesType, ModalAddNewUserType } from './types';
 
-export const ModalAddNewUser: React.FC<ModalAddNewUser> = observer(
+export const ModalAddNewUser: React.FC<ModalAddNewUserType> = observer(
   ({ setStatePopUp, id, stateUsers }) => {
     const { t } = useTranslation();
     const { register, control, handleSubmit, formState } = useForm({
       defaultValues: {
         access: 'user',
-        name: ''
+        name: { value: 0, label: '' }
       }
     });
-    const onSumbit = ({ name, access }: FieldValues): void => {
+
+    const onSumbit = ({ name, access }: FieldValuesType): void => {
+
       store.AddNewUserWallet.requestAddUser(id, name.value, access).then(
         (data) => {
           if (typeof data !== 'string') store.Wallet.allUsers.push(data);

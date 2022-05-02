@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ErrorTableLoading } from '../../../../components/ErrorTableLoading';
 import store from '../../../../state';
 import { WalletRowType } from '../../types';
-import { useEffect } from 'react';
 
 type TableOneWallet = {
   listRowsWallet: WalletRowType[] | string;
@@ -12,6 +12,7 @@ type TableOneWallet = {
 
 export const BodyOneWallet: React.FC<TableOneWallet> = observer(
   ({ listRowsWallet, pagination }) => {
+    const { t } = useTranslation();
     return (
       <tbody>
         {typeof listRowsWallet === 'string' ? (
@@ -38,7 +39,9 @@ export const BodyOneWallet: React.FC<TableOneWallet> = observer(
                   dataOneRow.getMonth() + 1
                 )}.${dataOneRow.getFullYear()}`}</td>
                 <td className="name-one-item"> {item['name']} </td>
-                <td className="cost-one-item"> {item['amount']} руб </td>
+                <td className="cost-one-item">
+                  {item['amount']} {t('table.rubles')}
+                </td>
                 <td className="user-write-item">
                   <img
                     src="../images/people.svg"

@@ -11,7 +11,7 @@ import Registration from './Registration/Registration';
 import Authentication from './Authentication/Authentication';
 import '../../js/locales/index';
 import { observer } from 'mobx-react-lite';
-import Authorization from './Authorization/Authorization';
+import { Authorization } from './Authorization/Authorization';
 import DevTools from 'mobx-react-devtools';
 
 const App: React.FC = observer(() => {

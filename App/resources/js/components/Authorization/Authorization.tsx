@@ -6,7 +6,7 @@ import { saveUserInfo } from './helper';
 import './_Authorization.scss';
 import { useTranslation } from 'react-i18next';
 
-const Authorization: React.FC = observer(() => {
+export const Authorization: React.FC = observer(() => {
   const history = useHistory();
   const navigateTo = () => history.push('/');
   const { t } = useTranslation();
@@ -31,4 +31,3 @@ const Authorization: React.FC = observer(() => {
     </div>
   );
 });
-export default Authorization;

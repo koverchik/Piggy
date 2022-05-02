@@ -24,11 +24,16 @@
     "description": "Спланируй свои расходы"
   },
   "table": {
+    "user-name": "Имя",
+    "rank": "Права",
+    "contribution": "Вклад",
     "date": "Дата",
     "name": "Название",
     "cost": "Стоимость",
     "result": "Итого",
-    "rubles": "руб"
+    "rubles": "руб",
+    "debit": "Дебет",
+    "credit": "Кредит"
   },
   "error": {
     "requeued-field": "Обязательное поле",
