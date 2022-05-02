@@ -4,7 +4,7 @@ import React from 'react';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 import Select from 'react-select';
 import { OptionsList } from '..';
-import { Button } from '../../../../components/Button';
+import { ButtonInput } from '../../../../components/ButtonInput';
 import store from '../../../../state';
 
 import { useTranslation } from 'react-i18next';
@@ -79,7 +79,7 @@ export const ModalAddNewUser: React.FC<ModalAddNewUser> = observer(
             </RadioGroup>
           )}
         />
-        <Button />
+        <ButtonInput />
       </>
     );
 

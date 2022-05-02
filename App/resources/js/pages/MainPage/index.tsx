@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
 import { observableUserProfile } from '../../components/Authorization/helper';
 import { ListEstimateWallet } from '../../components/ListEstimateWallet/ListEstimateWallet';
-import MainSection from '../../components/MainSection/MainSection';
+import { MainSection } from '../../components/MainSection/MainSection';
 import store from '../../state';
 import { ResponseListNamesEstimateWallet } from '../../state/StateTypes';
 import './_style.scss';

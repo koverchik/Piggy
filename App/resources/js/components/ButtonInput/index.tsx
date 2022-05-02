@@ -2,7 +2,7 @@ import React from 'react';
 import './_styles.scss';
 import { useTranslation } from 'react-i18next';
 
-export const Button: React.FC = () => {
+export const ButtonInput: React.FC = () => {
   const { t } = useTranslation();
   return (
     <div className="wrapper-for-button">
