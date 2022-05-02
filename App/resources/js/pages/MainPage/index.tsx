@@ -52,7 +52,7 @@ export const MainPage: React.FC = observer(() => {
           />
         </>
       ) : (
-        <div> Упс, что-то пошло не так попробуйте перезагрузить стараницу.</div>
+        <div>{t('estimate.system-error')}</div>
       )}
     </div>
   ) : (
