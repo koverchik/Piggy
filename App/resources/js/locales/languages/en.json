@@ -39,5 +39,9 @@
     "requeued-field": "Required field",
     "incorrect-format": "Enter the cost in the format",
     "system-error": "Something went wrong, try reloading the page"
+  },
+  "placeholders": {
+    "languages": "Language",
+    "select": "Select"
   }
 }

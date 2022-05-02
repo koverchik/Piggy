@@ -22,7 +22,6 @@ export const ModalAddNewUser: React.FC<ModalAddNewUserType> = observer(
     });
 
     const onSumbit = ({ name, access }: FieldValuesType): void => {
-
       store.AddNewUserWallet.requestAddUser(id, name.value, access).then(
         (data) => {
           if (typeof data !== 'string') store.Wallet.allUsers.push(data);
@@ -44,6 +43,7 @@ export const ModalAddNewUser: React.FC<ModalAddNewUserType> = observer(
                   options={stateUsers}
                   onChange={onChange}
                   onBlur={onBlur}
+                  placeholder={t('placeholders.select')}
                 />
               );
             }}

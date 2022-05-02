@@ -39,5 +39,9 @@
     "requeued-field": "Абавязковае поле",
     "incorrect-format": "Увядзіце кошт у фармаце",
     "system-error": "Нешта пайшло не так паспрабуйце перазагрузіць старонку"
+  },
+  "placeholders": {
+    "languages": "Мова",
+    "select": "Выберыце"
   }
 }
