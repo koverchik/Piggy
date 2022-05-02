@@ -1,0 +1,48 @@
+{
+  "button": {
+    "add": "Add",
+    "create": "Create"
+  },
+  "authorization": {
+    "sing-in": "Sing In",
+    "login-with": "Login with",
+    "log-out": "Log out"
+  },
+  "user": {
+    "find-user": "User search",
+    "add-name-and-status": "Add name and status",
+    "editor": "Editor",
+    "user": "User",
+    "owner": "Owner"
+  },
+  "wallet": {
+    "name": "Wallets",
+    "description": "Calculate your spending"
+  },
+  "estimate": {
+    "name": "Estimates",
+    "description": "Plan your expenses"
+  },
+  "table": {
+    "user-name": "Name",
+    "rank": "Title",
+    "contribution": "Contribution",
+    "date": "Date",
+    "name": "Name",
+    "cost": "Price",
+    "result": "Total",
+    "rubles": "rub",
+    "debit": "Debit",
+    "credit": "Credit"
+  },
+  "error": {
+    "requeued-field": "Required field",
+    "incorrect-format": "Enter the cost in the format",
+    "system-error": "Something went wrong, try reloading the page",
+    "add-user-error": "We were unable to add the user, please try again"
+  },
+  "placeholders": {
+    "languages": "Language",
+    "select": "Select"
+  }
+}

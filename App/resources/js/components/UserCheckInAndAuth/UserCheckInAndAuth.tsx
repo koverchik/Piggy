@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../ButtonCreate/ButtonCreate';
+import { ButtonAdd } from '../ButtonAdd';
 import './_UserCheckInAndAuth.scss';
 
 const UserCheckInAndAuth: React.FC = observer((props: any) => {
@@ -25,7 +25,7 @@ const UserCheckInAndAuth: React.FC = observer((props: any) => {
             )}
           </div>
           <div className="wrapper-button-reg-auth">
-            <Button {...props.buttonSend} />
+            <ButtonAdd {...props.buttonSend} />
           </div>
         </form>
         <div className="wrapper-footer-link">

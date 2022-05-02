@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
          //Создание строк для колекции кошельков
         $colectionRoWallets = [];
         $colectionObligationsWallets = [];
-        $colectionScopeDiscriptionsEtimates = [];
+        $colectionScopeDescriptionsEtimates = [];
 
         for ($i = 0; $i <= 1000; $i++) {
             $current = Carbon::now();
@@ -79,19 +79,19 @@ class DatabaseSeeder extends Seeder
 
             //Добавление видов доступа 
             $statusObligationsWallets = true;
-            foreach ($colectionScopeDiscriptionsEtimates as $one) {
+            foreach ($colectionScopeDescriptionsEtimates as $one) {
             if ($one['names_wallets_id'] == $names_wallets && $one['user_id'] == $user_id) {
                 $statusObligationsWallets = false;
                 break; 
                 }         
             }  
             if($statusObligationsWallets){
-                array_push($colectionScopeDiscriptionsEtimates, $discriptionsEtimates);
+                array_push($colectionScopeDescriptionsEtimates, $discriptionsEtimates);
                 }
           
     }
     
-        DB::table('scope_discriptions')->insert($colectionScopeDiscriptionsEtimates);
+        DB::table('scope_descriptions')->insert($colectionScopeDescriptionsEtimates);
         DB::table('row_wallets')->insert($colectionRoWallets);
         DB::table('obligations_wallets')->insert($colectionObligationsWallets);
 

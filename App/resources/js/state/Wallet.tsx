@@ -1,20 +1,23 @@
-import { makeObservable, action, observable, configure } from 'mobx';
 import axios from 'axios';
-
-configure({
-  enforceActions: 'observed'
-});
+import { action, makeObservable, observable } from 'mobx';
+import {
+  AllDataWalletType,
+  SharingUserListType,
+  SubmitDataNewRowWallet,
+  WalletRowType
+} from '../pages/WalletPage/types';
+import { DebitCreditTableType } from './StateTypes';
 
 export default class Wallet {
-  allUsers = new Array();
+  allUsers: SharingUserListType[] = [];
   newDataRaw = '';
   idWallet = 0;
   nameWallet = '';
   allSum = 0;
   newRowWallet = '';
   newRowCost = '';
-  allRows = new Array();
-  numberPagination = new Array();
+  allRows: WalletRowType[] = [];
+  numberPagination = [];
   activePagination = 0;
   lengthRows = 0;
   lengthBurdenUser = 0;
@@ -34,16 +37,16 @@ export default class Wallet {
       nameWallet: observable,
       startOneWallet: action,
       scopeOneWallet: action,
+      debitCreditTable: action,
       addZero: action,
-      addNewRow: action,
-      gradeUser: action
+      addNewRow: action
     });
   }
-  addZero(number: number) {
+  addZero(number: number): string | number {
     return number < 10 ? `0${number}` : number;
   }
 
-  startOneWallet() {
+  startOneWallet(id: string): Promise<AllDataWalletType | string> {
     const nowDay = new Date();
     this.newDataRaw = `${nowDay.getFullYear()}-${this.addZero(
       nowDay.getMonth() + 1
@@ -51,26 +54,20 @@ export default class Wallet {
 
     const result = axios
       .post(process.env.MIX_APP_URL_FOR_TEST + 'one-wallets', {
-        id: this.idWallet
+        id: id
       })
       .then(
         (response) => {
           const sumAllRows: number = response.data.rows.reduce(function (
             sum: number,
-            elem: any
+            elem: WalletRowType
           ) {
             return sum + elem.amount;
           },
           0);
-          const quantity: number = Math.ceil(this.lengthRows / 10);
-          const arrayForPagination = new Array();
-          for (let i = 0; i < quantity; i++) {
-            arrayForPagination.push(i + 1);
-          }
-          this.numberPagination = arrayForPagination;
-
           this.allSum = +sumAllRows.toFixed(2);
-          return response;
+          this.allRows = response.data.rows;
+          return response.data;
         },
         (response) => {
           console.log('error request ' + response);
@@ -80,24 +77,15 @@ export default class Wallet {
     return result;
   }
 
-  addNewRow() {
-    const data = {
-      date: this.newDataRaw,
-      name: this.newRowWallet,
-      cost: this.newRowCost,
-      namesWalletsId: this.idWallet
-    };
-
+  addNewRow(data: SubmitDataNewRowWallet): void | string {
     axios
       .post(process.env.MIX_APP_URL_FOR_TEST + 'add-new-row-wallet', {
-        data: data
+        data
       })
       .then(
         (response) => {
-          if (response.status === 200) {
-            this.newRowWallet = '';
-            this.newRowCost = '';
-          }
+          this.allSum = this.allSum + response.data.amount;
+          this.allRows.push(response.data);
         },
         (response) => {
           console.log('error request ' + response);
@@ -106,10 +94,10 @@ export default class Wallet {
       );
   }
 
-  scopeOneWallet() {
+  scopeOneWallet(id: string): Promise<string | SharingUserListType[]> {
     const result = axios
       .post(process.env.MIX_APP_URL_FOR_TEST + 'scope-one-wallet', {
-        id: this.idWallet
+        id: id
       })
       .then(
         (response) => {
@@ -125,15 +113,22 @@ export default class Wallet {
     return result;
   }
 
-  gradeUser(item: any) {
-    let grade: string = '';
-    if (item['edit_permission'] === 1 && item['delete_table'] === 1) {
-      grade = 'Владелец';
-    } else if (item['edit_row'] === 1 && item['delete_row'] === 1) {
-      grade = 'Редактор';
-    } else {
-      grade = 'Пользователь';
-    }
-    return grade;
+  debitCreditTable(id: string): Promise<string | DebitCreditTableType[]> {
+    const result = axios
+      .post(process.env.MIX_APP_URL_FOR_TEST + 'debit-credit-wallet', {
+        id: id
+      })
+      .then(
+        (response) => {
+          if (response.status === 200) {
+            return response.data;
+          }
+        },
+        (response) => {
+          console.log('error request ' + response);
+          return 'Error';
+        }
+      );
+    return result;
   }
 }

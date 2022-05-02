@@ -1,19 +1,15 @@
-import { makeObservable, action, observable, configure } from 'mobx';
 import axios from 'axios';
-import { ResponseListNamesEstimateWallet, RowEstimate } from './StateTypes';
+import { action, makeObservable, observable } from 'mobx';
+import { RowEstimate } from './StateTypes';
 
 export default class Estimate {
   idEstimate = 0;
   nameEstimate = '';
   reactElemRows = [];
-  dataRows = [];
   rowsLength = '';
   sumRows = '';
   newRow = '';
   newRowCost = '';
-  pagination = [];
-  reactElemPagination = [];
-  activePagination = 0;
   validationNewRow = true;
   validationNewRowCost = true;
   messageNewRow = '';
@@ -24,40 +20,16 @@ export default class Estimate {
       idEstimate: observable,
       sumRows: observable,
       rowsLength: observable,
-      dataRows: observable,
       nameEstimate: observable,
       newRow: observable,
-      reactElemPagination: observable,
       newRowCost: observable,
-      pagination: observable,
       reactElemRows: observable,
-      activePagination: observable,
       requestOneEstimate: action,
       requestNewRow: action,
       deleteRow: action,
-      validationAdd: action,
-      callbackPaginationArray: action
+      validationAdd: action
     });
   }
-
-  callbackPaginationArray = (event: Event) => {
-    const { textContent } = event.target as HTMLDivElement;
-    if (textContent != null) {
-      this.activePagination = +textContent;
-    }
-  };
-
-  callbackPaginationLeft = () => {
-    this.activePagination > 1
-      ? (this.activePagination = this.activePagination - 1)
-      : '';
-  };
-
-  callbackPaginationRight = () => {
-    this.activePagination < this.pagination.length
-      ? (this.activePagination = +this.activePagination + 1)
-      : '';
-  };
 
   async requestOneEstimate(
     idEstimate: number
@@ -68,16 +40,7 @@ export default class Estimate {
       })
       .then(
         (response) => {
-          console.log(response.data);
-
           this.nameEstimate = response.data.name;
-          this.rowsLength = response.data.rows.length + 1;
-          const countPagination = Math.ceil(response.data.rows.length / 10);
-          const arrayPagination = [];
-          for (let index = 0; index < countPagination; index++) {
-            arrayPagination.push(index + 1);
-          }
-          // this.pagination = arrayPagination;
 
           const sumAllRows: number = response.data.rows.reduce(function (
             sum: number,
@@ -91,7 +54,6 @@ export default class Estimate {
 
           return response.data.rows;
         },
-
         (response) => {
           console.log('error request ' + response);
           return 'Error';

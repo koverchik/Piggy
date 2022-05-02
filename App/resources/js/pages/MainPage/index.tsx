@@ -2,10 +2,11 @@ import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
 import { observableUserProfile } from '../../components/Authorization/helper';
 import { ListEstimateWallet } from '../../components/ListEstimateWallet/ListEstimateWallet';
-import MainSection from '../../components/MainSection/MainSection';
+import { MainSection } from '../../components/MainSection/MainSection';
 import store from '../../state';
 import { ResponseListNamesEstimateWallet } from '../../state/StateTypes';
 import './_style.scss';
+import { useTranslation } from 'react-i18next';
 
 export const MainPage: React.FC = observer(() => {
   const [error, setError] = useState(true);
@@ -15,7 +16,7 @@ export const MainPage: React.FC = observer(() => {
   const [listWalletData, settWalletData] = useState<
     ResponseListNamesEstimateWallet[]
   >();
-
+  const { t } = useTranslation();
   useEffect(() => {
     store.GeneralData.allEstimates().then((data) => {
       if (typeof data !== 'string') {
@@ -40,18 +41,18 @@ export const MainPage: React.FC = observer(() => {
           <ListEstimateWallet
             listData={listEstimateData}
             patch={'estimate'}
-            nameSection={'Сметы'}
+            nameSection={t('estimate.name')}
             fnAddNewItem={store.CreationEditingEstimates.createNewEstimate}
           />
           <ListEstimateWallet
             listData={listWalletData}
             patch={'wallet'}
-            nameSection={'Кошельки'}
+            nameSection={t('wallet.name')}
             fnAddNewItem={store.CreationEditingWallets.createNewWallet}
           />
         </>
       ) : (
-        <div> Упс, что-то пошло не так попробуйте перезагрузить стараницу.</div>
+        <div>{t('estimate.system-error')}</div>
       )}
     </div>
   ) : (

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import interfacesButton from './interfacesButtonCreate';
+import { ButtonAddType } from './interfacesButtonCreate';
 import interfacesUsersList from './interfacesUsersList';
 import interfacesAccessOptions from './interfacesAccessOptions';
 
@@ -10,7 +10,7 @@ interface interfacesPopUp extends React.HTMLAttributes<HTMLDivElement> {
   listUser?: interfacesUsersList;
   accessList?: interfacesAccessOptions;
   closeClick: () => void;
-  button: interfacesButton;
+  button: ButtonAddType;
   onChangeFunction(event: Event | null): void;
 }
 export default interfacesPopUp;

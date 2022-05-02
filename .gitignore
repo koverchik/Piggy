@@ -1,3 +1,5 @@
 node_modules
 /App/.env
-/App/public/js/app.js
+App/public/js/app.js
+.gitignore
+.package-lock.json

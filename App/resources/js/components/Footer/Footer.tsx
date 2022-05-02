@@ -1,12 +1,11 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import User from './User/User';
+
 import './_Footer.scss';
 
 const Footer: React.FC = observer(() => {
   return (
     <div className="wrapper-footer">
-      <User />
       <div className="links-info">
         <a href="#">Правила</a>
         <a href="#">О правах</a>

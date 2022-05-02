@@ -3,7 +3,7 @@ import React from 'react';
 import createAuthUser from '../../interfaces/interfacesCreateAuthUser';
 import UserCheckInAndAuth from '../UserCheckInAndAuth/UserCheckInAndAuth';
 
-const Registration: React.FC = observer((props: any) => {
+const Registration: React.FC = observer(() => {
   const dataProps: createAuthUser = {
     nameForm: 'Регистрация',
     repeatPassword: true,

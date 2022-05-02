@@ -1,19 +1,14 @@
 import React from 'react';
+import { User } from './User/User';
 import './_Header.scss';
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
   return (
     <div className="wrapper-header">
       <a href="/">
         <h1 className="logo-header">Piggy</h1>
       </a>
-      <img
-        src="../images/image-for-header.png"
-        alt="piggy"
-        className="image-header"
-      />
+      <User />
     </div>
   );
 };
-
-export default Header;

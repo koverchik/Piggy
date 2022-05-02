@@ -1,73 +1,45 @@
-import { makeObservable, action, observable, configure } from 'mobx';
 import axios from 'axios';
-import store from './index';
-
-
-configure({
-  enforceActions: 'observed'
-});
+import { action, makeObservable, observable } from 'mobx';
+import { SharingUserListType } from '../pages/WalletPage/types';
+import { RequestUsersSystemsType } from './StateTypes';
 
 export default class AddNewUserWallet {
-  newUser = '';
-  newUserId = 0;
-  AccessNewUser = '';
-  allDataUsersSystems = [];
+  allDataUsersSystems: RequestUsersSystemsType[] = [];
 
   constructor() {
     makeObservable(this, {
-      newUser: observable,
       allDataUsersSystems: observable,
-      newUserId: observable,
-      AccessNewUser: observable,
-      addUser: action,
-      userSearch: action,
       requestAddUser: action,
       requestUsersSystems: action
     });
   }
-
-  userSearch = (event: Event) => {
-    this.newUser = (event.target as HTMLInputElement).value;
-  };
-
-  addUser = (event: any) => {
-    const newUserChanged =
-      event.currentTarget.firstElementChild.lastElementChild;
-    this.newUserId = newUserChanged.getAttribute('data-id');
-    this.newUser = newUserChanged.textContent;
-  };
-
-  requestAddUser = () => {
-    axios
+  requestAddUser(
+    id: string,
+    newUser: number,
+    AccessNewUser: string
+  ): Promise<string> | Promise<SharingUserListType> {
+    const response = axios
       .post(process.env.MIX_APP_URL_FOR_TEST + 'add-new-user-wallet', {
-        id: store.Wallet.idWallet,
-        newUser: this.newUserId,
-        AccessNewUser: this.AccessNewUser
+        id: id,
+        newUser: newUser,
+        AccessNewUser: AccessNewUser
       })
       .then(
         (response) => {
-          if (response.status === 200) {
-            store.Wallet.allUsers.push({
-              userName: this.newUser,
-              userId: this.newUserId,
-              debitCredit: 0
-            });
-            this.newUserId = 0;
-            this.newUser = '';
-            store.Wallet.lengthBurdenUser = store.Wallet.lengthBurdenUser + 1;
-          }
+          return response.data;
         },
         (response) => {
           console.log('error request ' + response);
           return 'Error';
         }
       );
-  };
+    return response;
+  }
 
-  requestUsersSystems() {
+  requestUsersSystems(id: string): Promise<string | RequestUsersSystemsType[]> {
     const result = axios
       .post(process.env.MIX_APP_URL_FOR_TEST + 'all-users-system', {
-        id: store.Wallet.idWallet
+        id: id
       })
       .then(
         (response) => {
