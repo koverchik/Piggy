@@ -3,6 +3,10 @@
   flex-direction: column;
   align-items: flex-end;
   width: 40%;
+  margin: 1rem;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: white;
   @media screen and (max-width: 1240px) {
     width: 100%;
   }
