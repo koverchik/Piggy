@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 import UserCheckInAndAuth from '../UserCheckInAndAuth/UserCheckInAndAuth';
 import createAuthUser from '../../interfaces/interfacesCreateAuthUser';
 
-const Authentication: React.FC = observer((props: any) => {
+const Authentication: React.FC = observer(() => {
   const dataProps: createAuthUser = {
     nameForm: 'Авторизация',
     repeatPassword: false,

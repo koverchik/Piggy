@@ -34,7 +34,7 @@ export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
         store.Wallet.allUsers = data;
       }
     });
-  }, []);
+  }, [store.Wallet.allUsers]);
 
   useEffect(() => {
     store.AddNewUserWallet.requestUsersSystems(id).then((data) => {
