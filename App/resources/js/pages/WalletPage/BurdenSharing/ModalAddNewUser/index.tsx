@@ -49,8 +49,7 @@ export const ModalAddNewUser: React.FC<ModalAddNewUserType> = observer(
             }}
           />
           <p className="error-input-add-new-user">
-            {formState.isSubmitted &&
-              'Мы не смогли добавить пользователя попробуйте еще раз'}
+            {formState.isSubmitted && t('error.add-user-error')}
           </p>
         </div>
         <Controller

@@ -38,7 +38,8 @@
   "error": {
     "requeued-field": "Required field",
     "incorrect-format": "Enter the cost in the format",
-    "system-error": "Something went wrong, try reloading the page"
+    "system-error": "Something went wrong, try reloading the page",
+    "add-user-error": "We were unable to add the user, please try again"
   },
   "placeholders": {
     "languages": "Language",
