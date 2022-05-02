@@ -30,7 +30,6 @@ export const BurdenSharing: React.FC<TypeBurdenSharing> = observer(({ id }) => {
     store.Wallet.scopeOneWallet(id).then((data) => {
       if (typeof data !== 'string') {
         setListScopeOneWallet(data);
-
         if (data.length > 1) setTableDebetCredit(true);
         store.Wallet.allUsers = data;
       }

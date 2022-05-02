@@ -39,8 +39,7 @@ export default class Wallet {
       scopeOneWallet: action,
       debitCreditTable: action,
       addZero: action,
-      addNewRow: action,
-      gradeUser: action
+      addNewRow: action
     });
   }
   addZero(number: number): string | number {
@@ -131,17 +130,5 @@ export default class Wallet {
         }
       );
     return result;
-  }
-
-  gradeUser(item: SharingUserListType): string {
-    let grade = '';
-    if (item['edit_permission'] === 1 && item['delete_table'] === 1) {
-      grade = 'Владелец';
-    } else if (item['edit_row'] === 1 && item['delete_row'] === 1) {
-      grade = 'Редактор';
-    } else {
-      grade = 'Пользователь';
-    }
-    return grade;
   }
 }
