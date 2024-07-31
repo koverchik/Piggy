@@ -1,3 +1,7 @@
+.navbar{
+    padding: 0;
+}
+
 .header-custom-style{
     display: flex;
     align-items: center;
@@ -9,6 +13,7 @@
     height: 100%;
     margin-right: 10px;
     object-fit: cover;
+
 }
 
 .header-navbar-custom-style{
