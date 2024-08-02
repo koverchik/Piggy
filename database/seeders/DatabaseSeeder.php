@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,9 +16,12 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        for($i =0 ; $i<30 ; $i++) {
+            User::factory()->create([
+                'name' => Str::random(10),
+                'email' => Str::random(10).'@example.com',
+            ]);
+        }
+        $this->call([WalletSeeder::class, BudgetSeeder::class]);
     }
 }

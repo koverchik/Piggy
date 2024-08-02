@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                             <p class="text-end">
-                                <a class="text-reset" href="#">Forgot Password?</a>
+                                <a class="text-reset"  href="{{ url('restore') }}">Forgot Password?</a>
                             </p>
                             <div class="d-grid gap-2 col-6 mx-auto mt-4">
                                 <button class="btn btn-primary btn-lg" type="submit">Sign In</button>
