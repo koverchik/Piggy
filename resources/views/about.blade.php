@@ -9,9 +9,8 @@
                     <p>The Wallet section is your go-to for monitoring and managing your actual expenses.
                         Keep a detailed record of all your spending, create items for each expense, and split costs among users for better transparency and shared accountability.</p>
                     <p > With the Wallet, you'll have a clear view of your financial outflows, helping you stay informed and in control of your money.</p>
-                    <div class="custom-btn-create">
+                    <div class="custom-btn-create mt-4">
                         <a href="{{ url('wallet') }}" class="btn btn-outline-info" role="button">Create</a>
-{{--                        <button class="btn btn-outline-info" type="button">Create</button>--}}
                     </div>
                 </div>
             </div>

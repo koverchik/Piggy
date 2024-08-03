@@ -16,9 +16,7 @@ Route::get('/user', function () {
     return view('user');
 });
 
-Route::get('/about', function () {
-    return view('about');
-});
+Route::get('/about', [LoginController::class, 'handleHomePage']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 
@@ -35,8 +33,12 @@ Route::post('/restore', [RestoreController::class, 'handRestore'])->name('send.r
 
 Route::get('/wallet', [WalletController::class, 'index'])->name('wallet');
 
+Route::get('/wallet-list', [WalletController::class, 'list'])->name('wallet.list');
+
 Route::post('/wallet', [WalletController::class, 'handWalletCreate'])->name('create.wallet');
 
 Route::get('/budget', [BudgetController::class, 'index'])->name('budget');
 
 Route::post('/budget', [BudgetController::class, 'handBudgetCreate'])->name('create.budget');
+
+Route::get('/budget-list', [BudgetController::class, 'list'])->name('budget.list');
