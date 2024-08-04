@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\WalletRequest;
+use App\Http\Requests\CreateRequest;
+use App\Models\Wallet;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Contracts\View\View;
 
-class WalletController extends Controller
+class WalletController extends Controller implements TableControllerInterface
 {
-    public function index()
+    public function index(): View
     {
 
         return view('wallet.create');
     }
-    public function handWalletCreate(WalletRequest $request): Request
+    public function handlerCreate(CreateRequest $request): Request
     {
 
         DB::table('name_wallets')->insert([
@@ -26,10 +29,41 @@ class WalletController extends Controller
         return $request;
     }
 
-    public function list()
+    public function list(): View
     {
-        $wallets = DB::table('name_wallets')->paginate(10);
+        $wallets = Wallet::all()
+            ->take(10);
 
-        return view('wallet.list', ['header' => "Wallets", 'items' => $wallets]);
+        return view('wallet.list', ['header' => "Wallets", 'items' => $wallets, 'type' => 'wallet']);
+    }
+
+    public function trashList(): View
+    {
+        $wallets = Wallet::onlyTrashed()->get();
+
+        return view('wallet.list', ['header' => "Wallets", 'items' => $wallets, 'type' => 'wallet']);
+    }
+    public function handlerDelete(Request $request): RedirectResponse
+    {
+        $entityId = $request->get('id');
+        $wallet = Wallet::withTrashed()->find($entityId);
+        $wallet->forceDelete();
+        return back();
+    }
+
+    public function handlerMoveToTrash(Request $request): RedirectResponse
+    {
+        $entityId = $request->get('id');
+        $wallet = Wallet::findOrFail($entityId);
+        $wallet->delete();
+        return back();
+    }
+
+    public function handlerRestore(Request $request): RedirectResponse
+    {
+        $entityId = $request->get('id');
+        $wallet = Wallet::onlyTrashed()->findOrFail($entityId);;
+        $wallet->restore();
+        return back();
     }
 }
