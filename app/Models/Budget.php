@@ -10,9 +10,15 @@ class Budget extends Model
 {
     use HasFactory, softDeletes;
 
-    protected $table = 'name_budgets';
+    protected $table = 'budgets';
     protected $fillable = [
         'name',
-        'user_id'
+        'owner_id'
     ];
+
+    public function data(){
+
+        return $this->hasMany(BudgetRows::class, 'budget_id');
+    }
+
 }

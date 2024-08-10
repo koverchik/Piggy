@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('data_wallets', function (Blueprint $table) {
+        Schema::create('wallet_rows', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100)->nullable(false);
             $table->decimal('amount', 8, 2)->nullable(false);
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade');
-            $table->foreignId('name_wallets_id')->constrained('name_wallets')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('wallet_id');
             $table->timestamps();
+
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade');
+            $table->foreign('wallet_id')->references('id')->on('wallets')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('data_wallets');
+        Schema::dropIfExists('wallet_rows');
     }
 };

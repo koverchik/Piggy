@@ -19,29 +19,50 @@
                             <a href="#" class="link-dark text-decoration-none">{{ $item->name }}</a>
                         </div>
                         @if($status === 'active')
-                            <a href="#">
-                                <span class="badge bg-light">
+                            <a href="{{route('edit.budget.table', ['id' => $item->id])}}" >
+                                <span class="badge bg-light m-1 cursor-pointer">
                                      <img src="{{ asset('images/pencil.svg') }}" class="m-1"/>
                                 </span>
                             </a>
                         @else
-                            <span class="badge bg-light m-1 cursor-pointer"  data-bs-toggle="modal" data-bs-target="#restore-{{$item->id}}">
+                            <span class="badge bg-light m-1 cursor-pointer delete-button"
+                                  data-bs-toggle="modal"
+                                  role="button"
+                                  tabindex="0"
+                                  data-bs-target="#restore-{{$item->id}}"
+                                  data-id="{{$item->id}}"
+                                  data-type="restore"
+                                  data-name="{{$item->name}}">
                                 <img src="{{ asset('images/trash-restore-alt.svg') }}" class="m-1"/>
                             </span>
                         @endif
                         @if($status === 'active')
-                            <span class="badge bg-light m-1 cursor-pointer"  data-bs-toggle="modal" data-bs-target="#static-{{$item->id}}">
+                            <span class="badge bg-light m-1 delete-button"
+                                  role="button"
+                                  tabindex="0"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#to-trash-{{$item->id}}"
+                                  data-id="{{$item->id}}"
+                                  data-type="trash"
+                                  data-name="{{$item->name}}">
                                 <img src="{{ asset('images/move-to-trash.svg') }}" class="m-1"/>
                             </span>
                         @else
-                            <span class="badge bg-light m-1 cursor-pointer"  data-bs-toggle="modal" data-bs-target="#static-{{$item->id}}">
+                            <span class="badge bg-light m-1 cursor-pointer delete-button"
+                                  role="button"
+                                  tabindex="0"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#trash-{{$item->id}}"
+                                  data-id="{{$item->id}}"
+                                  data-type="delete"
+                                  data-name="{{$item->name}}">
                                 <img src="{{ asset('images/trash.svg') }}" class="m-1"/>
                             </span>
                         @endif
-                        @include('layouts.modal', ['id'=> $item->id, 'name' => $item->name, 'type' => $type, 'status' => $status])
                     </li>
                 @endforeach
             </ol>
+        @include('layouts.modal')
 {{--            <div class="d-flex justify-content-center m-4 mt-auto p-2 bd-highlight">{{ $items}}</div>--}}
     </main>
 @endsection

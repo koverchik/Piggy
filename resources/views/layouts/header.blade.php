@@ -1,7 +1,7 @@
 <div class="navbar navbar-light bg-light" role="navigation">
     <div class="navbar-header header-custom-style">
         <img src="{{ asset('images/image-for-header.png') }}" width="auto" alt="logo"/>
-        <h1 class="big-logo">Split saver</h1>
+        <h1 class="big-logo">Bill split</h1>
     </div>
     <ul class="nav justify-content-end">
         <li class="nav-item">

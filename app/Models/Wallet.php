@@ -10,9 +10,14 @@ class Wallet extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'name_wallets';
+    protected $table = 'wallets';
     protected $fillable = [
         'name',
-        'user_id'
+        'owner_id'
     ];
+
+    public function data(){
+
+        return $this->hasMany(WalletRows::class, 'wallet_id');
+    }
 }

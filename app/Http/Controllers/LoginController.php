@@ -23,8 +23,8 @@ class LoginController extends Controller
     public function handleHomePage()
     {
 
-        $wallets = DB::table('name_wallets')->limit(10)->get();
-        $budgets = DB::table('name_budgets')->limit(10)->get();
+        $wallets = DB::table('wallets')->limit(10)->get();
+        $budgets = DB::table('budgets')->limit(10)->get();
 
         return view('home', ['wallets' => $wallets, 'budgets' => $budgets]);
     }

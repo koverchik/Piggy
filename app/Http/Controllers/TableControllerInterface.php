@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateRequest;
 use Illuminate\Contracts\View\View;
+use \Illuminate\Http\Response;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -16,4 +17,7 @@ interface TableControllerInterface
     public function handlerDelete(Request $request): RedirectResponse;
     public function list(): View;
     public function trashList(): View;
+    public function tableView(Request $request, string $id): View;
+    public function editTable(Request $request, string $id): View;
+    public function addRow(Request $request, string $id): RedirectResponse;
 }

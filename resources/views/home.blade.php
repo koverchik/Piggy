@@ -4,7 +4,7 @@
         <a href="{{ url('wallet-list') }}" class="text-center text-decoration-none h2 mb-4 link-dark">Wallet</a>
         @if (count($wallets) > 0)
             @foreach ($wallets as $wallet)
-                <a href="#" class="d-inline-flex py-1 px-2 text-decoration-none m-2">
+                <a href="{{route('wallet.table', ['id' => $wallet->id])}}" class="d-inline-flex py-1 px-2 text-decoration-none m-2">
                     {{ $wallet->name }}
                 </a>
             @endforeach
@@ -24,7 +24,7 @@
         <a href="{{ url('budget-list') }}" class="text-center text-decoration-none h2 mb-4 link-dark">Budget</a>
         @if (count($budgets) > 0)
             @foreach ($budgets as $budget)
-                <a href="#" class="d-inline-flex focus-ring py-1 px-2 text-decoration-none m-2">
+                <a href="{{route('budget.table', ['id' => $budget->id])}}" class="d-inline-flex focus-ring py-1 px-2 text-decoration-none m-2">
                     {{ $budget->name }}
                 </a>
             @endforeach
