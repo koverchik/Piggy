@@ -1,10 +1,10 @@
 @extends('layouts.cards')
 @section('left-column')
     <div class="h-100 p-5 bg-light rounded-3 custom-container-card">
-        <a href="{{ url('wallet-list') }}" class="text-center text-decoration-none h2 mb-4 link-dark">Wallet</a>
+        <a href="{{ route('wallet.index') }}" class="text-center text-decoration-none h2 mb-4 link-dark">Wallet</a>
         @if (count($wallets) > 0)
             @foreach ($wallets as $wallet)
-                <a href="{{route('wallet.table', ['id' => $wallet->id])}}" class="d-inline-flex py-1 px-2 text-decoration-none m-2">
+                <a href="{{route('wallet.show', ['wallet' => $wallet->id])}}" class="d-inline-flex py-1 px-2 text-decoration-none m-2">
                     {{ $wallet->name }}
                 </a>
             @endforeach
@@ -15,16 +15,16 @@
             <p> With the Wallet, you'll have a clear view of your financial outflows, helping you stay informed and in control of your money.</p>
         @endif
         <div class="custom-btn-create mt-4">
-            <a href="{{ url('wallet') }}" class="btn btn-outline-info" role="button">Create</a>
+            <a href="{{route('wallet.create')}}" class="btn btn-outline-info" role="button">Create</a>
         </div>
     </div>
 @endsection
 @section('right-column')
     <div class="h-100 p-5 bg-light rounded-3 custom-container-card">
-        <a href="{{ url('budget-list') }}" class="text-center text-decoration-none h2 mb-4 link-dark">Budget</a>
+        <a href="{{ route('budget.index') }}" class="text-center text-decoration-none h2 mb-4 link-dark">Budget</a>
         @if (count($budgets) > 0)
             @foreach ($budgets as $budget)
-                <a href="{{route('budget.table', ['id' => $budget->id])}}" class="d-inline-flex focus-ring py-1 px-2 text-decoration-none m-2">
+                <a href="{{route('budget.show', ['budget' => $budget->id])}}" class="d-inline-flex focus-ring py-1 px-2 text-decoration-none m-2">
                     {{ $budget->name }}
                 </a>
             @endforeach
@@ -35,7 +35,7 @@
         <p >With detailed insights and the ability to split budget items among users, you can collaborate and ensure everyone is aligned with the financial plans.</p>
         @endif
         <div class="custom-btn-create mt-4">
-            <a href="{{ url('budget') }}" class="btn btn-outline-info" role="button">Create</a>
+            <a href="{{ route('budget.create') }}" class="btn btn-outline-info" role="button">Create</a>
         </div>
     </div>
 @endsection

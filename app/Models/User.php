@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -43,5 +42,17 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function walletMemberships()
+    {
+        return $this->belongsToMany(Wallet::class, 'wallet_members', 'user_id', 'wallet_id')
+            ->withTimestamps();
+    }
+
+    public function budgetMemberships()
+    {
+        return $this->belongsToMany(Budget::class, 'budget_members', 'user_id', 'badget_id')
+            ->withTimestamps();
     }
 }

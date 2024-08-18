@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <main class="container-md py-4 flex-shrink-0">
+    <main class="container-md py-4 flex-shrink-0 mb-5">
         <div class="row align-items-center justify-content-md-center">
             <div class="col-md-6 m-5">
                 <div class="h-100 p-5 bg-light rounded-3 custom-container-card">

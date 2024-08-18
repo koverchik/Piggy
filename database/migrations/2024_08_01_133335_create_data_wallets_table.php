@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('wallet_rows', function (Blueprint $table) {
-            $table->id();
+            $table->id()->primary();
             $table->string('name', 100)->nullable(false);
             $table->decimal('amount', 8, 2)->nullable(false);
             $table->unsignedBigInteger('wallet_id');

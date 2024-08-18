@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('budgets', function (Blueprint $table) {
-            $table->id();
+            $table->id()->primary();
             $table->string('name', 100)->nullable(false);
+            $table->string('status')->default('collect')->nullable(false);
             $table->foreignId('owner_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

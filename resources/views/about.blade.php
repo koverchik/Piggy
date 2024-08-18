@@ -2,7 +2,7 @@
 @section('content')
     <main class="container py-4 flex-shrink-0">
         <div class="row align-items-md-stretch">
-            <div class="col-md-6 ">
+            <div class="col-md-6">
                 <div class="h-100 p-5 bg-light rounded-3 custom-container-card">
                     <h2 class="text-center">Wallet</h2>
                     <img src="{{ asset('images/estimate.svg') }}" class="m-4 rounded mx-auto d-block">

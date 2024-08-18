@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('name_wallets', function (Blueprint $table) {
+        Schema::table('wallets', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
     }

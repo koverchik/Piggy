@@ -2,50 +2,33 @@
     $(document).ready(function() {
         const { pathname, origin } = new URL(window.location);
 
-        const textMessage = (type, name)=> {
-            switch (type) {
-                case "restore":
-                    return `Are you sure you want restore "${name}" ${type}?`;
-                case "trash":
-                    return `Are you sure you want  move to trash "${name}" ${type}?`;
-                case "delete":
-                    return `Are you sure you want to delete "${name}" ${type}?`;
-                default:
-                    return `Error`;
-            }
-        };
-
-
-       $('.delete-button').on('click', function() {
+        $('.restore-button').on('click', function() {
             const id = $(this).data('id');
             const name = $(this).data('name');
-            const type = $(this).data('type');
-            const action = $(this).data('action');
 
-            createModal(id, name, type, action);
+            createModal(id, name, 'restore');
 
-            $(`#${type}-${id}`).modal('show');
+            $(`#restore-${id}`).modal('show');
         });
 
-        function getActionPath(pathname, type) {
+        function getActionPath(pathname, id) {
             if (pathname.includes('wallet')) {
-                return `${origin}/wallet-${type}`;
+                return `${origin}/wallet-restore/${id}`;
             } else if (pathname.includes('budget')) {
-                return `${origin}/budget-${type}`;
+                return `${origin}/budget-restore/${id}`;
             }
         }
 
         function createModal(id, name, type) {
-            const action = getActionPath(pathname, type)
+            const action = getActionPath(pathname, id);
 
             const form = $(`
             <form action="${action}" method="POST" id="form-${type}-${id}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <input type="hidden" name="id" class="form-control" id="input-${id}" value="${id}">
             </form>
         `)
 
-        const modal = $(`
+            const modal = $(`
             <div class="modal fade" id="${type}-${id}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="${type}-${id}-label" aria-hidden="true">
                <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
@@ -54,11 +37,11 @@
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                            ${textMessage(type,name)}
+                            Are you sure you want "${name}" ${type}?
                         </div>
                         <div class="modal-footer">
                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                             <button type="submit" form="form-${type}-${id}" class="btn btn-primary">${type.charAt(0).toUpperCase() + type.slice(1)}</button>
+                             <button type="submit" form="form-${type}-${id}" class="btn btn-primary">Restore</button>
                          </div>
                      </div>
                  </div>

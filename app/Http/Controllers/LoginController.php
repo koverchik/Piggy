@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,7 +21,7 @@ class LoginController extends Controller
     return $request;
     }
 
-    public function handleHomePage()
+    public function handleHomePage(): View
     {
 
         $wallets = DB::table('wallets')->limit(10)->get();

@@ -1,1 +1,1 @@
-@extends('layouts.edit-table',  ['type' => $type])
+@extends('tables.edit-table',  ['type' => $type])

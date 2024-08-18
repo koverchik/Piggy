@@ -2,41 +2,82 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateRequest;
 use App\Models\Wallet;
-use App\Models\WalletRows;
+use App\Models\WalletMembers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\View\View;
-use \Illuminate\Http\Response;
 
 class WalletController extends Controller implements TableControllerInterface
 {
+
     public function index(): View
     {
 
-        return view('wallet.create');
-    }
-    public function handlerCreate(CreateRequest $request): Request
-    {
-
-        DB::table('wallets')->insert([
-            'name' => $request->get('name'),
-            'user_id' => 1,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
-        ]);
-
-        return $request;
-    }
-
-    public function list(): View
-    {
         $wallets = Wallet::all()
             ->take(10);
+ 
+        return view('wallet.list', ['items' => $wallets, 'type' => 'wallet']);
+    }
 
-        return view('wallet.list', ['header' => "Wallets", 'items' => $wallets, 'type' => 'wallet']);
+
+    public function create(): View
+    {
+        return view('layouts.create_entity', ['type' => 'wallet']);
+    }
+
+    public function store(Request $request): RedirectResponse
+    {
+        $wallet = Wallet::create([
+            'name' => $request->get('name'),
+            'owner_id' => 1,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')]);
+
+        WalletMembers::create([
+            'wallet_id' => $wallet->id,
+            'user_id' => 1,
+            'status' => 'approved',
+            'permissions' => 'OWNER'
+        ]);
+
+        return redirect()->route('wallet.show', ['wallet' => $wallet->id]);
+    }
+
+    public function show(string $id): View
+    {
+
+        $wallet = Wallet::findOrFail($id);
+        $total = $wallet->data->sum('amount');
+
+        return view('tables.view-table', ['type' => "wallet", 'items' => $wallet, "total" => $total]);
+    }
+
+    public function edit(string $id): View
+    {
+        $wallet = Wallet::findOrFail($id);
+        return view('layouts.update_entity', ['type' => 'wallet', 'entity' => $wallet]);
+    }
+
+    public function update(Request $request, string $id): RedirectResponse
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        $wallet = Wallet::findOrFail($id);
+        $wallet->name = $validatedData['name'];
+        $wallet->save();
+
+        return redirect()->route('wallet.show', $id);
+    }
+
+    public function destroy(string $id): RedirectResponse
+    {
+        $wallet = Wallet::onlyTrashed()->find($id);
+        $wallet->forceDelete();
+
+        return redirect()->route('wallet.list.deleted');
     }
 
     public function trashList(): View
@@ -45,61 +86,23 @@ class WalletController extends Controller implements TableControllerInterface
 
         return view('wallet.list', ['header' => "Wallets", 'items' => $wallets, 'type' => 'wallet']);
     }
-    public function handlerDelete(Request $request): RedirectResponse
-    {
-        $entityId = $request->get('id');
-        $wallet = Wallet::withTrashed()->find($entityId);
-        $wallet->forceDelete();
-        return back();
-    }
 
-    public function handlerMoveToTrash(Request $request): RedirectResponse
+    public function handlerMoveToTrash(string $id): RedirectResponse
     {
-        $entityId = $request->get('id');
-        $wallet = Wallet::findOrFail($entityId);
+        $wallet = Wallet::findOrFail($id);
+        $wallet->status = 'stop';
+        $wallet->save();
         $wallet->delete();
         return back();
     }
 
-    public function handlerRestore(Request $request): RedirectResponse
+    public function handlerRestore(string $id): RedirectResponse
     {
-        $entityId = $request->get('id');
-        $wallet = Wallet::onlyTrashed()->findOrFail($entityId);;
+        $wallet = Wallet::onlyTrashed()->findOrFail($id);
+        $wallet->status = 'collect';
+        $wallet->save();
         $wallet->restore();
-        return back();
-    }
 
-    public function tableView(Request $request, string $id): View
-    {
-        $wallet = Wallet::findOrFail($id);
-
-        $total = $wallet->data->sum('amount');
-        return view('layouts.view-table', ['type' => "wallet", 'items' => $wallet, "total" => $total]);
-    }
-
-    public function editTable(Request $request, string $id): View
-    {
-        $wallet = Wallet::findOrFail($id);
-        $total = $wallet->data->sum('amount');
-        return view('wallet.edit', ['header' => "Wallet", 'items' => $wallet, "total" => $total, 'type' => "wallet"]);
-    }
-
-    public function addRow(Request $request, string $id): RedirectResponse
-    {
-
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'wallet_id' => 'required|numeric',
-            'amount' => 'required|numeric'
-        ]);
-
-        $newRow = new WalletRows;
-        $newRow->name = $validatedData['name'];
-        $newRow->amount = $validatedData['amount'];
-        $newRow->wallet_id = $validatedData['wallet_id'];
-        $newRow->user_id = 1;
-        $newRow->save();
-
-        return back();
+        return redirect()->route('wallet.list.deleted');
     }
 }

@@ -1,1 +1,1 @@
-@extends('layouts.list',  ['header' => $header, 'items' => $items, 'type' => $type])
+@extends('tables.list',  ['items' => $items, 'type' => $type])

@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('wallet_members', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('wallet_id')->constrained('wallets')->onUpdate('cascade');
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade');
-            $table->json('permissions');
+            $table->foreignId('wallet_id')->constrained('wallets')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('status')->default('pending');
+            $table->string('permissions');
             $table->timestamps();
         });
     }

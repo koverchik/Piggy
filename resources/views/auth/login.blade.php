@@ -1,12 +1,12 @@
 @extends('layouts.master')
 @section('content')
-    <main class="container-md py-4 flex-shrink-0">
+    <main class="container-md py-4 flex-shrink-0 mb-5">
         <div class="row align-items-center justify-content-md-center">
             <div class="col-md-6 m-5">
                 <div class="h-100 p-5 bg-light rounded-3 custom-container-card">
                     <div class="form">
                         <h3 class="mb-5">Login</h3>
-                        <form action="{{route('login.submit')}}" method="POST" class="">
+                        <form action="{{route('login.submit')}}" method="POST">
                             @csrf
                             <div class="mb-3 row">
                                 <label for="input-email" class="col-sm-2 col-form-label">Email</label>

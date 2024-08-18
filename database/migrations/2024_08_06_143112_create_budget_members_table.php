@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('budget_members', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('budgets_id')->constrained('budgets')->onUpdate('cascade');
+            $table->foreignId('budget_id')->constrained('budgets')->onUpdate('cascade');
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade');
-            $table->json('permissions');
+            $table->string('status')->default('pending');
+            $table->string('permissions');
             $table->timestamps();
         });
     }

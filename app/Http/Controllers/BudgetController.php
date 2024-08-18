@@ -2,100 +2,106 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateRequest;
 use App\Models\Budget;
-use App\Models\BudgetRows;
+use App\Models\BudgetMembers;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
 class BudgetController extends Controller implements TableControllerInterface
 {
-    public function index(): View
-    {
-        return view('budget.create');
-    }
-    public function handlerCreate(CreateRequest $request): Request
-    {
-        DB::table('budgets')->insert([
-            'name' => $request->get('name'),
-            'user_id' => 1,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
-        ]);
-        return $request;
-    }
 
-    public function list(): View
+    public function index(): View
     {
         $budgets = Budget::all()
             ->take(10);
 
-        return view('budget.list', ['header' => "Budgets", 'items' => $budgets, 'type' => 'budget']);
+        return view('budget.list', ['items' => $budgets, 'type' => 'budget']);
     }
 
-    public function handlerDelete(Request $request): RedirectResponse
+    public function create(): View
     {
-        $entityId = $request->get('id');
-        $budget = Budget::withTrashed()->find($entityId);
+        return view('layouts.create_entity', ['type' => 'budget']);
+    }
+
+    public function store(Request $request): RedirectResponse
+    {
+        $budget = Budget::create([
+            'name' => $request->get('name'),
+            'owner_id' => 1,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')]);
+
+        BudgetMembers::create([
+            'budget_id' => $budget->id,
+            'user_id' => 1,
+            'status' => 'approved',
+            'permissions' => 'OWNER'
+        ]);
+
+        return redirect()->route('budget.show', ['budget' => $budget->id]);
+    }
+
+    public function show(string $id): View
+    {
+
+        $budget = Budget::findOrFail($id);
+        $total = $budget->data->sum('amount');
+
+        return view('tables.view-table', ['type' => "budget", 'items' => $budget, "total" => $total]);
+    }
+
+    public function edit(string $id): View
+    {
+        $budget = Budget::findOrFail($id);
+        return view('layouts.update_entity', ['type' => 'budget', 'entity' => $budget]);
+    }
+
+    public function update(Request $request, string $id): RedirectResponse
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        $budget = Budget::findOrFail($id);
+        $budget->name = $validatedData['name'];
+        $budget->save();
+
+        return redirect()->route('budget.show', $id);
+    }
+
+    public function destroy(string $id): RedirectResponse
+    {
+        $budget = Budget::onlyTrashed()->find($id);
         $budget->forceDelete();
-        return back();
-    }
 
-    public function handlerMoveToTrash(Request $request): RedirectResponse
-    {
-        $entityId = $request->get('id');
-        $budget = Budget::findOrFail($entityId);
-        $budget->delete();
-        return back();
+        return redirect()->route('budget.list.deleted');
     }
 
     public function trashList(): View
     {
-        $budgets = Budget::onlyTrashed()
-            ->get();
+        $budget = Budget::onlyTrashed()->get();
 
-        return view('budget.list', ['header' => "Budgets", 'items' => $budgets, 'type' => 'budget']);
+        return view('wallet.list', ['header' => "Budget", 'items' => $budget, 'type' => 'budget']);
     }
-    public function handlerRestore(Request $request): RedirectResponse
+
+    public function handlerMoveToTrash(string $id): RedirectResponse
     {
-        $entityId = $request->get('id');
-        $budget = Budget::onlyTrashed()->findOrFail($entityId);
+        $budget = Budget::findOrFail($id);
+        $budget->status = 'stop';
+        $budget->save();
+        $budget->delete();
+        return back();
+    }
+
+    public function handlerRestore(string $id): RedirectResponse
+    {
+        $budget = Budget::onlyTrashed()->findOrFail($id);
+        $budget->status = 'collect';
+        $budget->save();
         $budget->restore();
-        return back();
-    }
 
-    public function tableView(Request $request, string $id): View
-    {
-        $budget = Budget::findOrFail($id);
-        $total = $budget->data->sum('amount');
-        return view('layouts.view-table', ['type' => 'budget', 'items' => $budget, "total" => $total]);
-    }
-
-    public function editTable(Request $request, string $id): View
-    {
-        $budget = Budget::findOrFail($id);
-        $total = $budget->data->sum('amount');
-        return view('budget.edit', ['type' => 'budget', 'items' => $budget, "total" => $total]);
-    }
-
-    public function addRow(Request $request, string $id): RedirectResponse
-    {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'budget_id' => 'required|numeric',
-            'amount' => 'required|numeric'
-        ]);
-
-        $newRow = new BudgetRows;
-        $newRow->name = $validatedData['name'];
-        $newRow->amount = $validatedData['amount'];
-        $newRow->budget_id = $validatedData['budget_id'];
-        $newRow->user_id = 1;
-        $newRow->save();
-
-        return back();
+        return redirect()->route('wallet.list.deleted');
     }
 }

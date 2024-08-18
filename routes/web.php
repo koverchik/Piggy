@@ -1,10 +1,15 @@
 <?php
 
 use App\Http\Controllers\BudgetController;
+use App\Http\Controllers\BudgetMemberController;
+use App\Http\Controllers\BudgetRowController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RestoreController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WalletController;
+use App\Http\Controllers\WalletMemberController;
+use App\Http\Controllers\WalletRowController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,11 +20,17 @@ Route::get('/user', function () {
     return view('user');
 });
 
-Route::get('/about', [LoginController::class, 'handleHomePage']);
+Route::get('/main', [LoginController::class, 'handleHomePage'])->name('main');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 
 Route::post('/login', [LoginController::class, 'handleLogin'])->name('login.submit');
+
+Route::get('/user/{id}', [UserController::class, 'getUser'])->name('userPage');
+
+Route::post('/upload-avatar/{id}', [UserController::class, 'uploadAvatar'])->name('uploadAvatar');
+
+Route::post('/delete-avatar', [UserController::class, 'deleteAvatar'])->name('delete.avatar');
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 
@@ -29,42 +40,31 @@ Route::get('/restore', [RestoreController::class, 'index'])->name('restore');
 
 Route::post('/restore', [RestoreController::class, 'handRestore'])->name('send.restore');
 
-Route::get('/wallet', [WalletController::class, 'index'])->name('wallet');
+Route::get('/wallet/members/{id}', [WalletMemberController::class, 'membersView'])->name('members.wallet.table');
 
-Route::get('/wallet-list', [WalletController::class, 'list'])->name('wallet.list');
+Route::delete('/wallet-trash/{wallet}', [WalletController::class, 'handlerMoveToTrash'])->name('wallet.trash');
 
 Route::get('/wallet-list-trash', [WalletController::class, 'trashList'])->name('wallet.list.deleted');
 
-Route::post('/wallet', [WalletController::class, 'handlerCreate'])->name('create.wallet');
+Route::post('/wallet-restore/{wallet}', [WalletController::class, 'handlerRestore'])->name('wallet.restore');
 
-Route::post('/wallet-delete', [WalletController::class, 'handlerDelete'])->name('delete.wallet.delete');
+Route::post('/wallet/update/{wallet}', [WalletRowController::class, 'add'])->name('add.wallet.rows');
 
-Route::post('/wallet-trash', [WalletController::class, 'handlerMoveToTrash'])->name('active.wallet.delete');
+Route::get('/wallet/update/{wallet}', [WalletRowController::class, 'show'])->name('index.wallet.rows');
 
-Route::post('/wallet-restore', [WalletController::class, 'handlerRestore'])->name('active.wallet.restore');
+Route::resource('/wallet', WalletController::class);
 
-Route::get('/wallet/{id}', [WalletController::class, 'tableView'])->name('wallet.table');
 
-Route::get('/wallet/{id}/edit', [WalletController::class, 'editTable'])->name('edit.wallet.table');
+Route::get('/budget/members/{id}', [BudgetMemberController::class, 'membersView'])->name('members.budget.table');
 
-Route::post('/wallet/{id}/add', [WalletController::class, 'addRow'])->name('add.wallet.table');
-
-Route::get('/budget', [BudgetController::class, 'index'])->name('budget');
-
-Route::post('/budget', [BudgetController::class, 'handlerCreate'])->name('create.budget');
-
-Route::post('/budget-delete', [BudgetController::class, 'handlerDelete'])->name('delete.budget.delete');
-
-Route::post('/budget-trash', [BudgetController::class, 'handlerMoveToTrash'])->name('active.budget.delete');
-
-Route::post('/budget-restore', [BudgetController::class, 'handlerRestore'])->name('active.budget.restore');
-
-Route::get('/budget-list', [BudgetController::class, 'list'])->name('budget.list');
+Route::delete('/budget-trash/{budget}', [BudgetController::class, 'handlerMoveToTrash'])->name('budget.trash');
 
 Route::get('/budget-list-trash', [BudgetController::class, 'trashList'])->name('budget.list.deleted');
 
-Route::get('/budget/{id}', [BudgetController::class, 'tableView'])->name('budget.table');
+Route::post('/budget-restore/{budget}', [BudgetController::class, 'handlerRestore'])->name('budget.restore');
 
-Route::get('/budget/{id}/edit', [BudgetController::class, 'editTable'])->name('edit.budget.table');
+Route::post('/budget/update/{budget}', [BudgetRowController::class, 'add'])->name('add.budget.rows');
 
-Route::post('/budget/{id}/add', [BudgetController::class, 'addRow'])->name('add.budget.table');
+Route::get('/budget/update/{budget}', [BudgetRowController::class, 'show'])->name('index.budget.rows');
+
+Route::resource('/budget', BudgetController::class);

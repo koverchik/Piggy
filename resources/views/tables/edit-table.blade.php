@@ -1,12 +1,12 @@
 @extends('layouts.master')
 @section('content')
-    <main class="container-md py-4 flex-shrink-0">
-        <div class="d-flex justify-content-between align-items-center">
-            <h2 class="m-4">{{Str::title($type)}} {{ $items->name }}</h2>
+    <main class="container-md mb-5 py-4 flex-shrink-0">
+        <div class="d-flex justify-content-between align-items-start">
+            <h2 class="mb-4">{{Str::title($type)}} {{ $items->name }}</h2>
         </div>
-        @include('layouts.table', ['id'=> $items, 'total' => $total])
+        @include('tables.table', ['id'=> $items, 'total' => $total])
         <table class="table table-borderless">
-            <form action="{{route('add.'.$type.'.table', [ "id" => $items->id])}}" method="POST">
+            <form action="{{route('add.'.$type.'.rows', [ $type => $items->id])}}" method="POST">
                 @csrf
                 <input type="hidden" name="{{$type}}_id" class="form-control" value="{{$items->id}}">
                 <tr>
