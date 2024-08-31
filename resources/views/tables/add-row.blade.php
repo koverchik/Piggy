@@ -2,7 +2,11 @@
 @section('content')
     <main class="container-md mb-5 py-4 flex-shrink-0">
         <div class="d-flex justify-content-between align-items-start">
-            <h2 class="mb-4">{{Str::title($type)}} {{ $items->name }}</h2>
+            <h2 class="mb-4">{{Str::title($type)}}
+                <a href="{{ route("$type.show", [$type => $items->id]) }}" class="link-dark text-decoration-none">
+                    {{ $items->name }}
+                </a>
+            </h2>
         </div>
         @include('tables.table', ['id'=> $items, 'total' => $total])
         <table class="table table-borderless">

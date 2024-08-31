@@ -1,1 +1,1 @@
-@extends('tables.edit-table',  ['type' => $type])
+@extends('tables.add-row',  ['type' => $type])

@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\FinancesType;
+use App\Enums\InviteStatus;
+use App\Enums\TablesStatus;
+use App\Enums\UserRole;
 use App\Models\Budget;
 use App\Models\BudgetMembers;
+use App\Traits\CalculateDebitCreditTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -11,18 +16,18 @@ use Illuminate\Support\Facades\DB;
 
 class BudgetController extends Controller implements TableControllerInterface
 {
-
+    use CalculateDebitCreditTrait;
     public function index(): View
     {
         $budgets = Budget::all()
             ->take(10);
 
-        return view('budget.list', ['items' => $budgets, 'type' => 'budget']);
+        return view('budget.list', ['items' => $budgets, 'type' => FinancesType::BUDGET->value]);
     }
 
     public function create(): View
     {
-        return view('layouts.create_entity', ['type' => 'budget']);
+        return view('layouts.create_entity', ['type' => FinancesType::BUDGET->value]);
     }
 
     public function store(Request $request): RedirectResponse
@@ -36,39 +41,47 @@ class BudgetController extends Controller implements TableControllerInterface
         BudgetMembers::create([
             'budget_id' => $budget->id,
             'user_id' => 1,
-            'status' => 'approved',
-            'permissions' => 'OWNER'
+            'status' => InviteStatus::ADDED_SYSTEM,
+            'permissions' => UserRole::OWNER
         ]);
 
         return redirect()->route('budget.show', ['budget' => $budget->id]);
     }
-
-    public function show(string $id): View
+    public function show(Budget $budget): View
     {
-
-        $budget = Budget::findOrFail($id);
         $total = $budget->data->sum('amount');
+        $userId = $budget->owner->id;
 
-        return view('tables.view-table', ['type' => "budget", 'items' => $budget, "total" => $total]);
+        $results = BudgetMembers::select('budget_members.user_id', DB::raw('SUM(br.amount) as total_amount'))
+            ->leftJoin('budget_rows as br', function ($join) {
+                $join->on('budget_members.user_id', '=', 'br.user_id')
+                    ->on('budget_members.budget_id', '=', 'br.budget_id');
+            })
+            ->where('budget_members.budget_id', $budget->id)
+            ->groupBy('budget_members.user_id')
+            ->get();
+
+        $calculation = $this->calculate($results, $userId);
+        $data = $budget->data()->paginate(10);
+
+        return view('tables.view', ['type' => FinancesType::BUDGET->value, 'items' => $budget, "total" => $total, 'calculation' => $calculation, 'data' => $data]);
     }
 
-    public function edit(string $id): View
+     public function edit(Budget $budget): View
     {
-        $budget = Budget::findOrFail($id);
-        return view('layouts.update_entity', ['type' => 'budget', 'entity' => $budget]);
+        return view('layouts.update_entity', ['type' => FinancesType::BUDGET->value, 'entity' => $budget]);
     }
 
-    public function update(Request $request, string $id): RedirectResponse
+    public function update(Request $request, Budget $budget): RedirectResponse
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255'
         ]);
 
-        $budget = Budget::findOrFail($id);
         $budget->name = $validatedData['name'];
         $budget->save();
 
-        return redirect()->route('budget.show', $id);
+        return redirect()->route('budget.show', $budget);
     }
 
     public function destroy(string $id): RedirectResponse
@@ -83,13 +96,13 @@ class BudgetController extends Controller implements TableControllerInterface
     {
         $budget = Budget::onlyTrashed()->get();
 
-        return view('wallet.list', ['header' => "Budget", 'items' => $budget, 'type' => 'budget']);
+        return view('wallet.list', ['items' => $budget, 'type' => FinancesType::BUDGET->value]);
     }
 
     public function handlerMoveToTrash(string $id): RedirectResponse
     {
         $budget = Budget::findOrFail($id);
-        $budget->status = 'stop';
+        $budget->status = TablesStatus::STOP;
         $budget->save();
         $budget->delete();
         return back();
@@ -98,7 +111,7 @@ class BudgetController extends Controller implements TableControllerInterface
     public function handlerRestore(string $id): RedirectResponse
     {
         $budget = Budget::onlyTrashed()->findOrFail($id);
-        $budget->status = 'collect';
+        $budget->status = TablesStatus::COLLECT;
         $budget->save();
         $budget->restore();
 

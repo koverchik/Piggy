@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\InviteStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,9 +14,9 @@ return new class extends Migration
     {
         Schema::create('budget_members', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('budget_id')->constrained('budgets')->onUpdate('cascade');
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade');
-            $table->string('status')->default('pending');
+            $table->foreignId('budget_id')->constrained('budgets')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('status')->default(InviteStatus::INVITED);
             $table->string('permissions');
             $table->timestamps();
         });

@@ -29,7 +29,6 @@ class Budget extends Model
     {
         return $this->belongsTo(User::class, 'owner_id');
     }
-
     public function members()
     {
         return $this->belongsToMany(User::class, 'budget_members', 'budget_id', 'user_id')

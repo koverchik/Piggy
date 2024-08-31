@@ -2,7 +2,7 @@
     <div class="navbar-header header-custom-style">
         <img src="{{ asset('images/image-for-header.png') }}" width="auto" alt="logo"/>
         <h1 class="big-logo">
-            <a class="text-decoration-none" aria-current="page" href="{{ url('main') }}">Bill split</a>
+            <a class="link-dark text-decoration-none" aria-current="page" href="{{ url('main') }}">Bill split</a>
         </h1>
     </div>
     <ul class="nav justify-content-end">

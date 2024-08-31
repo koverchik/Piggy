@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Models\Budget;
+use App\Models\Wallet;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,10 +26,10 @@ class LoginController extends Controller
     public function handleHomePage(): View
     {
 
-        $wallets = DB::table('wallets')->limit(10)->get();
-        $budgets = DB::table('budgets')->limit(10)->get();
+        $wallets = Wallet::paginate(10, ['*'], 'wallet');
+        $budgets = Budget::paginate(10, ['*'], 'budget');
 
-        return view('home', ['wallets' => $wallets, 'budgets' => $budgets]);
+        return view('home', compact('wallets', 'budgets'));
     }
 
 }

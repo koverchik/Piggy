@@ -12,12 +12,18 @@ use App\Http\Controllers\WalletMemberController;
 use App\Http\Controllers\WalletRowController;
 use Illuminate\Support\Facades\Route;
 
+use App\Facades\ColorFacade;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/user', function () {
     return view('user');
+});
+
+Route::get('/check', function (){
+    return ColorFacade::getRandomColor();
 });
 
 Route::get('/main', [LoginController::class, 'handleHomePage'])->name('main');
@@ -40,7 +46,7 @@ Route::get('/restore', [RestoreController::class, 'index'])->name('restore');
 
 Route::post('/restore', [RestoreController::class, 'handRestore'])->name('send.restore');
 
-Route::get('/wallet/members/{id}', [WalletMemberController::class, 'membersView'])->name('members.wallet.table');
+Route::get('/wallet/members/{wallet}', [WalletMemberController::class, 'show'])->name('members.wallet.table');
 
 Route::delete('/wallet-trash/{wallet}', [WalletController::class, 'handlerMoveToTrash'])->name('wallet.trash');
 
@@ -55,7 +61,7 @@ Route::get('/wallet/update/{wallet}', [WalletRowController::class, 'show'])->nam
 Route::resource('/wallet', WalletController::class);
 
 
-Route::get('/budget/members/{id}', [BudgetMemberController::class, 'membersView'])->name('members.budget.table');
+Route::get('/budget/members/{budget}', [BudgetMemberController::class, 'show'])->name('members.budget.table');
 
 Route::delete('/budget-trash/{budget}', [BudgetController::class, 'handlerMoveToTrash'])->name('budget.trash');
 
@@ -68,3 +74,7 @@ Route::post('/budget/update/{budget}', [BudgetRowController::class, 'add'])->nam
 Route::get('/budget/update/{budget}', [BudgetRowController::class, 'show'])->name('index.budget.rows');
 
 Route::resource('/budget', BudgetController::class);
+
+Route::get('/unavailable', function (){
+    return view('unavailable');
+})->name('unavailable');

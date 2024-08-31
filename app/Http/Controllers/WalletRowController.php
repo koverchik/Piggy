@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\FinancesType;
 use App\Models\Wallet;
 use App\Models\WalletRows;
 use Illuminate\Http\Request;
 
 class WalletRowController extends Controller
 {
-
-    public function show(string $id)
+    public function show(Wallet $wallet)
     {
-        $wallet = Wallet::findOrFail($id);
         $total = $wallet->data->sum('amount');
+        $lastPage = $wallet->data()->paginate(10)->lastPage();
+        $data = $wallet->data()->paginate(10, ['*'], 'page', $lastPage);
 
-        return view('wallet.edit', ['header' => "Wallet", 'items' => $wallet, "total" => $total, 'type' => "wallet"]);
+        return view('wallet.edit', ['items' => $wallet, "total" => $total, 'data' => $data, 'type' => FinancesType::WALLET->value]);
     }
 
     public function add(Request $request, string $id)

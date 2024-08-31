@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\FinancesType;
 use App\Models\Wallet;
 use App\Models\WalletMembers;
 use Illuminate\Contracts\View\View;
 
 class WalletMemberController extends Controller
 {
-    public function membersView(string $id): View
+    public function show(Wallet $wallet): View
     {
-        $walletMembers = WalletMembers::where(['wallet_id' => $id])->get();
-        $wallet = Wallet::findOrFail($id);
+        $walletMembers = WalletMembers::where(['wallet_id' => $wallet->id])->get();
 
-        return view('members.members-table', ['type' => 'wallet', 'items' => $walletMembers, 'name' => $wallet->name, 'id' => $id]);
+        return view('members.members-table', ['type' => FinancesType::WALLET->value, 'items' => $walletMembers, 'name' => $wallet->name, 'id' => $wallet->id]);
     }
 }

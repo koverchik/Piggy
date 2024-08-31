@@ -2,25 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\FinancesType;
 use App\Models\Wallet;
 use App\Models\WalletMembers;
+use App\Traits\CalculateDebitCreditTrait;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\DB;
 
 class WalletController extends Controller implements TableControllerInterface
 {
-
+    use CalculateDebitCreditTrait;
     public function index(): View
     {
 
         $wallets = Wallet::all()
             ->take(10);
- 
-        return view('wallet.list', ['items' => $wallets, 'type' => 'wallet']);
+
+        return view('wallet.list', ['items' => $wallets, 'type' => FinancesType::WALLET->value]);
     }
-
-
     public function create(): View
     {
         return view('layouts.create_entity', ['type' => 'wallet']);
@@ -44,32 +45,41 @@ class WalletController extends Controller implements TableControllerInterface
         return redirect()->route('wallet.show', ['wallet' => $wallet->id]);
     }
 
-    public function show(string $id): View
+    public function show(Wallet $wallet): View
     {
 
-        $wallet = Wallet::findOrFail($id);
         $total = $wallet->data->sum('amount');
+        $userId = $wallet->owner->id;
 
-        return view('tables.view-table', ['type' => "wallet", 'items' => $wallet, "total" => $total]);
+        $results =  WalletMembers::select('wallet_members.user_id', DB::raw('SUM(wr.amount) as total_amount'))
+            ->leftJoin('wallet_rows as wr', function ($join) {
+                $join->on('wallet_members.user_id', '=', 'wr.user_id')
+                    ->on('wallet_members.wallet_id', '=', 'wr.wallet_id');
+            })
+            ->where('wallet_members.wallet_id', $wallet->id)
+            ->groupBy('wallet_members.user_id')
+            ->get();
+
+        $calculation = $this->calculate($results, $userId);
+        $data= $wallet->data()->paginate(10);
+        return view('tables.view', ['type' => FinancesType::WALLET->value, 'items' => $wallet, "total" => $total,  'calculation' => $calculation, 'data' => $data]);
     }
 
-    public function edit(string $id): View
+    public function edit(Wallet $wallet): View
     {
-        $wallet = Wallet::findOrFail($id);
-        return view('layouts.update_entity', ['type' => 'wallet', 'entity' => $wallet]);
+        return view('layouts.update_entity', ['type' => FinancesType::WALLET->value, 'entity' => $wallet]);
     }
 
-    public function update(Request $request, string $id): RedirectResponse
+    public function update(Request $request, Wallet $wallet): RedirectResponse
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255'
         ]);
 
-        $wallet = Wallet::findOrFail($id);
         $wallet->name = $validatedData['name'];
         $wallet->save();
 
-        return redirect()->route('wallet.show', $id);
+        return redirect()->route('wallet.show', $wallet);
     }
 
     public function destroy(string $id): RedirectResponse
@@ -84,7 +94,7 @@ class WalletController extends Controller implements TableControllerInterface
     {
         $wallets = Wallet::onlyTrashed()->get();
 
-        return view('wallet.list', ['header' => "Wallets", 'items' => $wallets, 'type' => 'wallet']);
+        return view('wallet.list', ['items' => $wallets, 'type' => FinancesType::WALLET->value]);
     }
 
     public function handlerMoveToTrash(string $id): RedirectResponse

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\FinancesType;
 use App\Models\Budget;
 use App\Models\BudgetRows;
 use Illuminate\Http\Request;
@@ -9,12 +10,13 @@ use Illuminate\Http\Request;
 class BudgetRowController extends Controller
 {
 
-    public function show(string $id)
+    public function show(Budget $budget)
     {
-        $budget = Budget::findOrFail($id);
         $total = $budget->data->sum('amount');
+        $lastPage = $budget->data()->paginate(10)->lastPage();
+        $data = $budget->data()->paginate(10, ['*'], 'page', $lastPage);
 
-        return view('budget.edit', ['header' => "Budget", 'items' => $budget, "total" => $total, 'type' => "budget"]);
+        return view('budget.edit', ['items' => $budget, "total" => $total, 'data' => $data, 'type' => FinancesType::BUDGET->value]);
     }
 
     public function add(Request $request, string $id)
@@ -27,7 +29,7 @@ class BudgetRowController extends Controller
             'name' => $validatedData['name'],
             'amount' => $validatedData['amount'],
             'budget_id' => $id,
-            'user_id' => 1
+            'user_id' => 3
         ]);
 
         return back();
