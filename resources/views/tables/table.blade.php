@@ -1,7 +1,8 @@
     <table class="table">
         <thead class="table-light">
         <th scope="col"  width="5%"></th>
-        <th scope="col" width="85%">Name</th>
+        <th scope="col" width="65%">Name</th>
+        <th scope="col" width="15%">Date</th>
         <th scope="col" width="10%" class="text-end">Сost</th>
         </thead>
         <tbody>
@@ -17,6 +18,7 @@
                     @endif
                 </td>
                 <td class="align-middle">{{$item->name}}</td>
+                <td class="align-middle">{{$item->updated_at->format('j M, y h:i A')}}</td>
                 <td class="text-end align-middle">{{$item->amount}}</td>
             </tr>
         @endforeach

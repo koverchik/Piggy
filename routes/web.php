@@ -11,11 +11,10 @@ use App\Http\Controllers\WalletController;
 use App\Http\Controllers\WalletMemberController;
 use App\Http\Controllers\WalletRowController;
 use Illuminate\Support\Facades\Route;
-
 use App\Facades\ColorFacade;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('about');
 });
 
 Route::get('/user', function () {
@@ -74,7 +73,3 @@ Route::post('/budget/update/{budget}', [BudgetRowController::class, 'add'])->nam
 Route::get('/budget/update/{budget}', [BudgetRowController::class, 'show'])->name('index.budget.rows');
 
 Route::resource('/budget', BudgetController::class);
-
-Route::get('/unavailable', function (){
-    return view('unavailable');
-})->name('unavailable');

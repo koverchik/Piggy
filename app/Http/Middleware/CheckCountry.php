@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+use Stevebauman\Location\Facades\Location;
 class CheckCountry
 {
     /**
@@ -21,10 +21,9 @@ class CheckCountry
             'by'
         ];
 
-        if(!in_array($request->country, $country) && !$request->is('unavailable')){
-            return redirect()->route("unavailable");
+        if ($position = Location::get()) {
+            $next($request, $position->countryCode, $position->timezone);
         }
-
         return $next($request);
     }
 }
