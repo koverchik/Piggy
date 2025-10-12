@@ -1,5 +1,6 @@
 <?php
 
+use App\Facades\ColorFacade;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\BudgetMemberController;
 use App\Http\Controllers\BudgetRowController;
@@ -11,7 +12,6 @@ use App\Http\Controllers\WalletController;
 use App\Http\Controllers\WalletMemberController;
 use App\Http\Controllers\WalletRowController;
 use Illuminate\Support\Facades\Route;
-use App\Facades\ColorFacade;
 
 Route::get('/', function () {
     return view('about');
@@ -21,7 +21,7 @@ Route::get('/user', function () {
     return view('user');
 });
 
-Route::get('/check', function (){
+Route::get('/check', function () {
     return ColorFacade::getRandomColor();
 });
 
@@ -58,7 +58,6 @@ Route::post('/wallet/update/{wallet}', [WalletRowController::class, 'add'])->nam
 Route::get('/wallet/update/{wallet}', [WalletRowController::class, 'show'])->name('index.wallet.rows');
 
 Route::resource('/wallet', WalletController::class);
-
 
 Route::get('/budget/members/{budget}', [BudgetMemberController::class, 'show'])->name('members.budget.table');
 
