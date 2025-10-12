@@ -1,0 +1,35 @@
+.navbar{
+    padding: 0;
+}
+
+.header-custom-style{
+    display: flex;
+    align-items: center;
+    height: 100px;
+    user-select: none;
+}
+
+.header-custom-style img{
+    height: 100%;
+    margin-right: 10px;
+    object-fit: cover;
+
+}
+
+.header-navbar-custom-style{
+    margin-right: 20px;
+}
+.header-navbar-custom-style button{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.custom-btn-create a{
+    width: 100%;
+}
+
+.custom-container-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
