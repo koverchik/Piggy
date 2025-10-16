@@ -14,6 +14,7 @@ class BudgetMembers extends Model
         'budget_id',
         'user_id',
         'permissions',
+        'status',
     ];
 
     public function user(): BelongsTo

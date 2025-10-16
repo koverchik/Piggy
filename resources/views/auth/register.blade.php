@@ -38,7 +38,8 @@
                             <div class="mb-3 row">
                                 <label for="input-confirm-password" class="col-sm-2 col-form-label">Confirm</label>
                                 <div class="col-sm-10">
-                                    <input type="password" name="password-confirm" class="form-control" id="input-confirm-password">
+                                    <input type="password" name="password-confirm" class="form-control"
+                                           id="input-confirm-password">
                                     @foreach($errors->getBag('default')->get('password-confirm') as $error)
                                         <div class="text-danger fs-6">{{ $error }} </div>
                                     @endforeach
@@ -49,7 +50,7 @@
                             </div>
                         </form>
                         <p class="text-center mt-3">
-                           You a member? <a class="text-reset"  href="{{ url('login') }}">LogIn</a>
+                            You a member? <a class="text-reset" href="{{ url('login') }}">LogIn</a>
                         </p>
                     </div>
                 </div>

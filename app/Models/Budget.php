@@ -16,7 +16,9 @@ class Budget extends Model
     protected $fillable = [
         'name',
         'color',
-        'owner_id'
+        'owner_id',
+        'created_at',
+        'updated_at'
     ];
 
     public function data(): HasMany

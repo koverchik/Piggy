@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Models\Budget;
+use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -17,10 +18,20 @@ class LoginController extends Controller
     return view('auth.login');
     }
 
-    public function handleLogin(LoginRequest $request): Request
+    public function handleLogin(LoginRequest $request): RedirectResponse
     {
+        $validated = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required', 'min:8'],
+        ]);
 
-    return $request;
+        $user = User::where('email', $validated['email'])->first();
+
+        if (! $user || ! Hash::check($validated['password'], $user->password)) {
+            return back();
+        }
+
+        return redirect()->route('userPage',['id' => $user->id]);
     }
 
     public function handleHomePage(): View
