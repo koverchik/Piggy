@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
-use App\Models\Budget;
 use App\Models\User;
-use App\Models\Wallet;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
@@ -31,14 +30,15 @@ class LoginController extends Controller
             return back();
         }
 
-        return redirect()->route('userPage',['id' => $user->id]);
+        return redirect()->route('userPage');
     }
 
     public function handleHomePage(): View
     {
+        $user = Auth::user();
 
-        $wallets = Wallet::paginate(10, ['*'], 'wallet');
-        $budgets = Budget::paginate(10, ['*'], 'budget');
+        $wallets = $user->walletMemberships()->paginate(10, ['*'], 'budget');
+        $budgets = $user->budgetMemberships()->paginate(10, ['*'], 'budget');
 
         return view('home', compact('wallets', 'budgets'));
     }

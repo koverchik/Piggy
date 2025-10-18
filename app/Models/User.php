@@ -55,4 +55,5 @@ class User extends Authenticatable
         return $this->belongsToMany(Budget::class, 'budget_members', 'user_id', 'badget_id')
             ->withTimestamps();
     }
+
 }

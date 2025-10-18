@@ -31,7 +31,7 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 
 Route::post('/login', [LoginController::class, 'handleLogin'])->name('login.submit');
 
-Route::get('/user/{id}', [UserController::class, 'getUser'])->name('userPage');
+Route::get('/user', [UserController::class, 'getUser'])->name('userPage');
 
 Route::post('/upload-avatar/{id}', [UserController::class, 'uploadAvatar'])->name('uploadAvatar');
 
