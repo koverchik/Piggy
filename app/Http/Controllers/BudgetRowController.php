@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\FinancesType;
 use App\Models\Budget;
-use App\Models\BudgetRows;
+use App\Models\BudgetRow;
 use Illuminate\Http\Request;
 
 class BudgetRowController extends Controller
@@ -25,7 +25,7 @@ class BudgetRowController extends Controller
             'name' => 'required|string|max:255',
             'amount' => 'required|numeric'
         ]);
-        BudgetRows::create([
+        BudgetRow::create([
             'name' => $validatedData['name'],
             'amount' => $validatedData['amount'],
             'budget_id' => $id,

@@ -45,13 +45,13 @@ class User extends Authenticatable
 
     public function walletMemberships()
     {
-        return $this->belongsToMany(Wallet::class, 'wallet_members', 'user_id', 'wallet_id')
+        return $this->belongsToMany(Wallet::class, 'wallet_member', 'user_id', 'wallet_id')
             ->withTimestamps();
     }
 
     public function budgetMemberships()
     {
-        return $this->belongsToMany(Budget::class, 'budget_members', 'user_id', 'badget_id')
+        return $this->belongsToMany(Budget::class, 'budget_member', 'user_id', 'badget_id')
             ->withTimestamps();
     }
 

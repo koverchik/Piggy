@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\FinancesType;
 use App\Models\Wallet;
-use App\Models\WalletMembers;
+use App\Models\WalletMember;
 use App\Traits\CalculateDebitCreditTrait;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -35,7 +35,7 @@ class WalletController extends Controller implements TableControllerInterface
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')]);
 
-        WalletMembers::create([
+        WalletMember::create([
             'wallet_id' => $wallet->id,
             'user_id' => 1,
             'status' => 'approved',
@@ -51,13 +51,13 @@ class WalletController extends Controller implements TableControllerInterface
         $total = $wallet->data->sum('amount');
         $userId = $wallet->owner->id;
 
-        $results =  WalletMembers::select('wallet_members.user_id', DB::raw('SUM(wr.amount) as total_amount'))
-            ->leftJoin('wallet_rows as wr', function ($join) {
-                $join->on('wallet_members.user_id', '=', 'wr.user_id')
-                    ->on('wallet_members.wallet_id', '=', 'wr.wallet_id');
+        $results =  WalletMember::select('wallet_member.user_id', DB::raw('SUM(wr.amount) as total_amount'))
+            ->leftJoin('wallet_row as wr', function ($join) {
+                $join->on('wallet_member.user_id', '=', 'wr.user_id')
+                    ->on('wallet_member.wallet_id', '=', 'wr.wallet_id');
             })
-            ->where('wallet_members.wallet_id', $wallet->id)
-            ->groupBy('wallet_members.user_id')
+            ->where('wallet_member.wallet_id', $wallet->id)
+            ->groupBy('wallet_member.user_id')
             ->get();
 
         $calculation = $this->calculate($results, $userId);

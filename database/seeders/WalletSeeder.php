@@ -5,10 +5,9 @@ namespace Database\Seeders;
 use App\Enums\InviteStatus;
 use App\Enums\UserRole;
 use App\Models\Wallet;
-use App\Models\WalletMembers;
+use App\Models\WalletMember;
 use App\Models\WalletRows;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class WalletSeeder extends Seeder
@@ -41,8 +40,7 @@ class WalletSeeder extends Seeder
             }
             $this->createRow($walletId, $userId);
 
-            $exists = DB::table('wallet_members')
-                ->where('wallet_id', $walletId)
+            $exists = WalletMember::where('wallet_id', $walletId)
                 ->where('user_id', $userId)
                 ->exists();
 
@@ -67,7 +65,7 @@ class WalletSeeder extends Seeder
 
     private function createMember(int $walletId, int $userId, UserRole $type, InviteStatus $status): void
     {
-        WalletMembers::create([
+        WalletMember::create([
                 'wallet_id' => $walletId,
                 'user_id'=> $userId,
                 'permissions'=> $type,

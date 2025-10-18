@@ -30,11 +30,11 @@ class Wallet extends Model
 
     public function users(): HasMany
     {
-        return $this->hasMany(BudgetMembers::class );
+        return $this->hasMany(BudgetMember::class );
     }
     public function members()
     {
-        return $this->belongsToMany(User::class, 'wallet_members', 'wallet_id', 'user_id')
+        return $this->belongsToMany(User::class, 'wallet_member', 'wallet_id', 'user_id')
             ->withTimestamps();
     }
 }

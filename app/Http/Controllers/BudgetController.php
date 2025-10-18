@@ -7,7 +7,7 @@ use App\Enums\InviteStatus;
 use App\Enums\TablesStatus;
 use App\Enums\UserRole;
 use App\Models\Budget;
-use App\Models\BudgetMembers;
+use App\Models\BudgetMember;
 use App\Traits\CalculateDebitCreditTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -38,7 +38,7 @@ class BudgetController extends Controller implements TableControllerInterface
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')]);
 
-        BudgetMembers::create([
+        BudgetMember::create([
             'budget_id' => $budget->id,
             'user_id' => 1,
             'status' => InviteStatus::ADDED_SYSTEM,
@@ -52,13 +52,13 @@ class BudgetController extends Controller implements TableControllerInterface
         $total = $budget->data->sum('amount');
         $userId = $budget->owner->id;
 
-        $results = BudgetMembers::select('budget_members.user_id', DB::raw('SUM(br.amount) as total_amount'))
-            ->leftJoin('budget_rows as br', function ($join) {
-                $join->on('budget_members.user_id', '=', 'br.user_id')
-                    ->on('budget_members.budget_id', '=', 'br.budget_id');
+        $results = BudgetMember::select('budget_member.user_id', DB::raw('SUM(br.amount) as total_amount'))
+            ->leftJoin('budget_row as br', function ($join) {
+                $join->on('budget_member.user_id', '=', 'br.user_id')
+                    ->on('budget_member.budget_id', '=', 'br.budget_id');
             })
-            ->where('budget_members.budget_id', $budget->id)
-            ->groupBy('budget_members.user_id')
+            ->where('budget_member.budget_id', $budget->id)
+            ->groupBy('budget_member.user_id')
             ->get();
 
         $calculation = $this->calculate($results, $userId);
