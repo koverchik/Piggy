@@ -27,8 +27,4 @@ class BudgetMember extends Model
         return $this->belongsTo(Budget::class, 'budget_id');
     }
 
-    public function members()
-    {
-        return $this->hasMany(BudgetMember::class, 'budget_id');
-    }
 }

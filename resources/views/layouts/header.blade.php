@@ -7,7 +7,12 @@
     </div>
     <ul class="nav justify-content-end">
         <li class="nav-item">
-            <a class="nav-link m-4" href="{{ url('login') }}">Sign in</a>
+            @auth
+                <a class="nav-link m-4" href="{{ url('user') }}">Hi, {{ Auth::user()->name }}!</a>
+            @endauth
+            @guest
+                <a class="nav-link m-4" href="{{ url('login') }}">Sign in</a>
+            @endguest
         </li>
     </ul>
 </div>
