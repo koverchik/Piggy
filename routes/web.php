@@ -17,14 +17,6 @@ Route::get('/', function () {
     return view('about');
 });
 
-Route::get('/user', function () {
-    return view('user');
-});
-
-Route::get('/check', function () {
-    return ColorFacade::getRandomColor();
-});
-
 Route::get('/main', [LoginController::class, 'handleHomePage'])->name('main');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');

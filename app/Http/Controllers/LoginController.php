@@ -13,7 +13,6 @@ class LoginController extends Controller
 {
     public function index()
     {
-
     return view('auth.login');
     }
 
@@ -27,8 +26,9 @@ class LoginController extends Controller
         $user = User::where('email', $validated['email'])->first();
 
         if (! $user || ! Hash::check($validated['password'], $user->password)) {
-            return back();
+            return back()->withErrors(['email' => 'Invalid credentials.']);
         }
+        Auth::login($user);
 
         return redirect()->route('userPage');
     }
