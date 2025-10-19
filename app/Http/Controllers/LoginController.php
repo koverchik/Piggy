@@ -37,7 +37,7 @@ class LoginController extends Controller
     {
         $user = Auth::user();
 
-        $wallets = $user->walletMemberships()->paginate(10, ['*'], 'budget');
+        $wallets = $user->walletMemberships()->paginate(10, ['*'], 'wallet');
         $budgets = $user->budgetMemberships()->paginate(10, ['*'], 'budget');
 
         return view('home', compact('wallets', 'budgets'));

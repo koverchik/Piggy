@@ -51,8 +51,7 @@ class User extends Authenticatable
 
     public function budgetMemberships()
     {
-        return $this->belongsToMany(Budget::class, 'budget_member', 'user_id', 'badget_id')
+        return $this->belongsToMany(Budget::class, 'budget_member', 'user_id', 'budget_id')
             ->withTimestamps();
     }
-
 }
