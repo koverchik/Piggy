@@ -9,16 +9,18 @@ use App\Models\BudgetMember;
 use App\Models\BudgetRow;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
+use Faker\Factory as Faker;
+
 class BudgetSeeder extends Seeder
 {
     public function run(): void
     {
+        $faker = Faker::create();
         for($i =0 ; $i<30 ; $i++) {
             $owner = rand(1, 30);
 
             $budget = Budget::create([
-                'name' => Str::random(10),
+                'name' => $faker->words(3, true),
                 'owner_id' => $owner,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')]);
@@ -47,8 +49,9 @@ class BudgetSeeder extends Seeder
 
     private function createRow(int $budgetId, int $userId): void
     {
+        $faker = Faker::create();
         BudgetRow::create([
-                'name'=> Str::random(10),
+                'name'=> $faker->words(5, true),
                 'amount' => rand(1, 15),
                 'budget_id' => $budgetId,
                 'user_id'=> $userId,
