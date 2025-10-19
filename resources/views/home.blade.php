@@ -8,7 +8,7 @@
                     @foreach ($wallets as $wallet)
                         <a href="{{ route('wallet.show', $wallet->id) }}"
                            class="d-inline-flex py-1 px-2 text-decoration-none m-2">
-                            {{ $wallet->name }}
+                            {{ Str::ucfirst($wallet->name) }}
                         </a>
                     @endforeach
                 </div>
@@ -38,7 +38,7 @@
                     @foreach ($budgets as $budget)
                         <a href="{{route('budget.show', $budget->id)}}"
                            class="d-inline-flex focus-ring py-1 px-2 text-decoration-none m-2">
-                            {{ $budget->name }}
+                            {{ Str::ucfirst($budget->name) }}
                         </a>
                     @endforeach
                 </div>

@@ -7,18 +7,19 @@ use App\Enums\UserRole;
 use App\Models\Wallet;
 use App\Models\WalletMember;
 use App\Models\WalletRows;
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class WalletSeeder extends Seeder
 {
     public function run(): void
     {
+        $faker = Faker::create();
         for($i =0 ; $i<30 ; $i++) {
             $owner = rand(1, 30);
 
             $wallet= Wallet::create([
-                    'name'=> Str::random(10),
+                    'name' => $faker->words(3, true),
                     'owner_id'=> $owner,
                     'created_at'=> date(('Y-m-d H:i:s')),
                     'updated_at'=> date(('Y-m-d H:i:s'))
@@ -52,8 +53,9 @@ class WalletSeeder extends Seeder
 
     private function createRow(int $walletId, int $userId): void
     {
+        $faker = Faker::create();
         WalletRows::create([
-                'name'=> Str::random(10),
+                'name'=> $faker->words(4, true),
                 'amount' => rand(1, 15),
                 'wallet_id' => $walletId,
                 'user_id'=> $userId,
