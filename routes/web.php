@@ -17,21 +17,13 @@ Route::get('/', function () {
     return view('about');
 });
 
-Route::get('/user', function () {
-    return view('user');
-});
-
-Route::get('/check', function () {
-    return ColorFacade::getRandomColor();
-});
-
 Route::get('/main', [LoginController::class, 'handleHomePage'])->name('main');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 
 Route::post('/login', [LoginController::class, 'handleLogin'])->name('login.submit');
 
-Route::get('/user/{id}', [UserController::class, 'getUser'])->name('userPage');
+Route::get('/user', [UserController::class, 'getUser'])->name('userPage');
 
 Route::post('/upload-avatar/{id}', [UserController::class, 'uploadAvatar'])->name('uploadAvatar');
 

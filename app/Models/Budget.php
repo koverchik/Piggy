@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Budget extends Model
 {
-    use HasFactory, softDeletes;
+    use softDeletes;
 
     protected $table = 'budgets';
     protected $fillable = [
@@ -24,7 +24,7 @@ class Budget extends Model
     public function data(): HasMany
     {
 
-        return $this->hasMany(BudgetRows::class, 'budget_id');
+        return $this->hasMany(BudgetRow::class, 'budget_id');
     }
 
     public function owner(): BelongsTo
@@ -33,7 +33,6 @@ class Budget extends Model
     }
     public function members()
     {
-        return $this->belongsToMany(User::class, 'budget_members', 'budget_id', 'user_id')
-            ->withTimestamps();
+        return $this->hasMany(BudgetMember::class, 'budget_id'); // make sure it matches
     }
 }

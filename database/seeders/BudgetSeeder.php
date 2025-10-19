@@ -5,8 +5,8 @@ namespace Database\Seeders;
 use App\Enums\InviteStatus;
 use App\Enums\UserRole;
 use App\Models\Budget;
-use App\Models\BudgetMembers;
-use App\Models\BudgetRows;
+use App\Models\BudgetMember;
+use App\Models\BudgetRow;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -34,7 +34,7 @@ class BudgetSeeder extends Seeder
             $userId = rand(1, 30);
             $budgetId = rand(1, 30);
             $this->createRow($budgetId, $userId);
-            $exists = DB::table('budget_members')
+            $exists = DB::table('budget_member')
                 ->where('budget_id', $budgetId)
                 ->where('user_id', $userId)
                 ->exists();
@@ -47,7 +47,7 @@ class BudgetSeeder extends Seeder
 
     private function createRow(int $budgetId, int $userId): void
     {
-        BudgetRows::create([
+        BudgetRow::create([
                 'name'=> Str::random(10),
                 'amount' => rand(1, 15),
                 'budget_id' => $budgetId,
@@ -60,7 +60,7 @@ class BudgetSeeder extends Seeder
 
     private function createMember(int $budgetId, int $userId, UserRole $type, InviteStatus $status): void
     {
-        BudgetMembers::create([
+        BudgetMember::create([
                 'budget_id' => $budgetId,
                 'user_id'=> $userId,
                 'status' => $status,

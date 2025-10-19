@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BudgetRows extends Model
+class BudgetRow extends Model
 {
-    use HasFactory;
-
-    protected $table = 'budget_rows';
+    protected $table = 'budget_row';
 
     protected $fillable = [
         'name',

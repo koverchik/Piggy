@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class WalletMembers extends Model
+class BudgetMember extends Model
 {
-    use HasFactory;
+    protected $table = 'budget_member';
 
     protected $fillable = [
-        'wallet_id',
+        'budget_id',
         'user_id',
         'permissions',
+        'status',
     ];
 
     public function user(): BelongsTo
@@ -24,6 +24,7 @@ class WalletMembers extends Model
 
     public function budget(): BelongsTo
     {
-        return $this->belongsTo(Wallet::class, 'wallet_id');
+        return $this->belongsTo(Budget::class, 'budget_id');
     }
+
 }

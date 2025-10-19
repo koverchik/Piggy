@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class WalletRows extends Model
 {
-    use HasFactory;
-
-    protected $table = 'wallet_rows';
+    protected $table = 'wallet_row';
 
     protected $fillable = [
         'name',
