@@ -33,10 +33,11 @@
                         <circle cx="5" cy="5" r="5" fill="{{$item->user->color}}" />
                     </svg>
                 </td>
+                @if($user->id !== $item->user->id)
                 <td>
                     <div class="dropdown">
                         <button class="btn btn-light dropdown-toggle" type="button" id="dropdownActionMembersMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="{{ asset('images/list-premision.svg') }}" class="m-1"/>
+                            <img src="{{ asset('images/list-premision.svg') }}" class="m-1" alt="list icon"/>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownActionMembersMenuButton">
                             <li><a class="dropdown-item" href="#">Delete</a></li>
@@ -45,10 +46,12 @@
                         </ul>
                     </div>
                 </td>
+                @endif
             </tr>
     @endforeach
     </tbody>
 </table>
 <div class="flex-1 justify-end">
-    <button class="btn btn-primary" type="button">Invite</button>
+    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#memberInvite">Invite</button>
 </div>
+@include('members.invite-pop-up')

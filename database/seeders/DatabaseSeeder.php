@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         for($i =0 ; $i<30 ; $i++) {
             User::factory()->create([
                 'name' => $faker->name,
-                'email' => Str::random(10).'@example.com',
+                'email' => $faker->freeEmail,
                 'color' => ColorFacade::getRandomColor()
             ]);
         }

@@ -1,6 +1,5 @@
 <?php
 
-use App\Facades\ColorFacade;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\BudgetMemberController;
 use App\Http\Controllers\BudgetRowController;
