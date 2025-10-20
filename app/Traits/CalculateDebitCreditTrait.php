@@ -11,7 +11,7 @@ trait CalculateDebitCreditTrait
         $member = $userData->firstWhere('user_id', $userId);
         $countMember = count($userData);
 
-        if($member->total_amount === null){
+        if($member === null || $member->total_amount === null){
             $userDebt = 0;
         }else{
             $userDebt = $member->total_amount / $countMember;

@@ -1,5 +1,5 @@
 {
-    "name": "Piggy 2.0",
+    "name": "piggy/piggy",
     "type": "project",
     "description": "The project that helps share expenses.",
     "keywords": ["laravel", "framework"],

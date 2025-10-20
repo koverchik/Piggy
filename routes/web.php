@@ -38,6 +38,8 @@ Route::post('/restore', [RestoreController::class, 'handRestore'])->name('send.r
 
 Route::get('/wallet/members/{wallet}', [WalletMemberController::class, 'show'])->name('members.wallet.table');
 
+Route::delete('/wallet/{id}/members/{user}', [WalletMemberController::class, 'deleteUser'])->name('members.wallet.delete');
+
 Route::delete('/wallet-trash/{wallet}', [WalletController::class, 'handlerMoveToTrash'])->name('wallet.trash');
 
 Route::get('/wallet-list-trash', [WalletController::class, 'trashList'])->name('wallet.list.deleted');
