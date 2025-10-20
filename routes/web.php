@@ -1,6 +1,5 @@
 <?php
 
-use App\Facades\ColorFacade;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\BudgetMemberController;
 use App\Http\Controllers\BudgetRowController;
@@ -38,6 +37,8 @@ Route::get('/restore', [RestoreController::class, 'index'])->name('restore');
 Route::post('/restore', [RestoreController::class, 'handRestore'])->name('send.restore');
 
 Route::get('/wallet/members/{wallet}', [WalletMemberController::class, 'show'])->name('members.wallet.table');
+
+Route::delete('/wallet/{id}/members/{user}', [WalletMemberController::class, 'deleteUser'])->name('members.wallet.delete');
 
 Route::delete('/wallet-trash/{wallet}', [WalletController::class, 'handlerMoveToTrash'])->name('wallet.trash');
 

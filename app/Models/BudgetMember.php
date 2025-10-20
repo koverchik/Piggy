@@ -26,5 +26,4 @@ class BudgetMember extends Model
     {
         return $this->belongsTo(Budget::class, 'budget_id');
     }
-
 }
