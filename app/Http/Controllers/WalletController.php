@@ -51,7 +51,7 @@ class WalletController extends Controller implements TableControllerInterface
         $total = $wallet->data->sum('amount');
         $userId = $wallet->owner->id;
 
-        $results =  WalletMember::select('wallet_member.user_id', DB::raw('SUM(wr.amount) as total_amount'))
+        $results = WalletMember::select('wallet_member.user_id', DB::raw('SUM(wr.amount) as total_amount'))
             ->leftJoin('wallet_row as wr', function ($join) {
                 $join->on('wallet_member.user_id', '=', 'wr.user_id')
                     ->on('wallet_member.wallet_id', '=', 'wr.wallet_id');
@@ -61,8 +61,15 @@ class WalletController extends Controller implements TableControllerInterface
             ->get();
 
         $calculation = $this->calculate($results, $userId);
-        $data= $wallet->data()->paginate(10);
-        return view('tables.view', ['type' => FinancesType::WALLET->value, 'items' => $wallet, "total" => $total,  'calculation' => $calculation, 'data' => $data]);
+        $data = $wallet->data()->paginate(10);
+        return view('tables.view', [
+            'type' => FinancesType::WALLET->value,
+            'item' => $wallet,
+            'total' => $total,
+            'calculation' => $calculation,
+            'data' => $data
+            ]
+        );
     }
 
     public function edit(Wallet $wallet): View

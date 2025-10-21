@@ -10,7 +10,7 @@
                 <p>Are you sure you want to remove the user <b>{{$item->user->name}}</b>?
                     All data entered by this user in this table will be deleted.</p>
             </div>
-            <form action="{{ route('members.wallet.delete', ['id' => $id, 'user' => $item->user->id]) }}"
+            <form action="{{ route("members.$type.delete", ['id' => $id, 'user' => $item->user->id]) }}"
                   method="POST">
                 @csrf
                 @method('DELETE')

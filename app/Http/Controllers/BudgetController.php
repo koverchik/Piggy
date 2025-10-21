@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 class BudgetController extends Controller implements TableControllerInterface
 {
     use CalculateDebitCreditTrait;
+
     public function index(): View
     {
         $budgets = Budget::all()
@@ -47,6 +48,7 @@ class BudgetController extends Controller implements TableControllerInterface
 
         return redirect()->route('budget.show', ['budget' => $budget->id]);
     }
+
     public function show(Budget $budget): View
     {
         $total = $budget->data->sum('amount');
@@ -64,10 +66,17 @@ class BudgetController extends Controller implements TableControllerInterface
         $calculation = $this->calculate($results, $userId);
         $data = $budget->data()->paginate(10);
 
-        return view('tables.view', ['type' => FinancesType::BUDGET->value, 'items' => $budget, "total" => $total, 'calculation' => $calculation, 'data' => $data]);
+        return view('tables.view', [
+                'type' => FinancesType::BUDGET->value,
+                'item' => $budget,
+                'total' => $total,
+                'calculation' => $calculation,
+                'data' => $data
+            ]
+        );
     }
 
-     public function edit(Budget $budget): View
+    public function edit(Budget $budget): View
     {
         return view('layouts.update_entity', ['type' => FinancesType::BUDGET->value, 'entity' => $budget]);
     }

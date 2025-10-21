@@ -12,6 +12,7 @@ class WalletMember extends Model
         'wallet_id',
         'user_id',
         'permissions',
+        'status',
     ];
 
     public function user(): BelongsTo
@@ -19,7 +20,7 @@ class WalletMember extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function budget(): BelongsTo
+    public function wallet(): BelongsTo
     {
         return $this->belongsTo(Wallet::class, 'wallet_id');
     }

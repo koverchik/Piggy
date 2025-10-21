@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\FinancesType;
 use App\Models\Wallet;
-use App\Models\WalletRows;
+use App\Models\WalletRow;
 use Illuminate\Http\Request;
 
 class WalletRowController extends Controller
@@ -25,7 +25,7 @@ class WalletRowController extends Controller
             'amount' => 'required|numeric'
         ]);
 
-        WalletRows::create([
+        WalletRow::create([
             'name' => $validatedData['name'],
             'amount' => $validatedData['amount'],
             'wallet_id' => $id,
