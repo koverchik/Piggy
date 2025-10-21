@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -23,7 +23,6 @@ class Budget extends Model
 
     public function data(): HasMany
     {
-
         return $this->hasMany(BudgetRow::class, 'budget_id');
     }
 
@@ -31,8 +30,14 @@ class Budget extends Model
     {
         return $this->belongsTo(User::class, 'owner_id');
     }
-    public function members()
+
+    public function users(): HasMany
     {
-        return $this->hasMany(BudgetMember::class, 'budget_id'); // make sure it matches
+        return $this->hasMany(BudgetMember::class );
+    }
+    public function members(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'budget_member', 'budget_id', 'user_id')
+            ->withTimestamps();
     }
 }

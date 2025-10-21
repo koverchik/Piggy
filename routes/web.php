@@ -36,7 +36,7 @@ Route::get('/restore', [RestoreController::class, 'index'])->name('restore');
 
 Route::post('/restore', [RestoreController::class, 'handRestore'])->name('send.restore');
 
-Route::get('/wallet/members/{wallet}', [WalletMemberController::class, 'show'])->name('members.wallet.table');
+Route::get('/wallet/{wallet}/members', [WalletMemberController::class, 'show'])->name('members.wallet.table');
 
 Route::delete('/wallet/{id}/members/{user}', [WalletMemberController::class, 'deleteUser'])->name('members.wallet.delete');
 
@@ -46,13 +46,15 @@ Route::get('/wallet-list-trash', [WalletController::class, 'trashList'])->name('
 
 Route::post('/wallet-restore/{wallet}', [WalletController::class, 'handlerRestore'])->name('wallet.restore');
 
-Route::post('/wallet/update/{wallet}', [WalletRowController::class, 'add'])->name('add.wallet.rows');
+Route::post('/wallet/{wallet}/update', [WalletRowController::class, 'add'])->name('add.wallet.rows');
 
-Route::get('/wallet/update/{wallet}', [WalletRowController::class, 'show'])->name('index.wallet.rows');
+Route::get('/wallet/{wallet}/update', [WalletRowController::class, 'show'])->name('index.wallet.rows');
 
 Route::resource('/wallet', WalletController::class);
 
-Route::get('/budget/members/{budget}', [BudgetMemberController::class, 'show'])->name('members.budget.table');
+Route::get('/budget/{budget}/members', [BudgetMemberController::class, 'show'])->name('members.budget.table');
+
+Route::delete('/budget/{id}/members/{user}', [BudgetMemberController::class, 'deleteUser'])->name('members.budget.delete');
 
 Route::delete('/budget-trash/{budget}', [BudgetController::class, 'handlerMoveToTrash'])->name('budget.trash');
 
@@ -60,8 +62,8 @@ Route::get('/budget-list-trash', [BudgetController::class, 'trashList'])->name('
 
 Route::post('/budget-restore/{budget}', [BudgetController::class, 'handlerRestore'])->name('budget.restore');
 
-Route::post('/budget/update/{budget}', [BudgetRowController::class, 'add'])->name('add.budget.rows');
+Route::post('/budget/{budget}/update', [BudgetRowController::class, 'add'])->name('add.budget.rows');
 
-Route::get('/budget/update/{budget}', [BudgetRowController::class, 'show'])->name('index.budget.rows');
+Route::get('/budget/{budget}/update', [BudgetRowController::class, 'show'])->name('index.budget.rows');
 
 Route::resource('/budget', BudgetController::class);

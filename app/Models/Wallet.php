@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -10,17 +9,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Wallet extends Model
 {
-    use HasFactory, SoftDeletes;
+    use SoftDeletes;
 
     protected $table = 'wallets';
     protected $fillable = [
         'name',
-        'owner_id'
+        'owner_id',
+        'created_at'
     ];
 
     public function data(): HasMany
     {
-        return $this->hasMany(WalletRows::class, 'wallet_id');
+        return $this->hasMany(WalletRow::class, 'wallet_id');
     }
 
     public function owner(): BelongsTo
@@ -30,7 +30,7 @@ class Wallet extends Model
 
     public function users(): HasMany
     {
-        return $this->hasMany(BudgetMember::class );
+        return $this->hasMany(WalletMember::class );
     }
     public function members()
     {

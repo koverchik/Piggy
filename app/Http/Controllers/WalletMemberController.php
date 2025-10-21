@@ -6,7 +6,7 @@ use App\Enums\FinancesType;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Models\WalletMember;
-use App\Models\WalletRows;
+use App\Models\WalletRow;
 use Illuminate\Contracts\View\View;
 
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +34,7 @@ class WalletMemberController extends Controller implements MemberControllerInter
         $wallet = Wallet::find($id);
 
         if ($wallet) {
-            WalletRows::where('wallet_id', $id)
+            WalletRow::where('wallet_id', $id)
                 ->where('user_id', $user->id)
                 ->delete();
             $wallet->members()->detach($user->id);

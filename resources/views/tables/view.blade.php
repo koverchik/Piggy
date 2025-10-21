@@ -6,23 +6,23 @@
                 <div class="d-flex justify-content-between align-items-start">
                     <h2 class="mb-4">
                         {{ Str::title($type) }}
-                        <a href="{{ route("index.$type.rows", [$type => $items->id]) }}" class="link-dark text-decoration-none">
-                            {{ $items->name }}
+                        <a href="{{ route("index.$type.rows", [$type => $item->id]) }}" class="link-dark text-decoration-none">
+                            {{ $item->name }}
                         </a>
                     </h2>
                     <div>
                         <div class="dropdown">
                             <button class="btn btn-light dropdown-toggle" type="button" id="dropdownActionTableMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{ asset('images/list-premision.svg') }}" class="m-1"/>
+                                <img src="{{ asset('images/list-premision.svg') }}" class="m-1" alt="permission"/>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownActionTableMenuButton">
                                 <li>
-                                    <a href="{{ route('index.'.$type.'.rows', [$type => $items->id]) }}" class="dropdown-item">
+                                    <a href="{{ route('index.'.$type.'.rows', [$type => $item->id]) }}" class="dropdown-item">
                                         Add rows
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="{{ route("$type.edit", [$type => $items->id]) }}">
+                                    <a class="dropdown-item" href="{{ route("$type.edit", [$type => $item->id]) }}">
                                         Update name
                                     </a>
                                 </li>
@@ -38,11 +38,11 @@
             <div class="col-md-4">
                 <div class="d-flex justify-content-between align-items-start">
                     <h2 class="mb-4">
-                        <a href="{{ route("members.$type.table", [ $type => $items->id])}}" class="link-dark text-decoration-none">
+                        <a href="{{ route("members.$type.table", [ $type => $item->id])}}" class="link-dark text-decoration-none">
                             Members
                         </a>
                     </h2>
-                    <a href="{{ url('/'.$type .'/'.'members/'. $items->id ) }}">
+                    <a href="{{ url('/'.$type. '/' .$item->id.'/'.'members') }}">
                         <span class="badge bg-light m-1 cursor-pointer rounded-4" role="button" tabindex="0">
                             <img src="{{ asset('images/pencil.svg') }}" class="m-1 cursor-pointer"/>
                         </span>

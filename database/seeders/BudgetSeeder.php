@@ -32,7 +32,7 @@ class BudgetSeeder extends Seeder
             }
         }
 
-        for($i =0 ; $i<30 ; $i++) {
+        for($i =0 ; $i<300 ; $i++) {
             $userId = rand(1, 30);
             $budgetId = rand(1, 30);
             $this->createRow($budgetId, $userId);
