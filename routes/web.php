@@ -12,11 +12,7 @@ use App\Http\Controllers\WalletMemberController;
 use App\Http\Controllers\WalletRowController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('about');
-});
-
-Route::get('/main', [LoginController::class, 'handleHomePage'])->name('main');
+Route::get('/', [LoginController::class, 'handleHomePage'])->name('main');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 
@@ -40,6 +36,10 @@ Route::get('/wallet/{wallet}/members', [WalletMemberController::class, 'show'])-
 
 Route::delete('/wallet/{id}/members/{user}', [WalletMemberController::class, 'deleteUser'])->name('members.wallet.delete');
 
+Route::put('/wallet/{id}/members/add', [WalletMemberController::class, 'addUser'])->name('members.wallet.add');
+
+Route::patch('/wallet/{id}/members/{user}/permission', [WalletMemberController::class, 'changePermissionUser'])->name('members.wallet.changePermission');
+
 Route::delete('/wallet-trash/{wallet}', [WalletController::class, 'handlerMoveToTrash'])->name('wallet.trash');
 
 Route::get('/wallet-list-trash', [WalletController::class, 'trashList'])->name('wallet.list.deleted');
@@ -55,6 +55,10 @@ Route::resource('/wallet', WalletController::class);
 Route::get('/budget/{budget}/members', [BudgetMemberController::class, 'show'])->name('members.budget.table');
 
 Route::delete('/budget/{id}/members/{user}', [BudgetMemberController::class, 'deleteUser'])->name('members.budget.delete');
+
+Route::patch('/budget/{id}/members/{user}/permission', [BudgetMemberController::class, 'changePermissionUser'])->name('members.budget.changePermission');
+
+Route::put('/budget/{id}/members/add', [BudgetMemberController::class, 'addUser'])->name('members.budget.add');
 
 Route::delete('/budget-trash/{budget}', [BudgetController::class, 'handlerMoveToTrash'])->name('budget.trash');
 

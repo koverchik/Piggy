@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\FinancesType;
+use App\Enums\UserRole;
 use App\Models\Wallet;
 use App\Models\WalletMember;
 use App\Traits\CalculateDebitCreditTrait;
@@ -39,7 +40,7 @@ class WalletController extends Controller implements TableControllerInterface
             'wallet_id' => $wallet->id,
             'user_id' => 1,
             'status' => 'approved',
-            'permissions' => 'OWNER'
+            'permissions' => UserRole::OWNER->value
         ]);
 
         return redirect()->route('wallet.show', ['wallet' => $wallet->id]);

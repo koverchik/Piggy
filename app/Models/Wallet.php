@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -15,7 +16,8 @@ class Wallet extends Model
     protected $fillable = [
         'name',
         'owner_id',
-        'created_at'
+        'created_at',
+        'updated_at'
     ];
 
     public function data(): HasMany
@@ -32,9 +34,10 @@ class Wallet extends Model
     {
         return $this->hasMany(WalletMember::class );
     }
-    public function members()
+    public function members(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'wallet_member', 'wallet_id', 'user_id')
+            ->withPivot('permissions', 'status')
             ->withTimestamps();
     }
 }

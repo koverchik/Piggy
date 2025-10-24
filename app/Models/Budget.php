@@ -38,6 +38,7 @@ class Budget extends Model
     public function members(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'budget_member', 'budget_id', 'user_id')
+            ->withPivot('permissions', 'status')
             ->withTimestamps();
     }
 }
