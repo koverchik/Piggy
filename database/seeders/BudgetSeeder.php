@@ -42,7 +42,7 @@ class BudgetSeeder extends Seeder
                 ->exists();
 
             if(!$exists){
-                $this->createMember($budgetId, $userId, UserRole::EDITOR, InviteStatus::INVITED);
+                $this->createMember($budgetId, $userId, UserRole::EDITOR, InviteStatus::APPROVED);
             }
         }
     }
@@ -67,7 +67,7 @@ class BudgetSeeder extends Seeder
                 'budget_id' => $budgetId,
                 'user_id'=> $userId,
                 'status' => $status,
-                'permissions'=> json_encode($type),
+                'permissions'=> $type->value,
                 'created_at'=> date(('Y-m-d H:i:s')),
                 'updated_at'=> date(('Y-m-d H:i:s'))
             ]

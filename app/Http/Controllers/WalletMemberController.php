@@ -3,28 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Enums\FinancesType;
+use App\Enums\InviteStatus;
+use App\Enums\UserRole;
+use App\Facades\ColorFacade;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Models\WalletMember;
 use App\Models\WalletRow;
 use Illuminate\Contracts\View\View;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 
 class WalletMemberController extends Controller implements MemberControllerInterface
 {
+
     public function show(string $id): View
     {
         $user = Auth::user();
-        $wallet = Wallet::find($id);
-        $walletMembers = WalletMember::where(['wallet_id' => $wallet->id])->get();
+        $wallet = Wallet::with('members')->findOrFail($id);
 
         return view('members.members-table', [
             'type' => FinancesType::WALLET->value,
-            'items' => $walletMembers,
+            'items' => $wallet->members,
             'name' => $wallet->name,
-            'id' => $wallet->id,
+            'id' => $id,
             'user' => $user
         ]);
     }
@@ -43,4 +47,44 @@ class WalletMemberController extends Controller implements MemberControllerInter
         return back();
     }
 
+    public function changePermissionUser(Request $request, string $id, User $user): RedirectResponse
+    {
+        $request->validate([
+            'permissions' => 'required|string',
+        ]);
+        $role = UserRole::tryFrom($request->permissions);
+        WalletMember::where('wallet_id', $id)
+            ->where('user_id', $user->id)
+            ->update(['permissions' => $role]);
+
+        return back();
+    }
+
+    public function addUser(Request $request, string $id): RedirectResponse
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'permissions' => 'required',
+            'name' => 'required',
+        ]);
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+           $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'color' => ColorFacade::getRandomColor(),
+                'password'=> 'salt'
+            ]);
+        }
+
+        WalletMember::firstOrCreate([
+            'wallet_id' => $id,
+            'user_id' => $user->id,
+            'status' => InviteStatus::INVITED->value,
+            'permissions' => $request->permissions
+        ]);
+
+        return back();
+    }
 }

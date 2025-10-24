@@ -26,8 +26,8 @@ class AppServiceProvider extends ServiceProvider
     {
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
         Paginator::useBootstrap();
-        View::composer('*', function ($view) {
-            $view->with('country_code', Location::get()->countryCode);
-        });
+//        View::composer('*', function ($view) {
+//            $view->with('country_code', Location::get()->countryCode);
+//        });
     }
 }

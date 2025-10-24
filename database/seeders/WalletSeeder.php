@@ -46,7 +46,7 @@ class WalletSeeder extends Seeder
                 ->exists();
 
             if (!$exists) {
-                $this->createMember($walletId, $userId, UserRole::EDITOR, InviteStatus::INVITED);
+                $this->createMember($walletId, $userId, UserRole::EDITOR, InviteStatus::APPROVED);
             }
         }
     }
@@ -70,7 +70,7 @@ class WalletSeeder extends Seeder
         WalletMember::create([
                 'wallet_id' => $walletId,
                 'user_id' => $userId,
-                'permissions' => $type,
+                'permissions' =>  $type->value,
                 'status' => $status,
                 'created_at' => date(('Y-m-d H:i:s')),
                 'updated_at' => date(('Y-m-d H:i:s'))

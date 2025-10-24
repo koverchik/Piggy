@@ -43,7 +43,7 @@ class BudgetController extends Controller implements TableControllerInterface
             'budget_id' => $budget->id,
             'user_id' => 1,
             'status' => InviteStatus::ADDED_SYSTEM,
-            'permissions' => UserRole::OWNER
+            'permissions' => UserRole::OWNER->value
         ]);
 
         return redirect()->route('budget.show', ['budget' => $budget->id]);

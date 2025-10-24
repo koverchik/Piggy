@@ -13,7 +13,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-    return view('auth.login');
+        return view('auth.login');
     }
 
     public function handleLogin(LoginRequest $request): RedirectResponse
@@ -25,7 +25,7 @@ class LoginController extends Controller
 
         $user = User::where('email', $validated['email'])->first();
 
-        if (! $user || ! Hash::check($validated['password'], $user->password)) {
+        if (!$user || !Hash::check($validated['password'], $user->password)) {
             return back()->withErrors(['email' => 'Invalid credentials.']);
         }
         Auth::login($user);
@@ -36,11 +36,14 @@ class LoginController extends Controller
     public function handleHomePage(): View
     {
         $user = Auth::user();
+        if ($user) {
+            $wallets = $user->walletMemberships()->paginate(10, ['*'], 'wallet');
+            $budgets = $user->budgetMemberships()->paginate(10, ['*'], 'budget');
 
-        $wallets = $user->walletMemberships()->paginate(10, ['*'], 'wallet');
-        $budgets = $user->budgetMemberships()->paginate(10, ['*'], 'budget');
-
-        return view('home', compact('wallets', 'budgets'));
+            return view('home', compact('wallets', 'budgets'));
+        } else {
+            return view('about');
+        }
     }
 
 }
