@@ -1,0 +1,57 @@
+$primary: #736858;
+$secondary: #C66B4E;
+$dark: #4B4337;
+$light: #FAF8F3;
+
+$success: #6BAA75;
+$info: #5CAABF;
+$warning: #E2B659;
+$danger: #A63A3A;
+
+$link-decoration: none;
+$link-hover-decoration: underline;
+$link-hover-color: darken($secondary, 10%);
+$link-shade-percentage: 20%;
+$link-color: $secondary;
+$focus-ring-color: rgba($secondary, 0.35);
+
+$list-group-hover-bg: rgba($secondary, 0.1);
+$list-group-active-bg: $secondary;
+$list-group-active-border-color: $secondary;
+
+$nav-link-hover-color: $secondary;
+$nav-link-active-color: darken($secondary, 10%);
+$nav-tabs-link-hover-border-color: $secondary;
+
+$btn-hover-bg-shade-amount: 10%;
+$btn-active-bg-shade-amount: 15%;
+$btn-active-border-shade-amount: 20%;
+
+$focus-ring-color: rgba($secondary, 0.35);
+
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
+    "light": $light,
+    "dark": $dark
+);
+
+:root {
+    --primary: #{$primary};
+    --secondary: #{$secondary};
+    --dark: #{$dark};
+    --light: #{$light};
+}
+
+.btn:focus {
+    box-shadow: 0 0 0 0.25rem rgba($secondary, 0.35);
+}
+
+.form-control:focus {
+    border-color: $secondary;
+    box-shadow: 0 0 0 0.2rem rgba($secondary, 0.25);
+}

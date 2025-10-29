@@ -13,7 +13,7 @@
     <link rel="icon" href="{{ asset('images/favicon.svg') }}" type="image/svg+xml">
     <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 </head>
 <body >
     @include('layouts.header')

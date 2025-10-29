@@ -6,6 +6,7 @@ use App\Enums\FinancesType;
 use App\Enums\InviteStatus;
 use App\Enums\UserRole;
 use App\Facades\ColorFacade;
+use App\Mail\UserInvited;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Models\WalletMember;
@@ -15,6 +16,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Mail;
 
 class WalletMemberController extends Controller implements MemberControllerInterface
 {
@@ -84,6 +86,11 @@ class WalletMemberController extends Controller implements MemberControllerInter
             'status' => InviteStatus::INVITED->value,
             'permissions' => $request->permissions
         ]);
+        $host = Auth::user();
+        $wallet = Wallet::find($id);
+        $acceptUrl = 'url_redirect';
+        Mail::to($user->email)
+            ->queue(new UserInvited($user, $host, FinancesType::WALLET->value, $wallet->name, $request->permissions, $acceptUrl));
 
         return back();
     }

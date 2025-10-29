@@ -6,6 +6,7 @@ use App\Http\Controllers\BudgetRowController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RestoreController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\WalletMemberController;
@@ -17,6 +18,10 @@ Route::get('/', [LoginController::class, 'handleHomePage'])->name('main');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 
 Route::post('/login', [LoginController::class, 'handleLogin'])->name('login.submit');
+
+Route::get('/unsubscribe', [SubscriptionController::class, 'index'])->name('unsubscribe');
+
+Route::post('/unsubscribe', [SubscriptionController::class, 'unsubscribe'])->name('unsubscribe.submit');
 
 Route::get('/user', [UserController::class, 'getUser'])->name('userPage');
 

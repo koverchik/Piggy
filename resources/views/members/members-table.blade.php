@@ -5,9 +5,8 @@
             <div class="col-md-12">
                 <div class="d-flex justify-content-between align-items-start">
                     <h2 class="mb-4">
-                        Members {{$type}}
-                        <a href="{{ route("$type.show", [$type => $id]) }}" class="link-dark text-decoration-none">
-                            {{ $name }}
+                        <a href="{{ route("$type.show", [$type => $id]) }}" class="link-primary text-decoration-none">
+                            Members {{$type}} {{ $name }}
                         </a>
                     </h2>
                 </div>

@@ -10,7 +10,6 @@ class RestoreController extends Controller
 {
     public function index()
     {
-
         return view('auth.restore');
     }
     public function handRestore(RestoreRequest $request): Request

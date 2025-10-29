@@ -1,7 +1,7 @@
 @extends('layouts.cards')
 @section('left-column')
     <div class="h-100 p-5 bg-light rounded-3 custom-container-card">
-        <a href="{{ route('wallet.index') }}" class="text-center text-decoration-none h2 mb-4 link-dark">Wallet</a>
+        <a href="{{ route('wallet.index') }}" class="text-center text-decoration-none h2 mb-4 link-primary">Wallet</a>
         @if($wallets->count() > 0)
             <div class="d-flex flex-column justify-content-between h-100">
                 <div class="d-flex flex-column">
@@ -25,13 +25,13 @@
                 control of your money.</p>
         @endif
         <div class="custom-btn-create mt-4">
-            <a href="{{route('wallet.create')}}" class="btn btn-outline-info" role="button">Create</a>
+            <a href="{{route('wallet.create')}}" class="btn btn-outline-secondary" role="button">Create</a>
         </div>
     </div>
 @endsection
 @section('right-column')
     <div class="h-100 p-5 bg-light rounded-3 custom-container-card">
-        <a href="{{ route('budget.index') }}" class="text-center text-decoration-none h2 mb-4 link-dark">Budget</a>
+        <a href="{{ route('budget.index') }}" class="text-center text-decoration-none h2 mb-4 link-primary">Budget</a>
         @if($budgets->count() > 0)
             <div class="d-flex flex-column justify-content-between h-100">
                 <div class="d-flex flex-column">
@@ -56,7 +56,7 @@
                 everyone is aligned with the financial plans.</p>
         @endif
         <div class="custom-btn-create mt-4">
-            <a href="{{ route('budget.create') }}" class="btn btn-outline-info" role="button">Create</a>
+            <a href="{{ route('budget.create') }}" class="btn btn-outline-secondary" role="button">Create</a>
         </div>
     </div>
 @endsection
