@@ -6,15 +6,16 @@ use App\Enums\FinancesType;
 use App\Enums\InviteStatus;
 use App\Enums\UserRole;
 use App\Facades\ColorFacade;
+use App\Mail\UserInvited;
 use App\Models\Budget;
 use App\Models\BudgetMember;
 use App\Models\BudgetRow;
 use App\Models\User;
-use App\Models\WalletMember;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class BudgetMemberController extends Controller implements MemberControllerInterface
 {
@@ -83,6 +84,17 @@ class BudgetMemberController extends Controller implements MemberControllerInter
             'status' => InviteStatus::INVITED->value,
             'permissions' => $request->permissions
         ]);
+        $host = Auth::user();
+        $budget = Budget::find($id);
+        $acceptUrl = 'url_redirect';
+        Mail::to($user->email)
+            ->queue(new UserInvited(
+                $user,
+                $host,
+                FinancesType::BUDGET->value,
+                $budget->name,
+                $request->permissions,
+                $acceptUrl));
 
         return back();
     }

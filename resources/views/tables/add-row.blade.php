@@ -2,9 +2,9 @@
 @section('content')
     <main class="container-md mb-5 py-4 flex-shrink-0">
         <div class="d-flex justify-content-between align-items-start">
-            <h2 class="mb-4">{{Str::title($type)}}
-                <a href="{{ route("$type.show", [$type => $items->id]) }}" class="link-dark text-decoration-none">
-                    {{ $items->name }}
+            <h2 class="mb-4">
+                <a href="{{ route("$type.show", [$type => $items->id]) }}" class="link-primary text-decoration-none">
+                    {{Str::title($type)}} {{ $items->name }}
                 </a>
             </h2>
         </div>

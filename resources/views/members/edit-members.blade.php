@@ -44,7 +44,7 @@
                         <ul class="dropdown-menu" aria-labelledby="dropdownActionMembersMenuButton">
                             <li><button type="button" class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#delete-member-{{$item->id}}">Delete</button></li>
                             <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#change-permission-member-{{$item->id}}">Change permission</button></li>
-                            <li><a class="dropdown-item" href="#">Resend invitation</a></li>
+                            @if($item->pivot->status === \App\Enums\InviteStatus::INVITED->value )<li><a class="dropdown-item" href="#">Resend invitation</a></li>@endif
                         </ul>
                     </div>
                 </td>

@@ -17,14 +17,14 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div class="ms-2 me-auto">
                         <a href="{{ route($type.'.show', [$type => $item->id]) }}"
-                           class="link-dark text-decoration-none">{{ $item->name }}</a>
+                           class="link-primary text-decoration-none">{{ $item->name }}</a>
                     </div>
                     <div class="m-2 text-muted">{{$item->status}}</div>
                     @if($status === 'active')
                         <a href="{{route($type.'.update', [ $type => $item->id])}}">
-                            <span class="badge bg-light m-1 cursor-pointer">
-                                 <img src="{{ asset('images/pencil.svg') }}" class="m-1"/>
-                            </span>
+                            <button class="btn btn-light m-1" type="button">
+                                 <img src="{{ asset('images/pencil.svg') }}" class="m-1" alt="icon edit"/>
+                            </button>
                         </a>
                     @else
                         <span class="badge bg-light m-1 cursor-pointer modal-button"

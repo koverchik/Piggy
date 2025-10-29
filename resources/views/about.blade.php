@@ -10,7 +10,7 @@
                         Keep a detailed record of all your spending, create items for each expense, and split costs among users for better transparency and shared accountability.</p>
                     <p > With the Wallet, you'll have a clear view of your financial outflows, helping you stay informed and in control of your money.</p>
                     <div class="custom-btn-create mt-4">
-                        <a href="{{ url('wallet') }}" class="btn btn-outline-info" role="button">Create</a>
+                        <a href="{{ url('wallet') }}" class="btn btn-outline-secondary" role="button">Create</a>
                     </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                         Here, you can create and manage budget items, ensuring you stay on track with your financial goals. Allocate funds for upcoming purchases, events, or projects, and keep an eye on your planned expenditures. </p>
                     <p >With detailed insights and the ability to split budget items among users, you can collaborate and ensure everyone is aligned with the financial plans.</p>
                     <div class="custom-btn-create">
-                        <a href="{{ url('budget') }}" class="btn btn-outline-info" role="button">Create</a>
+                        <a href="{{ url('budget') }}" class="btn btn-outline-secondary" role="button">Create</a>
                     </div>
                 </div>
             </div>

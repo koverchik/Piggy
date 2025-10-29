@@ -30,7 +30,7 @@
                                         Are you sure you want to delete your avatar?
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                                         <button type="submit" form="form-delete-avatar" class="btn btn-primary">Yes</button>
                                     </div>
                                 </div>

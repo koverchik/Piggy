@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('budget_id')->constrained('budgets')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('status')->default(InviteStatus::INVITED);
-            $table->string('permissions');
+            $table->enum('permissions', ['owner', 'editor', 'viewer']);
             $table->timestamps();
         });
     }
