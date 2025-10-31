@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -18,16 +19,25 @@ class LoginController extends Controller
 
     public function handleLogin(LoginRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
+        $validator = Validator::make($request->all(), [
             'email' => ['required', 'email'],
             'password' => ['required', 'min:8'],
         ]);
 
+        if ($validator->fails()) {
+            return redirect()->route('login')
+                ->withErrors($validator, 'login')
+                ->withInput();
+        }
+
+        $validated = $validator->validated();
+
         $user = User::where('email', $validated['email'])->first();
 
         if (!$user || !Hash::check($validated['password'], $user->password)) {
-            return back()->withErrors(['email' => 'Invalid credentials.']);
+            return back()->withErrors(['email' => 'Invalid credentials.'], 'login')->withInput();
         }
+
         Auth::login($user);
 
         return redirect()->route('userPage');

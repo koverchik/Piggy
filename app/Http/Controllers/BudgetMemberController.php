@@ -16,6 +16,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class BudgetMemberController extends Controller implements MemberControllerInterface
 {
@@ -60,13 +61,32 @@ class BudgetMemberController extends Controller implements MemberControllerInter
         return back();
     }
 
+    public function inviteAccept(string $id, User $user): RedirectResponse
+    {
+        $authUser = Auth::user();
+        if (!$authUser) {
+            redirect(route('login'));
+        }
+        $budget = Budget::find($id);
+        $userIds = $budget->members()->pluck('users.id')->toArray();
+        if (in_array($user->id, $userIds)) {
+            return redirect(route('members.budget.table', ['budget' => $id]));
+        } else {
+            return redirect(route('main'));
+        }
+    }
+
     public function addUser(Request $request, string $id): RedirectResponse
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'permissions' => 'required',
             'name' => 'required',
-        ]);
+        ])->validateWithBag('invite');
+
+        if ($validator->fails()) {
+            return redirect(route('members.budget.table', ['budget' => $id]))->withErrors($validator, 'invite')->withInput();
+        }
 
         $user = User::where('email', $request->email)->first();
         if (!$user) {
@@ -74,7 +94,7 @@ class BudgetMemberController extends Controller implements MemberControllerInter
                 'name' => $request->name,
                 'email' => $request->email,
                 'color' => ColorFacade::getRandomColor(),
-                'password'=> 'salt'
+                'password' => 'salt'
             ]);
         }
 
@@ -86,7 +106,8 @@ class BudgetMemberController extends Controller implements MemberControllerInter
         ]);
         $host = Auth::user();
         $budget = Budget::find($id);
-        $acceptUrl = 'url_redirect';
+        $acceptUrl = route('budget.invite.accept', ['budget' => $id, 'user' => $user->id]);
+
         Mail::to($user->email)
             ->queue(new UserInvited(
                 $user,
@@ -96,6 +117,6 @@ class BudgetMemberController extends Controller implements MemberControllerInter
                 $request->permissions,
                 $acceptUrl));
 
-        return back();
+        return redirect(route('members.budget.table', ['budget' => $id]));
     }
 }

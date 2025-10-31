@@ -62,6 +62,21 @@ class WalletMemberController extends Controller implements MemberControllerInter
         return back();
     }
 
+    public function inviteAccept(string $id, User $user): RedirectResponse
+    {
+        $authUser = Auth::user();
+        if (!$authUser) {
+            redirect(route('login'));
+        }
+        $wallet = Wallet::find($id);
+        $userIds = $wallet->members()->pluck('users.id')->toArray();
+        if (in_array($user->id, $userIds)) {
+            return redirect(route('members.wallet.table', ['wallet' => $id]));
+        } else {
+            return redirect(route('main'));
+        }
+    }
+
     public function addUser(Request $request, string $id): RedirectResponse
     {
         $request->validate([
