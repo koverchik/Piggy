@@ -41,9 +41,9 @@ Route::get('/wallet/{wallet}/members', [WalletMemberController::class, 'show'])-
 
 Route::delete('/wallet/{id}/members/{user}', [WalletMemberController::class, 'deleteUser'])->name('members.wallet.delete');
 
-Route::put('/wallet/{id}/members/add', [WalletMemberController::class, 'addUser'])->name('members.wallet.add');
+Route::put('/wallet/{id}/members/add', [WalletMemberController::class, 'invite'])->name('members.wallet.add');
 
-Route::get('/wallet/{wallet}/invite/{user}', [WalletMemberController::class, 'inviteAccept'])->name('wallet.invite.accept');
+Route::get('/wallet/{wallet}/invite/{user}', [WalletMemberController::class, 'acceptInvite'])->name('wallet.invite.accept');
 
 Route::patch('/wallet/{id}/members/{user}/permission', [WalletMemberController::class, 'changePermissionUser'])->name('members.wallet.changePermission');
 
@@ -65,9 +65,9 @@ Route::delete('/budget/{id}/members/{user}', [BudgetMemberController::class, 'de
 
 Route::patch('/budget/{id}/members/{user}/permission', [BudgetMemberController::class, 'changePermissionUser'])->name('members.budget.changePermission');
 
-Route::put('/budget/{id}/members/add', [BudgetMemberController::class, 'addUser'])->name('members.budget.add');
+Route::put('/budget/{id}/members/add', [BudgetMemberController::class, 'invite'])->name('members.budget.add');
 
-Route::get('/budget/{budget}/invite/{user}', [BudgetMemberController::class, 'inviteAccept'])->name('budget.invite.accept');
+Route::get('/budget/{budget}/invite/{user}', [BudgetMemberController::class, 'acceptInvite'])->name('budget.invite.accept');
 
 Route::delete('/budget-trash/{budget}', [BudgetController::class, 'handlerMoveToTrash'])->name('budget.trash');
 
