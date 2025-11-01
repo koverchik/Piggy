@@ -16,6 +16,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class BudgetMemberController extends Controller implements MemberControllerInterface
 {
@@ -38,9 +39,7 @@ class BudgetMemberController extends Controller implements MemberControllerInter
         $budget = Budget::find($id);
 
         if ($budget) {
-            BudgetRow::where('budget_id', $id)
-                ->where('user_id', $user->id)
-                ->delete();
+            BudgetRow::where('budget_id', $id)->where('user_id', $user->id)->delete();
             $budget->members()->detach($user->id);
         }
 
@@ -49,24 +48,55 @@ class BudgetMemberController extends Controller implements MemberControllerInter
 
     public function changePermissionUser(Request $request, string $id, User $user): RedirectResponse
     {
-        $request->validate([
+        Validator::make($request->all(), [
             'permissions' => 'required|string',
-        ]);
-        $role = UserRole::tryFrom($request->permissions);
-        BudgetMember::where('budget_id', $id)
-            ->where('user_id', $user->id)
-            ->update(['permissions' => $role]);
+        ])->validate();
 
-        return back();
+        $role = UserRole::tryFrom($request->permissions);
+        $member = BudgetMember::where('budget_id', $id)
+            ->where('user_id', $user->id)
+            ->first();
+
+        if ($member->permissions === $role->value) {
+            $text = 'Access for the user %s has not been changed and she remains an %s.';
+        }else{
+            $member->update(['permissions' => $role]);
+            $text = 'Access for the user %s has been changed to %s.';
+        }
+
+        return back()->with('success', sprintf($text, $user->name, $role->value));
     }
 
-    public function addUser(Request $request, string $id): RedirectResponse
+    public function acceptInvite(string $id, User $user): RedirectResponse
     {
-        $request->validate([
+        $authUser = Auth::user();
+        if (!$authUser) {
+            redirect(route('login'));
+        }
+        $budget = Budget::find($id);
+        $userIds = $budget->members()->pluck('users.id')->toArray();
+        if (in_array($user->id, $userIds)) {
+            return redirect(route('members.budget.table', ['budget' => $id]));
+        } else {
+            return redirect(route('main'));
+        }
+    }
+
+    public function invite(Request $request, string $id): RedirectResponse
+    {
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'permissions' => 'required',
             'name' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('members.budget.table', ['budget' => $id])
+                ->withErrors($validator, 'invite')
+                ->withInput()
+                ->with('error', 'Please correct the errors and try again.');
+        }
 
         $user = User::where('email', $request->email)->first();
         if (!$user) {
@@ -74,7 +104,7 @@ class BudgetMemberController extends Controller implements MemberControllerInter
                 'name' => $request->name,
                 'email' => $request->email,
                 'color' => ColorFacade::getRandomColor(),
-                'password'=> 'salt'
+                'password' => 'salt'
             ]);
         }
 
@@ -86,7 +116,8 @@ class BudgetMemberController extends Controller implements MemberControllerInter
         ]);
         $host = Auth::user();
         $budget = Budget::find($id);
-        $acceptUrl = 'url_redirect';
+        $acceptUrl = route('budget.invite.accept', ['budget' => $id, 'user' => $user->id]);
+
         Mail::to($user->email)
             ->queue(new UserInvited(
                 $user,
@@ -96,6 +127,6 @@ class BudgetMemberController extends Controller implements MemberControllerInter
                 $request->permissions,
                 $acceptUrl));
 
-        return back();
+        return back()->with('success', 'Invitation sent successfully!');
     }
 }

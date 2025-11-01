@@ -12,7 +12,7 @@ use App\Models\Wallet;
 use App\Models\WalletMember;
 use App\Models\WalletRow;
 use Illuminate\Contracts\View\View;
-
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
@@ -40,9 +40,7 @@ class WalletMemberController extends Controller implements MemberControllerInter
         $wallet = Wallet::find($id);
 
         if ($wallet) {
-            WalletRow::where('wallet_id', $id)
-                ->where('user_id', $user->id)
-                ->delete();
+            WalletRow::where('wallet_id', $id)->where('user_id', $user->id)->delete();
             $wallet->members()->detach($user->id);
         }
 
@@ -51,32 +49,63 @@ class WalletMemberController extends Controller implements MemberControllerInter
 
     public function changePermissionUser(Request $request, string $id, User $user): RedirectResponse
     {
-        $request->validate([
+        Validator::make($request->all(), [
             'permissions' => 'required|string',
-        ]);
-        $role = UserRole::tryFrom($request->permissions);
-        WalletMember::where('wallet_id', $id)
-            ->where('user_id', $user->id)
-            ->update(['permissions' => $role]);
+        ])->validate();
 
-        return back();
+        $role = UserRole::tryFrom($request->permissions);
+        $member = WalletMember::where('wallet_id', $id)
+            ->where('user_id', $user->id)
+            ->first();
+
+        if ($member->permissions === $role->value) {
+            $text = 'Access for the user %s has not been changed and she remains an %s.';
+        } else {
+            $member->update(['permissions' => $role]);
+            $text = 'Access for the user %s has been changed to %s.';
+        }
+
+        return back()->with('success', sprintf($text, $user->name, $role->value));
     }
 
-    public function addUser(Request $request, string $id): RedirectResponse
+    public function acceptInvite(string $id, User $user): RedirectResponse
     {
-        $request->validate([
+        $authUser = Auth::user();
+        if (!$authUser) {
+            redirect(route('login'));
+        }
+        $wallet = Wallet::find($id);
+        $userIds = $wallet->members()->pluck('users.id')->toArray();
+        if (in_array($user->id, $userIds)) {
+            return redirect(route('members.wallet.table', ['wallet' => $id]));
+        } else {
+            return redirect(route('main'));
+        }
+    }
+
+    public function invite(Request $request, string $id): RedirectResponse
+    {
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'permissions' => 'required',
             'name' => 'required',
         ]);
+        if ($validator->fails()) {
+            return redirect()
+                ->route('members.wallet.table', ['wallet' => $id])
+                ->withErrors($validator, 'invite')
+                ->withInput()
+                ->with('error', 'Please correct the errors and try again.');
+        }
+
         $user = User::where('email', $request->email)->first();
 
         if (!$user) {
-           $user = User::create([
+            $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'color' => ColorFacade::getRandomColor(),
-                'password'=> 'salt'
+                'password' => 'salt'
             ]);
         }
 
@@ -88,10 +117,11 @@ class WalletMemberController extends Controller implements MemberControllerInter
         ]);
         $host = Auth::user();
         $wallet = Wallet::find($id);
-        $acceptUrl = 'url_redirect';
+        $acceptUrl = route('wallet.invite.accept', ['wallet' => $id, 'user' => $user->id]);
+
         Mail::to($user->email)
             ->queue(new UserInvited($user, $host, FinancesType::WALLET->value, $wallet->name, $request->permissions, $acceptUrl));
 
-        return back();
+        return back()->with('success', 'Invitation sent successfully!');
     }
 }

@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class BudgetRowController extends Controller
 {
-
     public function show(Budget $budget)
     {
         $total = $budget->data->sum('amount');

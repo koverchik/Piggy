@@ -23,6 +23,6 @@ class SubscriptionController extends Controller
         $user = Auth::user();
         $user->update(['subscription' => false]);
 
-        return redirect('main');
+        return redirect()->route('main');
     }
 }

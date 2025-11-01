@@ -9,7 +9,6 @@
         <th scope="col" class="text-center">Color</th>
         <th scope="col" width="5%"></th>
     </thead>
-
     @foreach($items as $item)
         <tbody>
             <tr>
