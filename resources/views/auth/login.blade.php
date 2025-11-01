@@ -8,10 +8,12 @@
                         <h3 class="mb-5">Login</h3>
                         <form action="{{route('login.submit')}}" method="POST">
                             @csrf
+                            @method('POST')
                             <div class="mb-3 row">
                                 <label for="input-email" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="email" class="form-control" id="input-email" autocomplete="email">
+                                    <input type="text" name="email" class="form-control" id="input-email"
+                                           autocomplete="email">
                                     @foreach($errors->getBag('default')->get('email') as $error)
                                         <div class="text-danger fs-6">{{ $error }} </div>
                                     @endforeach
@@ -20,7 +22,8 @@
                             <div class="mb-3 row">
                                 <label for="input-password" class="col-sm-2 col-form-label">Password</label>
                                 <div class="col-sm-10">
-                                    <input type="password" name="password" class="form-control" id="input-password" autocomplete="password">
+                                    <input type="password" name="password" class="form-control" id="input-password"
+                                           autocomplete="password">
                                     @foreach($errors->getBag('default')->get('password') as $error)
                                         <div class="text-danger fs-6">{{ $error }} </div>
                                     @endforeach

@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $primary: #736858;
 $secondary: #C66B4E;
 $dark: #4B4337;
@@ -10,7 +12,7 @@ $danger: #A63A3A;
 
 $link-decoration: none;
 $link-hover-decoration: underline;
-$link-hover-color: darken($secondary, 10%);
+$link-hover-color: color.scale($secondary, $lightness: -10%);
 $link-shade-percentage: 20%;
 $link-color: $secondary;
 $focus-ring-color: rgba($secondary, 0.35);

@@ -4,7 +4,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="memberInviteLabel">Send an invitation email</h5>
-                    <button type="button" class="btn-close" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route("members.$type.add", ['id' => $id]) }}" method="POST">
                     @csrf
@@ -17,7 +17,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+                            <input class="form-control" id="email" name="email" aria-describedby="emailHelp">
                             <div id="emailHelp" class="form-text">Enter the email so we can send an invitation to this
                                 person
                             </div>
