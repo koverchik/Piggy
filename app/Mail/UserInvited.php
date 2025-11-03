@@ -21,8 +21,9 @@ class UserInvited extends Mailable
     public string $name;
     public string $level;
     public string $acceptUrl;
+    public string $declineUrl;
 
-    public function __construct(User $user, User $host, string $type, string $name, string $level, string $acceptUrl)
+    public function __construct(User $user, User $host, string $type, string $name, string $level, string $acceptUrl, string $declineUrl)
     {
         $this->user = $user;
         $this->host = $host;
@@ -30,6 +31,8 @@ class UserInvited extends Mailable
         $this->name = $name;
         $this->level = $level;
         $this->acceptUrl = $acceptUrl;
+        $this->declineUrl = $declineUrl;
+
     }
 
     public function envelope(): Envelope

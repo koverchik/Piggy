@@ -6,19 +6,19 @@ use App\Enums\FinancesType;
 use App\Enums\InviteStatus;
 use App\Enums\UserRole;
 use App\Facades\ColorFacade;
-use App\Mail\UserInvited;
 use App\Models\Budget;
 use App\Models\BudgetMember;
 use App\Models\BudgetRow;
 use App\Models\User;
+use App\Services\MenageInvitationServices;
+use App\Services\SendEmailServices;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
-class BudgetMemberController extends Controller implements MemberControllerInterface
+class BudgetMemberController extends Controller implements MemberControllerInterface, InviteMemberControllerInterface
 {
     public function show(string $id): View
     {
@@ -59,7 +59,7 @@ class BudgetMemberController extends Controller implements MemberControllerInter
 
         if ($member->permissions === $role->value) {
             $text = 'Access for the user %s has not been changed and she remains an %s.';
-        }else{
+        } else {
             $member->update(['permissions' => $role]);
             $text = 'Access for the user %s has been changed to %s.';
         }
@@ -67,22 +67,37 @@ class BudgetMemberController extends Controller implements MemberControllerInter
         return back()->with('success', sprintf($text, $user->name, $role->value));
     }
 
-    public function acceptInvite(string $id, User $user): RedirectResponse
+    public function acceptInvite(string $id, User $user, MenageInvitationServices $menageInvitationServices): RedirectResponse
     {
         $authUser = Auth::user();
         if (!$authUser) {
             redirect(route('login'));
         }
-        $budget = Budget::find($id);
-        $userIds = $budget->members()->pluck('users.id')->toArray();
-        if (in_array($user->id, $userIds)) {
-            return redirect(route('members.budget.table', ['budget' => $id]));
+
+        if ($authUser->id === $user->id) {
+            $message = $menageInvitationServices->changeStatus($id, $user, FinancesType::BUDGET->value, InviteStatus::APPROVED->value);
+            return redirect(route('members.budget.table', ['budget' => $id]))->with('success', $message);
         } else {
             return redirect(route('main'));
         }
     }
 
-    public function invite(Request $request, string $id): RedirectResponse
+    public function declineInvite(string $id, User $user, MenageInvitationServices $menageInvitationServices): RedirectResponse
+    {
+        $authUser = Auth::user();
+        if (!$authUser) {
+            redirect(route('login'));
+        }
+
+        if ($authUser->id === $user->id) {
+            $message = $menageInvitationServices->changeStatus($id, $user, FinancesType::BUDGET->value, InviteStatus::DECLINED->value);
+            return redirect(route('main'))->with('success', $message);
+        } else {
+            return redirect(route('main'));
+        }
+    }
+
+    public function invite(Request $request, string $id, SendEmailServices $sendEmailServices): RedirectResponse
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
@@ -116,17 +131,24 @@ class BudgetMemberController extends Controller implements MemberControllerInter
         ]);
         $host = Auth::user();
         $budget = Budget::find($id);
-        $acceptUrl = route('budget.invite.accept', ['budget' => $id, 'user' => $user->id]);
-
-        Mail::to($user->email)
-            ->queue(new UserInvited(
-                $user,
-                $host,
-                FinancesType::BUDGET->value,
-                $budget->name,
-                $request->permissions,
-                $acceptUrl));
+        $sendEmailServices->sentInvite($user, $host, FinancesType::BUDGET->value, $budget->name, $id, $request->permissions);
 
         return back()->with('success', 'Invitation sent successfully!');
     }
+
+    public function resendInvite(string $id, User $user, SendEmailServices $sendEmailServices): RedirectResponse
+    {
+        $host = Auth::user();
+        $budget = Budget::find($id);
+        $member = BudgetMember::firstWhere([
+            'user_id' => $user->id,
+            'budget_id' => $id,
+        ]);
+
+        $sendEmailServices->sentInvite($user, $host, FinancesType::BUDGET->value, $budget->name, $id, $member->permissions);
+        $member->touch();
+
+        return back()->with('success', 'Invitation resent successfully!');
+    }
+
 }

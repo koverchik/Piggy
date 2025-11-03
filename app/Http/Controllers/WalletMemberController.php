@@ -6,19 +6,19 @@ use App\Enums\FinancesType;
 use App\Enums\InviteStatus;
 use App\Enums\UserRole;
 use App\Facades\ColorFacade;
-use App\Mail\UserInvited;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Models\WalletMember;
 use App\Models\WalletRow;
+use App\Services\MenageInvitationServices;
+use App\Services\SendEmailServices;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Mail;
 
-class WalletMemberController extends Controller implements MemberControllerInterface
+class WalletMemberController extends Controller implements MemberControllerInterface, InviteMemberControllerInterface
 {
 
     public function show(string $id): View
@@ -68,22 +68,36 @@ class WalletMemberController extends Controller implements MemberControllerInter
         return back()->with('success', sprintf($text, $user->name, $role->value));
     }
 
-    public function acceptInvite(string $id, User $user): RedirectResponse
+    public function acceptInvite(string $id, User $user, MenageInvitationServices $menageInvitationServices): RedirectResponse
     {
         $authUser = Auth::user();
         if (!$authUser) {
             redirect(route('login'));
         }
-        $wallet = Wallet::find($id);
-        $userIds = $wallet->members()->pluck('users.id')->toArray();
-        if (in_array($user->id, $userIds)) {
-            return redirect(route('members.wallet.table', ['wallet' => $id]));
+        if ($authUser->id === $user->id) {
+            $message = $menageInvitationServices->changeStatus($id, $user, FinancesType::WALLET->value, InviteStatus::APPROVED->value);
+            return redirect(route('members.wallet.table', ['wallet' => $id]))->with('success', $message);
         } else {
             return redirect(route('main'));
         }
     }
 
-    public function invite(Request $request, string $id): RedirectResponse
+    public function declineInvite(string $id, User $user, MenageInvitationServices $menageInvitationServices): RedirectResponse
+    {
+        $authUser = Auth::user();
+        if (!$authUser) {
+            redirect(route('login'));
+        }
+
+        if ($authUser->id === $user->id) {
+            $message = $menageInvitationServices->changeStatus($id, $user, FinancesType::WALLET->value, InviteStatus::DECLINED->value);
+            return redirect(route('main'))->with('success', $message);
+        } else {
+            return redirect(route('main'));
+        }
+    }
+
+    public function invite(Request $request, string $id, SendEmailServices $sendEmailServices): RedirectResponse
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
@@ -117,11 +131,23 @@ class WalletMemberController extends Controller implements MemberControllerInter
         ]);
         $host = Auth::user();
         $wallet = Wallet::find($id);
-        $acceptUrl = route('wallet.invite.accept', ['wallet' => $id, 'user' => $user->id]);
-
-        Mail::to($user->email)
-            ->queue(new UserInvited($user, $host, FinancesType::WALLET->value, $wallet->name, $request->permissions, $acceptUrl));
+        $sendEmailServices->sentInvite($user, $host, FinancesType::WALLET->value, $wallet->name, $id, $request->permissions);
 
         return back()->with('success', 'Invitation sent successfully!');
+    }
+
+    public function resendInvite(string $id, User $user, SendEmailServices $sendEmailServices): RedirectResponse
+    {
+        $host = Auth::user();
+        $wallet = Wallet::find($id);
+        $member = WalletMember::firstWhere([
+            'user_id' => $user->id,
+            'budget_id' => $id,
+        ]);
+
+        $sendEmailServices->sentInvite($user, $host, FinancesType::WALLET->value, $wallet->name, $id, $member->permissions);
+        $member->touch();
+
+        return back()->with('success', 'Invitation resent successfully!');
     }
 }

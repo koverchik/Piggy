@@ -14,7 +14,7 @@
                         <div class="alignment" align="center"
                              style="height:45px;line-height:45px;">
                             <span class="small-text-email">If you don’t want to receive emails from our service, you can unsubscribe using the link
-                                <a class="link-primary-email" href="{{route('unsubscribe')}}">unsubscribe</a></span>
+                                <a class="link-primary-custom" href="{{route('unsubscribe')}}">unsubscribe</a></span>
                         </div>
                     </td>
                 </tr>

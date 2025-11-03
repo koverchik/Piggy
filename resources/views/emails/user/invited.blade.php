@@ -46,7 +46,8 @@
                 <tbody>
                 <tr>
                     <td>
-                        <table class="row-content stack email-light-bg" align="center" border="0" cellpadding="0" cellspacing="0"
+                        <table class="row-content stack email-light-bg" align="center" border="0" cellpadding="0"
+                               cellspacing="0"
                                role="presentation"
                                style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 640px; margin: 0 auto;"
                                width="640">
@@ -68,13 +69,44 @@
                                                         </span>
                                                     </p>
                                                     <p style="margin: 0;">&nbsp;</p>
-                                                    <p style="margin: 0; word-break: break-word;">Split bills the easy way!  Join me on {{ config('app.name') }} and never stress about who owes what again. </p>
-                                                    <p style="margin: 0; word-break: break-word;">{{ $host->name }} is inviting you to join his {{$type}} "{{$name}}" as an {{$level}}.</p>
+                                                    <p style="margin: 0; word-break: break-word;">Split bills the easy
+                                                        way! Join me on {{ config('app.name') }} and never stress about
+                                                        who owes what again. </p>
+                                                    <p style="margin: 0; word-break: break-word;">{{ $host->name }} is
+                                                        inviting you to join his {{$type}} "{{$name}}" as an {{$level}}
+                                                        .</p>
                                                 </div>
                                             </td>
                                         </tr>
                                     </table>
-                                    <x-mail::button :url="$acceptUrl"> Join </x-mail::button>
+                                    <x-mail::button :url="$acceptUrl"> Join</x-mail::button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <table class="row row-4" align="center" width="100%" border="0" cellpadding="0" cellspacing="0"
+                   role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+                <tbody>
+                <tr>
+                    <td>
+                        <table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0"
+                               role="presentation"
+                               style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 640px; margin: 0 auto;"
+                               width="640">
+                            <tbody>
+                            <tr>
+                                <td class="column column-1" width="100%"
+                                    style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
+                                    <div class="alignment" align="center"
+                                         style="height:45px;line-height:45px;">
+                                        <span
+                                            class="small-text-email">You can decline the invitation by following the <a
+                                                class="link-primary-custom" href="{{$declineUrl}}">link</a>.</span>
+                                    </div>
                                 </td>
                             </tr>
                             </tbody>

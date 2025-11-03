@@ -20,8 +20,7 @@ class BudgetController extends Controller implements TableControllerInterface
 
     public function index(): View
     {
-        $budgets = Budget::all()
-            ->take(10);
+        $budgets = Budget::all()->take(10);
 
         return view('budget.list', ['items' => $budgets, 'type' => FinancesType::BUDGET->value]);
     }
