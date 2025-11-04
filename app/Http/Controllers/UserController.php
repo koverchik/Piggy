@@ -17,6 +17,13 @@ class UserController extends Controller
         return view('user', ['user' => $user]);
     }
 
+    public function getMember(int $id): View
+    {
+        $user = User::findOrFail($id);
+
+        return view('user', ['user' => $user]);
+    }
+
     public function uploadAvatar(Request $request, int $id): RedirectResponse
     {
         $request->validate(['image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048']);
