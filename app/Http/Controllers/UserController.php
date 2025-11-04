@@ -13,8 +13,26 @@ class UserController extends Controller
     public function getUser(): View
     {
         $user = Auth::user();
+        $wallets = $user->walletMemberships()->get();
+        $deletedWallets = $user->walletMembershipsTrashed()->get();
+        $budgets = $user->budgetMemberships()->get();
+        $deletedBudgets = $user->budgetMembershipsTrashed()->get();
 
-        return view('user', ['user' => $user]);
+        return view('user',
+            [
+                'user' => $user,
+                'wallets' => $wallets,
+                'budgets' => $budgets,
+                'deletedWallets' => $deletedWallets,
+                'deletedBudgets' => $deletedBudgets
+            ]);
+    }
+
+    public function getMember(int $id): View
+    {
+        $user = User::findOrFail($id);
+
+        return view('members.member', ['user' => $user]);
     }
 
     public function uploadAvatar(Request $request, int $id): RedirectResponse

@@ -40,7 +40,7 @@ class LoginController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('userPage');
+        return redirect()->route('user');
     }
 
     public function handleHomePage(): View

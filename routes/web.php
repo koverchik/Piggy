@@ -23,7 +23,9 @@ Route::get('/unsubscribe', [SubscriptionController::class, 'index'])->name('unsu
 
 Route::post('/unsubscribe', [SubscriptionController::class, 'unsubscribe'])->name('unsubscribe.submit');
 
-Route::get('/user', [UserController::class, 'getUser'])->name('userPage');
+Route::get('/user', [UserController::class, 'getUser'])->name('user');
+
+Route::get('/user/{user}', [UserController::class, 'getMember'])->name('member');
 
 Route::post('/upload-avatar/{id}', [UserController::class, 'uploadAvatar'])->name('uploadAvatar');
 

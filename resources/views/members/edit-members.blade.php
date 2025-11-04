@@ -15,7 +15,7 @@
         <tbody>
         <tr>
             <td class="align-middle">
-                <a href="{{route('userPage', ['id' => $item->id])}}">
+                <a href="{{ $user->id == $item->id ? route('user') : route('member', ['user' => $item->id]) }}">
                     @if($item->avatar !== null)
                         <img width="30" height="30" src="{{ asset('storage/avatars/'.$item->avatar) }}"
                              class="m-1 cursor-pointer" alt="Avatar"/>
