@@ -52,12 +52,29 @@ class User extends Authenticatable
     public function walletMemberships()
     {
         return $this->belongsToMany(Wallet::class, 'wallet_member', 'user_id', 'wallet_id')
+            ->withPivot('permissions', 'status')
             ->withTimestamps();
+    }
+
+    public function walletMembershipsTrashed()
+    {
+        return $this->belongsToMany(Wallet::class, 'wallet_member', 'user_id', 'wallet_id')
+            ->withPivot('permissions', 'status')
+            ->withTimestamps()
+            ->onlyTrashed();
     }
 
     public function budgetMemberships()
     {
         return $this->belongsToMany(Budget::class, 'budget_member', 'user_id', 'budget_id')
+            ->withPivot('permissions', 'status')
             ->withTimestamps();
+    }
+    public function budgetMembershipsTrashed()
+    {
+        return $this->belongsToMany(Budget::class, 'budget_member', 'user_id', 'budget_id')
+            ->withPivot('permissions', 'status')
+            ->withTimestamps()
+            ->onlyTrashed();
     }
 }

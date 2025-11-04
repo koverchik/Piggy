@@ -7,7 +7,9 @@
     <th scope="col">Invited</th>
     <th scope="col">Status</th>
     <th scope="col" class="text-center">Color</th>
-    <th scope="col" width="5%"></th>
+    @if($is_owner)
+        <th scope="col" width="5%"></th>
+    @endif
     </thead>
     @foreach($items as $item)
         <tbody>
@@ -36,8 +38,7 @@
                     <circle cx="5" cy="5" r="5" fill="{{$item->color}}"/>
                 </svg>
             </td>
-
-            @if($user->id !== $item->id)
+            @if($is_owner and $user->id !== $item->id)
                 <td>
                     <div class="dropdown">
                         <button class="btn btn-light dropdown-toggle" type="button" id="dropdownActionMembersMenuButton"
@@ -50,11 +51,13 @@
                                         data-bs-target="#delete-member-{{$item->id}}">Delete
                                 </button>
                             </li>
-                            <li>
-                                <button type="button" class="dropdown-item" data-bs-toggle="modal"
-                                        data-bs-target="#change-permission-member-{{$item->id}}">Change permission
-                                </button>
-                            </li>
+                            @if ($item->pivot->status === \App\Enums\InviteStatus::APPROVED->value )
+                                <li>
+                                    <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                            data-bs-target="#change-permission-member-{{$item->id}}">Change permission
+                                    </button>
+                                </li>
+                            @endif
                             @if (\Carbon\Carbon::parse($item->pivot->updated_at)->diffInDays(now()) > 1 and $item->pivot->status === \App\Enums\InviteStatus::INVITED->value )
                                 <form action="{{ route("$type.invite.resend", ['id' => $id, 'user' => $item->id]) }}"
                                       method="POST">
@@ -67,7 +70,9 @@
                     </div>
                 </td>
                 @include('members.delete-user-pop-up')
-                @include('members.change-permission-user-pop-up')
+                @if ($item->pivot->status === \App\Enums\InviteStatus::APPROVED->value )
+                    @include('members.change-permission-user-pop-up')
+                @endif
             @endif
         </tr>
         @endforeach

@@ -10,6 +10,7 @@ use App\Traits\CalculateDebitCreditTrait;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class WalletController extends Controller implements TableControllerInterface
@@ -17,9 +18,16 @@ class WalletController extends Controller implements TableControllerInterface
     use CalculateDebitCreditTrait;
     public function index(): View
     {
+        $user = Auth::user();
+        $wallets = $user->walletMemberships()->paginate(10, ['*'], 'wallet');
 
-        $wallets = Wallet::all()
-            ->take(10);
+        return view('wallet.list', ['items' => $wallets, 'type' => FinancesType::WALLET->value]);
+    }
+
+    public function trashList(): View
+    {
+        $user = Auth::user();
+        $wallets = $user->walletMembershipsTrashed()->paginate(10, ['*'], 'wallet');
 
         return view('wallet.list', ['items' => $wallets, 'type' => FinancesType::WALLET->value]);
     }
@@ -96,13 +104,6 @@ class WalletController extends Controller implements TableControllerInterface
         $wallet->forceDelete();
 
         return redirect()->route('wallet.list.deleted');
-    }
-
-    public function trashList(): View
-    {
-        $wallets = Wallet::onlyTrashed()->get();
-
-        return view('wallet.list', ['items' => $wallets, 'type' => FinancesType::WALLET->value]);
     }
 
     public function handlerMoveToTrash(string $id): RedirectResponse

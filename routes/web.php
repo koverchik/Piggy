@@ -51,11 +51,11 @@ Route::get('/wallet/{wallet}/invite/{user}/decline', [WalletMemberController::cl
 
 Route::patch('/wallet/{id}/members/{user}/permission', [WalletMemberController::class, 'changePermissionUser'])->name('members.wallet.changePermission');
 
-Route::delete('/wallet-trash/{wallet}', [WalletController::class, 'handlerMoveToTrash'])->name('wallet.trash');
+Route::delete('/wallet/trash/{wallet}', [WalletController::class, 'handlerMoveToTrash'])->name('wallet.trash');
 
-Route::get('/wallet-list-trash', [WalletController::class, 'trashList'])->name('wallet.list.deleted');
+Route::get('/wallet/trash', [WalletController::class, 'trashList'])->name('wallet.list.deleted');
 
-Route::post('/wallet-restore/{wallet}', [WalletController::class, 'handlerRestore'])->name('wallet.restore');
+Route::post('/wallet/restore/{wallet}', [WalletController::class, 'handlerRestore'])->name('wallet.restore');
 
 Route::post('/wallet/{wallet}/update', [WalletRowController::class, 'add'])->name('add.wallet.rows');
 
@@ -77,14 +77,14 @@ Route::get('/budget/{budget}/invite/{user}/decline', [BudgetMemberController::cl
 
 Route::patch('/budget/{id}/invite/{user}/resend', [BudgetMemberController::class, 'resendInvite'])->name('budget.invite.resend');
 
-Route::delete('/budget-trash/{budget}', [BudgetController::class, 'handlerMoveToTrash'])->name('budget.trash');
+Route::delete('/budget/trash/{budget}', [BudgetController::class, 'handlerMoveToTrash'])->name('budget.trash');
 
-Route::get('/budget-list-trash', [BudgetController::class, 'trashList'])->name('budget.list.deleted');
-
-Route::post('/budget-restore/{budget}', [BudgetController::class, 'handlerRestore'])->name('budget.restore');
+Route::post('/budget/restore/{budget}', [BudgetController::class, 'handlerRestore'])->name('budget.restore');
 
 Route::post('/budget/{budget}/update', [BudgetRowController::class, 'add'])->name('add.budget.rows');
 
 Route::get('/budget/{budget}/update', [BudgetRowController::class, 'show'])->name('index.budget.rows');
+
+Route::get('/budget/trash', [BudgetController::class, 'trashList'])->name('budget.list.deleted');
 
 Route::resource('/budget', BudgetController::class);
