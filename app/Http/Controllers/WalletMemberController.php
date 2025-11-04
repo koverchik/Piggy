@@ -47,7 +47,7 @@ class WalletMemberController extends Controller implements MemberControllerInter
         return back();
     }
 
-    public function changePermissionUser(Request $request, string $id, User $user): RedirectResponse
+    public function changePermissionUser(Request $request, string $id, User $user, SendEmailServices $sendEmailServices): RedirectResponse
     {
         Validator::make($request->all(), [
             'permissions' => 'required|string',
@@ -57,12 +57,14 @@ class WalletMemberController extends Controller implements MemberControllerInter
         $member = WalletMember::where('wallet_id', $id)
             ->where('user_id', $user->id)
             ->first();
-
         if ($member->permissions === $role->value) {
             $text = 'Access for the user %s has not been changed and she remains an %s.';
         } else {
+            $authUser = Auth::user();
+            $wallet = $member->wallet()->first();
             $member->update(['permissions' => $role]);
-            $text = 'Access for the user %s has been changed to %s.';
+            $sendEmailServices->sentChangePermission($authUser, $user, $wallet->id, $wallet->name, $role->value, FinancesType::WALLET->value);
+            $text = 'Access for the user %s has been changed to %s. An email about the role change has been sent to the user’s email address.';
         }
 
         return back()->with('success', sprintf($text, $user->name, $role->value));

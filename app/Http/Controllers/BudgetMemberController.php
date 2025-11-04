@@ -46,7 +46,7 @@ class BudgetMemberController extends Controller implements MemberControllerInter
         return back();
     }
 
-    public function changePermissionUser(Request $request, string $id, User $user): RedirectResponse
+    public function changePermissionUser(Request $request, string $id, User $user, SendEmailServices $sendEmailServices): RedirectResponse
     {
         Validator::make($request->all(), [
             'permissions' => 'required|string',
@@ -60,8 +60,11 @@ class BudgetMemberController extends Controller implements MemberControllerInter
         if ($member->permissions === $role->value) {
             $text = 'Access for the user %s has not been changed and she remains an %s.';
         } else {
+            $authUser = Auth::user();
+            $budget = $member->budget()->first();
             $member->update(['permissions' => $role]);
-            $text = 'Access for the user %s has been changed to %s.';
+            $sendEmailServices->sentChangePermission($authUser, $user, $budget->id, $budget->name, $role->value, FinancesType::BUDGET->value);
+            $text = 'Access for the user %s has been changed to %s. An email about the role change has been sent to the user’s email address.';
         }
 
         return back()->with('success', sprintf($text, $user->name, $role->value));
