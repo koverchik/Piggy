@@ -22,7 +22,7 @@ $list-group-active-bg: $secondary;
 $list-group-active-border-color: $secondary;
 
 $nav-link-hover-color: $secondary;
-$nav-link-active-color: darken($secondary, 10%);
+$nav-link-active-color: color.scale($secondary, $lightness: -18.4782608696%);
 $nav-tabs-link-hover-border-color: $secondary;
 
 $btn-hover-bg-shade-amount: 10%;

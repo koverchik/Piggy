@@ -12,6 +12,7 @@ use App\Traits\CalculateDebitCreditTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class BudgetController extends Controller implements TableControllerInterface
@@ -20,7 +21,16 @@ class BudgetController extends Controller implements TableControllerInterface
 
     public function index(): View
     {
-        $budgets = Budget::all()->take(10);
+        $user = Auth::user();
+        $budgets = $user->budgetMemberships()->paginate(10, ['*'], 'budget');
+
+        return view('budget.list', ['items' => $budgets, 'type' => FinancesType::BUDGET->value]);
+    }
+
+    public function trashList(): View
+    {
+        $user = Auth::user();
+        $budgets = $user->budgetMembershipsTrashed()->paginate(10, ['*'], 'budget');
 
         return view('budget.list', ['items' => $budgets, 'type' => FinancesType::BUDGET->value]);
     }
@@ -100,12 +110,7 @@ class BudgetController extends Controller implements TableControllerInterface
         return redirect()->route('budget.list.deleted');
     }
 
-    public function trashList(): View
-    {
-        $budget = Budget::onlyTrashed()->get();
 
-        return view('wallet.list', ['items' => $budget, 'type' => FinancesType::BUDGET->value]);
-    }
 
     public function handlerMoveToTrash(string $id): RedirectResponse
     {

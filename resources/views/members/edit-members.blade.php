@@ -7,7 +7,9 @@
     <th scope="col">Invited</th>
     <th scope="col">Status</th>
     <th scope="col" class="text-center">Color</th>
-    <th scope="col" width="5%"></th>
+    @if($is_owner)
+        <th scope="col" width="5%"></th>
+    @endif
     </thead>
     @foreach($items as $item)
         <tbody>
@@ -36,8 +38,7 @@
                     <circle cx="5" cy="5" r="5" fill="{{$item->color}}"/>
                 </svg>
             </td>
-
-            @if($user->id !== $item->id)
+            @if($is_owner and $user->id !== $item->id)
                 <td>
                     <div class="dropdown">
                         <button class="btn btn-light dropdown-toggle" type="button" id="dropdownActionMembersMenuButton"

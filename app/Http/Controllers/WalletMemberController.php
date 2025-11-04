@@ -31,7 +31,8 @@ class WalletMemberController extends Controller implements MemberControllerInter
             'items' => $wallet->members,
             'name' => $wallet->name,
             'id' => $id,
-            'user' => $user
+            'user' => $user,
+            'is_owner' => $user == $wallet->owner()->first()
         ]);
     }
 

@@ -31,6 +31,7 @@ class BudgetMemberController extends Controller implements MemberControllerInter
             'name' => $budget->name,
             'id' => $id,
             'user' => $user,
+            'is_owner' => $user == $budget->owner()->first()
         ]);
     }
 

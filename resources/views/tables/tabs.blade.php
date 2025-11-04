@@ -4,6 +4,6 @@
         <a class="nav-link {{$status == "active" ? "active" :""}}" aria-current="page" href="{{ route($type.'.index') }}">Active</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{$status == "delete" ? "active" :""}}" aria-current="page" href="{{ url($type.'-list-trash') }}">Deleted</a>
+        <a class="nav-link {{$status == "delete" ? "active" :""}}" aria-current="page" href="{{ route($type.'.list.deleted') }}">Deleted</a>
     </li>
 </ul>
