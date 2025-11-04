@@ -64,17 +64,51 @@ class User extends Authenticatable
             ->onlyTrashed();
     }
 
+    public function walletsOwned()
+    {
+        return $this->belongsToMany(Wallet::class, 'wallet_member', 'user_id', 'wallet_id')
+            ->withPivot('permissions', 'status')
+            ->withTimestamps()
+            ->wherePivot('permissions', 'owner');
+    }
+
+    public function walletsOwnedTrashed()
+    {
+        return $this->belongsToMany(Wallet::class, 'wallet_member', 'user_id', 'wallet_id')
+            ->withPivot('permissions', 'status')
+            ->withTimestamps()
+            ->onlyTrashed()
+            ->wherePivot('permissions', 'owner');
+    }
+
     public function budgetMemberships()
     {
         return $this->belongsToMany(Budget::class, 'budget_member', 'user_id', 'budget_id')
             ->withPivot('permissions', 'status')
             ->withTimestamps();
     }
+
     public function budgetMembershipsTrashed()
     {
         return $this->belongsToMany(Budget::class, 'budget_member', 'user_id', 'budget_id')
             ->withPivot('permissions', 'status')
             ->withTimestamps()
             ->onlyTrashed();
+    }
+    public function budgetsOwned()
+    {
+        return $this->belongsToMany(Budget::class, 'budget_member', 'user_id', 'budget_id')
+            ->withPivot('permissions', 'status')
+            ->withTimestamps()
+            ->wherePivot('permissions', 'owner');
+    }
+
+    public function budgetsOwnedTrashed()
+    {
+        return $this->belongsToMany(Budget::class, 'budget_member', 'user_id', 'budget_id')
+            ->withPivot('permissions', 'status')
+            ->withTimestamps()
+            ->onlyTrashed()
+            ->wherePivot('permissions', 'owner');
     }
 }

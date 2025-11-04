@@ -22,7 +22,7 @@ class BudgetController extends Controller implements TableControllerInterface
     public function index(): View
     {
         $user = Auth::user();
-        $budgets = $user->budgetMemberships()->paginate(10, ['*'], 'budget');
+        $budgets = $user->budgetsOwned()->paginate(10, ['*'], 'budget');
 
         return view('budget.list', ['items' => $budgets, 'type' => FinancesType::BUDGET->value]);
     }
@@ -30,7 +30,7 @@ class BudgetController extends Controller implements TableControllerInterface
     public function trashList(): View
     {
         $user = Auth::user();
-        $budgets = $user->budgetMembershipsTrashed()->paginate(10, ['*'], 'budget');
+        $budgets = $user->budgetsOwnedTrashed()->paginate(10, ['*'], 'budget');
 
         return view('budget.list', ['items' => $budgets, 'type' => FinancesType::BUDGET->value]);
     }

@@ -19,7 +19,7 @@ class WalletController extends Controller implements TableControllerInterface
     public function index(): View
     {
         $user = Auth::user();
-        $wallets = $user->walletMemberships()->paginate(10, ['*'], 'wallet');
+        $wallets = $user->walletsOwned()->paginate(10, ['*'], 'wallet');
 
         return view('wallet.list', ['items' => $wallets, 'type' => FinancesType::WALLET->value]);
     }
@@ -27,7 +27,7 @@ class WalletController extends Controller implements TableControllerInterface
     public function trashList(): View
     {
         $user = Auth::user();
-        $wallets = $user->walletMembershipsTrashed()->paginate(10, ['*'], 'wallet');
+        $wallets = $user->walletsOwnedTrashed()->paginate(10, ['*'], 'wallet');
 
         return view('wallet.list', ['items' => $wallets, 'type' => FinancesType::WALLET->value]);
     }

@@ -14,7 +14,6 @@
 
                 <div class="modal-body">
                     <p>Select a role for the user <b>{{ $item->name }}</b> from the dropdown below.</p>
-
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="inputGroupSelect01">Level</label>
                         <select class="form-select" id="inputGroupSelect01" name="permissions">

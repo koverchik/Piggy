@@ -1,7 +1,7 @@
 @extends('layouts.cards')
 @section('left-column')
     <div class="h-100 p-5 bg-light rounded-3 custom-container-card">
-        <a href="{{ route('wallet.index') }}" class="text-center text-decoration-none h2 mb-4 link-primary">Wallet</a>
+        <a href="{{ route('wallet.index') }}" class="text-center text-decoration-none h2 mb-4 link-primary">Wallets</a>
         @if($wallets->count() > 0)
             <div class="d-flex flex-column justify-content-between h-100">
                 <div class="d-flex flex-column">
@@ -31,7 +31,7 @@
 @endsection
 @section('right-column')
     <div class="h-100 p-5 bg-light rounded-3 custom-container-card">
-        <a href="{{ route('budget.index') }}" class="text-center text-decoration-none h2 mb-4 link-primary">Budget</a>
+        <a href="{{ route('budget.index') }}" class="text-center text-decoration-none h2 mb-4 link-primary">Budgets</a>
         @if($budgets->count() > 0)
             <div class="d-flex flex-column justify-content-between h-100">
                 <div class="d-flex flex-column">
