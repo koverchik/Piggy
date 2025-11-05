@@ -30,19 +30,23 @@
                 </div>
             </div>
         </div>
-{{--        @if($wallets->count() > 0)--}}
-{{--            <div class="d-flex flex-column justify-content-between h-100">--}}
-{{--                <div class="d-flex flex-column">--}}
-{{--                    @foreach ($wallets as $wallet)--}}
-{{--                        <a href="{{ route('wallet.show', $wallet->id) }}"--}}
-{{--                           class="d-inline-flex py-1 px-2 text-decoration-none m-2">--}}
-{{--                            {{ Str::ucfirst($wallet->name) }}--}}
-{{--                        </a>--}}
-{{--                    @endforeach--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        @endif--}}
-{{--        Spase for list bughet and wallets --}}
+        @if($wallets->count() > 0)
+            <h2 class="text-center m-3">Linked wallets</h2>
+            @include('tables.member-table',  ['data' => $wallets, 'routeName' => 'wallet.show'])
+        @endif
+        @if($deletedWallets->count() > 0)
+            <h2 class="text-center m-3">Linked deleted wallets</h2>
+            @include('tables.member-table',  ['data' => $deletedWallets])
+        @endif
+        @if($budgets->count() > 0)
+            <h2 class="text-center m-3">Linked budgets</h2>
+            @include('tables.member-table',  ['data' => $budgets, 'routeName' => 'budget.show'])
+        @endif
+        @if($deletedBudgets->count() > 0)
+            <h2 class="text-center m-3">Linked deleted budgets</h2>
+            @include('tables.member-table',  ['data' => $deletedBudgets])
+        @endif
+        <div style="height: 72px"></div>
 
     </main>
 @endsection

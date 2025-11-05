@@ -81,6 +81,28 @@ class User extends Authenticatable
             ->wherePivot('permissions', 'owner');
     }
 
+    public function crossWalletWith(int $secondId)
+    {
+        return Wallet::query()
+            ->select('wallets.*')
+            ->join('wallet_member as wm1', 'wallets.id', '=', 'wm1.wallet_id')
+            ->join('wallet_member as wm2', 'wallets.id', '=', 'wm2.wallet_id')
+            ->where('wm1.user_id', $this->id)
+            ->where('wm2.user_id', $secondId)
+            ->distinct();
+    }
+
+    public function crossWalletTrashedWith(int $secondId)
+    {
+        return Wallet::onlyTrashed()
+            ->select('wallets.*')
+            ->join('wallet_member as wm1', 'wallets.id', '=', 'wm1.wallet_id')
+            ->join('wallet_member as wm2', 'wallets.id', '=', 'wm2.wallet_id')
+            ->where('wm1.user_id', $this->id)
+            ->where('wm2.user_id', $secondId)
+            ->distinct();
+    }
+
     public function budgetMemberships()
     {
         return $this->belongsToMany(Budget::class, 'budget_member', 'user_id', 'budget_id')
@@ -95,6 +117,29 @@ class User extends Authenticatable
             ->withTimestamps()
             ->onlyTrashed();
     }
+
+    public function crossBudgetsWith(int $secondId)
+    {
+        return Budget::query()
+            ->select('budgets.*')
+            ->join('budget_member as bm1', 'budgets.id', '=', 'bm1.budget_id')
+            ->join('budget_member as bm2', 'budgets.id', '=', 'bm2.budget_id')
+            ->where('bm1.user_id', $this->id)
+            ->where('bm2.user_id', $secondId)
+            ->distinct();
+    }
+
+    public function crossBudgetsTrashedWith(int $secondId)
+    {
+        return Budget::onlyTrashed()
+            ->select('budgets.*')
+            ->join('budget_member as bm1', 'budgets.id', '=', 'bm1.budget_id')
+            ->join('budget_member as bm2', 'budgets.id', '=', 'bm2.budget_id')
+            ->where('bm1.user_id', $this->id)
+            ->where('bm2.user_id', $secondId)
+            ->distinct();
+    }
+
     public function budgetsOwned()
     {
         return $this->belongsToMany(Budget::class, 'budget_member', 'user_id', 'budget_id')
