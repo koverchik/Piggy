@@ -9,5 +9,6 @@
                 @yield('right-column')
             </div>
         </div>
+        <div style="height: 72px"></div>
     </main>
 @endsection
