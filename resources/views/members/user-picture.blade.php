@@ -3,7 +3,7 @@
         <img width="@if(isset($width)){{$width}}@else{{30}} @endif"
              height="@if(isset($height)){{$height}}@else{{30}} @endif"
              src="{{ asset('storage/avatars/'.$user->avatar) }}"
-             class="m-1 cursor-pointer" alt="Avatar"/>
+             class="m-1 cursor-pointer" alt="Avatar {{$user->name}}"/>
     @else
         <svg width="@if(isset($width)){{$width}}@else{{30}}@endif"
              height="@if(isset($height)){{$height}}@else{{30}}@endif" viewBox="0 0 30 30" fill="none">

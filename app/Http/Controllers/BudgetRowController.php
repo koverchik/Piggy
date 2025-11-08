@@ -15,7 +15,7 @@ class BudgetRowController extends Controller
         $lastPage = $budget->data()->paginate(10)->lastPage();
         $data = $budget->data()->paginate(10, ['*'], 'page', $lastPage);
 
-        return view('budget.edit', ['items' => $budget, "total" => $total, 'data' => $data, 'type' => FinancesType::BUDGET->value]);
+        return view('budget.edit', ['items' => $budget, 'total' => $total, 'data' => $data, 'type' => FinancesType::BUDGET->value]);
     }
 
     public function add(Request $request, string $id)
@@ -30,6 +30,9 @@ class BudgetRowController extends Controller
             'budget_id' => $id,
             'user_id' => 3
         ]);
+
+        $budget = Budget::findOrFail($id);
+        $budget->touch();
 
         return back();
     }

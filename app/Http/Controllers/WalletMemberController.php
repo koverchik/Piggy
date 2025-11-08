@@ -26,7 +26,7 @@ class WalletMemberController extends Controller implements MemberControllerInter
         $user = Auth::user();
         $wallet = Wallet::with('members')->findOrFail($id);
 
-        return view('members.members-table', [
+        return view('members.table', [
             'type' => FinancesType::WALLET->value,
             'items' => $wallet->members,
             'name' => $wallet->name,

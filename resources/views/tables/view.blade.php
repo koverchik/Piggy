@@ -5,24 +5,27 @@
             <div class="col-md-8">
                 <div class="d-flex justify-content-between align-items-start">
                     <h2 class="mb-4">
-                        <a href="{{ route("index.$type.rows", [$type => $item->id]) }}" class="link-primary text-decoration-none">
+                        <a href="{{ route("index.$type.rows", [$type => $item->id]) }}"
+                           class="link-primary text-decoration-none">
                             {{ Str::title($type) }} {{ $item->name }}
                         </a>
                     </h2>
                     <div>
                         <div class="dropdown">
-                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownActionTableMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn-light dropdown-toggle" type="button"
+                                    id="dropdownActionTableMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="{{ asset('images/list-premision.svg') }}" class="m-1" alt="permission"/>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownActionTableMenuButton">
                                 <li>
-                                    <a href="{{ route('index.'.$type.'.rows', [$type => $item->id]) }}" class="dropdown-item">
+                                    <a href="{{ route('index.'.$type.'.rows', [$type => $item->id]) }}"
+                                       class="dropdown-item">
                                         Add rows
                                     </a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="{{ route("$type.edit", [$type => $item->id]) }}">
-                                        Update name
+                                        Update
                                     </a>
                                 </li>
                                 <li>
@@ -35,9 +38,15 @@
                 @include('tables.table')
             </div>
             <div class="col-md-4">
+
+                <div class="d-flex justify-content-between align-items-start">
+                    <h2 class="mb-4">Calculation</h2>
+                </div>
+                @include('tables.calculation')
                 <div class="d-flex justify-content-between align-items-start">
                     <h2 class="mb-4">
-                        <a href="{{ route("members.$type.table", [ $type => $item->id])}}" class="link-primary text-decoration-none">
+                        <a href="{{ route("members.$type.table", [ $type => $item->id])}}"
+                           class="link-primary text-decoration-none">
                             Members
                         </a>
                     </h2>
@@ -47,11 +56,7 @@
                         </button>
                     </a>
                 </div>
-                @include('members.members')
-                <div class="d-flex justify-content-between align-items-start">
-                    <h2 class="mb-4">Calculation</h2>
-                </div>
-                @include('tables.calculation')
+                @include('members.table-list')
             </div>
         </div>
     </main>
