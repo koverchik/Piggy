@@ -87,7 +87,7 @@ class BudgetController extends Controller implements TableControllerInterface
 
     public function edit(Budget $budget): View
     {
-        return view('layouts.update_entity', ['type' => FinancesType::BUDGET->value, 'entity' => $budget]);
+        return view('layouts.update-entity', ['type' => FinancesType::BUDGET->value, 'entity' => $budget]);
     }
 
     public function update(Request $request, Budget $budget): RedirectResponse

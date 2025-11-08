@@ -15,7 +15,7 @@ class WalletRowController extends Controller
         $lastPage = $wallet->data()->paginate(10)->lastPage();
         $data = $wallet->data()->paginate(10, ['*'], 'page', $lastPage);
 
-        return view('wallet.edit', ['items' => $wallet, "total" => $total, 'data' => $data, 'type' => FinancesType::WALLET->value]);
+        return view('wallet.edit', ['items' => $wallet, 'total' => $total, 'data' => $data, 'type' => FinancesType::WALLET->value]);
     }
 
     public function add(Request $request, string $id)
@@ -31,6 +31,8 @@ class WalletRowController extends Controller
             'wallet_id' => $id,
             'user_id' => 1
         ]);
+        $wallet = Wallet::findOrFail($id);
+        $wallet->touch();
 
         return back();
     }

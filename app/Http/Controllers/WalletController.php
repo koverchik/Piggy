@@ -83,7 +83,7 @@ class WalletController extends Controller implements TableControllerInterface
 
     public function edit(Wallet $wallet): View
     {
-        return view('layouts.update_entity', ['type' => FinancesType::WALLET->value, 'entity' => $wallet]);
+        return view('layouts.update-entity', ['type' => FinancesType::WALLET->value, 'entity' => $wallet]);
     }
 
     public function update(Request $request, Wallet $wallet): RedirectResponse

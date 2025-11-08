@@ -25,7 +25,7 @@ class BudgetMemberController extends Controller implements MemberControllerInter
         $user = Auth::user();
         $budget = Budget::with('members')->findOrFail($id);
 
-        return view('members.members-table', [
+        return view('members.table', [
             'type' => FinancesType::BUDGET->value,
             'items' => $budget->members,
             'name' => $budget->name,
