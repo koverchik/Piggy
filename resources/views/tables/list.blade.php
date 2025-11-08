@@ -11,6 +11,12 @@
 
 @section('content')
     <main class="container py-4 flex-shrink-0">
+        @if(session('info'))
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                {{ session('info') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         @include('tables.tabs', ['type' => $type, 'status' => $status])
         <ol class="mt-auto p-2 bd-highlight">
             @foreach ($items as $item)
@@ -23,7 +29,7 @@
                     @if($status === 'active')
                         <a href="{{route($type.'.update', [ $type => $item->id])}}">
                             <button class="btn btn-light m-1 menage-button" type="button">
-                                 <img src="{{ asset('images/pencil.svg') }}" class="m-1" alt="icon edit"/>
+                                <img src="{{ asset('images/pencil.svg') }}" class="m-1" alt="icon edit"/>
                             </button>
                         </a>
                     @else
@@ -38,11 +44,12 @@
                               data-action="restore"
                               data-pathname="{{route("$type.restore", [$type => $item->id])}}"
                               data-title="Restore">
-                                <img src="{{ asset('images/trash-restore-alt.svg') }}" class="m-1" alt="Icon item restore"/>
+                                <img src="{{ asset('images/trash-restore-alt.svg') }}" class="m-1"
+                                     alt="Icon item restore"/>
                             </span>
                     @endif
                     @if($status === 'active')
-                        <span class=" btn badge bg-light m-1 modal-button menage-button"
+                        <span class="btn badge bg-light m-1 modal-button menage-button"
                               role="button"
                               tabindex="0"
                               data-bs-toggle="modal"

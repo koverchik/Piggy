@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 class WalletController extends Controller implements TableControllerInterface
 {
     use CalculateDebitCreditTrait;
+
     public function index(): View
     {
         $user = Auth::user();
@@ -31,6 +32,7 @@ class WalletController extends Controller implements TableControllerInterface
 
         return view('wallet.list', ['items' => $wallets, 'type' => FinancesType::WALLET->value]);
     }
+
     public function create(): View
     {
         return view('layouts.create_entity', ['type' => 'wallet']);
@@ -71,12 +73,14 @@ class WalletController extends Controller implements TableControllerInterface
 
         $calculation = $this->calculate($results, $userId);
         $data = $wallet->data()->paginate(10);
+
         return view('tables.view', [
-            'type' => FinancesType::WALLET->value,
-            'item' => $wallet,
-            'total' => $total,
-            'calculation' => $calculation,
-            'data' => $data
+                'type' => FinancesType::WALLET->value,
+                'item' => $wallet,
+                'total' => $total,
+                'calculation' => $calculation,
+                'data' => $data,
+                'ownerId' => $userId
             ]
         );
     }
@@ -112,7 +116,10 @@ class WalletController extends Controller implements TableControllerInterface
         $wallet->status = 'stop';
         $wallet->save();
         $wallet->delete();
-        return back();
+
+        return redirect()
+            ->route('wallet.list.deleted')
+            ->with('info', sprintf('The table "%s" has been moved to the trash. You can restore it or delete it.', $wallet->name));
     }
 
     public function handlerRestore(string $id): RedirectResponse
