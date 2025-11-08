@@ -80,7 +80,8 @@ class BudgetController extends Controller implements TableControllerInterface
                 'item' => $budget,
                 'total' => $total,
                 'calculation' => $calculation,
-                'data' => $data
+                'data' => $data,
+                'ownerId' => $userId
             ]
         );
     }
@@ -118,7 +119,10 @@ class BudgetController extends Controller implements TableControllerInterface
         $budget->status = TablesStatus::STOP;
         $budget->save();
         $budget->delete();
-        return back();
+
+        return redirect()
+            ->route('wallet.list.deleted')
+            ->with('info', sprintf('The table "%s" has been moved to the trash. You can restore it or delete it.', $budget->name));
     }
 
     public function handlerRestore(string $id): RedirectResponse

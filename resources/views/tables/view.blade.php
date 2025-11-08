@@ -23,11 +23,13 @@
                                         Add rows
                                     </a>
                                 </li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ route("$type.edit", [$type => $item->id]) }}">
-                                        Update
-                                    </a>
-                                </li>
+                                @if(Auth::user()->id == $ownerId)
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route("$type.edit", [$type => $item->id]) }}">
+                                            Management
+                                        </a>
+                                    </li>
+                                @endif
                                 <li>
                                     <a class="dropdown-item" href="#">Download</a>
                                 </li>
@@ -38,7 +40,6 @@
                 @include('tables.table')
             </div>
             <div class="col-md-4">
-
                 <div class="d-flex justify-content-between align-items-start">
                     <h2 class="mb-4">Calculation</h2>
                 </div>

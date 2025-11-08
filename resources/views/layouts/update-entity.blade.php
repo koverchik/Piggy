@@ -27,7 +27,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-12 col-lg-8 p-5 bg-light rounded-3 custom-container-card">
+            <div class="col-12 col-lg-8 p-5 mb-3  bg-light rounded-3 custom-container-card">
                 <h2 class="mb-4">
                     <a href="{{ route("members.$type.table", [ $type => $entity->id])}}"
                        class="link-primary text-decoration-none">
@@ -36,7 +36,23 @@
                 </h2>
                 @include('members.table-manage', ['item' => $entity])
             </div>
+            <div class="col-12 col-lg-8 p-5 bg-light rounded-3 custom-container-card">
+                <span class="btn btn-danger m-1 modal-button"
+                      role="button"
+                      tabindex="0"
+                      data-bs-toggle="modal"
+                      data-bs-target="#trash-{{$entity->id}}"
+                      data-id="{{$entity->id}}"
+                      data-name="{{$entity->name}}"
+                      data-message=" Are you sure you want move to trash '{{$entity->name}}'"
+                      data-action="trash"
+                      data-pathname="{{route("$type.trash", [$type => $entity->id])}}"
+                      data-title="To trash">
+                    Move the table to the trash
+                </span>
+            </div>
         </div>
     </main>
+    @include('modals.action')
     <div style="height: 72px"></div>
 @endsection
