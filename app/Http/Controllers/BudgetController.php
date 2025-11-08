@@ -121,7 +121,7 @@ class BudgetController extends Controller implements TableControllerInterface
         $budget->delete();
 
         return redirect()
-            ->route('wallet.list.deleted')
+            ->route('budget.list.deleted')
             ->with('info', sprintf('The table "%s" has been moved to the trash. You can restore it or delete it.', $budget->name));
     }
 
@@ -132,6 +132,6 @@ class BudgetController extends Controller implements TableControllerInterface
         $budget->save();
         $budget->restore();
 
-        return redirect()->route('wallet.list.deleted');
+        return redirect()->route('budget.list.deleted');
     }
 }
