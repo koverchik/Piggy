@@ -6,6 +6,7 @@ use App\Enums\FinancesType;
 use App\Models\Budget;
 use App\Models\BudgetRow;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BudgetRowController extends Controller
 {
@@ -20,6 +21,7 @@ class BudgetRowController extends Controller
 
     public function add(Request $request, string $id)
     {
+        $user = Auth::user();
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'amount' => 'required|numeric'
@@ -28,7 +30,7 @@ class BudgetRowController extends Controller
             'name' => $validatedData['name'],
             'amount' => $validatedData['amount'],
             'budget_id' => $id,
-            'user_id' => 3
+            'user_id' => $user->id
         ]);
 
         $budget = Budget::findOrFail($id);
