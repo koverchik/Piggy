@@ -36,7 +36,8 @@
                                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                             Close
                                         </button>
-                                        <button type="submit" form="form-delete-avatar" class="btn btn-primary">Yes
+                                        <button type="submit" form="form-delete-avatar" class="btn btn-primary">
+                                            Yes
                                         </button>
                                     </div>
                                 </div>

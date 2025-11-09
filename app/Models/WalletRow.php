@@ -21,4 +21,10 @@ class WalletRow extends Model
         return $this->belongsTo(User::class);
     }
 
+    public static function totalAmountForUser(int $userId, int $walletId): float
+    {
+        return (float) self::where('user_id', $userId)
+            ->where('wallet_id', $walletId)
+            ->sum('amount');
+    }
 }

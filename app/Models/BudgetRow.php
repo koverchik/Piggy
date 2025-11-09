@@ -20,4 +20,10 @@ class BudgetRow extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public static function totalAmountForUser(int $userId, int $budgetId): float
+    {
+        return (float) self::where('user_id', $userId)
+            ->where('budget_id', $budgetId)
+            ->sum('amount');
+    }
 }

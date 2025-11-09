@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\InviteStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -39,5 +40,13 @@ class Wallet extends Model
         return $this->belongsToMany(User::class, 'wallet_member', 'wallet_id', 'user_id')
             ->withPivot('permissions', 'status')
             ->withTimestamps();
+    }
+
+    public function currentMembers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'wallet_member', 'wallet_id', 'user_id')
+            ->withPivot('status')
+            ->withTimestamps()
+            ->wherePivotIn('status', [InviteStatus::ADDED_SYSTEM->value, InviteStatus::APPROVED->value]);
     }
 }

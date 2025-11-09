@@ -11,7 +11,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class WalletController extends Controller implements TableControllerInterface
 {
@@ -40,15 +39,16 @@ class WalletController extends Controller implements TableControllerInterface
 
     public function store(Request $request): RedirectResponse
     {
+        $user = Auth::user();
         $wallet = Wallet::create([
             'name' => $request->get('name'),
-            'owner_id' => 1,
+            'owner_id' => $user->id,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')]);
 
         WalletMember::create([
             'wallet_id' => $wallet->id,
-            'user_id' => 1,
+            'user_id' => $user->id,
             'status' => 'approved',
             'permissions' => UserRole::OWNER->value
         ]);
@@ -58,29 +58,17 @@ class WalletController extends Controller implements TableControllerInterface
 
     public function show(Wallet $wallet): View
     {
-
-        $total = $wallet->data->sum('amount');
-        $userId = $wallet->owner->id;
-
-        $results = WalletMember::select('wallet_member.user_id', DB::raw('SUM(wr.amount) as total_amount'))
-            ->leftJoin('wallet_row as wr', function ($join) {
-                $join->on('wallet_member.user_id', '=', 'wr.user_id')
-                    ->on('wallet_member.wallet_id', '=', 'wr.wallet_id');
-            })
-            ->where('wallet_member.wallet_id', $wallet->id)
-            ->groupBy('wallet_member.user_id')
-            ->get();
-
-        $calculation = $this->calculate($results, $userId);
+        $calculation = $this->calculate($wallet->id, (int) Auth::user()->id, FinancesType::WALLET->value);
         $data = $wallet->data()->paginate(10);
 
         return view('tables.view', [
                 'type' => FinancesType::WALLET->value,
+                'members' => $wallet->currentMembers()->get(),
                 'item' => $wallet,
-                'total' => $total,
+                'total' => $wallet->data->sum('amount'),
                 'calculation' => $calculation,
                 'data' => $data,
-                'ownerId' => $userId
+                'ownerId' => $wallet->owner->id
             ]
         );
     }

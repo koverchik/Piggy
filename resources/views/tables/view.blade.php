@@ -38,12 +38,12 @@
                     </div>
                 </div>
                 @include('tables.table')
+                <div class="d-flex justify-content-between align-items-start">
+                    <h2 class="mb-4">Statistics</h2>
+                </div>
+                @include('tables.statistics')
             </div>
             <div class="col-md-4">
-                <div class="d-flex justify-content-between align-items-start">
-                    <h2 class="mb-4">Calculation</h2>
-                </div>
-                @include('tables.calculation')
                 <div class="d-flex justify-content-between align-items-start">
                     <h2 class="mb-4">
                         <a href="{{ route("members.$type.table", [ $type => $item->id])}}"
@@ -58,6 +58,10 @@
                     </a>
                 </div>
                 @include('members.table-list')
+                <div class="d-flex justify-content-between align-items-start">
+                    <h2 class="mb-4">Calculation</h2>
+                </div>
+                @include('tables.calculation')
             </div>
         </div>
     </main>

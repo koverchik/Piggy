@@ -6,6 +6,7 @@ use App\Enums\FinancesType;
 use App\Models\Wallet;
 use App\Models\WalletRow;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WalletRowController extends Controller
 {
@@ -24,12 +25,12 @@ class WalletRowController extends Controller
             'name' => 'required|string|max:255',
             'amount' => 'required|numeric'
         ]);
-
+        $user = Auth::user();
         WalletRow::create([
             'name' => $validatedData['name'],
             'amount' => $validatedData['amount'],
             'wallet_id' => $id,
-            'user_id' => 1
+            'user_id' => $user->id
         ]);
         $wallet = Wallet::findOrFail($id);
         $wallet->touch();
