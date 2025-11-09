@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\FinancesType;
+use App\Enums\InviteStatus;
 use App\Enums\UserRole;
 use App\Models\Wallet;
 use App\Models\WalletMember;
@@ -68,6 +69,7 @@ class WalletController extends Controller implements TableControllerInterface
                     ->on('wallet_member.wallet_id', '=', 'wr.wallet_id');
             })
             ->where('wallet_member.wallet_id', $wallet->id)
+            ->whereIn('wallet_member.status', [InviteStatus::ADDED_SYSTEM->value, InviteStatus::APPROVED->value])
             ->groupBy('wallet_member.user_id')
             ->get();
 
@@ -76,6 +78,7 @@ class WalletController extends Controller implements TableControllerInterface
 
         return view('tables.view', [
                 'type' => FinancesType::WALLET->value,
+                'members' => $wallet->currentMembers()->get(),
                 'item' => $wallet,
                 'total' => $total,
                 'calculation' => $calculation,

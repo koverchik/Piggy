@@ -5,7 +5,7 @@
     <th scope="col" width="10%" class="text-end">Color</th>
     </thead>
     <tbody>
-    @foreach($item->members as $item)
+    @foreach($members as $item)
         <tr>
             <td>
                 @include('members.user-picture', ['user' => $item])

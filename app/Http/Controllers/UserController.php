@@ -54,7 +54,7 @@ class UserController extends Controller
         if ($user->avatar !== null) {
             unlink(storage_path('/app/public/avatars/' . $user->avatar));
         }
-        $image = $request->file('image')->store('public/avatars');
+        $image = $request->file('image')->store('avatars', 'public');
         $basename = basename($image);
         $user->avatar = $basename;
         $user->save();

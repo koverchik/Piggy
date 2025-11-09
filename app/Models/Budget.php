@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\InviteStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -33,12 +34,21 @@ class Budget extends Model
 
     public function users(): HasMany
     {
-        return $this->hasMany(BudgetMember::class );
+        return $this->hasMany(BudgetMember::class);
     }
+
     public function members(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'budget_member', 'budget_id', 'user_id')
             ->withPivot('permissions', 'status')
             ->withTimestamps();
+    }
+
+    public function currentMembers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'budget_member', 'budget_id', 'user_id')
+            ->withPivot('status')
+            ->withTimestamps()
+            ->wherePivotIn('status', [InviteStatus::ADDED_SYSTEM->value, InviteStatus::APPROVED->value]);
     }
 }

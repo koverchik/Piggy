@@ -69,6 +69,7 @@ class BudgetController extends Controller implements TableControllerInterface
                     ->on('budget_member.budget_id', '=', 'br.budget_id');
             })
             ->where('budget_member.budget_id', $budget->id)
+            ->whereIn('budget_member.status', [InviteStatus::ADDED_SYSTEM->value, InviteStatus::APPROVED->value])
             ->groupBy('budget_member.user_id')
             ->get();
 
@@ -77,6 +78,7 @@ class BudgetController extends Controller implements TableControllerInterface
 
         return view('tables.view', [
                 'type' => FinancesType::BUDGET->value,
+                'members' => $budget->currentMembers()->get(),
                 'item' => $budget,
                 'total' => $total,
                 'calculation' => $calculation,
