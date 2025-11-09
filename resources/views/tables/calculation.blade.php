@@ -20,3 +20,4 @@
     @endforeach
     </tbody>
 </table>
+<div style="height: 72px"></div>

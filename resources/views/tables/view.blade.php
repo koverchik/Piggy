@@ -51,13 +51,19 @@
                             Members
                         </a>
                     </h2>
-                    <a href="{{ url('/'.$type. '/' .$item->id.'/'.'members') }}">
+                    <a href="{{ route("members.$type.table", [ $type => $item->id]) }}">
                         <button class="btn btn-light m-1" type="button">
                             <img src="{{ asset('images/pencil.svg') }}" class="m-1 cursor-pointer" alt="icon edit"/>
                         </button>
                     </a>
                 </div>
                 @include('members.table-list')
+                <div class="d-flex justify-content-center">
+                    <h3 class="mt-4">Total</h3>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <h2 class="mb-4">{{$total}}</h2>
+                </div>
                 <div class="d-flex justify-content-between align-items-start">
                     <h2 class="mb-4">Calculation</h2>
                 </div>
